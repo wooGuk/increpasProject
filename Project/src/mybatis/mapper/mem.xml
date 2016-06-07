@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+
+	
+
+	<!-- 로그인 -->
+	
+	
+	<!-- 멤버추가 -->
+	<insert id="add" parameterType="mybatis.vo.TestVO">
+		insert into test(id,pwd,name,phone,address)
+		values(#{s_id},#{s_pwd},#{s_name},#{s_phone},#{s_address})
+	</insert>
+	
+	<!-- 중복확인 -->
+
+	
+</mapper>
+
+
+
+

@@ -1,0 +1,181 @@
+@CHARSET "UTF-8";
+
+.main_img{
+	width: 100%;
+	height: 360px;
+}
+.main_img img{
+	width: 100%;
+	height: 100%;
+}
+
+.main_news{
+	width: auto;
+	height: 240px;
+	padding: 40px 35px;
+	background-color: #efefef;
+}
+.main_news .news_type01{
+	width: 245px;
+	overflow: hidden;
+}
+.main_news .news_type01.cen{
+	float: left;
+	margin-left: 82px;
+}
+.title{
+	height: 20px;
+	margin-bottom: 5px;
+	background: url("../img/main_title.png") no-repeat;
+	text-indent: -9999px;
+}
+.main_news .news_type01:nth-child(1) .title{
+	/*.news_type01이 총 3개가 있다. 이중
+	  첫번째를 의미하고 그 안에 있는
+	  클래스가 title인 요소에 적용 */
+	background-position: 0 0;
+}
+.main_news .news_type01:nth-child(2) .title{
+	background-position: 0 -20px;
+}
+.main_news .news_type01:nth-child(3) .title{
+	background-position: 0 -40px;
+}
+.main_news .news_type01 .news_src{
+	display: block;
+	overflow: hidden;
+}
+.main_news .news_type01 .thum_img{
+	position: relative;
+	display: inline-block;/* 인라인레벨과
+	블럭레벨은 혼합한 것이며 크기는 
+	지정할 수 있지만 줄바꿈은 안된다. */
+	overflow: hidden;
+	width: 245px;
+	height: 148px;
+}
+.main_news .news_type01 .thum_img img{
+	width: 100%;
+	height: 100%;
+}
+.main_news .news_type01 .thum_img .btn_play{
+	display: inline-block;
+	width: 52px;
+	height: 51px;
+	position: absolute;
+	top:48px;
+	left:96px;
+	background: url("../img/icon_play.png") no-repeat;
+}
+.main_news .news_type01 .subject{
+	height: 35px;
+	line-height: 35px;
+	font-weight: bold;
+}
+.main_news .news_type01 .subject:hover{
+	color: #ff5001;
+}
+.main_news .news_type01 .writer{
+	float: left;
+	font-size: 12px;
+	color: #777;
+}
+.main_news .news_type01 .more_view{
+	float: right;
+	font-size: 12px;
+	color: #777;
+}
+
+
+.main_board{
+	width: auto;
+	padding: 50px 35px;
+	
+}
+.main_board .board_type01{
+	position: relative;
+	width: 245px;
+	overflow: hidden;
+
+}
+.main_board .board_type01.cen{
+	float: left;
+	margin-left: 82px;
+}
+.main_board .board_type01.right{
+	width: 284px;
+}
+.main_board .board_type01 .title{
+	border-bottom: 1px solid #efefef;
+	margin-bottom: 7px;
+}
+.main_board .board_type01:nth-child(1) .title{
+	background-position: 0 -60px;
+}
+.main_board .board_type01:nth-child(2) .title{
+	background-position: 0 -80px;
+}
+.main_board .board_type01 .more_view{
+	position: absolute;
+	right: 0px;
+	top: 3px;
+}
+
+.main_board .board_type01 .notice li{
+	position: relative;
+	height: 23px;
+	line-height: 23px;
+}
+
+.main_board .board_type01 .notice li a{
+	display: inline-block;
+	width: 180px;
+	overflow: hidden;
+}
+
+.main_board .board_type01 .notice li .date{
+	position: absolute;
+	right: 0px;
+	top: 3px;
+	font-size: 12px;
+}
+
+.main_board .board_type01 .article{
+	display: block;
+	overflow: hidden;
+}
+
+.main_board .board_type01 .article .thum_img{
+ 	float: left; /*이미지옆에 글씨들을 오게 함 */
+	display: inline-block;
+	width: 67px;
+	height: 67px;	
+}
+
+.main_board .board_type01 .article .src{
+	float: right;
+	width: 165px;
+	padding-top: 7px;
+}
+
+.main_board .board_type01 .banner{
+	display: inline-block;
+	width: 137px;
+	height: 118px;
+	border:  1px solid #efefef;
+	background: url("../img/main_banner.png") no-repeat;
+	text-indent: -9999px;	
+}
+
+.main_board .board_type01 .banner a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.main_board .board_type01 .b01{
+	background-position: 0 0;	
+}
+.main_board .board_type01 .b01{
+	background-position: -137px 0;
+}

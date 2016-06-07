@@ -1,0 +1,50 @@
+@CHARSET "UTF-8";
+
+.login_area{
+	width: 750px;
+	height: 205px;
+	background: url("../img/login_bg.png") no-repeat;	
+	margin: 80px auto;
+	padding: 20px 70px;
+}
+
+.person_login{
+	float: left;
+	width: 290px;
+}
+
+.group_login{
+	float: right;
+	width: 290px;
+	
+}
+
+.login{
+	padding: 15px 0;
+}
+
+.login .input_area{
+	float: left;
+	width: 200px;
+}
+
+.login .input_area p label{
+	display: inline-block;
+	width: 50px;	
+	background: url("../img/bult.png") no-repeat 0 -72px;
+	padding-left: 10px;
+}
+
+.login .input_area p{
+	padding:  3px 0;
+}
+
+.login .input_area p input{
+	width: 120px;
+}
+
+.login .login_search{
+	margin-top: 10px;
+	padding: 10px;
+	border-top: 2px solid #efefef;	
+}
