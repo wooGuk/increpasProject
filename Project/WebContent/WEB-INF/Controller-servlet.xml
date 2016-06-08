@@ -12,6 +12,7 @@
  	
 	<bean id="reg" class="spring.control.RegControl"/>
 	<bean id="reg_o" class="spring.control.Reg_OKControl"/>
+	<bean id="main" class="spring.control.MainControl"/>
 	
    
    <bean
