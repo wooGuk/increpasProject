@@ -5,23 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="css/sub02.css"/>
-<style type="text/css">
 
-	[type=button]{
-		width: 50px;
-	}
-</style>
 <script type="text/javascript">
 
 	function reg(){
-	 	/* var id = document.getElementById("s_id").value.trim();
-		var pw = document.getElementById("s_pw").value.trim();
+		var id = document.getElementById("s_id").value.trim();
+		var pwd = document.getElementById("s_pwd").value.trim();
+		var phone = document.getElementById("s_phone").value.trim();
 		var name = document.getElementById("s_name").value.trim();
-		var address = document.getElementById("s_add").value.trim();
-		var phone = document.getElementById("s_phone").value.trim(); */
-	
+		var address = document.getElementById("s_address").value.trim();
 		
+		if(id.length > 0 && pwd.length > 0 && name.length > 0 && phone.length > 0 && address.length > 0){
+		alert("가입을 축하합니다.")
 		document.forms[0].submit();
+		}else{
+			alert("하나도 빠짐없이 기입하셔야 합니다.");
+		}
 	}
 	
 
@@ -52,8 +51,7 @@
 				</span>
 			</p>
 			<br />
-			<form action="reg_ok.inc" method="post">
-			<input type="hidden" id="reg_ok" name="reg_ok" />
+		<form method="post" action="reg_ok.inc">
 			<table class="table_type01" style="width: 900px">
 				<colgroup>
 					<col width="130px">
@@ -91,7 +89,7 @@
 								기호(!, ~ , @ , #))를 입력해주세요.</p>
 							<p>
 								<label for="s_pw" class="hidden">비밀번호</label> <input
-									type="password" name="s_pw" id="s_pw" class="join" />
+									type="password" name="s_pwd" id="s_pwd" class="join" />
 							</p>
 						</td>
 					</tr>
@@ -102,7 +100,7 @@
 							<p class="guide_txt">입력하신 비밀번호 확인을 위해 다시한번 입력해주세요.</p>
 							<p>
 								<label for="s_pw2" class="hidden">비밀번호 확인</label> <input
-									type="password" name="s_pw2" id="s_pw2" class="join" />
+									type="password" name="s_pwd2" id="s_pwd2" class="join" />
 							</p>
 						</td>
 					</tr>
@@ -130,16 +128,17 @@
 						</td>
 					</tr>
 				</tbody>
+			
 			</table>
-			</form>
-			<br/>
-			<br/>
 			<div class="btn_center">
 					<p class="btn1 b_agree btn"><a onclick="reg()" style="cursor:pointer">가입하기</a></p>	
-					<p class="btn2 b_noagree btn"><a href="dd" >취소</a></p>
+					<p class="btn2 b_noagree btn"><a href="" >취소</a></p>
 			</div>
+			<br/>
+			<br/>
 			
-
+			
+</form>
 		</div>
 		<!-- 콘텐츠영역 끝 -->
 		<!-- 하단영역 -->
@@ -157,5 +156,7 @@
 		</div>
 		<!-- 하단영역 끝 -->
 	</div>
+	
+
 </body>
 </html>

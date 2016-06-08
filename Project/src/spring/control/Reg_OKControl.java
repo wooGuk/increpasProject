@@ -17,13 +17,19 @@ public class Reg_OKControl {
 	@Autowired
 	private TestDAO t_dao;
 	
+	@Autowired
+	HttpServletRequest request;
 	
 	@RequestMapping(value="/reg_ok.inc",method=RequestMethod.POST)
 	public ModelAndView add(TestVO vo){
+	
 		
-		ModelAndView mv = new ModelAndView();
 		t_dao.addMember(vo);
-		mv.setViewName("redirect:/join.inc");
+		
+
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("/main");
 		return mv;
 	}
 }

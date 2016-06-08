@@ -19,7 +19,8 @@ public class TestDAO {
 	/*비니지스 로직들*/
 	
 	public void addMember(TestVO vo){
-			template.insert("test.add",vo);
+		template.insert("test.add",vo);
+		
 		}
 	
 }

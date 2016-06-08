@@ -124,8 +124,8 @@ input.join{
 	height: 23px;
 	width: 120px;
 	text-indent: 5px;
-}
-label.hidden{display: none;} 
+} 
+ label.hidden{display: none;}  
 
 
 .btn_center{
