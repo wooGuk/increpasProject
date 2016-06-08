@@ -9,7 +9,7 @@
 <body>
 	<div>
 		<form>
-			<input type="text" id="id" 
+			<input type="text" id="id" >
 		</form>
 	</div>
 </body>
