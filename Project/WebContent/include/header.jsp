@@ -6,6 +6,7 @@
 	<div class="fr">
 		<form action="">
 			<table id="loginTable">
+			<!-- 로그인  세션처리 나중에 필요함 -->
 				<caption>로그인 테이블</caption>
 				<tbody>
 					<tr>
