@@ -108,6 +108,25 @@
 	}
 	
 </style>
+<!-- <script type="text/javascript">
+
+	function login(){
+		var id = document.f.id.value;
+		var pwd = document.f.pwd.value;
+		
+		var id1 = document.getElementById("id").value.trim();
+		var pwd2 = document.getElementById("pwd").value.trim();
+		alert(id);
+		if(id == id1 && pwd == pwd2){
+			alert("로그인");
+			document.forms[0].submit();
+		}else{
+			alert("아이디,비번 확인");
+		}
+		
+	}
+	
+</script> -->
 </head>
 <body>
 	<div id="header">
@@ -117,8 +136,8 @@
 			<c:if test="${vo == null }">
 				<div id="aa">
 					<form action="login.inc" method="post">
-					<input type="text" id="s_id" name="s_id" placeholder="아이디" />
-					<input type="password" id="s_pwd" name="s_pwd" placeholder="비밀번호" />
+					<input type="text" id="id" name="id" placeholder="아이디" />
+					<input type="password" id="pwd" name="pwd" placeholder="비밀번호" />
 					<input type="submit" value="LOGIN"/>
 				    <input type="button" value="회원가입" onclick="javascript:location.href='reg.inc'"/>
 					</form>		
@@ -127,9 +146,9 @@
 			
 			<!-- 로그인 -->
 			<c:if test="${vo != null }">	
-				${vo.s_name }(${vo.s_id })님 환영합니다.
+				${vo.name }(${vo.id })님 환영합니다.
 					<input type="button" value="MyPage" onclick=""/>
-					<input type="button" value="로그아웃" onclick=""/>
+					<input type="button" value="로그아웃" onclick="javascript:location.href='logout.inc'"/>
 			</c:if>	
 			
 		</div>
@@ -138,6 +157,11 @@
 	<div id="bar">
 	
 	</div>
+	
+		<%-- <form name="f">
+			<input type="hidden" value="${vo.id }" name="id"/>
+			<input type="hidden" value="${vo.pwd }" name="pwd"/>
+		</form> --%>
 </body>
 </html>
 
