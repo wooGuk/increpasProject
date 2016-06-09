@@ -12,7 +12,11 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 
 import mybatis.vo.MatchVO;
 import mybatis.vo.TestVO;
-
+/*
+	제 목 : MatchDAO
+	역 할 : Match DB에서 경기 일정을 가져오는 역할을 한다.
+	로 그 : 프로그램 최초 생성 (오우석 2016/06/09)
+*/
 public class MatchDAO {
 
 	@Autowired
