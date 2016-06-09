@@ -11,7 +11,7 @@
 					<tr>
 						<td><label for="id">ID:</label></td>
 						<td><input type="text" id="id" name="id"></td>
-						<td rowspan="2"><a href=""><img alt="로그인" src="../img/login.png" title="로그인"></a></td>
+						<td rowspan="2"><a href=""><img alt="로그인" src="img/login.png" title="로그인"></a></td>
 					</tr>
 					<tr>
 						<td><label for="pwd">PASSWORD:</label></td>
