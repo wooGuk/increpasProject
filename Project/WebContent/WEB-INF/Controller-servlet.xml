@@ -14,6 +14,8 @@
 	<bean id="login" class="spring.control.LoginControl"/>
 	<bean id="logout" class="spring.control.LogoutControl"/>
 	
+	<!-- 게임구매 컨트롤러 추가 (오우석) -->
+	<bean id="gameBuy" class="spring.control.GameBuyControl"/>
 	
 	<bean name="/reg.inc" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
    		<property name="viewName" value="/join"/>
