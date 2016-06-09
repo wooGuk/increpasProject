@@ -36,7 +36,8 @@ location="classpath:mybatis/props/jdbc.properties"/>
 		<constructor-arg ref="factory" index="0"/>
 	</bean>
 	
-	<bean id="rDao" class="mybatis.dao.TestDAO"/>
+	<bean id="tDao" class="mybatis.dao.TestDAO"/>
+
 		
 </beans>        
 
