@@ -2,6 +2,13 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	/*
+	제 목 : match.xml
+	역 할 : Match DB의 mapper.
+	로 그 : 1.프로그램 최초 생성,당일 경기데이터 쿼리문 작성 (오우석 2016/06/09)
+	*/
+ -->
 <mapper namespace="match">
 
  	<!-- 오늘경기 -->
