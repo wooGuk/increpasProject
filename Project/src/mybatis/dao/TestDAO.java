@@ -12,15 +12,24 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 import mybatis.vo.TestVO;
 
 public class TestDAO {
-	
+
 	@Autowired
-	private SqlSessionTemplate template;
+	SqlSessionTemplate template;
 	
-	/*비니지스 로직들*/
+
+	/* 비니지스 로직들 */
+
 	
-	public void addMember(TestVO vo){
-		template.insert("test.add",vo);
-		
-		}
-	
+
+	public TestVO addMember(TestVO vo) {
+		template.insert("test.add", vo);
+		return vo;
+
+	}
+
+	public TestVO loginMember(TestVO vo){
+		TestVO v = template.selectOne("test.login", vo);
+		return v;
+	}
+
 }
