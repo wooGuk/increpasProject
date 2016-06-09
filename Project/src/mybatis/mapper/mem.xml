@@ -4,18 +4,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="test">
 
-	
-
-	<!-- 로그인 -->
-	
+ 	<!-- 로그인 -->
+	<select id="login" parameterType="mybatis.vo.TestVO" resultType="mybatis.vo.TestVO">
+		select * from test where ID = #{id} and pwd = #{pwd}
+	</select>
 	
 	<!-- 멤버추가 -->
 	<insert id="add" parameterType="mybatis.vo.TestVO">
 		insert into test(id,pwd,name,phone,address)
-		values(#{s_id},#{s_pwd},#{s_name},#{s_phone},#{s_address})
+		values(#{id},#{pwd},#{name},#{phone},#{address})
 	</insert>
 	
-	<!-- 중복확인 -->
 
 	
 </mapper>
