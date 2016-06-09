@@ -7,13 +7,17 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
    
-   <context:annotation-config/>
+	<context:annotation-config/>
 
- 	
+ 
 	<bean id="reg" class="spring.control.RegControl"/>
-	<bean id="reg_o" class="spring.control.Reg_OKControl"/>
-	<bean id="main" class="spring.control.MainControl"/>
+	<bean id="login" class="spring.control.LoginControl"/>
+	<bean id="logout" class="spring.control.LogoutControl"/>
 	
+	
+	<bean name="/reg.inc" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+   		<property name="viewName" value="/join"/>
+   </bean>
    
    <bean
    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
