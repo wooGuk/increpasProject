@@ -15,7 +15,8 @@ import mybatis.vo.TestVO;
 /*
 	제 목 : MatchDAO
 	역 할 : Match DB에서 경기 일정을 가져오는 역할을 한다.
-	로 그 : 프로그램 최초 생성 (오우석 2016/06/09)
+	로 그 : 1.프로그램 최초 생성 (오우석 2016/06/09)
+			2.당일 경기, 지난 경기일자 불러오기(오우석 2016/06/09)
 */
 public class MatchDAO {
 
@@ -24,13 +25,26 @@ public class MatchDAO {
 	
 
 	/* 비니지스 로직들 */
-
+	//오늘일자 경기 불러오기 오우석 2016/06/09
 	public MatchVO[] scheduleToday(){
 		
 		List<MatchVO> list = new ArrayList<MatchVO>();
 		MatchVO[] games = null;
 		
 		list = template.selectList("match.matchToday");
+		if(list != null || !(list.isEmpty())){
+			games = new MatchVO[list.size()];
+			list.toArray(games);
+		}
+		return games;
+	}
+	//지난경기일자 불러오기 오우석 2016/06/09
+	public MatchVO[] scheduleEnd(){
+		
+		List<MatchVO> list = new ArrayList<MatchVO>();
+		MatchVO[] games = null;
+		
+		list = template.selectList("match.matchEnd");
 		if(list != null || !(list.isEmpty())){
 			games = new MatchVO[list.size()];
 			list.toArray(games);
