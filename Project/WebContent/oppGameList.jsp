@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 
+
+	/*
+	제 목 : oppGameList.jsp
+	역 할 : 구매가능게임(당일) 목록 보여주는 화면
+	로 그 : 1.최초 개발(레이아웃까지 잡음) (오우석 2016/06/09)
+	*/
+ -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,9 +54,6 @@ table thead tr{
 						</tr>
 						<tr>
 							<td><a href="">마감게임 보기 ></a></td>
-						</tr>
-						<tr>
-							<td><a href="">게임일정 ></a></td>
 						</tr>
 						<tr>
 							<td><a href="">게임결과 ></a></td>
