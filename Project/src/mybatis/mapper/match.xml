@@ -7,6 +7,7 @@
 	제 목 : match.xml
 	역 할 : Match DB의 mapper.
 	로 그 : 1.프로그램 최초 생성,당일 경기데이터 쿼리문 작성 (오우석 2016/06/09)
+	        2.지난 경기데이터 쿼리문 작성 (오우석 2016/06/09)
 	*/
  -->
 <mapper namespace="match">
@@ -15,6 +16,12 @@
 	<select id="matchToday" resultType="mybatis.vo.MatchVO">
 		select * from match
  		where to_char(DAY,'yyyyy/mm/dd') = to_char(sysdate,'yyyyy/mm/dd')
+	</select>
+	
+	<!-- 지난경기 -->
+	<select id="matchEnd" resultType="mybatis.vo.MatchVO">
+		select * from match
+ 		where to_char(DAY,'yyyyy/mm/dd') &lt; to_char(sysdate,'yyyyy/mm/dd')
 	</select>
 	
 </mapper>
