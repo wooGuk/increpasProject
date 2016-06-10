@@ -72,7 +72,7 @@ label.hidden {display:none;}
 
 input[type=text] {border:1px solid #999; height:20px; background:#fff; text-indent:5px; vertical-align:middle;}
 input[type=text]:hover {border:1px solid #ff5000; height:20px; background:#fff;}
-input[type=password] {border:1px solid #999; height:20px; background:#fff; text-indent:5px; vertical-align:middle; width: 148px;}
+input[type=password] {border:1px solid #999; height:20px; background:#fff; text-indent:5px; vertical-align:middle; width: 147px;}
 input[type=password]:hover {border:1px solid #ff5000; height:20px; background:#fff;}
 input[type=text]:FOCUS {border:1px solid #ff5000; height:20px; background:#fff;}
 input[type=password]:FOCUS {border:1px solid #ff5000; height:20px; background:#fff;}
