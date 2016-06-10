@@ -6,7 +6,6 @@
 	<div class="fr">
 		<form action="">
 			<table id="loginTable">
-			<!-- 로그인  세션처리 나중에 필요함 -->
 				<caption>로그인 테이블</caption>
 				<tbody>
 					<tr>
@@ -26,7 +25,23 @@
 					</tr>
 				</tbody>
 			</table>
-		</form>	
+		</form>
+		
+		<!-- 로그인 세션처리 나중에 필요함 -->
+		<!-- 로그인이 되어있을때 테이블처리 (정성훈 2016/06/10)  -->
+<!-- 		<table id="loginTable">
+			<caption>MY 테이블</caption>
+			<tbody>
+				<tr>
+					<td colspan="2">님! 반갑습니다.</td>
+					<td rowspan="2"><a href=""><img alt="로그아웃" src="img/logout.png" title="로그아웃"></a></td>
+				</tr>
+				<tr>
+					<td>잔액:</td>
+					<td>???원</td>
+				</tr>
+			</tbody>
+		</table> -->
 	</div>
 	
 	<ul class="gnb">
