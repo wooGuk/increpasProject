@@ -19,7 +19,8 @@
 						<td><input type="password" id="pwd" name="pwd"></td>
 					</tr>
 					<tr>
-						<td><a href="">회원가입</a></td>
+						<!-- 회원가입 페이지로 이동 (정성훈 2016/06/10)  -->
+						<td><a href="go_join.inc">회원가입</a></td>
 						<td><a href="">아이디/비밀번호 찾기</a></td>
 						<td></td>
 					</tr>
