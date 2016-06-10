@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div id="header">
-	<h1 class="fl">Sports TOTO</h1>
+	<!-- 로고클릭시 메인페이지로 이동 (정성훈 2016/06/10)  -->
+	<h1 class="fl"><a href="main.inc"><img alt="logo" src="img/logo.png"></a></h1>
 	
 	<div class="fr">
 		<form action="">
