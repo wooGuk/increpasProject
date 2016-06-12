@@ -1,8 +1,23 @@
+	/*
+	제 목 : MatchVO.java
+	역 할 : 경기 데이터 파일
+	로 그 : 1.프로그램 최초 생성(오우석 2016/06/09)
+			2.페이징 기법을 위한 nowPage객체 생성(오우석 2016/06/10)
+	*/
 package mybatis.vo;
 
 public class MatchVO {
 	private int match_code, home_code, away_code, result;
 	private String day;
+	//페이징 기법을 위한 nowPage객체 생성(오우석 2016/06/10)
+	private int nowPage;
+	
+	public int getNowPage() {
+		return nowPage;
+	}
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
+	}
 	public int getMatch_code() {
 		return match_code;
 	}
