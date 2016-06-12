@@ -8,9 +8,15 @@
 	역 할 : Match DB의 mapper.
 	로 그 : 1.프로그램 최초 생성,당일 경기데이터 쿼리문 작성 (오우석 2016/06/09)
 	        2.지난 경기데이터 쿼리문 작성 (오우석 2016/06/09)
+	        3.지난 경기데이터 페이징 기법으로 인한 쿼리문 수정 (2016/06/12)
 	*/
  -->
 <mapper namespace="match">
+
+	<!-- 페이징 기법을 위한 전체 게시물의 수를 반환 -->
+	<select id="totalCount" resultType="int" parameterType="String">
+		select count(*) from match where to_char(DAY,'yyyyy/mm/dd') &lt; to_char(sysdate,'yyyyy/mm/dd')
+	</select>
 
  	<!-- 오늘경기 -->
 	<select id="matchToday" resultType="mybatis.vo.MatchVO">
@@ -20,8 +26,12 @@
 	
 	<!-- 지난경기 -->
 	<select id="matchEnd" resultType="mybatis.vo.MatchVO">
-		select * from match
- 		where to_char(DAY,'yyyyy/mm/dd') &lt; to_char(sysdate,'yyyyy/mm/dd')
+		<!-- 페이징 기법으로 인한 쿼리문 수정 (2016/06/12) -->
+		select * from 
+		(select rownum as r_num, a.* from
+  			(select * from match where to_char(DAY,'yyyyy/mm/dd') &lt; to_char(sysdate,'yyyyy/mm/dd')
+  				order by groups desc, lev ASC) a) 
+  			where r_num between #{begin} and #{end}  
 	</select>
 	
 </mapper>
