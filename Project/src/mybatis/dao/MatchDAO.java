@@ -64,6 +64,7 @@ public class MatchDAO {
 			games = new MatchVO[list.size()];
 			list.toArray(games);
 		}
+		System.out.println(list.size());
 		return games;
 	}
 	//경기일정 모두 가져오기 오우석 2016/06/13
@@ -75,6 +76,7 @@ public class MatchDAO {
 			games = new MatchVO[list.size()];
 			list.toArray(games);
 		}
+		System.out.println(list.size());
 		return games;
 	}
 
