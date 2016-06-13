@@ -4,6 +4,7 @@
 	제 목 : endGameList.jsp
 	역 할 : 구매가능게임(당일) 목록 보여주는 화면
 	로 그 : 1.최초 개발(레이아웃까지 잡음)(데이터테스트 필요함) (오우석 2016/06/12)
+			2.왼쪽 탭 링크연결 (오우석 2016/06/13)
 	*/
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -35,26 +36,8 @@ div .center_side{
 	<!-- 컨텐츠 영억 -->
 	<div id="contents">
 		<div class="fl">
-			<div class="left_side">
-				<table id="left_info">
-					<thead>
-						<tr>
-							<td><span>게임구매</span></td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><a href="">구매가능 게임 ></a></td>
-						</tr>
-						<tr>
-							<td><a href="">마감게임 보기 ></a></td>
-						</tr>
-						<tr>
-							<td><a href="">게임결과 ></a></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<!-- 2.왼쪽 탭 링크연결 (오우석 2016/06/13) -->
+			<%@include file="include/lefter.jsp" %>
 
 			<div class="center_side">
 				<p><img alt="" src=""></p>
