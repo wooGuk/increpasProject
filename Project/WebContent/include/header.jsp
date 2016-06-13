@@ -1,22 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+    
+<script type="text/javascript">
+
+ function login(){
+	 var f = document.getElementById("loginForm");
+	 f.action = "login2.inc";
+	 f.method = "post";
+	 f.submit();
+ }
+</script>    
+    
 <div id="header">
 	<!-- 로고클릭시 메인페이지로 이동 (정성훈 2016/06/10)  -->
 	<h1 class="fl"><a href="main.inc"><img alt="logo" src="img/logo.png"></a></h1>
 	
+	<c:if test="${vo != null}">
+	</c:if>
+	
 	<div class="fr">
-		<form action="">
+		<form id="loginForm">
 			<table id="loginTable">
 				<caption>로그인 테이블</caption>
 				<tbody>
 					<tr>
 						<td><label for="id">ID:</label></td>
 						<td><input type="text" id="id" name="id"></td>
-						<td rowspan="2"><a href=""><img alt="로그인" src="img/login.png" title="로그인"></a></td>
+						<td rowspan="2"><a href="javascript:login()"><img alt="로그인" src="img/login.png" title="로그인"></a></td>
 					</tr>
 					<tr>
 						<td><label for="pwd">PASSWORD:</label></td>
-						<td><input type="password" id="pwd" name="pwd"></td>
+						<td><input type="password" id="password" name="password"></td>
 					</tr>
 					<tr>
 						<!-- 회원가입 페이지로 이동 (정성훈 2016/06/10)  -->
