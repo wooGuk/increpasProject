@@ -5,6 +5,7 @@
 	역 할 : 모든 게임 일정 불러오기
 	로 그 : 1.최초 개발(레이아웃까지 잡음)(데이터테스트 필요함) (오우석 2016/06/13)
 			2.왼쪽 탭 링크연결 (오우석 2016/06/13)
+			3.파라미터 네임 오류로 인한 변경 list - > games (오우석 2016.06/13)
 	*/
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -52,13 +53,15 @@ div .center_side{
 					<tbody>
 						<!-- 여기를 반복문으로 돌려야 됨 -->
 							<tr>
-							       <c:forEach var="vo" items="${list }" varStatus="stat">
+							<!-- 파라미터 네임 오류로 인한 변경 오우석(2016.06/13) -->
+							       <c:forEach var="vo" items="${games }" varStatus="stat">
 								<td>프로야구</td>
-								<td>${vo.date}</td>
+								<td>${vo.day}</td>
 								<td> 마감/안마감</td>
 								   </c:forEach>
 							</tr>
-							<c:if test="${empty list }">
+							<!-- 파라미터 네임 오류로 인한 변경 오우석(2016.06/13) -->
+							<c:if test="${empty games }">
 								<tr>
 									<td bgcolor="#F2F7F9" colspan="5" height="70" align="center">등록된
 										게시물이 없습니다.</td>
