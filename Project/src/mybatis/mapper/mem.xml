@@ -9,6 +9,10 @@
 		select * from test where ID = #{id} and pwd = #{pwd}
 	</select>
 	
+	<select id="login2" parameterType="mybatis.vo.MemberVO" resultType="mybatis.vo.MemberVO">
+		select * from member where id = #{id} and password = #{password}
+	</select>
+	
 	<!-- 멤버추가 -->
 	<insert id="add" parameterType="mybatis.vo.TestVO">
 		insert into test(id,pwd,name,phone,address)
