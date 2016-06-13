@@ -4,28 +4,109 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="css/sub02.css"/>
-
-<script type="text/javascript">
-
-	function reg(){
-		var id = document.getElementById("s_id").value.trim();
-		var pwd = document.getElementById("s_pwd").value.trim();
-		var phone = document.getElementById("s_phone").value.trim();
-		var name = document.getElementById("s_name").value.trim();
-		var address = document.getElementById("s_address").value.trim();
-		
-		if(id.length > 0 && pwd.length > 0 && name.length > 0 && phone.length > 0 && address.length > 0){
-		alert("가입을 축하합니다.")
-		document.forms[0].submit();
-		}else{
-			alert("하나도 빠짐없이 기입하셔야 합니다.");
-		}
+<style type="text/css">
+	label#box{
+		display: inline-block;
+		font-size: 11px;
+		font-weight: bold;
 	}
 	
+	.success{
+		color: #00f;
+	}
+	
+	.fail{
+		color: #f00;
+	}
+</style>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/httpRequest.js"></script>
+<script>
+	function reg(){
+		/* var id = document.getElementById("id").value.trim();
+		var pwd = document.getElementById("pwd").value.trim();
+		var pwd2 = document.getElementById("pwd2").value.trim();
+		var phone = document.getElementById("phone").value.trim();
+		var name = document.getElementById("name").value.trim();
+		var address = document.getElementById("address").value.trim(); */
+		
+		/* alert("가입을 축하합니다.")
+		document.forms[0].submit(); */
+	/* 	}else{
+			alert("하나도 빠짐없이 기입하셔야 합니다.");
+		}*/
+		
+		if(document.getElementById("name").value.trim() == ""){
+			alert("이름를 입력하세요.");
+			return;
+		}else if(document.getElementById("id").value.trim() == ""){
+			alert("아이디를 입력하세요.");
+			return;
+		}else if(document.getElementById("password").value.trim() == ""){
+			alert("비밀번호를 입력하세요.");
+			return;
+		}else if(document.getElementById("phone").value.trim() == ""){
+			alert("핸드폰번호를 입력하세요.");
+			return;
+		}else if(document.getElementById("address").value.trim() == ""){
+			alert("주소를 입력하세요.");
+			return;
+		}else if(document.getElementById("password").value.trim() != document.getElementById("password2").value.trim()){
+			alert("비밀번호가 서로 다름니다.");
+			return;
+		}else
+			document.forms[0].submit();
+		
+	} 
+	
+	$(function(){
+		  $('#password').keyup(function(){
+		   $('font[name=check]').text('');
+		  }); 
 
+		  $('#password2').keyup(function(){
+		   if($('#password').val()!=$('#password2').val()){
+		    $('font[name=check]').text('');
+		    $('font[name=check]').css("color","red");
+		    $('font[name=check]').html("비밀번호가 다름니다.");
+		   }else{
+		    $('font[name=check]').text('');
+		    $('font[name=check]').css("color","blue");
+		    $('font[name=check]').html("비밀번호가 맞습니다.");
+		   }
+		  }); 
+		 });
+	
+	
+	// 2016/06/13 이름
+	function idcheck(){
+		
+		var s_id = document.getElementById("id").value;
+		//alert(s_id);
+		
+		if(s_id.length >= 1){
+			// 파라미터 작업
+			var param = "id="+encodeURIComponent(s_id);
+			
+			// 서버요청
+			sendRequest("idCheck.inc", param, res, "post", true);
+		}else
+			document.getElementById("box").innerHTML = "";
+		
+	}
+	
+	function res(){
+		
+		if(xhr.readyState == 4 && xhr.status == 200){			
+			var v = document.getElementById("box");
+			v.innerHTML = xhr.responseText;
+			
+		}	
+	}
+	
 </script>
-<title>Insert title here</title>
 </head>
 <body>
 	<div id="wrap">
@@ -35,7 +116,7 @@
 			<ul class="gnb">
 				<li><a href=""><span class="menu m01">게임구매</span></a></li>
 				<li><a href=""><span class="menu m02">경기정보</span></a></li>
-				<li><a href=""><span class="menu m03">마이페이지</span></a></li>
+				<li><a href=""><span class="menu m03">자유게시판</span></a></li>
 				<li><a href=""><span class="menu m04">?</span></a></li>
 				<li><a href=""><span class="menu m05">?</span></a></li>
 			</ul>
@@ -63,8 +144,8 @@
 						<td>
 							<p class="guide_txt">이름을 입력해 주세요.</p>
 							<p>
-								<label for="s_name" class="hidden">이름</label> <input type="text"
-									name="s_name" id="s_name" class="join" />
+								<label for="name" class="hidden">이름</label> <input type="text"
+									name="name" id="name" class="join" />
 							</p>
 						</td>
 					</tr>
@@ -72,13 +153,18 @@
 						<th><span class="req"></span> 아이디</th>
 						<td>
 							<p class="guide_txt">6~12자리의 영문, 숫자(혼용가능)를 입력해 주세요.</p>
-							<p>
-								<label for="s_id" class="hidden">아이디</label>
-								 <input type="text" name="s_id" id="s_id" class="join" />
-								  <span class="btn b_bdcheck">
-									<a href="javascript:location.href=">중복확인</a>
-								</span>
-							</p>
+							<!-- <p class="n"> -->
+								
+								 <label for="id" class="hidden">아이디</label>
+								 <input type="text" name="id" id="id" class="join" onkeyup="idcheck()"/>
+								 <label id="box"></label>
+								
+								
+								  <!-- <span class="btn b_bdcheck">
+									<a onclick="idcheck()" style="cursor:pointer">중복확인</a>
+									중복확인 수정 장준수2016/06/09
+								</span> -->
+						<!-- 	</p> -->
 						</td>
 					</tr>
 
@@ -88,8 +174,8 @@
 							<p class="guide_txt">안전을 위해 10개 이상의 문자조합(영문 대소문자 + 숫자 또는
 								기호(!, ~ , @ , #))를 입력해주세요.</p>
 							<p>
-								<label for="s_pw" class="hidden">비밀번호</label> <input
-									type="password" name="s_pwd" id="s_pwd" class="join" />
+								<label for="password" class="hidden">비밀번호</label> <input
+									type="password" name="password" id="password" class="join" />
 							</p>
 						</td>
 					</tr>
@@ -99,8 +185,9 @@
 						<td>
 							<p class="guide_txt">입력하신 비밀번호 확인을 위해 다시한번 입력해주세요.</p>
 							<p>
-								<label for="s_pw2" class="hidden">비밀번호 확인</label> <input
-									type="password" name="s_pwd2" id="s_pwd2" class="join" />
+								<label for="password2" class="hidden">비밀번호 확인</label> 
+								<input type="password" name="password2" id="password2" class="join" />
+									<font name="check" size="2" color="blue"></font>
 							</p>
 						</td>
 					</tr>
@@ -110,8 +197,8 @@
 						<td>
 							<p class="guide_txt">주소를 입력해 주세요.</p>
 							<p>
-								<label for="s_address" class="hidden">주소</label> <input type="text"
-									name="s_address" id="s_address" class="join" style="width: 350px;" />
+								<label for="address" class="hidden">주소</label> <input type="text"
+									name="address" id="address" class="join" style="width: 350px;" />
 							</p>
 						</td>
 					</tr>
@@ -121,8 +208,8 @@
 						<td>
 							<p class="guide_txt">전화번호을 입력해 주세요.</p>
 							<p>
-								<label for="s_phone" class="hidden">전화번호</label> <input
-									type="text" name="s_phone" id="s_phone" class="join"
+								<label for="phone" class="hidden">전화번호</label> <input
+									type="text" name="phone" id="phone" class="join"
 									style="width: 150px;" />
 							</p>
 						</td>
@@ -132,7 +219,7 @@
 			</table>
 			<div class="btn_center">
 					<p class="btn1 b_agree btn"><a onclick="reg()" style="cursor:pointer">가입하기</a></p>	
-					<p class="btn2 b_noagree btn"><a href="" >취소</a></p>
+					<p class="btn2 b_noagree btn"><a onclick="javascript:location.href='main.inc'" style="cursor:pointer">취소</a></p>
 			</div>
 			<br/>
 			<br/>
@@ -157,6 +244,9 @@
 		<!-- 하단영역 끝 -->
 	</div>
 	
+	<!-- <form name="f">
+		<input type="hidden" id="s_id" name="ss" onkeyup="idcheck()"/>
+	</form> -->
 
 </body>
 </html>
