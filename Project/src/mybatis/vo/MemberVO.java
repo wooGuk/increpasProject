@@ -48,14 +48,6 @@ public class MemberVO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-	public String getCoin() {
-		return coin;
-	}
-
-	public void setCoin(String coin) {
-		this.coin = coin;
-	}
 	
 	
 }
