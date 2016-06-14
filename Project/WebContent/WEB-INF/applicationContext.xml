@@ -36,7 +36,7 @@ location="classpath:mybatis/props/jdbc.properties"/>
 		<constructor-arg ref="factory" index="0"/>
 	</bean>
 	
-	<bean id="tDao" class="mybatis.dao.TestDAO"/>
+	<bean id="aDao" class="mybatis.dao.MemberDAO"/>
 	<!-- 경기DAO추가 생성 (오우석) -->
 	<bean id="mDao" class="mybatis.dao.MatchDAO"/>
 		
