@@ -55,16 +55,17 @@ div .center_side{
 					</thead>
 					<tbody>
 					<!-- 여기를 반복문으로 돌려야 됨 -->
-						<tr>
 						<!-- 파라미터 네임 오류로 인한 변경 오우석(2016.06/13) -->
 						       <c:forEach var="vo" items="${games }" varStatus="stat">
+						<tr>
 							<td>프로야구</td>
-							<td>${vo.match_code }매치코드</td>
+							<td>${vo.match_code }</td>
 							<td>대상경기</td>
 							<td>${vo.day}</td>
 							<td><a href=""> 상세보기</a></td>
-							   </c:forEach>
+							   
 						</tr>
+						</c:forEach>
 						<!-- 파라미터 네임 오류로 인한 변경 오우석(2016.06/13) -->
 						<c:if test="${empty games }">
 							<tr>
