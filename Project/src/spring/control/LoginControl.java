@@ -5,34 +5,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import mybatis.dao.TestDAO;
+import mybatis.dao.MemberDAO;
 import mybatis.vo.MemberVO;
-import mybatis.vo.TestVO;
 
 @Controller
 public class LoginControl {
-
+	
+	/*
+	제 목 : LoginControl
+	역 할 : 로그인을 하는 역활
+	로 그 : 프로그램 최초 생성 (장준수 2016/06/09)
+	*/
+	
+	
 	@Autowired
-	TestDAO tdao;
+	MemberDAO tdao;
 	
 	@RequestMapping("/login.inc")
-	public ModelAndView resMember(TestVO vo){
+	public ModelAndView resMember(MemberVO vo){
 		
-		TestVO res = tdao.loginMember(vo);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("vo", res);
-		mv.addObject("mvo", vo);
-		mv.setViewName("/main");
-		
-		return mv;
-	}
-	
-	@RequestMapping("/login2.inc")
-	public ModelAndView resMember2(MemberVO vo){
-		System.out.println(vo.getId());
-		System.out.println(vo.getPassword());
-		MemberVO res = tdao.loginMember2(vo);
+		MemberVO res = tdao.loginMember(vo);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("vo", res);
