@@ -58,9 +58,6 @@ div#aa a {
 	text-decoration: none;
 }
 
-div#mm{
-	text-align: center;
-}
 
 div#h_menu>ul>li>a {
 	font-size: 12px;
@@ -113,34 +110,65 @@ input[type=button] {
 	font-weight: bold;
 	border: 1px solid #dcdcdc;
 }
+
+	div#mm{
+		margin-left: 300px;
+		margin-top: 30px;
+	
+	}
+	
+	div#mm form{
+		font-size: 17px;
+	}
+	
+	 div#mm label{
+		font-size: 17px;
+	} 
+	
+	div#mm input[type=text]{
+		width: 100px;
+		height: 25px;
+	}
 </style>
 <script type="text/javascript">
 
-	function ee(){
-		var id = document.getElementById("id").value;
-		var password = document.getElementById("password").value;
+	function main(){
+		var id = document.f.id.value;
+		var password = document.f.password.value;
 		document.f.submit();
 	}
 	
-	function aa(){
-		var coin = document.getElementById("coin").value;
-		var usercoin = document.getElementById("usercoin").value;
-		var id = document.getElementById("id1").value;
+	function charge(evt){
+		
+		var number = /[^0-9]/; //숫자만 허용
+		
+		var coin = document.c.coin.value;
+		var usercoin = document.c.usercoin.value;
+		var id = document.f.name.value;
+		var name = document.f.name.value;
+		var password = document.f.password.value;
+		
+		 if ( document.c.coin.value.search(number)!=-1 || document.c.coin.value.length == 0 ){
+		        alert("해당항목은 필수항목이며, 숫자만 입력하실 수 있습니다!");
+		        form.numberText.focus();
+		        return;
+		   }else{
+		
 		alert("충전완료!!");
 		document.c.submit();
-		
+	   }
 	}
-	
 </script>
 </head>
 <body>
 	<c:if test="${vo != null }">
+		
 		<div id="wrap">
 			<div id="header">
 				<div id="h_menu">
 
-					${vo.name }(${vo.id })님의 마이페이지
-					 <input type="button" value="메인화면" onclick="ee()" /> 
+					${vo.id }(${vo.name })님의 마이페이지
+					 <input type="button" value="메인화면" onclick="main()" /> 
 					 <input type="button" value="로그아웃" onclick="javascript:location.href='logout.inc'" />
 
 
@@ -155,29 +183,33 @@ input[type=button] {
 				</ul>
 
 			</div>
-			<div class="mm">
-			<form action="charge.inc" method="post" name="c">
-				${vo.id }님의 코인 <input type="text" id="usercoin" name="usercoin" value="<c:out value="${vo.coin }"/>"/>
+			<div id="mm">
+			<form action="charge.inc" method="post" id="c" name="c">
+				${vo.id }님의 코인 : <input type="text" id="usercoin" name="usercoin"
+				 value="<c:out value="${vo.coin }"/>" readonly/>
 				<label for="coin">코인 충전</label>
-				<input type="text" id="coin" name="coin" value="0" />
-				<input type="button" value="충전" onclick="aa()" />
+				<input type="text" id="coin" name="coin" value="0"/>
+				<input type="button" value="충전" onclick="charge()"/>
 				<input type="hidden" id="id1" name="id" value="<c:out value="${vo.id }"/>" />
 				</form>
 			</div>
 		</div>
 
-
+		<!-- 메인화면 클릭시 로그아웃(?)이 되므로 아이디값과 비밀번호를 보내 로그인상태를 유지하게 한다. -->
 		<form name="f" action="login.inc" method="post">
 			<input type="hidden" id="id" name="id" value="<c:out value="${vo.id }"/>" />
 			<input type="hidden" id="password" name="password" value="<c:out value="${vo.password }"/>" />
+			<input type="hidden" id="name" name="name" value="<c:out value="${vo.name }"/>" />
 		</form>
-
-	</c:if>
+		
+		
+		</c:if>
+	
 </body>
 </html>
 
 <c:if test="${vo == null }">
 	<%
-			response.sendRedirect("/main.inc");
+			response.sendRedirect("main.inc");
 		%>
 </c:if>
