@@ -1,7 +1,21 @@
 package mybatis.vo;
 
 public class MemberVO {
-	String id, password, phone, address, coin;
+
+	private String id, password, phone,name, address;
+	private int coin;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setCoin(int coin) {
+		this.coin = coin;
+	}
 
 	public String getId() {
 		return id;
