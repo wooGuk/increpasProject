@@ -6,12 +6,16 @@
 	로 그 : 1.최초 개발(레이아웃까지 잡음)(데이터테스트 필요함) (오우석 2016/06/12)
 			2.왼쪽 탭 링크연결 (오우석 2016/06/13)
 			3.파라미터 네임 오류로 인한 변경 list - > games (오우석 2016.06/13)
+			4.팀코드로 표현하는 팀명 초기화 작업 오우석(2016.06.14)
 	*/
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String home,away;
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -56,7 +60,68 @@ div .center_side{
 					<tbody>
 					<!-- 여기를 반복문으로 돌려야 됨 -->
 						<!-- 파라미터 네임 오류로 인한 변경 오우석(2016.06/13) -->
-						       <c:forEach var="vo" items="${games }" varStatus="stat">
+						<c:forEach var="vo" items="${games }" varStatus="stat">
+						<!-- 팀코드로 표현하는 팀명 초기화 작업 오우석(2016.06.14) -->
+						<c:if test="${vo.home_code}==1">
+								<%=home="두산" %>
+							</c:if>
+							<c:if test="${vo.home_code}==2">
+								<%=home="NC" %>
+							</c:if>
+							<c:if test="${vo.home_code}==3">
+								<%=home="넥센" %>
+							</c:if>
+							<c:if test="${vo.home_code}==4">
+								<%=home="LG" %>
+							</c:if>
+							<c:if test="${vo.home_code}==5">
+								<%=home="삼성" %>
+							</c:if>
+							<c:if test="${vo.home_code}==6">
+								<%=home="롯데" %>
+							</c:if>
+							<c:if test="${vo.home_code}==7">
+								<%=home="SK" %>
+							</c:if>
+							<c:if test="${vo.home_code}==8">
+								<%=home="기아" %>
+							</c:if>
+							<c:if test="${vo.home_code}==9">
+								<%=home="한화" %>
+							</c:if>
+							<c:if test="${vo.home_code}==10">
+								<%=home="KT" %>
+							</c:if>
+							<c:if test="${vo.away_code}==1">
+								<%=away="두산" %>
+							</c:if>
+							<c:if test="${vo.away_code}==2">
+								<%=away="NC" %>
+							</c:if>
+							<c:if test="${vo.away_code}==3">
+								<%=away="넥센" %>
+							</c:if>
+							<c:if test="${vo.away_code}==4">
+								<%=away="LG" %>
+							</c:if>
+							<c:if test="${vo.away_code}==5">
+								<%=away="삼성" %>
+							</c:if>
+							<c:if test="${vo.away_code}==6">
+								<%=away="롯데" %>
+							</c:if>
+							<c:if test="${vo.away_code}==7">
+								<%=away="SK" %>
+							</c:if>
+							<c:if test="${vo.away_code}==8">
+								<%=away="기아" %>
+							</c:if>
+							<c:if test="${vo.away_code}==9">
+								<%=away="한화" %>
+							</c:if>
+							<c:if test="${vo.away_code}==10">
+								<%=away="KT" %>
+							</c:if>
 						<tr>
 							<td>프로야구</td>
 							<td>${vo.match_code }</td>
