@@ -7,20 +7,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import mybatis.dao.TestDAO;
-import mybatis.vo.TestVO;
+import mybatis.dao.MemberDAO;
+import mybatis.vo.MemberVO;
 
 @Controller
 public class LogoutControl {
 
 	@Autowired
-	TestDAO t_dao;
+	MemberDAO t_dao;
 	
 	@Autowired
 	HttpSession session;
 	
 	@RequestMapping("/logout.inc")
-	public ModelAndView logout(TestVO vo){
+	public ModelAndView logout(MemberVO vo){
 		
 		session.removeAttribute("vo");
 		
