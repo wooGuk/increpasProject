@@ -2,20 +2,21 @@ package spring.control;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import mybatis.dao.TestDAO;
-import mybatis.vo.TestVO;
+import mybatis.dao.MemberDAO;
+import mybatis.vo.MemberVO;
 
 @Controller
 public class RegControl {
 
 	@Autowired
-	private TestDAO tdao;
+	private MemberDAO tdao;
 	
 	@Autowired
 	HttpServletRequest request;
@@ -30,12 +31,13 @@ public class RegControl {
 	
 	// 회원가입
 	@RequestMapping(value="/reg_ok.inc",method=RequestMethod.POST)
-	public ModelAndView add(TestVO vo){
+	public ModelAndView add(MemberVO vo){
 	
 		
-		TestVO vo1 = tdao.addMember(vo);	
+		MemberVO vo1 = tdao.addMember(vo);	
 		
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("vo", vo1);
 		mv.setViewName("/main");
 		return mv;
 	}
