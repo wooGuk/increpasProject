@@ -1,3 +1,12 @@
+/* 	제 목 : SearchControl.jsp
+	역 할 : search.jsp에서 이동하는 컨트롤러 페이지
+	로 그 : 1.최초 개발(문제없이 컨트롤러 기능 수행 확인)
+					
+	(박상원 2016/06/14)*/
+			
+
+
+
 package spring.control;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,13 +35,12 @@ public class SearchControl {
 		return "/search";
 	}
 	
+	//ID Search 눌렀을시 이동한 컨트롤러
+	@RequestMapping(value="/idsearch.inc", method = RequestMethod.POST)
+	public ModelAndView idsearch(MemberVO vo){
+		
+		
 	
-	@RequestMapping(value="/search.inc", method = RequestMethod.POST)
-	public ModelAndView search(MemberVO vo){
-		
-		String name = request.getParameter("name");
-		String phone = request.getParameter("phone");
-		
 		MemberVO mvo = mdao.idsearch(vo);
 		System.out.println(vo.getId());
 		
@@ -41,4 +49,21 @@ public class SearchControl {
 		mv.setViewName("/idsearch");
 		return mv;
 	}
+
+	//PWD Search 눌렀을시 이동한 컨트롤러
+	@RequestMapping(value="/pwsearch.inc", method = RequestMethod.POST)
+	public ModelAndView pwsearch(MemberVO vo){
+		
+		
+		
+		
+		MemberVO mvo = mdao.pwdsearch(vo);
+		System.out.println(vo.getId());
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("vo", mvo);
+		mv.setViewName("/pwsearch");
+		return mv;
+	}
+	
 }
