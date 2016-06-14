@@ -21,11 +21,13 @@ public class MyPageControl {
 
 	@Autowired
 	MemberDAO tdao;
+	
 	@Autowired
 	HttpServletRequest request;
 	
 	@RequestMapping("/mypage.inc")
 	public ModelAndView mypage(){
+		
 		String id= (String) request.getParameter("id");
 		//System.out.println(id);
 		MemberVO vo = tdao.idCheck(id);
