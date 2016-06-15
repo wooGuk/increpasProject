@@ -6,14 +6,16 @@
 	
 	제 목 : mypage.jps
 	역 할 : 마이페이지로 이동하는 역할
-	로 그 : 프로그램 최초 생성 (장준수 2016/06/14)
+	로 그 : 1.프로그램 최초 생성 (장준수 2016/06/14)
+		   2. 충전시 상단에 이름 X , 그리고 메인 클릭시 로그인 풀림
+		   ㅡ> form에 input type="hidden"으로 이름,패스워드 같이 보냄
 
  -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="css/sub01.css" />
+<link type="text/css" rel="stylesheet" href="css/basic.css" />
 <title>Insert title here</title>
 
 <style>
@@ -25,6 +27,7 @@ body {
 div#h_menu {
 	text-align: right;
 	margin-top: 10px;
+	font-size: 17px;
 }
 
 div#h_menu>ul {
@@ -118,17 +121,30 @@ input[type=button] {
 	}
 	
 	div#mm form{
-		font-size: 17px;
+		font-size: 19px;
 	}
 	
 	 div#mm label{
-		font-size: 17px;
+		font-size: 19px;
+		margin-left: 10px;
 	} 
 	
 	div#mm input[type=text]{
 		width: 100px;
-		height: 25px;
+		height: 24px;
 	}
+	
+	
+div#mm input[type=button] {
+	display: inline;
+	width: 70px;
+	height: 27px;
+	margin: 10px auto;
+	font-size: 15px;
+	font-weight: bold;
+	border: 1px solid #dcdcdc;
+	margin-left: 10px;
+}
 </style>
 <script type="text/javascript">
 
@@ -144,9 +160,9 @@ input[type=button] {
 		
 		var coin = document.c.coin.value;
 		var usercoin = document.c.usercoin.value;
-		var id = document.f.name.value;
-		var name = document.f.name.value;
-		var password = document.f.password.value;
+		var id = document.c.id1.value;
+		var name = document.c.name.value;
+		var password = document.c.password.value;
 		
 		 if ( document.c.coin.value.search(number)!=-1 || document.c.coin.value.length == 0 ){
 		        alert("해당항목은 필수항목이며, 숫자만 입력하실 수 있습니다!");
@@ -185,12 +201,14 @@ input[type=button] {
 			</div>
 			<div id="mm">
 			<form action="charge.inc" method="post" id="c" name="c">
-				${vo.id }님의 코인 : <input type="text" id="usercoin" name="usercoin"
+				${vo.id }님의 잔액 : <input type="text" id="usercoin" name="usercoin"
 				 value="<c:out value="${vo.coin }"/>" readonly/>
-				<label for="coin">코인 충전</label>
+				<label for="coin">코인 충전 : </label>
 				<input type="text" id="coin" name="coin" value="0"/>
 				<input type="button" value="충전" onclick="charge()"/>
 				<input type="hidden" id="id1" name="id" value="<c:out value="${vo.id }"/>" />
+				<input type="hidden" id="password" name="password" value="<c:out value="${vo.password }"/>" />
+				<input type="hidden" id="name" name="name" value="<c:out value="${vo.name }"/>" />
 				</form>
 			</div>
 		</div>
@@ -207,9 +225,3 @@ input[type=button] {
 	
 </body>
 </html>
-
-<c:if test="${vo == null }">
-	<%
-			response.sendRedirect("main.inc");
-		%>
-</c:if>
