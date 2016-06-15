@@ -14,7 +14,7 @@ import mybatis.vo.MemberVO;
 	/*
 	제 목 : MypageControl
 	역 할 : 마이페이지로 이동하여 수행하는 컨트롤러 
-	로 그 : 프로그램 최초 생성 (장준수 2016/06/14)
+	로 그 :  1.프로그램 최초 생성 (장준수 2016/06/14)
 	*/
 @Controller
 public class MyPageControl {

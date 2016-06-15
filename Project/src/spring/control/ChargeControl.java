@@ -25,16 +25,20 @@ public class ChargeControl {
 		String a = request.getParameter("coin"); // 충전 코인
 		String d = request.getParameter("usercoin"); // 유저가 가지고 있는 코인
 		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String password = request.getParameter("password");
 		
 	
 		System.out.println(a);
+		System.out.println(d);
 		System.out.println(id);
-		System.out.println(vo.getName());
+		System.out.println("PW:"+password);
+		System.out.println("이름:"+name);
 
 		
 		int coin1 = Integer.parseInt(a);  // 충전 코인
 		int usercoin = Integer.parseInt(d); // 유저가 가지고 있는 코인
-		int coin = coin1 + usercoin; // 충전한 코인+ 유저 코인 합
+		int coin = coin1 + usercoin; // 충전한 코인 + 유저 코인 합
 		
 		vo.setCoin(coin);
 		//vo.setId(id);
