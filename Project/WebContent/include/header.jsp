@@ -33,7 +33,7 @@
 <div id="header">
 	<!-- 상단 좌측 로고, 클릭 시 main페이지로 이동  -->
 	<h1 class="fl"><a href="main.inc"><img alt="logo" src="img/logo.png"></a></h1>
-	
+		
 	<div class="fr">
 		<!-- 로그인 전, 로그인 화면 보여주기-->
 		<c:if test="${vo == null }">
