@@ -4,12 +4,40 @@
 	로 그 : 1.프로그램 최초 생성(오우석 2016/06/09)
 			2.페이징 기법을 위한 nowPage객체 생성(오우석 2016/06/10)
 			3.팀명출력을 위한 teamName 메소드 추가(오우석 2016/06/15)
+			4.웹페이지에서 오늘 날짜와 비교하기 위한 메소드 추가 오우석(2016/06/15)
 	*/
 package mybatis.vo;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 public class MatchVO {
 	private int match_code, home_code, away_code, result;
-	private String day;
+	private int match_year,match_month,match_day,match_hour;
+	public int getMatch_hour() {
+		return match_hour;
+	}
+	public void setMatch_hour(int match_hour) {
+		this.match_hour = match_hour;
+	}
+	public int getMatch_year() {
+		return match_year;
+	}
+	public int getMatch_day() {
+		return match_day;
+	}
+	public void setMatch_year(int match_year) {
+		this.match_year = match_year;
+	}
+	public int getMatch_month() {
+		return match_month;
+	}
+	public void setMatch_month(int match_month) {
+		this.match_month = match_month;
+	}
+	public void setMatch_day(int match_day) {
+		this.match_day = match_day;
+	}
 	//페이징 기법을 위한 nowPage객체 생성(오우석 2016/06/10)
 	private int nowPage;
 	
@@ -43,13 +71,7 @@ public class MatchVO {
 	public void setResult(int result) {
 		this.result = result;
 	}
-	public String getDay() {
-		return day;
-	}
-	public void setDay(String day) {
-		this.day = day;
-	}
-//	팀명출력을 위한 teamName 메소드 추가(오우석 2016/06/15)
+	//	팀명출력을 위한 teamName 메소드 추가(오우석 2016/06/15)
 	public String teamName(int teamCode){
 		switch (teamCode) {
 		case 1:
@@ -75,6 +97,11 @@ public class MatchVO {
 		}
 		return "없음";
 	}
-
+	
+	//웹페이지에서 오늘 날짜와 비교하기 위한 메소드 추가 오우석(2016/06/15)
+	public int findToday(){
+		Calendar cal = Calendar.getInstance();
+		return cal.get(Calendar.DATE);
+	}
 
 }

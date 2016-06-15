@@ -7,15 +7,19 @@
 			2.왼쪽 탭 링크연결 (오우석 2016/06/13)
 			3.파라미터 네임 오류로 인한 변경 list - > games (오우석 2016.06/13)
 			4.팀코드로 표현하는 팀명 초기화 작업 오우석(2016.06.14)
-			5.팀명출력 오우석(2016.06.15) 
+			5.팀명출력 오우석(2016.06.15)
+			6.해당경기가 판매중인지 마감 되었는지 확인 오우석(2016.06.15)
 	*/
  -->
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String home,away;
+
 %>
 <html>
 <head>
@@ -124,8 +128,14 @@ div .center_side{
 							<tr>
 								<!-- 팀명출력 오우석(2016.06.15)  -->
 								<td>${vo.teamName(vo.home_code) } : ${vo.teamName(vo.away_code) }</td>
-								<td>${vo.day}</td>
-								<td> 마감/안마감</td>
+								<td>${vo.match_month}-${vo.match_day}</td>
+								<!-- 해당경기가 판매중인지 마감 되었는지 확인 오우석(2016.06.15)-->
+								<c:if test="${vo.match_day lt vo.findToday()}">
+								<td> 마감</td>
+								</c:if>
+								<c:if test="${vo.match_day gt vo.findToday()}">
+								<td> 판매중</td>
+								</c:if>
 								   
 							</tr>
 							</c:forEach>

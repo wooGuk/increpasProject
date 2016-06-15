@@ -9,7 +9,8 @@
 	로 그 : 1.프로그램 최초 생성,당일 경기데이터 쿼리문 작성 (오우석 2016/06/09)
 	        2.지난 경기데이터 쿼리문 작성 (오우석 2016/06/09)
 	        3.지난 경기데이터 페이징 기법으로 인한 쿼리문 수정 (2016/06/12)
-	        3.지난 경기데이터 쿼리문 수정, 경기일정 모두 가져오는 쿼리문 추가 (2016/06/13)
+	        4.지난 경기데이터 쿼리문 수정, 경기일정 모두 가져오는 쿼리문 추가 (2016/06/13)
+	        5.다른 곳에서 시간을 좀더 세분화 하여 비교 하기 위해 쿼리문 변경  오우석(2016/06/15)
 	*/
  -->
 <mapper namespace="match">
@@ -40,8 +41,14 @@
 	</select>
 	
 	<!-- 게임일정  추가 오우석 2016/06/13-->
+	<!-- 다른 곳에서 시간을 좀더 세분화 하여 비교 하기 위해 쿼리문 변경  오우석(2016/06/15) -->
 	<select id="schedule" resultType="mybatis.vo.MatchVO">
-		select * from match
+		select MATCH_CODE,HOME_CODE,AWAY_CODE,
+		to_number(to_char(MATCH_DAY,'YYYY')) MATCH_YEAR,
+		to_number(to_char(MATCH_DAY,'MM')) MATCH_MONTH,
+		to_number(to_char(MATCH_DAY,'DD')) MATCH_DAY,
+		to_number(to_char(MATCH_DAY,'HH')) MATCH_HOUR
+		from match
 	</select>
 	
 </mapper>
