@@ -26,14 +26,27 @@
 
  	<!-- 오늘경기 -->
 	<select id="matchToday" resultType="mybatis.vo.MatchVO">
-		select * from match
+		select MATCH_CODE,HOME_CODE,AWAY_CODE,
+		to_number(to_char(MATCH_DAY,'YYYY')) MATCH_YEAR,
+		to_number(to_char(MATCH_DAY,'MM')) MATCH_MONTH,
+		to_number(to_char(MATCH_DAY,'DD')) MATCH_DAY,
+		to_number(to_char(MATCH_DAY,'HH')) MATCH_HOUR,
+		RESULT 
+		from match
  		where to_char(match_day,'yyyyy/mm/dd') = to_char(sysdate,'yyyyy/mm/dd')
 	</select>
 	
 	<!-- 지난경기 -->
 	<select id="matchEnd" resultType="mybatis.vo.MatchVO" parameterType="java.util.Map">
 		<!-- 페이징 기법으로 인한 쿼리문 수정 (2016/06/12) -->
-		select * from 
+		select r_num,
+		MATCH_CODE,HOME_CODE,AWAY_CODE,
+		to_number(to_char(MATCH_DAY,'YYYY')) MATCH_YEAR,
+		to_number(to_char(MATCH_DAY,'MM')) MATCH_MONTH,
+		to_number(to_char(MATCH_DAY,'DD')) MATCH_DAY,
+		to_number(to_char(MATCH_DAY,'HH')) MATCH_HOUR,
+		RESULT
+		from 
 		(select rownum as r_num, a.* from
   			(select * from match where to_char(match_day,'yyyyy/mm/dd') &lt; to_char(sysdate,'yyyyy/mm/dd')
   				order by match_day desc) a) 
