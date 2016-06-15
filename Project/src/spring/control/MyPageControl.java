@@ -25,12 +25,16 @@ public class MyPageControl {
 	@Autowired
 	HttpServletRequest request;
 	
+	@Autowired
+	HttpSession session;
+	
 	@RequestMapping("/mypage.inc")
 	public ModelAndView mypage(){
 		
-		String id= (String) request.getParameter("id");
+		/*String id= (String) request.getParameter("id");*/
 		//System.out.println(id);
-		MemberVO vo = tdao.idCheck(id);
+		MemberVO vo = (MemberVO) session.getAttribute("vo");
+		/*MemberVO vo = tdao.idCheck(id);*/
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("vo", vo);
