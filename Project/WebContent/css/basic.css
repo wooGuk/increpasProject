@@ -168,10 +168,18 @@ input.join{
 	border: 1px solid black;
 }
 #contents_sub div.gameInfo{
-	height: 35em;
+	height: 40em;
 }
 #contents_sub div.noticeBoard, #contents_sub div.freeBoard{
 	height: 20em;
+}
+.gameInfoTable{
+	width: 100%;
+	height: 100%;
+}
+.gameInfoTable td{
+	text-align: center;
+	border: 1px solid black;
 }
 .sub_tit {background:url(../img/sub_title.png) no-repeat; text-indent:-9999px;}
 .tit_src {font-size:15px; color:#222; padding-bottom:40px; line-height:1.3em;}
