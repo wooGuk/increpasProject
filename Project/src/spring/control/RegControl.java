@@ -17,6 +17,7 @@ import mybatis.vo.MemberVO;
 	제 목 : RegControl
 	역 할 : 회원가입 및 메인화면으로 이동하는 컨트롤러 
 	로 그 :  1.프로그램 최초 생성 (장준수 2016/06/14)
+				2.main.inc 매핑 MainControl로 이동시킴 (정성훈 2016/06/16)
 	 */
 
 
@@ -28,26 +29,7 @@ public class RegControl {
 	
 	@Autowired
 	HttpServletRequest request;
-	
-	
-	// 메인
-	@RequestMapping("/main.inc")
-	public ModelAndView main(MemberVO vo){
 		
-		/*MemberVO[] ar = tdao.getList(vo);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("vo", ar);
-		mv.setViewName("/main");
-		
-		return mv;*/
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/main");
-		
-		return mv;
-	}
-	
 	
 	// 회원가입
 	@RequestMapping(value="/reg_ok.inc",method=RequestMethod.POST)
