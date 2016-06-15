@@ -7,8 +7,12 @@
 	제 목 : mypage.jps
 	역 할 : 마이페이지로 이동하는 역할
 	로 그 : 1.프로그램 최초 생성 (장준수 2016/06/14)
+	
 		   2. 충전시 상단에 이름 X , 그리고 메인 클릭시 로그인 풀림
 		   ㅡ> form에 input type="hidden"으로 이름,패스워드 같이 보냄
+		   
+		   3. 구매내역(주석으로 해놓은건 실제 구매를 했을때 사용하는 소스)
+		    ㅡ> 대충 구매내역 틀 만듬
 
  -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -120,6 +124,8 @@ input[type=button] {
 	
 	}
 	
+	
+	
 	div#mm form{
 		font-size: 19px;
 	}
@@ -144,7 +150,47 @@ div#mm input[type=button] {
 	font-weight: bold;
 	border: 1px solid #dcdcdc;
 	margin-left: 10px;
-}
+	}
+	
+	div#aaa{
+		margin-left: 300px;
+		margin-top: 30px;
+	
+	}
+	
+	
+	/* 경기구매 테이블css */
+	a:link{text-decoration:none;color:#87aaec}
+	a:visited{text-decoration:none;color:#87aaec}
+	a:hover{text-decoration:none;color:orange}
+
+	table{
+		border:0;
+		width:500px;
+		height: 150px;
+		margin-top: 20px;
+	}
+
+	td{font-size:9pt;color:green;text-align: center;}
+
+	table thead tr th{
+		font-size:9pt;
+		font-weight:bold;
+		color:black; 
+		background-color:#A3D4F7;
+		text-align: center;
+		
+	}
+
+	.t1{width:30%}
+	.t2{width:30%}
+	.t3{width:70%}
+	.t4{width:20%}
+	
+	.fff{
+		font-size: 19px;
+	}
+	
 </style>
 <script type="text/javascript">
 
@@ -194,7 +240,7 @@ div#mm input[type=button] {
 					<li><a href=""><span class="menu m01">게임구매</span></a></li>
 					<li><a href=""><span class="menu m02">경기정보</span></a></li>
 					<li><a href=""><span class="menu m03">자유게시판</span></a></li>
-					<li><a href=""><span class="menu m04">?</span></a></li>
+					<li><a href=""><span class="menu m04">회원수정</span></a></li>
 					<li><a href=""><span class="menu m05">?</span></a></li>
 				</ul>
 
@@ -211,6 +257,75 @@ div#mm input[type=button] {
 				<input type="hidden" id="name" name="name" value="<c:out value="${vo.name }"/>" />
 				</form>
 			</div>
+			
+			<div id="aaa">
+				<table>
+					<h1 class="fff">${vo.id }님의 구매내역</h1>
+					<thead>
+						<tr align="center">
+							<th class="t1">경기날짜</th>
+							<th class="t2">경기시간</th>
+							<th class="t3">HOME팀 VS AWAY팀</th>
+							<th class="t4">베당율</th>
+						</tr>
+						<tr>
+							<td class="line" colspan="4"></td>
+						</tr>				
+					</thead>	
+					<tbody>
+						<tr align="center">
+							<td>2016/06/15</td>
+							<td>22:00</td>
+							<td>리버풀 : 리버풀2군</td>
+							<td>3.11 : 7.12</td>
+						</tr>
+						
+						<tr>
+							<td>2016/06/15</td>
+							<td>22:00</td>
+							<td>리버풀 : 리버풀2군</td>
+							<td>3.11 : 7.12</td>
+						</tr>
+						
+						<tr>
+							<td>2016/06/15</td>
+							<td>22:00</td>
+							<td>리버풀 : 리버풀2군</td>
+							<td>3.11 : 7.12</td>
+						</tr>
+						
+						<tr>
+							<td colspan="4" class="line"></td>
+						</tr>
+					</tbody>
+       			</table>
+			</div>
+			
+			
+			
+			<!-- 밑에 소스는 구매했을때 만듬 2016/06/15 장준수 -->
+			<%-- <div id="aaa">
+				<table>
+					<caption>${vo.id }님의 구매내역</caption>
+					<c:forEach var="vo" items="${list }" varStatus="stat">
+					<thead>
+						<tr>
+							<th>경기날짜</th>
+							<th>HOME팀 : AWAY팀</th>
+							<th>배당율</th>
+							<th>???</th>
+							
+						</tr>					
+					</thead>	
+					</c:forEach>
+			
+			 		<c:if test="${empty list }">
+				
+				 	 <h1>구매내역이 없습니다.</h1>
+				
+	       			</c:if>
+       			</table>
+			</div> --%>
 		</div>
 
 		<!-- 메인화면 클릭시 로그아웃(?)이 되므로 아이디값과 비밀번호를 보내 로그인상태를 유지하게 한다. -->
@@ -219,9 +334,10 @@ div#mm input[type=button] {
 			<input type="hidden" id="password" name="password" value="<c:out value="${vo.password }"/>" />
 			<input type="hidden" id="name" name="name" value="<c:out value="${vo.name }"/>" />
 		</form>
-		
-		
+
 		</c:if>
+		
+		
 	
 </body>
 </html>
