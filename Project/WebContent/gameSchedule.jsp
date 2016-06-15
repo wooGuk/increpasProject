@@ -7,6 +7,7 @@
 			2.왼쪽 탭 링크연결 (오우석 2016/06/13)
 			3.파라미터 네임 오류로 인한 변경 list - > games (오우석 2016.06/13)
 			4.팀코드로 표현하는 팀명 초기화 작업 오우석(2016.06.14)
+			5.팀명출력 오우석(2016.06.15) 
 	*/
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -59,68 +60,70 @@ div .center_side{
 							<!-- 파라미터 네임 오류로 인한 변경 오우석(2016/06/13) -->
 							<c:forEach var="vo" items="${games }" varStatus="stat">
 							<!-- 팀코드로 표현하는 팀명 초기화 작업 오우석(2016.06.14) -->
-							<c:if test="${vo.home_code}==1">
+							<!-- if문 구문 오류로 인한 변경 오우석(2016.06.14) -->
+							<%-- <c:if test="${vo.home_code eq '1'}">
 								<%=home="두산" %>
 							</c:if>
-							<c:if test="${vo.home_code}==2">
+							<c:if test="${vo.home_code eq '2'}">
 								<%=home="NC" %>
 							</c:if>
-							<c:if test="${vo.home_code}==3">
+							<c:if test="${vo.home_code eq '3'}">
 								<%=home="넥센" %>
 							</c:if>
-							<c:if test="${vo.home_code}==4">
+							<c:if test="${vo.home_code eq '4'}">
 								<%=home="LG" %>
 							</c:if>
-							<c:if test="${vo.home_code}==5">
+							<c:if test="${vo.home_code eq '5'}">
 								<%=home="삼성" %>
 							</c:if>
-							<c:if test="${vo.home_code}==6">
+							<c:if test="${vo.home_code eq '6'}">
 								<%=home="롯데" %>
 							</c:if>
-							<c:if test="${vo.home_code}==7">
+							<c:if test="${vo.home_code eq '7'}">
 								<%=home="SK" %>
 							</c:if>
-							<c:if test="${vo.home_code}==8">
+							<c:if test="${vo.home_code eq '8'}">
 								<%=home="기아" %>
 							</c:if>
-							<c:if test="${vo.home_code}==9">
+							<c:if test="${vo.home_code eq '9'}">
 								<%=home="한화" %>
 							</c:if>
-							<c:if test="${vo.home_code}==10">
+							<c:if test="${vo.home_code eq '10'}">
 								<%=home="KT" %>
 							</c:if>
-							<c:if test="${vo.away_code}==1">
+							<c:if test="${vo.away_code eq '1'}">
 								<%=away="두산" %>
 							</c:if>
-							<c:if test="${vo.away_code}==2">
+							<c:if test="${vo.away_code eq '2'}">
 								<%=away="NC" %>
 							</c:if>
-							<c:if test="${vo.away_code}==3">
+							<c:if test="${vo.away_code eq '3'}">
 								<%=away="넥센" %>
 							</c:if>
-							<c:if test="${vo.away_code}==4">
+							<c:if test="${vo.away_code eq '4'}">
 								<%=away="LG" %>
 							</c:if>
-							<c:if test="${vo.away_code}==5">
+							<c:if test="${vo.away_code eq '5'}">
 								<%=away="삼성" %>
 							</c:if>
-							<c:if test="${vo.away_code}==6">
+							<c:if test="${vo.away_code eq '6'}">
 								<%=away="롯데" %>
 							</c:if>
-							<c:if test="${vo.away_code}==7">
+							<c:if test="${vo.away_code eq '7'}">
 								<%=away="SK" %>
 							</c:if>
-							<c:if test="${vo.away_code}==8">
+							<c:if test="${vo.away_code eq '8'}">
 								<%=away="기아" %>
 							</c:if>
-							<c:if test="${vo.away_code}==9">
+							<c:if test="${vo.away_code eq '9'}">
 								<%=away="한화" %>
 							</c:if>
-							<c:if test="${vo.away_code}==10">
+							<c:if test="${vo.away_code eq '10'}">
 								<%=away="KT" %>
-							</c:if>
+							</c:if> --%>
 							<tr>
-								<td><%=home %> : <%=away %></td>
+								<!-- 팀명출력 오우석(2016.06.15)  -->
+								<td>${vo.teamName(vo.home_code) } : ${vo.teamName(vo.away_code) }</td>
 								<td>${vo.day}</td>
 								<td> 마감/안마감</td>
 								   

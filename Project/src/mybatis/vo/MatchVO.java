@@ -3,6 +3,7 @@
 	역 할 : 경기 데이터 파일
 	로 그 : 1.프로그램 최초 생성(오우석 2016/06/09)
 			2.페이징 기법을 위한 nowPage객체 생성(오우석 2016/06/10)
+			3.팀명출력을 위한 teamName 메소드 추가(오우석 2016/06/15)
 	*/
 package mybatis.vo;
 
@@ -48,8 +49,32 @@ public class MatchVO {
 	public void setDay(String day) {
 		this.day = day;
 	}
-
-	
+//	팀명출력을 위한 teamName 메소드 추가(오우석 2016/06/15)
+	public String teamName(int teamCode){
+		switch (teamCode) {
+		case 1:
+			return "두산";	
+		case 2:
+			return "NC";
+		case 3:
+			return "넥센";
+		case 4:
+			return "LG";
+		case 5:
+			return "삼성";
+		case 6:
+			return "롯데";
+		case 7:
+			return "SK";
+		case 8:
+			return "기아";
+		case 9:
+			return "한화";
+		case 10:
+			return "KT";
+		}
+		return "없음";
+	}
 
 
 }
