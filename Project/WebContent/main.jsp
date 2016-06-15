@@ -3,6 +3,7 @@
 	제 목 : main.jsp
 	역 할 : main 페이지
 	로 그 : 1. flag를 통해 정상로그인을 체크 (정성훈 2016/06/15)
+			2. 콘텐츠영역 경기정보, 공지사항, 자유게시판 틀 생성 (정성훈 2016/06/15)
 	*/
  -->
 
@@ -44,11 +45,27 @@ function check() {
 		
 		<!-- 콘텐츠영역시작 -->
  		<div id="contents">
- 		콘
- 		텐
- 		츠
- 		영
- 		역
+ 			<table id="contents_sub">
+ 				<tr>
+ 					<td colspan="2">
+ 						<div class="gameInfo">
+ 							경기정보
+ 						</div>
+ 					</td>
+ 				</tr>
+ 				<tr>
+ 					<td>
+ 						<div class="noticeBoard">
+ 							공지사항
+ 						</div>
+ 					</td>
+ 					<td>
+ 						<div class="freeBoard">
+ 							자유게시판
+ 						</div>
+ 					</td>
+ 				</tr>
+ 			</table>
 		</div>
 		<!-- 콘텐츠영역종료 -->
 
