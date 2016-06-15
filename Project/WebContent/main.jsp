@@ -4,14 +4,35 @@
 	역 할 : main 페이지
 	로 그 : 1. flag를 통해 정상로그인을 체크 (정성훈 2016/06/15)
 			2. 콘텐츠영역 경기정보, 공지사항, 자유게시판 틀 생성 (정성훈 2016/06/15)
+			3. 경기일정 보기란 로고띄우기 (정성훈 20160616)
 	*/
  -->
 
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="mybatis.vo.MatchVO"%>
 <%@page import="mybatis.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c"
  uri="http://java.sun.com/jsp/jstl/core" %>
+ <%
+ 	//로고 이미지 경로 저장
+ 	//팀코드, 경로
+	Map<Integer, String> logo = new HashMap<Integer, String>();
+	logo.put(1, "img/team/emblem_OB.png");
+	logo.put(2, "img/team/emblem_NC.png");
+	logo.put(3, "img/team/emblem_WO.png");
+	logo.put(4, "img/team/emblem_LG.png");
+	logo.put(5, "img/team/emblem_SS.png");
+	logo.put(6, "img/team/emblem_LT.png");
+	logo.put(7, "img/team/emblem_SK.png");
+	logo.put(8, "img/team/emblem_HT.png");
+	logo.put(9, "img/team/emblem_HH.png");
+	logo.put(10, "img/team/emblem_KT.png");
+	
+ 	MatchVO[] games = (MatchVO[])request.getAttribute("games");
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +70,26 @@ function check() {
  				<tr>
  					<td colspan="2">
  						<div class="gameInfo">
- 							경기정보
+ 							<table class="gameInfoTable">
+								<tbody>
+								<!-- 반복문 돌면서 경기일정 출력 -->
+								<%
+									for(int i=0; i<games.length; i++){
+								%>
+										<tr>
+											<td>
+												<img alt="" src="<%=logo.get(games[i].getHome_code()) %>">
+											</td>
+											<td>vs</td>
+											<td>
+												<img alt="" src="<%=logo.get(games[i].getAway_code()) %>">
+											</td>
+										</tr>
+								<%
+									}//for()
+								%>		
+								</tbody>
+							</table>
  						</div>
  					</td>
  				</tr>
