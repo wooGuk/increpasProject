@@ -51,11 +51,17 @@ public class MemberDAO {
 		
 	}
 	
-	// iD/PW찾기
-	public MemberVO idsearch(MemberVO vo){
-		MemberVO vo1 = template.selectOne("test.idsearch",vo);
-		return vo1;
-	}
+	// iD/PW찾기(박상원 2016/06/15)
+		public MemberVO idsearch(MemberVO vo){
+			MemberVO vo1 = template.selectOne("test.idsearch",vo);
+			return vo1;
+		}
+		
+		// iD/PW찾기(박상원 2016/06/15)
+		public MemberVO pwdsearch(MemberVO vo){
+			MemberVO vo1 = template.selectOne("test.pwdsearch",vo);
+			return vo1;
+			}
 		
 	}
 
