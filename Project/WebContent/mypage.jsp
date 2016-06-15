@@ -21,184 +21,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="css/basic.css" />
 <title>Insert title here</title>
-
-<style>
-body {
-	margin: 0;
-	padding: 0;
-}
-
-div#h_menu {
-	text-align: right;
-	margin-top: 10px;
-	font-size: 17px;
-}
-
-div#h_menu>ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	overflow: hidden;
-	font: bold 20px sans-serif Impact;
-}
-
-div#h_menu>ul>li {
-	display: inline;
-	background: url("images/dash.gif") no-repeat right center;
-	padding-right: 20px;
-}
-
-div#aa {
-	display: inline-block;
-	padding-right: 30px;
-}
-
-div#aa>li {
-	display: block;
-	padding-right: 20px;
-}
-
-div#aa a {
-	display: inline-block;
-	font-size: 12px;
-	padding-right: 20px;
-	text-decoration: none;
-}
-
-
-div#h_menu>ul>li>a {
-	font-size: 12px;
-	text-decoration: none;
-}
-
-div#aa input[type=text], div#aa input[type=password] {
-	width: 100px;
-	height: 25px;
-}
-
-#inBox {
-	padding: 10px;
-	width: 100%;
-}
-
-#inBox2 {
-	width: 100%;
-	text-align: center;
-}
-
-
-
-#aa input[type=submit] {
-	display: inline-block;
-	width: 70px;
-	height: 30px;
-	margin: 10px auto;
-	font-size: 15px;
-	font-weight: bold;
-	border: 1px solid #dcdcdc;
-}
-
-#aa input[type=button] {
-	display: inline;
-	width: 70px;
-	height: 30px;
-	margin: 10px auto;
-	font-size: 15px;
-	font-weight: bold;
-	border: 1px solid #dcdcdc;
-}
-
-input[type=button] {
-	display: inline;
-	width: 70px;
-	height: 32px;
-	margin: 10px auto;
-	font-size: 15px;
-	font-weight: bold;
-	border: 1px solid #dcdcdc;
-}
-
-	div#mm{
-		margin-left: 300px;
-		margin-top: 30px;
-	
-	}
-	
-	
-	
-	div#mm form{
-		font-size: 19px;
-	}
-	
-	 div#mm label{
-		font-size: 19px;
-		margin-left: 10px;
-	} 
-	
-	div#mm input[type=text]{
-		width: 100px;
-		height: 24px;
-	}
-	
-	
-div#mm input[type=button] {
-	display: inline;
-	width: 70px;
-	height: 27px;
-	margin: 10px auto;
-	font-size: 15px;
-	font-weight: bold;
-	border: 1px solid #dcdcdc;
-	margin-left: 10px;
-	}
-	
-	div#aaa{
-		margin-left: 300px;
-		margin-top: 30px;
-	
-	}
-	
-	
-	/* 경기구매 테이블css */
-	a:link{text-decoration:none;color:#87aaec}
-	a:visited{text-decoration:none;color:#87aaec}
-	a:hover{text-decoration:none;color:orange}
-
-	table{
-		border:0;
-		width:500px;
-		height: 150px;
-		margin-top: 20px;
-	}
-
-	td{font-size:9pt;color:green;text-align: center;}
-
-	table thead tr th{
-		font-size:9pt;
-		font-weight:bold;
-		color:black; 
-		background-color:#A3D4F7;
-		text-align: center;
-		
-	}
-
-	.t1{width:30%}
-	.t2{width:30%}
-	.t3{width:70%}
-	.t4{width:20%}
-	
-	.fff{
-		font-size: 19px;
-	}
-	
-</style>
 <script type="text/javascript">
 
-	function main(){
+ 	function main(){
 		var id = document.f.id.value;
 		var password = document.f.password.value;
 		document.f.submit();
-	}
+	} 
 	
 	function charge(evt){
 		
@@ -223,28 +52,13 @@ div#mm input[type=button] {
 </script>
 </head>
 <body>
-	<c:if test="${vo != null }">
-		
-		<div id="wrap">
-			<div id="header">
-				<div id="h_menu">
+	<div id="wrap">
+		<!-- 상단영역시작 -->
+		<jsp:include page="include/mypageheader.jsp"></jsp:include>
+		<!-- 상단영역종료 -->
+				
 
-					${vo.id }(${vo.name })님의 마이페이지
-					 <input type="button" value="메인화면" onclick="main()" /> 
-					 <input type="button" value="로그아웃" onclick="javascript:location.href='logout.inc'" />
-
-
-
-				</div>
-				<ul class="gnb">
-					<li><a href=""><span class="menu m01">게임구매</span></a></li>
-					<li><a href=""><span class="menu m02">경기정보</span></a></li>
-					<li><a href=""><span class="menu m03">자유게시판</span></a></li>
-					<li><a href=""><span class="menu m04">회원수정</span></a></li>
-					<li><a href=""><span class="menu m05">?</span></a></li>
-				</ul>
-
-			</div>
+			<%-- </div>
 			<div id="mm">
 			<form action="charge.inc" method="post" id="c" name="c">
 				${vo.id }님의 잔액 : <input type="text" id="usercoin" name="usercoin"
@@ -304,7 +118,7 @@ div#mm input[type=button] {
 			
 			
 			<!-- 밑에 소스는 구매했을때 만듬 2016/06/15 장준수 -->
-			<%-- <div id="aaa">
+			<div id="aaa">
 				<table>
 					<caption>${vo.id }님의 구매내역</caption>
 					<c:forEach var="vo" items="${list }" varStatus="stat">
@@ -325,8 +139,9 @@ div#mm input[type=button] {
 				
 	       			</c:if>
        			</table>
-			</div> --%>
-		</div>
+			</div> 
+	
+		
 
 		<!-- 메인화면 클릭시 로그아웃(?)이 되므로 아이디값과 비밀번호를 보내 로그인상태를 유지하게 한다. -->
 		<form name="f" action="login.inc" method="post">
@@ -335,9 +150,11 @@ div#mm input[type=button] {
 			<input type="hidden" id="name" name="name" value="<c:out value="${vo.name }"/>" />
 		</form>
 
-		</c:if>
-		
-		
+		</c:if> --%>
+	</div>
 	
+		<!-- 하단영역시작 -->
+		<jsp:include page="include/footer.jsp"></jsp:include>
+		<!-- 하단영역종료 -->
 </body>
 </html>
