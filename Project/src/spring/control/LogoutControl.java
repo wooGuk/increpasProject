@@ -23,16 +23,5 @@ public class LogoutControl {
 	@Autowired
 	HttpSession session;
 	
-	@RequestMapping("/logout.inc")
-	public ModelAndView logout(MemberVO vo){
-		
-		session.removeAttribute("vo");
-		
-		ModelAndView mv = new ModelAndView();
-		
-		// redirect로 수정 (2016/06/16 장준수)
-		mv.setViewName("redirect:/main.inc");
-		
-		return mv;
-	}
-}
+	
+

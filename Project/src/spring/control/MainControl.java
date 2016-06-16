@@ -4,11 +4,13 @@
 	로 그 : 1.첫 시작시 메인화면으로 이동 (정성훈 2016/06/09)
 			2.회원가입 페이지로 이동 (정성훈 2016/06/10) 
 			3.오늘의 경기일정 보여주기 (정성훈 20161616)
+			4.LoginControl, LogoutControl 기능 합침 (정성훈 20160616)
 	*/
 
 package spring.control;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.MatchDAO;
+import mybatis.dao.MemberDAO;
 import mybatis.vo.MatchVO;
 import mybatis.vo.MemberVO;
 
@@ -25,7 +28,11 @@ public class MainControl {
 	@Autowired
 	MatchDAO matchDao;
 	@Autowired
+	MemberDAO memberDao;
+	@Autowired
 	HttpServletRequest request;
+	@Autowired
+	HttpSession session;
 	
 	@RequestMapping("/main.inc")
 	public ModelAndView main(MemberVO vo){
@@ -48,6 +55,60 @@ public class MainControl {
 	public ModelAndView mainPage(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/join");
+		return mv;
+	}
+	
+	//로그인
+	@RequestMapping("/login.inc")
+	public ModelAndView resMember(MemberVO vo){
+		
+		ModelAndView mv = new ModelAndView();
+		
+		//입력한 아이디,비밀번호로 검색
+		/*
+		 * flag == 1 아이디 오류
+		 * flag == 2 비밀번호 오류
+		 * flag == 3 정상로그인
+		*/
+		String flag;
+		MemberVO res = memberDao.loginMember(vo);
+		
+		if(res == null){
+			//입력한 아이디,비밀번호에 해당하는 회원이 없을 경우
+			//아이디는 존재하는지 검색
+			res = memberDao.idCheck(vo.getId());
+			if(res == null){
+				//아이디조차 없는경우
+				flag = "1";
+			}else{
+				//아이디는 존재하지만 비빌번호가 틀린경우
+				flag = "2";
+			}
+		}
+		else{
+			//입력한 아이디,비밀번호에 해당하는 회원이 있을 경우
+			//세션에저장
+			session.setAttribute("vo", res);
+			flag = "3";
+		}
+		
+		//main.inc로 flag값을 가지고 redirect
+		mv.setViewName("redirect:/main.inc?flag="+flag);
+		
+		return mv;
+	}
+	
+	//로그아웃
+	@RequestMapping("/logout.inc")
+	public ModelAndView logout(MemberVO vo){
+		
+		//세션에 저장된 vo삭제(로그아웃)
+		session.removeAttribute("vo");
+		
+		ModelAndView mv = new ModelAndView();
+		// redirect로 수정 (2016/06/16 장준수)
+		mv.setViewName("redirect:/main.inc");
+		
 		return mv;
 	}
 }
