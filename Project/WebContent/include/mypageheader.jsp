@@ -4,8 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 
 	
-	제 목 : mypage.jps
-	역 할 : 마이페이지로 이동하는 역할
+	제 목 : mypageheader.jps
+	역 할 : 마이페이지 상단부
 	로 그 : 1.프로그램 최초 생성 (장준수 2016/06/14)
 	
 		   2. 충전시 상단에 이름 X , 그리고 메인 클릭시 로그인 풀림
@@ -189,48 +189,29 @@ div#mm input[type=button] {
 	.fff{
 		font-size: 19px;
 	}
-	
-	#mypagetalbe, #header h1{
-	margin-top: 10px;
-	}
-	#mypagetalbe td{
-	padding: 2px;
-	text-align: right;
-	}
-	#mypagetalbe td a:HOVER{
-	text-decoration: underline;
-	}
 	 
 </style>-->
-<!-- <style type="text/css">
-	#aa, #header h1{
-	margin-top: 10px;
-	}
-	#aa td{
-	padding: 2px;
-	text-align: right;
-	}
-	#mypagetable td a:HOVER{
-	text-decoration: underline;
-	}
-</style> -->
-
 <style type="text/css">
+	div#aaa{
+		margin-left: 500px;
+		margin-top: 30px;
 	
-	a:link{text-decoration:none;color:#87aaec}
-	a:visited{text-decoration:none;color:#87aaec}
-	a:hover{text-decoration:none;color:orange}
+	}
 
-	#aaa{
+	#bbb{
 		border:0;
 		width:500px;
 		height: 150px;
 		margin-top: 20px;
 	}
 
-	td{font-size:9pt;color:green;text-align: center;}
+	#bbb tbody tr td{
+		font-size:9pt;
+		color:green;	
+		text-align: center;
+		}
 
-	#aaa>thead>tr>th{
+	#bbb thead tr th{
 		font-size:9pt;
 		font-weight:bold;
 		color:black; 
@@ -246,8 +227,6 @@ div#mm input[type=button] {
 	
 	.fff{
 		font-size: 19px;
-	}
-
 </style>
 <script type="text/javascript">
 
@@ -327,7 +306,7 @@ div#mm input[type=button] {
 		</div>
 
 		<div id="aaa">
-			<table id="aaa">
+			<table id="bbb">
 				<thead>
 					<tr align="center">
 						<th class="t1">경기날짜</th>
