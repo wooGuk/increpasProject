@@ -29,7 +29,7 @@ public class LogoutControl {
 		session.removeAttribute("vo");
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/main");
+		mv.setViewName("redirect:/main.inc");
 		
 		return mv;
 	}
