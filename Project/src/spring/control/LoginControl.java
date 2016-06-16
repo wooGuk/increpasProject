@@ -38,6 +38,7 @@ public class LoginControl {
 		 * flag == 2 비밀번호 오류
 		 * flag == 3 정상로그인
 		*/
+		String flag;
 		MemberVO res = mDao.loginMember(vo);
 		
 		if(res == null){
@@ -46,21 +47,23 @@ public class LoginControl {
 			res = mDao.idCheck(vo.getId());
 			if(res == null){
 				//아이디조차 없는경우
-				mv.addObject("flag", "1");
+				flag = "1";
 			}else{
 				//아이디는 존재하지만 비빌번호가 틀린경우
-				mv.addObject("flag", "2");
+				flag = "2";
 			}
 		}
 		else{
 			//입력한 아이디,비밀번호에 해당하는 회원이 있을 경우
 			//세션에저장
 			session.setAttribute("vo", res);
-			mv.addObject("flag", "3");
+			flag = "3";
 		}
 		
 		//view페이지 저장
-		mv.setViewName("/main");
+		
+		//mv.setViewName("/main");
+		mv.setViewName("redirect:/main.inc?flag="+flag);
 		
 		return mv;
 	}
