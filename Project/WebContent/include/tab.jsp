@@ -7,6 +7,7 @@
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<div class="center_side">
 					<ul class="nav nav-tabs nav-justified">
 						<li id="t1" role="presentation"><a href="javascript:trans(1)">게임구매방법</a></li>
@@ -21,7 +22,26 @@
 				첫번째 tab
 			</div>
 			<div class="tab_cont show" id="tab2">
-				첫번째 tab
+				<table>
+					<thead>
+						<tr>
+							<td>경    기</td>
+							<td>경기일자</td>
+							<td>경기시간</td>
+							<td>홈 vs 원정</td>
+							<td>결    과</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>${game.match_code }</td>
+							<td>${game.match_year }-${game.match_month }-${game.match_day }</td>
+							<td>${game.match_hour }</td>
+							<td>${game.teamName(game.home_code) } vs ${game.teamName(game.away_code) }</td>
+							<td>${game.result }</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			<div class="tab_cont" id="tab3">
 				첫번째 tab
