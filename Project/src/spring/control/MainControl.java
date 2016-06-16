@@ -5,6 +5,7 @@
 			2.회원가입 페이지로 이동 (정성훈 2016/06/10) 
 			3.오늘의 경기일정 보여주기 (정성훈 20161616)
 			4.LoginControl, LogoutControl 기능 합침 (정성훈 20160616)
+			5.아이디/비밀번호 찾기 페이지 이동 (정성훈 20160616)
 	*/
 
 package spring.control;
@@ -109,6 +110,14 @@ public class MainControl {
 		// redirect로 수정 (2016/06/16 장준수)
 		mv.setViewName("redirect:/main.inc");
 		
+		return mv;
+	}
+	
+	//아이디/비밀번호 찾기 페이지 이동 (정성훈 20160616)
+	@RequestMapping("/searchIdPwd.inc")
+	public ModelAndView searchIdPwd(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/search");
 		return mv;
 	}
 }
