@@ -44,7 +44,7 @@ public class MainControl {
 	}
 	
 	//회원가입 페이지로 이동 (정성훈 2016/06/10) 
-	@RequestMapping(value="/go_join.inc")
+	@RequestMapping(value="/goJoin.inc")
 	public ModelAndView mainPage(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/join");
