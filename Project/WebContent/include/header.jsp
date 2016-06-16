@@ -51,7 +51,7 @@
 							<td><input type="password" id="password" name="password"></td>
 						</tr>
 						<tr>
-							<td><a href="go_join.inc">회원가입</a></td>
+							<td><a href="goJoin.inc">회원가입</a></td>
 							<td><a href="">아이디/비밀번호 찾기</a></td>
 							<td></td>
 						</tr>
