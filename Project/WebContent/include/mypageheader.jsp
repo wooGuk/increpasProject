@@ -6,13 +6,8 @@
 	
 	제 목 : mypageheader.jps
 	역 할 : 마이페이지 상단부
-	로 그 : 1.프로그램 최초 생성 (장준수 2016/06/14)
-	
-		   2. 충전시 상단에 이름 X , 그리고 메인 클릭시 로그인 풀림
-		   ㅡ> form에 input type="hidden"으로 이름,패스워드 같이 보냄
-		   
-		   3. 구매내역(주석으로 해놓은건 실제 구매를 했을때 사용하는 소스)
-		    ㅡ> 대충 구매내역 틀 만듬
+	로 그 : 1.프로그램 최초 생성 (장준수 2016/06/16)
+
 
  -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,177 +15,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-<!-- <style>
-body {
-	margin: 0;
-	padding: 0;
-}
-
-div#h_menu {
-	text-align: right;
-	margin-top: 10px;
-	font-size: 17px;
-}
-
-div#h_menu>ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	overflow: hidden;
-	font: bold 20px sans-serif Impact;
-}
-
-div#h_menu>ul>li {
-	display: inline;
-	background: url("images/dash.gif") no-repeat right center;
-	padding-right: 20px;
-}
-
-div#aa {
-	display: inline-block;
-	padding-right: 30px;
-}
-
-div#aa>li {
-	display: block;
-	padding-right: 20px;
-}
-
-div#aa a {
-	display: inline-block;
-	font-size: 12px;
-	padding-right: 20px;
-	text-decoration: none;
-}
-
-
-div#h_menu>ul>li>a {
-	font-size: 12px;
-	text-decoration: none;
-}
-
-div#aa input[type=text], div#aa input[type=password] {
-	width: 100px;
-	height: 25px;
-}
-
-#inBox {
-	padding: 10px;
-	width: 100%;
-}
-
-#inBox2 {
-	width: 100%;
-	text-align: center;
-}
-
-
-
-#aa input[type=submit] {
-	display: inline-block;
-	width: 70px;
-	height: 30px;
-	margin: 10px auto;
-	font-size: 15px;
-	font-weight: bold;
-	border: 1px solid #dcdcdc;
-}
-
-#aa input[type=button] {
-	display: inline;
-	width: 70px;
-	height: 30px;
-	margin: 10px auto;
-	font-size: 15px;
-	font-weight: bold;
-	border: 1px solid #dcdcdc;
-}
-
-input[type=button] {
-	display: inline;
-	width: 70px;
-	height: 32px;
-	margin: 10px auto;
-	font-size: 15px;
-	font-weight: bold;
-	border: 1px solid #dcdcdc;
-}
-
-	div#mm{
-		margin-left: 300px;
-		margin-top: 30px;
-	
-	}
-	
-	
-	
-	div#mm form{
-		font-size: 19px;
-	}
-	
-	 div#mm label{
-		font-size: 19px;
-		margin-left: 10px;
-	} 
-	
-	div#mm input[type=text]{
-		width: 100px;
-		height: 24px;
-	}
-	
-	
-div#mm input[type=button] {
-	display: inline;
-	width: 70px;
-	height: 27px;
-	margin: 10px auto;
-	font-size: 15px;
-	font-weight: bold;
-	border: 1px solid #dcdcdc;
-	margin-left: 10px;
-	}
-	
-	div#aaa{
-		margin-left: 300px;
-		margin-top: 30px;
-	
-	}
-	
-	
-	/* 경기구매 테이블css */
-	a:link{text-decoration:none;color:#87aaec}
-	a:visited{text-decoration:none;color:#87aaec}
-	a:hover{text-decoration:none;color:orange}
-
-	table{
-		border:0;
-		width:500px;
-		height: 150px;
-		margin-top: 20px;
-	}
-
-	td{font-size:9pt;color:green;text-align: center;}
-
-	table thead tr th{
-		font-size:9pt;
-		font-weight:bold;
-		color:black; 
-		background-color:#A3D4F7;
-		text-align: center;
-		
-	}
-
-	.t1{width:30%}
-	.t2{width:30%}
-	.t3{width:70%}
-	.t4{width:20%}
-	
-	.fff{
-		font-size: 19px;
-	}
-	 
-</style>-->
 <style type="text/css">
 	div#aaa{
 		margin-left: 500px;
@@ -228,27 +52,28 @@ div#mm input[type=button] {
 	.fff{
 		font-size: 19px;
 </style>
-<script type="text/javascript">
+ <script type="text/javascript">
 
-	function main(){
+	/* function main(){
 		var id = document.f.id.value;
 		var password = document.f.password.value;
 		document.f.submit();
-	}
+	}  */
 	
 	function charge(evt){
 		
 		var number = /[^0-9]/; //숫자만 허용
 		
-		var coin = document.c.coin.value;
+		var coin = document.c.coin.value; 
+		var coin = document.getElementById("coincheck");
 		var usercoin = document.c.usercoin.value;
 		var id = document.c.id1.value;
 		var name = document.c.name.value;
 		var password = document.c.password.value;
 		
 		 if ( document.c.coin.value.search(number)!=-1 || document.c.coin.value.length == 0 ){
-		        alert("해당항목은 필수항목이며, 숫자만 입력하실 수 있습니다!");
-		        form.numberText.focus();
+		        alert("숫자만 입력하실 수 있습니다!");
+		        document.c.coin.focus();
 		        return;
 		   }else{
 		
@@ -256,7 +81,7 @@ div#mm input[type=button] {
 		document.c.submit();
 	   }
 	}
-</script>
+</script> 
 </head>
 <body>
 	<c:if test="${vo != null }">
@@ -265,10 +90,6 @@ div#mm input[type=button] {
 				<a href="main.inc"><img alt="logo" src="img/logo.png"></a>
 			</h1>
 			<div class="fr">
-				<%-- <div id="h_menu">
-					${vo.id }(${vo.name })님의 마이페이지
-					 <input type="button" value="메인화면" onclick="main()" /> 
-					 <input type="button" value="로그아웃" onclick="javascript:location.href='logout.inc'" /> --%>
 				<form id="mypaheform">
 					<table id="mypagetable">
 						<caption>MY 테이블</caption>
@@ -352,12 +173,12 @@ div#mm input[type=button] {
 
 
 
-	<!-- 메인화면 클릭시 로그아웃(?)이 되므로 아이디값과 비밀번호를 보내 로그인상태를 유지하게 한다. -->
+	<%-- <!-- 메인화면 클릭시 로그아웃(?)이 되므로 아이디값과 비밀번호를 보내 로그인상태를 유지하게 한다. -->
 	<form name="f" action="login.inc" method="post">
 		<input type="hidden" id="id" name="id" value="<c:out value="${vo.id }"/>" />
 		<input type="hidden" id="password" name="password" value="<c:out value="${vo.password }"/>" /> 
 		<input type="hidden" id="name" name="name" value="<c:out value="${vo.name }"/>" />
-	</form>
+	</form> --%>
 
 </body>
 </html>
