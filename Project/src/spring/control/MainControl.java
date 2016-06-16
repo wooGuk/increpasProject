@@ -6,6 +6,7 @@
 			3.오늘의 경기일정 보여주기 (정성훈 20161616)
 			4.LoginControl, LogoutControl 기능 합침 (정성훈 20160616)
 			5.아이디/비밀번호 찾기 페이지 이동 (정성훈 20160616)
+			6.마이페이지 이동시 로그인 유무 체크 (정성훈 20160616)
 	*/
 
 package spring.control;
@@ -118,6 +119,27 @@ public class MainControl {
 	public ModelAndView searchIdPwd(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/search");
+		return mv;
+	}
+	
+	//마이페이지로 이동하기 (정성훈 20160616)
+	@RequestMapping("/mypageCheck.inc")
+	public ModelAndView mypageCheck(){
+		
+		ModelAndView mv = new ModelAndView();
+		
+		//세션에 저장된 값이 있는지 체크
+		MemberVO vo = (MemberVO)session.getAttribute("vo");
+		if(vo == null){
+			//로그인 후 사용해야하는 flag표시
+			String flag = "4";
+			//로그인 후 사용하라는 flag와 함께 main페이지로 이동
+			mv.setViewName("redirect:/main.inc?flag="+flag);
+		}else{
+			//로그인이 되어 있으므로 mypage로 이동
+			mv.setViewName("/mypage");
+		}
+		
 		return mv;
 	}
 }
