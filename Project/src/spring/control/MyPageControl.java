@@ -33,8 +33,10 @@ public class MyPageControl {
 		
 		/*String id= (String) request.getParameter("id");*/
 		//System.out.println(id);
+		 
 		MemberVO vo = (MemberVO) session.getAttribute("vo");
 		/*MemberVO vo = tdao.idCheck(id);*/
+	
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("vo", vo);
