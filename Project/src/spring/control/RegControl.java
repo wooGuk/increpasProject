@@ -18,7 +18,8 @@ import mybatis.vo.MemberVO;
 	역 할 : 회원가입 및 메인화면으로 이동하는 컨트롤러 
 	로 그 :  1.프로그램 최초 생성 (장준수 2016/06/14)
 				2.main.inc 매핑 MainControl로 이동시킴 (정성훈 2016/06/16)
-	 */
+					3. setViewName을 redirect로 수정 (2016/06/16 장준수)
+	 */		
 
 
 @Controller
@@ -40,7 +41,8 @@ public class RegControl {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("vo", vo1);
-		mv.setViewName("/main");
+		/*mv.setViewName("/main");*/
+		mv.setViewName("redirect:/main.inc");
 		return mv;
 	}
 	
