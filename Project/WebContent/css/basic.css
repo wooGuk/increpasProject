@@ -265,8 +265,16 @@ input.join[type=password]:hover {border:1px solid #999; height:22px; background:
 .tab_type01 ul li a {display:block; width:100%; height:100%; line-height:35px; text-align:center; color:#fff; font-weight:bold; font-size:16px;}
 .tab_type01 ul li.active {background:#fff; border:1px solid #ff4f00; border-bottom:1px solid #fff;}
 .tab_type01 ul li.active a {color:#ff4f00;}
+/*  상세보기 탭을 위한  css수정 오우석(2016/06/16) */
+.tab_cont{
+	padding-top: 30px;
+	line-height: 1.5em;
+	display: none; /* 안보임 */
+}
 
-.tab_cont {padding-top:30px; line-height:1.5em;}
+.show{
+	display: block; /* 보여줌 */
+}
 
 /*****************************************************
 기타 공통스타일
