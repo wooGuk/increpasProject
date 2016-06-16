@@ -29,12 +29,15 @@ public class MainControl {
 	
 	@RequestMapping("/main.inc")
 	public ModelAndView main(MemberVO vo){
+		
+		String flag = request.getParameter("flag");
 		//오늘 날짜 경기일정 가져오기
 		MatchVO[] games= matchDao.scheduleToday();
 		
 		ModelAndView mv = new ModelAndView();
 		//request에 경기일정 저장
 		request.setAttribute("games", games);
+		mv.addObject("flag",flag);
 		//main.jsp로 이동
 		mv.setViewName("/main");
 		return mv;
