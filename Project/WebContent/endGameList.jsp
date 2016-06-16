@@ -66,87 +66,87 @@ div .center_side{
 					<tbody>
 					<!-- 여기를 반복문으로 돌려야 됨 -->
 						<!-- 파라미터 네임 오류로 인한 변경 오우석(2016.06/13) -->
-						<c:forEach var="vo" items="${games }" varStatus="stat">
+						<c:forEach var="game" items="${games }" varStatus="stat">
 						<!-- 팀코드로 표현하는 팀명 초기화 작업 오우석(2016.06.14) -->
 						<%-- <!-- if문 구문 오류로 인한 변경 오우석(2016.06.14) -->
-						<c:if test="${vo.home_code eq '1'}">
+						<c:if test="${game.home_code eq '1'}">
 								<%=home="두산" %>
 							</c:if>
-							<c:if test="${vo.home_code eq '2'}">
+							<c:if test="${game.home_code eq '2'}">
 								<%=home="NC" %>
 							</c:if>
-							<c:if test="${vo.home_code eq '3'}">
+							<c:if test="${game.home_code eq '3'}">
 								<%=home="넥센" %>
 							</c:if>
-							<c:if test="${vo.home_code eq '4'}">
+							<c:if test="${game.home_code eq '4'}">
 								<%=home="LG" %>
 							</c:if>
-							<c:if test="${vo.home_code eq '5'}">
+							<c:if test="${game.home_code eq '5'}">
 								<%=home="삼성" %>
 							</c:if>
-							<c:if test="${vo.home_code eq '6'}">
+							<c:if test="${game.home_code eq '6'}">
 								<%=home="롯데" %>
 							</c:if>
-							<c:if test="${vo.home_code eq '7'}">
+							<c:if test="${game.home_code eq '7'}">
 								<%=home="SK" %>
 							</c:if>
-							<c:if test="${vo.home_code eq '8'}">
+							<c:if test="${game.home_code eq '8'}">
 								<%=home="기아" %>
 							</c:if>
-							<c:if test="${vo.home_code eq '9'}">
+							<c:if test="${game.home_code eq '9'}">
 								<%=home="한화" %>
 							</c:if>
-							<c:if test="${vo.home_code eq '10'}">
+							<c:if test="${game.home_code eq '10'}">
 								<%=home="KT" %>
 							</c:if>
-							<c:if test="${vo.away_code eq '1'}">
+							<c:if test="${game.away_code eq '1'}">
 								<%=away="두산" %>
 							</c:if>
-							<c:if test="${vo.away_code eq '2'}">
+							<c:if test="${game.away_code eq '2'}">
 								<%=away="NC" %>
 							</c:if>
-							<c:if test="${vo.away_code eq '3'}">
+							<c:if test="${game.away_code eq '3'}">
 								<%=away="넥센" %>
 							</c:if>
-							<c:if test="${vo.away_code eq '4'}">
+							<c:if test="${game.away_code eq '4'}">
 								<%=away="LG" %>
 							</c:if>
-							<c:if test="${vo.away_code eq '5'}">
+							<c:if test="${game.away_code eq '5'}">
 								<%=away="삼성" %>
 							</c:if>
-							<c:if test="${vo.away_code eq '6'}">
+							<c:if test="${game.away_code eq '6'}">
 								<%=away="롯데" %>
 							</c:if>
-							<c:if test="${vo.away_code eq '7'}">
+							<c:if test="${game.away_code eq '7'}">
 								<%=away="SK" %>
 							</c:if>
-							<c:if test="${vo.away_code eq '8'}">
+							<c:if test="${game.away_code eq '8'}">
 								<%=away="기아" %>
 							</c:if>
-							<c:if test="${vo.away_code eq '9'}">
+							<c:if test="${game.away_code eq '9'}">
 								<%=away="한화" %>
 							</c:if>
-							<c:if test="${vo.away_code eq '10'}">
+							<c:if test="${game.away_code eq '10'}">
 								<%=away="KT" %>
 							</c:if> --%>
 							
 						<tr>
 							<td>프로야구</td>
-							<td>${vo.match_code }</td>
+							<td>${game.match_code }</td>
 							<!-- 팀명출력 오우석(2016.06.15) -->
-							<td>${vo.teamName(vo.home_code) } : ${vo.teamName(vo.away_code) }</td>
-							<td>${vo.match_month}-${vo.match_day}</td>
+							<td>${game.teamName(game.home_code) } : ${game.teamName(game.away_code) }</td>
+							<td>${game.match_month}-${game.match_day}</td>
 							<td><a href="javascript:info_send()"> 상세보기</a></td>
 						</tr>
 							<form name="f" id="f" action="detailGame.inc" method="post">
-								<input type="hidden" id="match_code"  name="match_code"  value="${vo.match_code }">
-								<input type="hidden" id="home_code"   name="home_code"   value="${vo.home_code }">
-								<input type="hidden" id="away_code"   name="away_code"   value="${vo.away_code }">
-								<input type="hidden" id="result" 	  name="result"      value="${vo.result }">
-								<input type="hidden" id="match_year"  name="match_year"  value="${vo.match_year }">
-								<input type="hidden" id="match_month" name="match_month" value="${vo.match_month }">
-								<input type="hidden" id="match_day"   name="match_day"   value="${vo.match_day }">
-								<input type="hidden" id="match_hour"  name="match_hour"  value="${vo.match_hour }">
+								<input type="hidden" id="match_code"  name="match_code"  value="${game.match_code }">
+								<input type="hidden" id="home_code"   name="home_code"   value="${game.home_code }">
+								<input type="hidden" id="away_code"   name="away_code"   value="${game.away_code }">
+								<input type="hidden" id="result" 	  name="result"      value="${game.result }">
+								<input type="hidden" id="match_year"  name="match_year"  value="${game.match_year }">
+								<input type="hidden" id="match_month" name="match_month" value="${game.match_month }">
+								<input type="hidden" id="match_day"   name="match_day"   value="${game.match_day }">
+								<input type="hidden" id="match_hour"  name="match_hour"  value="${game.match_hour }">
 							</form>
 						</c:forEach>
 						<!-- 파라미터 네임 오류로 인한 변경 오우석(2016.06/13) -->
