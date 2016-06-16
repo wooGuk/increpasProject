@@ -116,5 +116,6 @@ function check() {
 	
 	<!-- 로그인을 체크 할 flag 숨김 -->
 	<input type="hidden" id=loginCheck value="${flag }">
+	
 </body>
 </html>
