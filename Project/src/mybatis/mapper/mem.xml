@@ -30,14 +30,23 @@
 	 -->
 	 <update id="addCoin" parameterType="mybatis.vo.MemberVO">
 	 	UPDATE member
-		SET coin = #{coin}
+		SET coin = coin+#{coin}
 		WHERE id = #{id}
 	 </update>
 	 
-	 <!-- ID/PW찾기 -->
+	  <!-- ID찾기 -->
 	 <select id="idsearch" parameterType="mybatis.vo.MemberVO" resultType="mybatis.vo.MemberVO">
 	 	select * from member where name = #{name} and phone = #{phone}
 	 </select>
+	 <!-- PW찾기 -->
+	 <select id="pwdsearch" parameterType="mybatis.vo.MemberVO" resultType="mybatis.vo.MemberVO">
+	 	select * from member where id = #{id} and name = #{name}
+	 </select>
+	 
+	  <!-- 전체목록 가져오기 -->
+	 <!-- <select id="all" resultType="mybatis.vo.MemberVO">
+	 	select * from member
+	 </select> --> 
 </mapper>
 
 
