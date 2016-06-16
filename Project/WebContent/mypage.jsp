@@ -9,10 +9,12 @@
 	로 그 : 1.프로그램 최초 생성 (장준수 2016/06/14)
 	
 		   2. 충전시 상단에 이름 X , 그리고 메인 클릭시 로그인 풀림
-		   ㅡ> form에 input type="hidden"으로 이름,패스워드 같이 보냄
+		   ㅡ> form에 input type="hidden"으로 이름,패스워드 같이 보냄(XXXXXXXXXXXXXXXX)
 		   
 		   3. 구매내역(주석으로 해놓은건 실제 구매를 했을때 사용하는 소스)
 		    ㅡ> 대충 구매내역 틀 만듬
+		    
+		   4. include로 할수 있게 수정
 
  -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,7 +23,177 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="css/basic.css" />
 <title>Insert title here</title>
-<script type="text/javascript">
+<!-- <style>
+body {
+	margin: 0;
+	padding: 0;
+}
+
+div#h_menu {
+	text-align: right;
+	margin-top: 10px;
+	font-size: 17px;
+}
+
+div#h_menu>ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	overflow: hidden;
+	font: bold 20px sans-serif Impact;
+}
+
+div#h_menu>ul>li {
+	display: inline;
+	background: url("images/dash.gif") no-repeat right center;
+	padding-right: 20px;
+}
+
+div#aa {
+	display: inline-block;
+	padding-right: 30px;
+}
+
+div#aa>li {
+	display: block;
+	padding-right: 20px;
+}
+
+div#aa a {
+	display: inline-block;
+	font-size: 12px;
+	padding-right: 20px;
+	text-decoration: none;
+}
+
+
+div#h_menu>ul>li>a {
+	font-size: 12px;
+	text-decoration: none;
+}
+
+div#aa input[type=text], div#aa input[type=password] {
+	width: 100px;
+	height: 25px;
+}
+
+#inBox {
+	padding: 10px;
+	width: 100%;
+}
+
+#inBox2 {
+	width: 100%;
+	text-align: center;
+}
+
+
+
+#aa input[type=submit] {
+	display: inline-block;
+	width: 70px;
+	height: 30px;
+	margin: 10px auto;
+	font-size: 15px;
+	font-weight: bold;
+	border: 1px solid #dcdcdc;
+}
+
+#aa input[type=button] {
+	display: inline;
+	width: 70px;
+	height: 30px;
+	margin: 10px auto;
+	font-size: 15px;
+	font-weight: bold;
+	border: 1px solid #dcdcdc;
+}
+
+input[type=button] {
+	display: inline;
+	width: 70px;
+	height: 32px;
+	margin: 10px auto;
+	font-size: 15px;
+	font-weight: bold;
+	border: 1px solid #dcdcdc;
+}
+
+	div#mm{
+		margin-left: 300px;
+		margin-top: 30px;
+	
+	}
+	
+	
+	
+	div#mm form{
+		font-size: 19px;
+	}
+	
+	 div#mm label{
+		font-size: 19px;
+		margin-left: 10px;
+	} 
+	
+	div#mm input[type=text]{
+		width: 100px;
+		height: 24px;
+	}
+	
+	
+div#mm input[type=button] {
+	display: inline;
+	width: 70px;
+	height: 27px;
+	margin: 10px auto;
+	font-size: 15px;
+	font-weight: bold;
+	border: 1px solid #dcdcdc;
+	margin-left: 10px;
+	}
+	
+	div#aaa{
+		margin-left: 300px;
+		margin-top: 30px;
+	
+	}
+	
+	
+	/* 경기구매 테이블css */
+	a:link{text-decoration:none;color:#87aaec}
+	a:visited{text-decoration:none;color:#87aaec}
+	a:hover{text-decoration:none;color:orange}
+
+	table{
+		border:0;
+		width:500px;
+		height: 150px;
+		margin-top: 20px;
+	}
+
+	td{font-size:9pt;color:green;text-align: center;}
+
+	table thead tr th{
+		font-size:9pt;
+		font-weight:bold;
+		color:black; 
+		background-color:#A3D4F7;
+		text-align: center;
+		
+	}
+
+	.t1{width:30%}
+	.t2{width:30%}
+	.t3{width:70%}
+	.t4{width:20%}
+	
+	.fff{
+		font-size: 19px;
+	}
+	 
+</style>-->
+<!-- <script type="text/javascript">
 
  	function main(){
 		var id = document.f.id.value;
@@ -49,14 +221,14 @@
 		document.c.submit();
 	   }
 	}
-</script>
+</script> -->
 </head>
 <body>
 	<div id="wrap">
 		<!-- 상단영역시작 -->
 		<jsp:include page="include/mypageheader.jsp"></jsp:include>
 		<!-- 상단영역종료 -->
-				
+				<jsp:include page="include/mypagelefter.jsp"></jsp:include>
 
 			<%-- </div>
 			<div id="mm">
@@ -152,7 +324,6 @@
 
 		</c:if> --%>
 	</div>
-	
 		<!-- 하단영역시작 -->
 		<jsp:include page="include/footer.jsp"></jsp:include>
 		<!-- 하단영역종료 -->
