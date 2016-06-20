@@ -43,8 +43,7 @@ public class GameBuyControl {
 	@RequestMapping("/todaylist.inc")
 	public ModelAndView showList(){
 		ModelAndView mv = new ModelAndView();
-		MatchVO[] games = mDao.scheduleToday();
-		
+		MatchVO[] games = mDao.matchPos();
 		mv.addObject("games", games);
 		mv.setViewName("oppGameList");
 		return mv;
