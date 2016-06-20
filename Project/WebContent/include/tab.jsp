@@ -10,16 +10,22 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
-#basic_info{
+#basic_info {
 	border: 1px double gray;
 	padding: 5px;
 }
 
-#ad{
+#ad {
 	border: 1px double gray;
 }
-#tab2 div{
+
+#tab2 div {
 	margin: 20px;
+}
+
+.center_table tr td {
+	text-align: center;
+	border-bottom: 1px dashed gray;
 }
 </style>
 <div class="center_side">
@@ -48,7 +54,7 @@
 		<p>환급기간 선택한 모든 대상경기의 발표일 익일부터 1년간</p>
 	</div>
 	<div style="padding-top: 20px">
-		<table class="panel panel-default" style="width: 100%">
+		<table class="panel panel-default center_table" style="width: 100%">
 			<thead class="panel-heading">
 				<tr>
 					<td>경 기</td>
@@ -63,7 +69,7 @@
 					<td>${game.match_code }</td>
 					<td>${game.match_year }-${game.match_month }-${game.match_day }<br/>${game.homeName(game.home_code) }구장</td>
 					<td>${game.teamName(game.home_code) } vs ${game.teamName(game.away_code) }</td>
-					<td>${game.result }</td>
+					<td><font color="red">${game.teamName(game.result) } 승리</font></td>
 					<td></td>
 				</tr>
 			</tbody>
