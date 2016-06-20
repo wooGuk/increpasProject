@@ -136,22 +136,21 @@
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><a href="javascript:info_send()"><font
 											color="#00F"> 상세보기</font></a></td>
 							</tr>
-							<form name="f" id="f" action="detailGame.inc" method="post">
-								<input type="hidden" id="match_code" name="match_code"
-									value="${game.match_code }"> <input type="hidden"
-									id="home_code" name="home_code" value="${game.home_code }">
-								<input type="hidden" id="away_code" name="away_code"
-									value="${game.away_code }"> <input type="hidden"
-									id="result" name="result" value="${game.result }"> <input
-									type="hidden" id="match_year" name="match_year"
-									value="${game.match_year }"> <input type="hidden"
-									id="match_month" name="match_month"
-									value="${game.match_month }"> <input type="hidden"
-									id="match_day" name="match_day" value="${game.match_day }">
-								<input type="hidden" id="match_hour" name="match_hour"
-									value="${game.match_hour }">
-							</form>
-						</c:forEach>
+						<form name="f" id="f" action="detailGame.inc" method="post">
+							<input type="hidden" id="match_code" name="match_code"
+								value="${game.match_code }" /> <input type="hidden"
+								id="home_code" name="home_code" value="${game.home_code }" /> <input
+								type="hidden" id="away_code" name="away_code"
+								value="${game.away_code }" /> <input type="hidden" id="result"
+								name="result" value="${game.result }" /> <input type="hidden"
+								id="match_year" name="match_year" value="${game.match_year }" />
+							<input type="hidden" id="match_month" name="match_month"
+								value="${game.match_month }"> <input type="hidden"
+								id="match_day" name="match_day" value="${game.match_day }" /> <input
+								type="hidden" id="match_hour" name="match_hour"
+								value="${game.match_hour }" />
+						</form>
+					</c:forEach>
 						<!-- 파라미터 네임 오류로 인한 변경 오우석(2016.06/13) -->
 						<c:if test="${empty games }">
 							<tr>
