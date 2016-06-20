@@ -8,6 +8,7 @@
 			5.아이디/비밀번호 찾기 페이지 이동 (정성훈 20160616)
 			6.마이페이지 이동시 로그인 유무 체크 (정성훈 20160616)
 			7.게임정보 페이지로 이동하기 (정성훈 2016.06.20)
+			8.팀순위보기(정성훈2016.06.20)
 	*/
 
 package spring.control;
@@ -22,8 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.MatchDAO;
 import mybatis.dao.MemberDAO;
+import mybatis.dao.TeamDAO;
 import mybatis.vo.MatchVO;
 import mybatis.vo.MemberVO;
+import mybatis.vo.TeamVO;
 
 @Controller
 public class MainControl {
@@ -32,6 +35,8 @@ public class MainControl {
 	MatchDAO matchDao;
 	@Autowired
 	MemberDAO memberDao;
+	@Autowired
+	TeamDAO teamDao;
 	@Autowired
 	HttpServletRequest request;
 	@Autowired
@@ -157,6 +162,19 @@ public class MainControl {
 	public ModelAndView gameInfo(){
 		
 		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/gameInfo");
+	
+		return mv;
+	}
+	
+	//팀 순위 보여주기 (정성훈 2016.06.20)
+	@RequestMapping("/viewRank.inc")
+	public ModelAndView viewRank(){
+		
+		ModelAndView mv = new ModelAndView();
+		TeamVO[] teams = teamDao.getTeamInfo();
+		mv.addObject("teams", teams);
+		mv.addObject("infoFlag", "viewRank");
 		mv.setViewName("/gameInfo");
 	
 		return mv;
