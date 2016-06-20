@@ -19,6 +19,9 @@
 	border: 1px double gray;
 }
 
+#basic_info p{
+	padding: 5px 8px;
+}
 #tab2 div {
 	margin: 20px;
 }
