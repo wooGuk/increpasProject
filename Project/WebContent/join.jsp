@@ -1,3 +1,12 @@
+<!-- 
+	
+	제 목 : join.jps
+	역 할 : 회원가입
+	로 그 : 1.프로그램 최초 생성 (장준수 2016/06/08)
+	
+		 
+-->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -5,7 +14,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link type="text/css" rel="stylesheet" href="css/sub02.css"/>
+<link type="text/css" rel="stylesheet" href="css/basic.css"/>
 <style type="text/css">
 	label#box{
 		display: inline-block;
@@ -20,6 +29,68 @@
 	.fail{
 		color: #f00;
 	}
+	
+	
+	
+	div#contents_sub1{
+		width: 900px;
+		height: auto;
+		margin: auto;
+		padding-top: 30px;
+	}
+	
+	.btn_center{
+		text-align: center;
+		margin: 30px;
+	}
+
+
+
+	.b_agree{
+		width: 117px;
+		height: 27px;
+	
+	}
+
+	.b_noagree{
+		width: 117px;
+		height: 27px;
+	
+	}
+
+
+	.btn1{
+	
+		display: inline-block;
+		background: url("img/a.PNG");
+		text-indent: -9999px;
+	}
+
+	.btn2{
+		
+		display: inline-block;
+		background: url("img/b.PNG");
+		text-indent: -9999px;
+	}
+	
+	 /* .btn{
+		display: inline-block;
+		background: url("../img/btn.png") no-repeat;
+		text-indent: -9999px;
+	} 
+	 */
+	.btn a{
+		display: block;
+		width: 100%;
+		height: 100%;
+	} 
+	h1.title01{
+	height: 30px;
+	background-position: 0 0;
+}
+	
+
+
 </style>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
@@ -61,6 +132,7 @@
 		
 	} 
 	
+	// 비밀번호, 비밀번호확인 20116/06/10 장준수 
 	$(function(){
 		  $('#password').keyup(function(){
 		   $('font[name=check]').text('');
@@ -112,25 +184,29 @@
 	<div id="wrap">
 		<!-- 상단영역 -->
 		<div id="header">
-			<h1>인크레파스 토토</h1>
+			<!-- 상단 좌측 로고, 클릭 시 main페이지로 이동  -->
+			<h1 class="fl"><a href="main.inc"><img alt="logo" src="img/logo.png"></a></h1>
+		
+			
 			<ul class="gnb">
-				<li><a href=""><span class="menu m01">게임구매</span></a></li>
-				<li><a href=""><span class="menu m02">경기정보</span></a></li>
-				<li><a href=""><span class="menu m03">자유게시판</span></a></li>
-				<li><a href=""><span class="menu m04">?</span></a></li>
-				<li><a href=""><span class="menu m05">?</span></a></li>
+				<li><a href=""><span class="menu m01">공지사항</span></a></li>
+				<li><a href="todaylist.inc"><span class="menu m02">경기구매</span></a></li>
+				<li><a href=""><span class="menu m03">경기정보</span></a></li>
+				<li><a href="mypageCheck.inc"><span class="menu m04">마이페이지</span></a></li>
+				<li><a href=""><span class="menu m05">자유게시판</span></a></li>
 			</ul>
 		</div>
 		<!-- 상단영역 끝 -->
+		
 		<!-- 콘텐츠영역 -->
-		<div id="contents_sub">
+		<div id="contents_sub1">
 			<h1 class="sub_title title01">스포츠 토토</h1>
 			<p class="title_src">스포츠 토토</p>
-			<p class="guide_txt">
+			 <p class="guide_txt">
 				기본회원정보를 입력해 주세요 <span class="fr guide_txt"> <span class="req"></span>
 					필수입력사항
 				</span>
-			</p>
+			</p> 
 			<br />
 		<form method="post" action="reg_ok.inc">
 			<table class="table_type01" style="width: 900px">
@@ -221,11 +297,7 @@
 					<p class="btn1 b_agree btn"><a onclick="reg()" style="cursor:pointer">가입하기</a></p>	
 					<p class="btn2 b_noagree btn"><a onclick="javascript:location.href='main.inc'" style="cursor:pointer">취소</a></p>
 			</div>
-			<br/>
-			<br/>
-			
-			
-</form>
+			</form>
 		</div>
 		<!-- 콘텐츠영역 끝 -->
 		<!-- 하단영역 -->
