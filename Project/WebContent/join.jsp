@@ -87,6 +87,16 @@
 	h1.title01{
 	height: 30px;
 	background-position: 0 0;
+	
+	}
+	
+	p.title_src{
+	font-size: 15px;
+	font-weight: bold;
+	color: #222;
+	padding-top: 10px;
+	padding-left: 5px;
+	padding-bottom: 40px;
 }
 	
 
@@ -200,8 +210,8 @@
 		
 		<!-- 콘텐츠영역 -->
 		<div id="contents_sub1">
-			<h1 class="sub_title title01">스포츠 토토</h1>
-			<p class="title_src">스포츠 토토</p>
+			<h1 class="sub_title title01"></h1>
+			<p class="title_src">스포츠 토토 회원가입</p>
 			 <p class="guide_txt">
 				기본회원정보를 입력해 주세요 <span class="fr guide_txt"> <span class="req"></span>
 					필수입력사항
