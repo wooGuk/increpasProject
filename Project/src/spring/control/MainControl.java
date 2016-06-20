@@ -7,7 +7,7 @@
 			4.LoginControl, LogoutControl 기능 합침 (정성훈 20160616)
 			5.아이디/비밀번호 찾기 페이지 이동 (정성훈 20160616)
 			6.마이페이지 이동시 로그인 유무 체크 (정성훈 20160616)
-			7.공지사항,자유게시판 페이지 이동 (정성훈 2016.06.20)
+			7.게임정보 페이지로 이동하기 (정성훈 2016.06.20)
 	*/
 
 package spring.control;
@@ -149,6 +149,16 @@ public class MainControl {
 			mv.setViewName("/mypage");
 		}
 		
+		return mv;
+	}
+	
+	//게임정보 페이지로 이동하기 (정성훈 2016.06.20)
+	@RequestMapping("/gameInfo.inc")
+	public ModelAndView gameInfo(){
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/gameInfo");
+	
 		return mv;
 	}
 }
