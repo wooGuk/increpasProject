@@ -151,20 +151,4 @@ public class MainControl {
 		
 		return mv;
 	}
-	
-	//공지사항 페이지로 이동하기 (정성훈 2016.06.20)
-	@RequestMapping("/noticeBoard.inc")
-	public ModelAndView goToNoticeBoard(){
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/noticeBoard");
-		return mv;
-	}
-	
-	//자유게시판 페이지로 이동하기 (정성훈 2016.06.20)
-	@RequestMapping("/freeBoard.inc")
-	public ModelAndView goToFreeBoard(){
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/freeBoard");
-		return mv;
-	}
 }
