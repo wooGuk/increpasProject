@@ -40,15 +40,24 @@ public class MainControl {
 	public ModelAndView main(MemberVO vo){
 		
 		String flag = request.getParameter("flag");
+		
 		//오늘 날짜 경기일정 가져오기
 		MatchVO[] games= matchDao.scheduleToday();
 		
 		ModelAndView mv = new ModelAndView();
-		//request에 경기일정 저장
-		request.setAttribute("games", games);
+		//경기일정, flag저장
+		mv.addObject("games", games);
 		mv.addObject("flag",flag);
-		//main.jsp로 이동
-		mv.setViewName("/main");
+		if(flag == null || flag.equals("0")){
+			//처음이동 || 정상로그인
+			//main.jsp로 이동
+			mv.setViewName("/main");
+		}
+		else{
+			//로그인오류
+			//login.jsp로 이동
+			mv.setViewName("/login");
+		}
 		return mv;
 	}
 	
@@ -68,9 +77,9 @@ public class MainControl {
 		
 		//입력한 아이디,비밀번호로 검색
 		/*
+		 * flag == 0 정상로그인
 		 * flag == 1 아이디 오류
 		 * flag == 2 비밀번호 오류
-		 * flag == 3 정상로그인
 		*/
 		String flag;
 		MemberVO res = memberDao.loginMember(vo);
@@ -91,7 +100,7 @@ public class MainControl {
 			//입력한 아이디,비밀번호에 해당하는 회원이 있을 경우
 			//세션에저장
 			session.setAttribute("vo", res);
-			flag = "3";
+			flag = "0";
 		}
 		
 		//main.inc로 flag값을 가지고 redirect
@@ -132,7 +141,7 @@ public class MainControl {
 		MemberVO vo = (MemberVO)session.getAttribute("vo");
 		if(vo == null){
 			//로그인 후 사용해야하는 flag표시
-			String flag = "4";
+			String flag = "3";
 			//로그인 후 사용하라는 flag와 함께 main페이지로 이동
 			mv.setViewName("redirect:/main.inc?flag="+flag);
 		}else{
