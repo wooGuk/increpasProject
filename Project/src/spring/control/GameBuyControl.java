@@ -3,7 +3,8 @@
 	역 할 : 게임구매 탭의 기능을 수행할 컨트롤러
 	로 그 : 1.프로그램 최초 생성,당일 경기 리스트 불러오기 구현 (오우석 2016/06/09)
 			2.지난경기 불러오기 기능 추가(오우석 2016/06/10)
-			2.모든경기 불러오기 기능 추가(오우석 2016/06/13)
+			3.모든경기 불러오기 기능 추가(오우석 2016/06/13)
+			4.종료된 게임에서 세부사항을 보내주는 컨트롤러 오우석(2016/06/20)
 	*/
 package spring.control;
 
@@ -126,6 +127,25 @@ public class GameBuyControl {
 		mv.addObject("rowTotal", rowTotal);
 		mv.addObject("block_list", BLOCK_LIST);
 		mv.setViewName("gameSchedule");
+		return mv;
+	}
+	
+	// 종료된 게임에서 세부사항을 보내주는 컨트롤러 오우석(2016/06/20)
+	@RequestMapping("/detailGame.inc")
+	public ModelAndView detail(){
+		ModelAndView mv = new ModelAndView();
+		MatchVO vo = new MatchVO();
+		vo.setMatch_code(Integer.parseInt(request.getParameter("match_code")));
+		vo.setHome_code(Integer.parseInt(request.getParameter("home_code")));
+		vo.setAway_code(Integer.parseInt(request.getParameter("away_code")));
+		vo.setResult(Integer.parseInt(request.getParameter("result")));
+		vo.setMatch_year(Integer.parseInt(request.getParameter("match_year")));
+		vo.setMatch_month(Integer.parseInt(request.getParameter("match_month")));
+		vo.setMatch_day(Integer.parseInt(request.getParameter("match_day")));
+		vo.setMatch_hour(Integer.parseInt(request.getParameter("match_hour")));
+		
+		mv.addObject("game", vo);
+		mv.setViewName("detailGame");
 		return mv;
 	}
 }
