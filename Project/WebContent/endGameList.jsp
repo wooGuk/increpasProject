@@ -14,9 +14,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	String home,away;
-%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -27,6 +24,13 @@
 		document.getElementById("f").submit();
 	}
 </script>
+<style type="text/css">
+	.center_table tr td{
+		text-align: center;
+		border-bottom: 1px dashed gray;
+	}
+}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
@@ -37,7 +41,7 @@
 			<!-- 2.왼쪽 탭 링크연결 (오우석 2016/06/13) -->
 			<%@include file="include/lefter.jsp"%>
 			<div style="width: 100%">
-				<table class="panel panel-default" width="auto">
+				<table class="panel panel-default center_table" width="750px">
 					<thead class="panel-heading">
 						<tr>
 							<td></td>

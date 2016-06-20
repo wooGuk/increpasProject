@@ -9,6 +9,7 @@
 			4.팀코드로 표현하는 팀명 초기화 작업 오우석(2016.06.14)
 			5.팀명출력 오우석(2016.06.15)
 			6.해당경기가 판매중인지 마감 되었는지 확인 오우석(2016.06.15)
+			7.테이블 수정 오우석(2016.06.20)
 	*/
  -->
 <%@page import="java.util.Date"%>
@@ -17,15 +18,20 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	String home,away;
-
-%>
 <html>
 <head>
+<link type="text/css" rel="stylesheet" href="css/basic.css">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="css/basic.css">
+<style type="text/css">
+	.center_table tr td{
+		text-align: center;
+		border-bottom: 1px dashed gray;
+	}
+}
+</style>
 </head>
 <body>
 	<!-- Header 영역 -->
@@ -33,19 +39,17 @@
 	
 	<!-- 컨텐츠 영억 -->
 	<div id="contents">
-		<div class="fl">
 			<%@include file="include/lefter.jsp" %>
-			
-			<div class="center_side">
-				<table id="center_info">
-					<thead>
+			<div style="width: 100%">
+				<table class="panel panel-default center_table" width="750px">
+					<thead class="panel-heading">
 						<tr>
-							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#FFFFFF">게임명</font></td>
-							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#FFFFFF">게임일정</font></td>
-							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#FFFFFF">상태</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000000">게임명</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000000">게임일정</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000000">상태</font></td>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="panel-bod">
 						<!-- 여기를 반복문으로 돌려야 됨 -->
 							<!-- 파라미터 네임 오류로 인한 변경 오우석(2016/06/13) -->
 							<c:forEach var="vo" items="${games }" varStatus="stat">
@@ -113,14 +117,18 @@
 							</c:if> --%>
 							<tr>
 								<!-- 팀명출력 오우석(2016.06.15)  -->
-								<td>${vo.teamName(vo.home_code) } : ${vo.teamName(vo.away_code) }</td>
-								<td>${vo.match_month}-${vo.match_day}</td>
+								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">${vo.teamName(vo.home_code) } : ${vo.teamName(vo.away_code) }</font></td>
+								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">${vo.match_month}-${vo.match_day}</font></td>
 								<!-- 해당경기가 판매중인지 마감 되었는지 확인 오우석(2016.06.15)-->
 								<c:if test="${vo.match_day lt vo.findToday()}">
-								<td> 마감</td>
+								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="red"> 마감</font></td>
+								</c:if>
+								<!-- 해당경기가 판매중인지 마감 되었는지 확인 오우석(2016.06.20)-->
+								<c:if test="${vo.match_day eq vo.findToday()}">
+								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="red"> 마감</font></td>
 								</c:if>
 								<c:if test="${vo.match_day gt vo.findToday()}">
-								<td> 판매중</td>
+								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="blue"> 판매중</font></td>
 								</c:if>
 								   
 							</tr>
@@ -128,8 +136,7 @@
 							<!-- 파라미터 네임 오류로 인한 변경 오우석(2016.06/13) -->
 							<c:if test="${empty games }">
 								<tr>
-									<td bgcolor="#F2F7F9" colspan="5" height="70" align="center">등록된
-										게시물이 없습니다.</td>
+									<td bgcolor="#F2F7F9" colspan="3" height="70" align="center">등록된 게시물이 없습니다.</td>
 								</tr>
 							</c:if>
 					</tbody>
@@ -144,8 +151,8 @@
 					 </tr>
 				</table>
 			</div>
-		</div>
 	</div>
+	<div class="fclear"></div>
 	
 	<!-- Footer 영역 -->
 	<%@include file="include/footer.jsp"%>
