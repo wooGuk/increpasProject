@@ -40,30 +40,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="css/basic.css">
-<script type="text/javascript">
-
-//로그인 체크(onload로 바로 실행)
-function check() {
-	/*
-	 * flag == 1 아이디 오류
-	 * flag == 2 비밀번호 오류
-	 * flag == 3 정상로그인
-	 * flag == 4 로그인 후 사용해야 하는 것들
-	*/
-	var flag = document.getElementById("loginCheck").value;
-	if(flag == "1"){
-		alert("아이디가 존재 하지 않습니다.");
-	}
-	else if(flag == "2"){
-		alert("비밀번호가 일치 하지 않습니다.");
-	}
-	else if(flag == "4"){
-		alert("로그인 후 사용해주세요.");
-	}
-}
-</script>
 </head>
-<body onload="check()">
+<body>
 	<div id="wrap">
 		<!-- 상단영역시작 -->
 		<jsp:include page="include/header.jsp"></jsp:include>
@@ -122,9 +100,5 @@ function check() {
 		<jsp:include page="include/footer.jsp"></jsp:include>
 		<!-- 하단영역종료 -->
 	</div>
-	
-	<!-- 로그인을 체크 할 flag 숨김 -->
-	<input type="hidden" id=loginCheck value="${flag }">
-	
 </body>
 </html>
