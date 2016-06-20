@@ -11,6 +11,7 @@
 	        3.지난 경기데이터 페이징 기법으로 인한 쿼리문 수정 (2016/06/12)
 	        4.지난 경기데이터 쿼리문 수정, 경기일정 모두 가져오는 쿼리문 추가 (2016/06/13)
 	        5.다른 곳에서 시간을 좀더 세분화 하여 비교 하기 위해 쿼리문 변경  오우석(2016/06/15)
+	        6.게임구매 가능한 리스트 불러오기 오우석(2016/06/12)
 	*/
  -->
 <mapper namespace="match">
@@ -36,6 +37,20 @@
  		where to_char(match_day,'yyyyy/mm/dd') = to_char(sysdate,'yyyyy/mm/dd')
 	</select>
 	
+	<!-- 게임구매 가능한 리스트 불러오기 오우석(2016/06/12) -->
+	<select id="matchPos" resultType="mybatis.vo.MatchVO">
+		select r_num,
+		MATCH_CODE,HOME_CODE,AWAY_CODE,
+		to_number(to_char(MATCH_DAY,'YYYY')) MATCH_YEAR,
+		to_number(to_char(MATCH_DAY,'MM')) MATCH_MONTH,
+		to_number(to_char(MATCH_DAY,'DD')) MATCH_DAY,
+		to_number(to_char(MATCH_DAY,'HH')) MATCH_HOUR,
+		RESULT
+		from 
+		(select rownum as r_num, a.* from
+  			(select * from match where to_char(match_day,'yyyyy/mm/dd') &lt; to_char(sysdate,'yyyyy/mm/dd') and RESULT is null
+  				order by match_day desc) a)
+	</select>
 	<!-- 지난경기 -->
 	<select id="matchEnd" resultType="mybatis.vo.MatchVO" parameterType="java.util.Map">
 		<!-- 페이징 기법으로 인한 쿼리문 수정 (2016/06/12) -->
