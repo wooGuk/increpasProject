@@ -16,10 +16,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
 	div#aaa{
-		margin-left: 500px;
+		margin-left: 250px;
+		margin-right: 150px;
 		margin-top: 30px;
-	
+		display: inline-block;
 	}
 
 	#bbb{
@@ -33,6 +35,7 @@
 		font-size:9pt;
 		color:green;	
 		text-align: center;
+		margin-top: 20px;
 		}
 
 	#bbb thead tr th{
@@ -51,15 +54,47 @@
 	
 	.fff{
 		font-size: 19px;
+		}
+	
+	
+	
+	
+	div .left_side{
+		display:inline-block;
+		padding-left: 200px;
+		margin-bottom: 100px;
+	}
+	
+	#left_info{
+		border:0;
+		width:70px;
+		height: 50px;
+		border: 1px solid red;
+		
+	}
+
+	#left_info tbody tr td{
+		font-size:12pt;
+		color:green;	
+		text-align: center;
+		}
+
+	#left_info thead tr th{
+		font-size:12pt;
+		font-weight:bold;
+		color:black; 
+		background-color:#0f0;
+		text-align: center;
+		
+	}
+	
+	.hh{
+		padding-bottom: 10px;
+	}
+	
 </style>
  <script type="text/javascript">
 
-	/* function main(){
-		var id = document.f.id.value;
-		var password = document.f.password.value;
-		document.f.submit();
-	}  */
-	
 	function charge(evt){
 		
 		var number = /[^0-9]/; //숫자만 허용
@@ -84,6 +119,7 @@
 </script> 
 </head>
 <body>
+
 	<c:if test="${vo != null }">
 		<div id="header">
 			<h1 class="fl">
@@ -124,8 +160,29 @@
 				<input type="hidden" id="password" name="password" value="<c:out value="${vo.password }"/>" />
 				<input type="hidden" id="name" name="name" value="<c:out value="${vo.name }"/>" />
 			</form>
+		
 		</div>
-
+		
+		<!-- 회원관리 폼 -->
+		<div class="left_side">
+	<table id="left_info">
+		<thead>
+			<tr>
+				<th class="hh">회원관리</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="hh"><a href="memedit.inc">회원수정</a></td>
+			</tr>	
+			<tr>
+				<td class="hh"><a href="memdel.inc">회원탈퇴</a></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	
+	
 		<div id="aaa">
 			<table id="bbb">
 				<thead>
@@ -168,17 +225,6 @@
 			</table>
 		</div>
 	</c:if>
-
-
-
-
-
-	<%-- <!-- 메인화면 클릭시 로그아웃(?)이 되므로 아이디값과 비밀번호를 보내 로그인상태를 유지하게 한다. -->
-	<form name="f" action="login.inc" method="post">
-		<input type="hidden" id="id" name="id" value="<c:out value="${vo.id }"/>" />
-		<input type="hidden" id="password" name="password" value="<c:out value="${vo.password }"/>" /> 
-		<input type="hidden" id="name" name="name" value="<c:out value="${vo.name }"/>" />
-	</form> --%>
 
 </body>
 </html>
