@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	/*
+	제 목 : team.xml
+	역 할 : Team DB의 mapper.
+	로 그 : 1. 생성 (정성훈 2016.06.20)
+	*/
+ -->
+<mapper namespace="team">
+	<select id="all" resultType="mybatis.vo.TeamVO">
+		select *
+		from team
+		order by rank
+	</select>
+</mapper>
+
+
+
+
