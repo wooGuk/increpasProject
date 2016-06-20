@@ -5,6 +5,7 @@
 			2.페이징 기법을 위한 nowPage객체 생성(오우석 2016/06/10)
 			3.팀명출력을 위한 teamName 메소드 추가(오우석 2016/06/15)
 			4.웹페이지에서 오늘 날짜와 비교하기 위한 메소드 추가 오우석(2016/06/15)
+			5.홈구장 출력을 위한 메소드 추가(오우석 2016/06/20)
 	*/
 package mybatis.vo;
 
@@ -94,6 +95,32 @@ public class MatchVO {
 			return "한화";
 		case 10:
 			return "KT";
+		}
+		return "없음";
+	}
+//	홈구장 출력을 위한 메소드 추가(오우석 2016/06/15)
+	public String homeName(int teamCode){
+		switch (teamCode) {
+		case 1:
+			return "잠실";	
+		case 2:
+			return "마산";
+		case 3:
+			return "고척";
+		case 4:
+			return "잠실";
+		case 5:
+			return "대구";
+		case 6:
+			return "사직";
+		case 7:
+			return "문학";
+		case 8:
+			return "광주";
+		case 9:
+			return "대전";
+		case 10:
+			return "수원";
 		}
 		return "없음";
 	}
