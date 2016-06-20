@@ -7,6 +7,7 @@
 			4.LoginControl, LogoutControl 기능 합침 (정성훈 20160616)
 			5.아이디/비밀번호 찾기 페이지 이동 (정성훈 20160616)
 			6.마이페이지 이동시 로그인 유무 체크 (정성훈 20160616)
+			7.공지사항,자유게시판 페이지 이동 (정성훈 2016.06.20)
 	*/
 
 package spring.control;
@@ -61,7 +62,7 @@ public class MainControl {
 	}
 	
 	//회원가입 페이지로 이동 (정성훈 2016/06/10) 
-	@RequestMapping(value="/goJoin.inc")
+	@RequestMapping("/goJoin.inc")
 	public ModelAndView mainPage(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/join");
@@ -148,6 +149,22 @@ public class MainControl {
 			mv.setViewName("/mypage");
 		}
 		
+		return mv;
+	}
+	
+	//공지사항 페이지로 이동하기 (정성훈 2016.06.20)
+	@RequestMapping("/noticeBoard.inc")
+	public ModelAndView goToNoticeBoard(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/noticeBoard");
+		return mv;
+	}
+	
+	//자유게시판 페이지로 이동하기 (정성훈 2016.06.20)
+	@RequestMapping("/freeBoard.inc")
+	public ModelAndView goToFreeBoard(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/freeBoard");
 		return mv;
 	}
 }
