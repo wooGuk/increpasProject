@@ -16,17 +16,6 @@
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="css/basic.css">
 <style type="text/css">
-div .left_side{
-	
-	display:inline-block;
-	border: 1px solid black;
-}
-div .center_side{
-	
-	display:inline-block;
-	border: 1px solid red;
-}
-
 table thead tr{
 	border-bottom: 1px solid blue;  
 }
