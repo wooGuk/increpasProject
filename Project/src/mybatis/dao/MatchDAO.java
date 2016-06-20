@@ -21,6 +21,7 @@ import mybatis.vo.MemberVO;
 			  1)getToatalCount() 은 지난 경기 데이터의 수가 총 몇인지 확인하려는 데이터
 			  2)scheduleEnd() 정해진 갯수 만큼 가져 와야 되기 때문 map구조를 이용
 		    4.schedule() 메소드 추가(경기일정 모두 가져오기)(오우석 2016/06/13)
+		    5.구매가능 경기 불러오기 (오우석 2016/06/20)
 */
 public class MatchDAO {
 
@@ -54,6 +55,21 @@ public class MatchDAO {
 		}
 		return games;
 	}
+	
+	//구매가능 경기 불러오기 오우석 2016/06/20
+	public MatchVO[] matchPos(){
+		
+		List<MatchVO> list = new ArrayList<MatchVO>();
+		MatchVO[] games = null;
+		
+		list = template.selectList("match.matchPos");
+		if(list != null || !(list.isEmpty())){
+			games = new MatchVO[list.size()];
+			list.toArray(games);
+		}
+		return games;
+	}
+	
 	//지난경기일자 불러오기 오우석 2016/06/09
 	public MatchVO[] scheduleEnd(Map<String, String> map){
 		//페이징을 위한 begin과 end가 있어야 함으로 map구조를 이용하는 것으로 변경 오우석 2016/06/12
