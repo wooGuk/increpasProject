@@ -9,6 +9,7 @@
 			6.마이페이지 이동시 로그인 유무 체크 (정성훈 20160616)
 			7.게임정보 페이지로 이동하기 (정성훈 2016.06.20)
 			8.팀순위보기(정성훈2016.06.20)
+			9.경기일정보기(정성훈2016.06.20)
 	*/
 
 package spring.control;
@@ -175,6 +176,20 @@ public class MainControl {
 		TeamVO[] teams = teamDao.getTeamInfo();
 		mv.addObject("teams", teams);
 		mv.addObject("infoFlag", "viewRank");
+		mv.setViewName("/gameInfo");
+	
+		return mv;
+	}
+	
+	//경기일정 보여주기 (정성훈 2016.06.20)
+	@RequestMapping("/viewMatch.inc")
+	public ModelAndView viewMatch(){
+		
+		ModelAndView mv = new ModelAndView();
+		//오늘 날짜 경기일정 가져오기
+		MatchVO[] games= matchDao.scheduleToday();
+		mv.addObject("games", games);
+		mv.addObject("infoFlag", "viewMatch");
 		mv.setViewName("/gameInfo");
 	
 		return mv;
