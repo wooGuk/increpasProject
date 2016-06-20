@@ -47,7 +47,6 @@ public class MainControl {
 		ModelAndView mv = new ModelAndView();
 		//경기일정, flag저장
 		mv.addObject("games", games);
-		mv.addObject("flag",flag);
 		if(flag == null || flag.equals("0")){
 			//처음이동 || 정상로그인
 			//main.jsp로 이동
