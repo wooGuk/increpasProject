@@ -139,7 +139,7 @@
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><font
 											color="#00F">${game.match_month}-${game.match_day}</font></td>
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><a href="javascript:info_send()"><font
-											color="#00F"> 상세보기</font></a></td>
+											color="orange"> 상세보기</font></a></td>
 							</tr>
 						<form name="f" id="f" action="detailGame.inc" method="post">
 							<input type="hidden" id="match_code" name="match_code"
