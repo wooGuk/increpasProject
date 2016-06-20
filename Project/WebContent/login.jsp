@@ -36,7 +36,25 @@ function check() {
 </script>
 </head>
 <body onload="check()">
-	로그인 페이지 입니다.
+	<table id="loginTable">
+					<caption>로그인 테이블</caption>
+					<tbody>
+						<tr>
+							<td><label for="id">ID:</label></td>
+							<td><input type="text" id="id" name="id"></td>
+							<td rowspan="2"><a href="javascript:login()"><img alt="로그인" src="img/login.png" title="로그인"></a></td>
+						</tr>
+						<tr>
+							<td><label for="pwd">PASSWORD:</label></td>
+							<td><input type="password" id="password" name="password"></td>
+						</tr>
+						<tr>
+							<td><a href="goJoin.inc">회원가입</a></td>
+							<td><a href="searchIdPwd.inc">아이디/비밀번호 찾기</a></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
 	<input type="hidden" id="loginCheck" value="${flag }">
 </body>
 </html>
