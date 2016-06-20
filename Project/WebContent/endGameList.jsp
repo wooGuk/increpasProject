@@ -28,6 +28,7 @@
 	.center_table tr td{
 		text-align: center;
 		border-bottom: 1px dashed gray;
+		width: 120px;
 	}
 }
 </style>
