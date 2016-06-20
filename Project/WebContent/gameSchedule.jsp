@@ -26,20 +26,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="css/basic.css">
-<style type="text/css">
-div .left_side{
-	
-	display:inline-block;
-	border: 1px solid black;
-}
-div .center_side{
-	
-	display:inline-block;
-	border: 1px solid red;
-}
-
-</style>
-
 </head>
 <body>
 	<!-- Header 영역 -->
