@@ -3,6 +3,7 @@
 	제 목 : mypagelefter.jsp
 	역 할 : 회원관리
 	로 그 : 1.프로그램 최초 생성(장준수 2016/06/16)
+			2. 수정 실패로 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	 
  -->
 
@@ -15,24 +16,34 @@
 <link type="text/css" rel="stylesheet" href="css/basic.css">
 <title>Insert title here</title>
 <style type="text/css">
-div .left_side{
+/* div .left_side{
 	
-	display:inline-block;
+	display:block;
 	border: 1px solid black;
 }
-div .center_side{
-	
-	display:inline-block;
-	border: 1px solid red;
-}
-
+ */
 table thead tr{
-	border-bottom: 1px solid blue;  
+	/* border-bottom: 1px solid blue;  */ 
 }
 
-#center_info td{
-	border: 1px solid green; 
+#left_info td{
+	border: 1px solid black; 
+	height: 50px;
+	width: 100px;
 }
+
+div .left_side{
+		border: 1px solid red;
+		margin-left: 50px;
+		
+}
+
+ div .left_side{
+  	margin-left: 175px;
+	width: 100px;
+	height: 100px;
+}
+
 </style>
 </head>
 <body>
