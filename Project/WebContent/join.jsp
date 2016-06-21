@@ -46,15 +46,15 @@
 		margin: 30px;
 	}
 
-	.b_agree{
+	.b_agre{
 		width: 117px;
-		height: 27px;
+		height: 32px;
 	
 	}
 
-	.b_noagree{
+	.b_noagre{
 		width: 117px;
-		height: 27px;
+		height: 32px;
 	
 	}
 
@@ -285,8 +285,8 @@
 			
 			</table>
 			<div class="btn_center">
-					<p class="btn1 b_agree btn"><a onclick="reg()" style="cursor:pointer">가입하기</a></p>	
-					<p class="btn2 b_noagree btn"><a onclick="javascript:location.href='main.inc'" style="cursor:pointer">취소</a></p>
+					<p class="btn1 b_agre btn"><a onclick="reg()" style="cursor:pointer">가입하기</a></p>	
+					<p class="btn2 b_noagre btn"><a onclick="javascript:location.href='main.inc'" style="cursor:pointer">취소</a></p>
 			</div>
 			</form>
 		</div>
