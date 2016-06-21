@@ -47,6 +47,16 @@
 	 <!-- <select id="all" resultType="mybatis.vo.MemberVO">
 	 	select * from member
 	 </select> --> 
+	 
+	 
+	 <!-- 회원 수정 2016/06/20 장준수 -->
+	 <update id="memEdit" parameterType="mybatis.vo.MemberVO">
+	 	update member
+	 	set pwd = #{pwd}
+	 		phone = #{phone}
+	 		address = #{address}
+	 	where id = #{id}
+	 </update>
 </mapper>
 
 
