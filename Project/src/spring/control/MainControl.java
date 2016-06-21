@@ -10,9 +10,13 @@
 			7.게임정보 페이지로 이동하기 (정성훈 2016.06.20)
 			8.팀순위보기(정성훈2016.06.20)
 			9.경기일정보기(정성훈2016.06.20)
+			10.어제경기,오늘경기,내일경기보기 (정성훈 2016.06.22)
 	*/
 
 package spring.control;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -185,13 +189,62 @@ public class MainControl {
 	@RequestMapping("/viewMatch.inc")
 	public ModelAndView viewMatch(){
 		
+		String day = request.getParameter("day");
+		System.out.println(day);
 		ModelAndView mv = new ModelAndView();
-		//오늘 날짜 경기일정 가져오기
-		MatchVO[] games= matchDao.scheduleToday();
+		//모든경기일정 가져오기
+		MatchVO[] allGames = matchDao.schedule();
+		MatchVO[] games = selectDayMatch(allGames, day);
+		
+
 		mv.addObject("games", games);
 		mv.addObject("infoFlag", "viewMatch");
 		mv.setViewName("/gameInfo");
 	
 		return mv;
+	}
+	
+	private MatchVO[] selectDayMatch(MatchVO[] allGames, String day){
+		ArrayList<MatchVO> list = new ArrayList<>();
+		
+		Calendar cal = Calendar.getInstance();
+		//오늘 날짜 구하기
+		int nowYear=cal.get(Calendar.YEAR);
+		int nowMonth=cal.get(Calendar.MONTH)+1;
+		//월은 0부터 시작하므로 1월 표시를 위해 1을 더해 줍니다.
+		int nowDay=cal.get(Calendar.DAY_OF_MONTH);
+		
+		switch(day){
+		case "yesterday":
+			for(int i=0; i<allGames.length; i++){
+				MatchVO vo = allGames[i];
+				if(nowYear == vo.getMatch_year() && nowMonth == vo.getMatch_month() && nowDay-1 == vo.getMatch_day()){
+					list.add(vo);
+				}
+			}
+			break;
+		case "today":
+			for(int i=0; i<allGames.length; i++){
+				MatchVO vo = allGames[i];
+				if(nowYear == vo.getMatch_year() && nowMonth == vo.getMatch_month() && nowDay == vo.getMatch_day()){
+					list.add(vo);
+				}
+			}
+			break;
+		case "tomorrow":
+			for(int i=0; i<allGames.length; i++){
+				MatchVO vo = allGames[i];
+				if(nowYear == vo.getMatch_year() && nowMonth == vo.getMatch_month() && nowDay+1 == vo.getMatch_day()){
+					list.add(vo);
+				}
+			}
+			break;
+		}//switch()
+		MatchVO[] games = null;
+		if(list != null || !(list.isEmpty())){
+			games = new MatchVO[list.size()];
+			list.toArray(games);
+		}
+		return games;
 	}
 }
