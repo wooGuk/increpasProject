@@ -8,8 +8,9 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
    
 	<context:annotation-config/>
-
- 
+	
+	<!-- 자유게시판 (장준수 2016/06/21) -->
+ 	<bean id="board" class="spring.control.FreeBoardControl"/>
 	<bean id="reg" class="spring.control.RegControl"/>
 	<!-- LoginControl,LogoutControl MainControl로 이동 -->
 <!-- 	<bean id="login" class="spring.control.LoginControl"/>
