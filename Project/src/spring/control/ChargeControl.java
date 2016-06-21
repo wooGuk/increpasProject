@@ -93,7 +93,7 @@ public class ChargeControl {
 		mdao.memEdit(vo1);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/main.inc");
+		mv.setViewName("redirect:/logout.inc");
 		return mv;
 	}
 }
