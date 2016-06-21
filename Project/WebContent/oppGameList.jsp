@@ -31,6 +31,11 @@ table thead tr {
 	width: 120px;
 }
 </style>
+<script type="text/javascript">
+function info_send(){
+	document.getElementById("f").submit();
+}
+</script>
 </head>
 <body>
 	<!-- Header 영역 -->
@@ -60,8 +65,22 @@ table thead tr {
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_code }</font></td>
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.teamName(game.home_code) }:${game.teamName(game.away_code) }</font></td>
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_year }년${game.match_month }월${game.match_day } 자정</font></td>
-						<td height="20" bgcolor="#669AB3" width="56"><a href=""><font color="blue"> 게임구매</font></a></td>
+						<td height="20" bgcolor="#669AB3" width="56"><a href="javascript:info_send()"><font color="blue"> 게임구매</font></a></td>
 					</tr>
+					<form name="f" id="f" action="buyGame.inc" method="post">
+							<input type="hidden" id="match_code" name="match_code"
+								value="${game.match_code }" /> <input type="hidden"
+								id="home_code" name="home_code" value="${game.home_code }" /> <input
+								type="hidden" id="away_code" name="away_code"
+								value="${game.away_code }" /> <input type="hidden" id="result"
+								name="result" value="${game.result }" /> <input type="hidden"
+								id="match_year" name="match_year" value="${game.match_year }" />
+							<input type="hidden" id="match_month" name="match_month"
+								value="${game.match_month }"> <input type="hidden"
+								id="match_day" name="match_day" value="${game.match_day }" /> <input
+								type="hidden" id="match_hour" name="match_hour"
+								value="${game.match_hour }" />
+						</form>
 					</c:forEach>
 					<c:if test="${empty games }">
 							<tr>
