@@ -159,7 +159,7 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 									<td>
 										<img alt="" src="<%=logo.get(games[i].getHome_code()) %>">
 										<b><%=games[i].teamName(games[i].getHome_code()) %></b>
-										<b>(선발투수:<%=games[i].getHome_picther() %>)</b>
+										<b>(선발투수:<%=games[i].getHome_pitcher() %>)</b>
 									</td>
 									<td>
 										<b>vs</b><br>
@@ -168,7 +168,7 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 									<td>
 										<img alt="" src="<%=logo.get(games[i].getAway_code()) %>">
 										<b><%=games[i].teamName(games[i].getAway_code()) %></b>
-										<b>(선발투수:<%=games[i].getAway_picther() %>)</b>
+										<b>(선발투수:<%=games[i].getAway_pitcher() %>)</b>
 									</td>
 								</tr>
 						<%
