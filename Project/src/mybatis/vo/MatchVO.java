@@ -17,17 +17,18 @@ public class MatchVO {
 	private int match_code, home_code, away_code, result;
 	private int match_year,match_month,match_day,match_hour;
 	private String home_pitcher,away_pitcher;
-	public String getHome_picther() {
+	
+	public String getHome_pitcher() {
 		return home_pitcher;
 	}
-	public void setHome_picther(String home_picther) {
-		this.home_pitcher = home_picther;
+	public void setHome_pitcher(String home_pitcher) {
+		this.home_pitcher = home_pitcher;
 	}
-	public String getAway_picther() {
+	public String getAway_pitcher() {
 		return away_pitcher;
 	}
-	public void setAway_picther(String away_picther) {
-		this.away_pitcher = away_picther;
+	public void setAway_pitcher(String away_pitcher) {
+		this.away_pitcher = away_pitcher;
 	}
 	public int getMatch_hour() {
 		return match_hour;

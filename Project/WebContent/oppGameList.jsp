@@ -34,7 +34,6 @@ table thead tr {
 </style>
 <script type="text/javascript">
 function info_send(index){
-	alert(index);
 	document.forms[index].submit();
 }
 </script>
@@ -82,6 +81,8 @@ function info_send(index){
 								id="match_day" name="match_day" value="${game.match_day }" /> <input
 								type="hidden" id="match_hour" name="match_hour"
 								value="${game.match_hour }" />
+							<input type="hidden" name="home_pitcher" value="${game.home_pitcher }"/>
+							<input type="hidden" name="away_pitcher" value="${game.away_pitcher }"/>
 						</form>
 					</c:forEach>
 					<c:if test="${empty games }">

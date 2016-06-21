@@ -5,6 +5,7 @@
 			2.지난경기 불러오기 기능 추가(오우석 2016/06/10)
 			3.모든경기 불러오기 기능 추가(오우석 2016/06/13)
 			4.종료된 게임에서 세부사항을 보내주는 컨트롤러 오우석(2016/06/20)
+			5.선발투수 값 넘기기 오우석(2016/06/21)
 	*/
 package spring.control;
 
@@ -175,6 +176,8 @@ public class GameBuyControl {
 		vo.setMatch_month(Integer.parseInt(request.getParameter("match_month")));
 		vo.setMatch_day(Integer.parseInt(request.getParameter("match_day")));
 		vo.setMatch_hour(Integer.parseInt(request.getParameter("match_hour")));
+		vo.setHome_pitcher(request.getParameter("home_pitcher"));
+		vo.setAway_pitcher(request.getParameter("away_pitcher"));
 		
 		mv.addObject("game", vo);
 		mv.setViewName("gamebuy");
