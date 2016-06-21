@@ -38,8 +38,8 @@ public class FreeBoardControl {
 	@Autowired
 	ServletContext servletContext;
 	
-	@Autowired
-	private String uploadPath;
+	/*@Autowired
+	private String uploadPath;*/
 	
 	// 페이징 기법에 필요한 변수들
 		public static final int BLOCK_LIST = 10; // 한페이지당 보여질 게시물 수(10개)
@@ -122,7 +122,7 @@ public class FreeBoardControl {
 		}
 		
 		// 글 저장(장준수 2016/06/21)
-		@RequestMapping(value="/write.inc",method=RequestMethod.POST)
+		/*@RequestMapping(value="/write.inc",method=RequestMethod.POST)
 		public ModelAndView write(FreeBoardVO vo) throws Exception{
 			if(vo.getUpload().getSize() > 0){
 				// 파일첨부를 하지 않아도 null을 받지 않는다. 다만 사이즈가 0이다.
@@ -162,7 +162,7 @@ public class FreeBoardControl {
 	 		
 			
 			return mv;
-		}
+		}*/
 			
 	
 }
