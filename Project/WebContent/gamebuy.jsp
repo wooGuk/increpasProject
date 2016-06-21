@@ -93,7 +93,7 @@ function info_send(){
 	document.getElementById("f").submit();
 }
 function showWin(){
-	if(<%=vo%> == null){
+	if('${vo}' == null){
 		alert("로그인이 필요합니다");
 		location.href="mypageCheck.inc";
 	}else{
@@ -220,7 +220,7 @@ function hiddenWin(){
 		 	<input type="text" id="coin" name="coin"/>
 		 	<button id="go" onclick="javascript:info_send()">배팅하기</button>
 			<input name="match_code" type="hidden" value="${game.match_code }"/>
-			<input name="id" type="hidden" value="aaa"/>
+			<input name="id" type="hidden" value="${vo.id }"/>
 		</form>
 	</div>
 	<!-- Footer 영역 -->
