@@ -15,6 +15,7 @@ import mybatis.vo.MemberVO;
 	제 목 : MemberDAO
 	역 할 : id검색, 로그인, 회원가입 등등을 한다.
 	로 그 : 프로그램 최초 생성 (장준수 2016/06/08)
+			2.코인삭감(오우석 2016/06/21)
 	*/
 public class MemberDAO {
 
@@ -75,6 +76,11 @@ public class MemberDAO {
 		public MemberVO memDel(MemberVO vo){
 			template.delete("mem.memDel",vo);
 			return vo;
+		}
+		
+		// 코인삭감(오우석 2016/06/21)
+		public void delCoin(Map<String, Object> map){
+			template.update("mem.delcoin", map);
 		}
 		
 	}
