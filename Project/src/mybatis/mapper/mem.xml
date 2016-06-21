@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="test">
+<mapper namespace="mem">
 
  	<!-- 로그인 -->
 	<select id="login" parameterType="mybatis.vo.MemberVO" resultType="mybatis.vo.MemberVO">
@@ -57,6 +57,10 @@
 	 		address = #{address}
 	 	WHERE id = #{id}
 	 </update>
+	 
+	 <delete id="memDel" parameterType="mybatis.vo.MemverVO">
+	 	delete from member where id = #{id}
+	 </delete>
 </mapper>
 
 
