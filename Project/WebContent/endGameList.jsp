@@ -47,11 +47,11 @@
 						<tr>
 							<td></td>
 							<td height="20" bgcolor="#669AB3" width="56"><font
-								color="#00F">게임명</font></td>
-							<td height="20" bgcolor="#669AB3" width="56"><font
 								color="#00F">회차</font></td>
 							<td height="20" bgcolor="#669AB3" width="56"><font
 								color="#00F">대상경기</font></td>
+							<td height="20" bgcolor="#669AB3" width="56"><font
+								color="#00F">경기일자</font></td>
 							<td height="20" bgcolor="#669AB3" width="56"><font
 								color="#00F">마김일자</font></td>
 							<td height="20" bgcolor="#669AB3" width="56"><font
