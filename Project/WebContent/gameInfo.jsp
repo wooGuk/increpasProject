@@ -148,7 +148,10 @@ String tomorrow = String.format("%d/%d/%d", nowYear, nowMonth, nowDay+1);
 										<b><%=games[i].teamName(games[i].getHome_code()) %></b>
 										<b>(선발투수:<%=games[i].getHome_picther() %>)</b>
 									</td>
-									<td>vs</td>
+									<td>
+										<b>vs</b>
+										<b>(<%=games[i].homeName(games[i].getHome_code()) %>)</b>
+									</td>
 									<td>
 										<img alt="" src="<%=logo.get(games[i].getAway_code()) %>">
 										<b><%=games[i].teamName(games[i].getAway_code()) %></b>
