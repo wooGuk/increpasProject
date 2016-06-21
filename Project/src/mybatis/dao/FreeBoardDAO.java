@@ -21,13 +21,13 @@ public class FreeBoardDAO {
 	// 전체게시물의 수를 반환하는 메서드
 	public int getTotalCount(String n){
 		// 인자인 n은 게시판의 종류를 판단하는 인자다. /"BBS"
-		return template.selectOne("bbs.totalCount",n);
+		return template.selectOne("board.totalCount",n);
 	}
 	
 	// 리스트 화면을 위한 목록화 메서드 (ListControl에서 호출)
 	public FreeBoardVO[] getList(Map<String, String> map){
 		
-		List<FreeBoardVO> list = template.selectList("bbs.list",map);
+		List<FreeBoardVO> list = template.selectList("board.list",map);
 		
 		// 받은 list구조를 다시 배열로 변환
 		FreeBoardVO[] ar = null;
@@ -44,7 +44,7 @@ public class FreeBoardDAO {
 	public boolean wirteBbs(FreeBoardVO vo){
 		
 		
-		int cnt = template.insert("bbs.write",vo);
+		int cnt = template.insert("board.write",vo);
 		if(cnt > 0)
 			return true;
 		else
@@ -54,30 +54,30 @@ public class FreeBoardDAO {
 	// 기본키로 게시물을 보는 메서드
 	public FreeBoardVO getBbs(String seq){
 		
-		FreeBoardVO vo = template.selectOne("bbs.getBbs",seq);
+		FreeBoardVO vo = template.selectOne("board.getBbs",seq);
 
 		return vo;
 	}
 	
 	public void editBbs(FreeBoardVO vo){
 		
-		template.update("bbs.edit", vo);
+		template.update("board.edit", vo);
 	
 	}
 	
 	// 답변저장시 lev를 조정하는 기능
 	public void updateLev(Map<String, String> map){
-		template.update("bbs.updateLev",map);
+		template.update("board.updateLev",map);
 	};
 	
 	// 답변 저장
 	public void addAns(FreeBoardVO vo){
-		template.insert("bbs.addAns",vo);
+		template.insert("board.addAns",vo);
 	}
 	
 	// 삭제
 	public void delBbs(FreeBoardVO vo){
-		template.update("bbs.delBbs",vo);
+		template.update("board.delBbs",vo);
 	}
 		
 	
