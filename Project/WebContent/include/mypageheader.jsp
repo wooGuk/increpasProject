@@ -158,7 +158,7 @@
 				<li><a href="todaylist.inc"><span class="menu m02">경기구매</span></a></li>
 				<li><a href=""><span class="menu m03">경기정보</span></a></li>
 				<li><a href="mypage.inc"><span class="menu m04">마이페이지</span></a></li>
-				<li><a href=""><span class="menu m05">자유게시판</span></a></li>
+				<li><a href="freeBoard.inc"><span class="menu m05">자유게시판</span></a></li>
 			</ul>
 		</div>
 		
