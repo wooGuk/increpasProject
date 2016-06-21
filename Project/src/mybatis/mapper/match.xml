@@ -49,7 +49,7 @@
 		RESULT
 		from 
 		(select rownum as r_num, a.* from
-  			(select * from match where to_char(match_day,'yyyyy/mm/dd') &lt; to_char(sysdate,'yyyyy/mm/dd') and RESULT is null
+  			(select * from match where to_char(match_day,'yyyyy/mm/dd') &gt; to_char(sysdate,'yyyyy/mm/dd') and RESULT is null
   				order by match_day desc) a)
 	</select>
 	<!-- 지난경기 -->

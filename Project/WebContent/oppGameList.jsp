@@ -60,7 +60,7 @@ table thead tr {
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_code }</font></td>
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.teamName(game.home_code) }:${game.teamName(game.away_code) }</font></td>
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_year }년${game.match_month }월${game.match_day } 자정</font></td>
-						<td height="20" bgcolor="#669AB3" width="56"><font color="RED"><a href=""> 게임구매</a></font></td>
+						<td height="20" bgcolor="#669AB3" width="56"><font color="#F00"><a href=""> 게임구매</a></font></td>
 					</tr>
 					</c:forEach>
 					<c:if test="${empty games }">
