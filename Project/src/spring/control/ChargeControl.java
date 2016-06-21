@@ -19,6 +19,7 @@ import mybatis.vo.MemberVO;
 				2. 충전시 메인이나 마이페이지 다시 클릭시 전에 있든 금액으로 나타난것을
 					충전시 그 금액으로 나타남 ㅡㅡ> 수정 (장준수 2016/06/16)
 					3. 회원수정 (장준수 2016/06/20) 
+					4. 회원탈퇴 추가 (박상원 2016/06/21)
 	 */	
 
 @Controller
@@ -84,7 +85,7 @@ public class ChargeControl {
 	}
 	
 	
-	// 회원탈퇴
+	// 회원수정
 	@RequestMapping(value="memedit.inc",method=RequestMethod.POST)
 	public ModelAndView memdit(MemberVO vo){
 		
@@ -100,4 +101,18 @@ public class ChargeControl {
 		mv.setViewName("redirect:/logout.inc");
 		return mv;
 	}
+	
+	//회원탈퇴
+		@RequestMapping("/memdel.inc")
+		public ModelAndView memDel(){
+			
+			MemberVO vo1 = (MemberVO) session.getAttribute("vo");
+			
+			mdao.memDel(vo1);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("redirect:/logout.inc");
+			return mv;
+			
+		}
 }
