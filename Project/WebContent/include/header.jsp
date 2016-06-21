@@ -13,7 +13,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<link type="text/css" rel="stylesheet" href="css/basic.css">
 <script type="text/javascript">
 	//로그인 클릭시
 	function login() {
