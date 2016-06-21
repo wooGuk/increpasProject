@@ -12,7 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,7 @@ import mybatis.dao.MatchDAO;
 import mybatis.dao.MemberDAO;
 import mybatis.vo.BatVO;
 import mybatis.vo.MatchVO;
+import mybatis.vo.MemberVO;
 import spring.include.Paging;
 
 @Controller
@@ -39,6 +42,8 @@ public class GameBuyControl {
 	
 	@Autowired
 	HttpServletRequest request;
+	@Autowired
+	HttpSession session;
 	
 	//페이징 기법에 필요한 변수들
 	public static final int BLOCK_LIST = 10; //한페이지당 게시물 수
@@ -195,6 +200,9 @@ public class GameBuyControl {
 			map2.put("id", (String)request.getParameter("id"));
 			map2.put("coin", Integer.parseInt(request.getParameter("coin")));
 			memDao.delCoin(map2);
+			MemberVO vo=(MemberVO)session.getAttribute("vo");
+			vo.setCoin(vo.getCoin()-Integer.parseInt(request.getParameter("coin")));
+			session.setAttribute("vo", vo);
 		}
 		
 		
