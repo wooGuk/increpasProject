@@ -17,7 +17,7 @@ import mybatis.vo.MemberVO;
 	역 할 : 마이페이지에서 잔액 충전 
 	로 그 :  1.프로그램 최초 생성 (장준수 2016/06/14)
 				2. 충전시 메인이나 마이페이지 다시 클릭시 전에 있든 금액으로 나타난것을
-					충전시 그 금액으로 나타남.(장준수 2016/06/16)
+					충전시 그 금액으로 나타남 ㅡㅡ> 수정 (장준수 2016/06/16)
 					3. 회원수정 (장준수 2016/06/20) 
 	 */	
 
@@ -33,6 +33,8 @@ public class ChargeControl {
 	@Autowired
 	HttpSession session;
 	
+	
+	// 코인충전
 	@RequestMapping("/charge.inc")
 	public ModelAndView charge(MemberVO vo){
 		
@@ -69,7 +71,7 @@ public class ChargeControl {
 		return mv;
 	}
 	
-	// 현재 로그인한 유저의 정보를 가지고 간다?
+	// 회원 수정
 	@RequestMapping("/memedit.inc")
 	public ModelAndView mem(){
 		
@@ -81,6 +83,8 @@ public class ChargeControl {
 		return mv;
 	}
 	
+	
+	// 회원탈퇴
 	@RequestMapping(value="memedit.inc",method=RequestMethod.POST)
 	public ModelAndView memdit(MemberVO vo){
 		
