@@ -50,6 +50,8 @@
 		to_number(to_char(MATCH_DAY,'MM')) MATCH_MONTH,
 		to_number(to_char(MATCH_DAY,'DD')) MATCH_DAY,
 		to_number(to_char(MATCH_DAY,'HH')) MATCH_HOUR,
+		HOME_PITCHER,
+		AWAY_PITCHER,
 		RESULT
 		from 
 		(select rownum as r_num, a.* from
