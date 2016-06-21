@@ -3,13 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mem">
+	
+	<!-- 
+		제 목 : mem.xml
+		역 할 : 로그인 회원가입 등등 정의 
+		로 그 :  1.프로그램 최초 생성 (장준수 2016/06/08)
+				2. 아이디 중복확인 추가
+				3. 코인충전 추가
+				4. 회원수정 , 회원탈퇴 추가
+		
+ 	-->
+	
 
  	<!-- 로그인 -->
 	<select id="login" parameterType="mybatis.vo.MemberVO" resultType="mybatis.vo.MemberVO">
 		select * from member where id = #{id} and password = #{password}
 	</select>
 	
-	<!-- 멤버추가 -->
+	<!-- 회원가입 -->
 	<insert id="add" parameterType="mybatis.vo.MemberVO">
 		insert into member(id,password,name,phone,address,coin)
 		values(#{id},#{password},#{name},#{phone},#{address},0)
@@ -58,7 +69,8 @@
 	 	WHERE id = #{id}
 	 </update>
 	 
-	 <delete id="memDel" parameterType="mybatis.vo.MemverVO">
+	 <!-- 회원 탈퇴 2016/06/20 장준수 -->
+	 <delete id="memDel" parameterType="mybatis.vo.MemberVO">
 	 	delete from member where id = #{id}
 	 </delete>
 </mapper>
