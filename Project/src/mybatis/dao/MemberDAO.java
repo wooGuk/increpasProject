@@ -12,7 +12,7 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 import mybatis.vo.MemberVO;
 
 	/*
-	제 목 : TestDAO
+	제 목 : MemberDAO
 	역 할 : id검색, 로그인, 회원가입 등등을 한다.
 	로 그 : 프로그램 최초 생성 (장준수 2016/06/08)
 	*/
@@ -26,7 +26,7 @@ public class MemberDAO {
 	
 	// 회원가입(장준수 2016/06/08)
 	public MemberVO addMember(MemberVO vo) {
-		template.insert("test.add", vo);
+		template.insert("mem.add", vo);
 		return vo;
 
 	}
@@ -34,38 +34,46 @@ public class MemberDAO {
 	
 	// 로그인	(장준수 2016/06/09)
 	public MemberVO loginMember(MemberVO vo){
-		MemberVO v = template.selectOne("test.login", vo);
+		MemberVO v = template.selectOne("mem.login", vo);
 		return v;
 	}
 	
 	// id검색(장준수 2016/06/13)
 	public MemberVO idCheck(String n){
-		MemberVO vo = template.selectOne("test.check", n);
+		MemberVO vo = template.selectOne("mem.check", n);
 		return vo;
 	}
 	
 	// 코인 충전(장준수 2016/06/14)
 	public MemberVO addCoin(MemberVO vo){
-		template.update("test.addCoin",vo);
+		template.update("mem.addCoin",vo);
 		return vo;
 		
 	}
 	
 	// iD/PW찾기(박상원 2016/06/15)
 		public MemberVO idsearch(MemberVO vo){
-			MemberVO vo1 = template.selectOne("test.idsearch",vo);
+			MemberVO vo1 = template.selectOne("mem.idsearch",vo);
 			return vo1;
 		}
 		
 		// iD/PW찾기(박상원 2016/06/15)
 		public MemberVO pwdsearch(MemberVO vo){
-			MemberVO vo1 = template.selectOne("test.pwdsearch",vo);
+			MemberVO vo1 = template.selectOne("mem.pwdsearch",vo);
 			return vo1;
 			}
 		
 		
+		
+		// 회원수정(장준수 2016/06/21)
 		public MemberVO memEdit(MemberVO vo){
-			template.update("test.memEdit",vo);
+			template.update("mem.memEdit",vo);
+			return vo;
+		}
+		
+		// 회원탈퇴(장준수 2016/06/21)
+		public MemberVO memDel(MemberVO vo){
+			template.delete("mem.memDel",vo);
 			return vo;
 		}
 		
