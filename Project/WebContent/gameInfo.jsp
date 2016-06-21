@@ -37,14 +37,26 @@ logo.put(10, "img/team/emblem_KT.png");
 MatchVO[] games = (MatchVO[])request.getAttribute("games");
 
 Calendar cal = Calendar.getInstance();
-//오늘 날짜 구하기
+
+cal.add(Calendar.DATE,-1);
+int preYear=cal.get(Calendar.YEAR);
+int preMonth=cal.get(Calendar.MONTH)+1;
+int preDay=cal.get(Calendar.DAY_OF_MONTH);
+
+cal.add(Calendar.DATE,1);
 int nowYear=cal.get(Calendar.YEAR);
 int nowMonth=cal.get(Calendar.MONTH)+1;
-//월은 0부터 시작하므로 1월 표시를 위해 1을 더해 줍니다.
 int nowDay=cal.get(Calendar.DAY_OF_MONTH);
-String yesterday = String.format("%d/%d/%d", nowYear, nowMonth, nowDay-1);
+
+cal.add(Calendar.DATE,1);
+int nextYear=cal.get(Calendar.YEAR);
+int nextMonth=cal.get(Calendar.MONTH)+1;
+int nextDay=cal.get(Calendar.DAY_OF_MONTH);
+
+
+String yesterday = String.format("%d/%d/%d", preYear, preMonth, preDay);
 String today = String.format("%d/%d/%d", nowYear, nowMonth, nowDay);
-String tomorrow = String.format("%d/%d/%d", nowYear, nowMonth, nowDay+1);
+String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -129,7 +141,7 @@ String tomorrow = String.format("%d/%d/%d", nowYear, nowMonth, nowDay+1);
 							</th>
 							<th>
 								<a href="viewMatch.inc?day=tomorrow">내일경기</a><br>
-								<span><%=tomorrow %></span>
+								<span><%=tomorrow%></span>
 							</th>
 						</tr>
 						<tr>
