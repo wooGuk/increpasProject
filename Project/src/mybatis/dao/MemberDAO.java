@@ -65,7 +65,7 @@ public class MemberDAO {
 		
 		
 		public MemberVO memEdit(MemberVO vo){
-			template.update("text.memEdit",vo);
+			template.update("test.memEdit",vo);
 			return vo;
 		}
 		
