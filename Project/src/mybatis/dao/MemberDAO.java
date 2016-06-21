@@ -63,6 +63,12 @@ public class MemberDAO {
 			return vo1;
 			}
 		
+		
+		public MemberVO memEdit(MemberVO vo){
+			template.update("text.memEdit",vo);
+			return vo;
+		}
+		
 	}
 
 
