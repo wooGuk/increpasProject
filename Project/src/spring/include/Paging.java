@@ -62,14 +62,14 @@ public class Paging {
 		//페이징 기법에 필요한 HTML코드 생성하기
 		sb = new StringBuffer();
 		if(isPrePage){
-			sb.append("<img src='images/button/but_prev.gif'  " );
+			sb.append("<img src='img/button/but_prev.gif'  " );
 			sb.append("onclick=' ");
 			sb.append("javascript:location.href=\"");
-			sb.append("list.inc?nowPage=");
+			sb.append("freeBoard.inc?nowPage=");
 			sb.append(nowPage-blockPage);
 			sb.append("\"' style='cursor:pointer'/>");
 		}else{
-			sb.append("<img src='images/button/but_prev.gif'/> " );
+			sb.append("<img src='img/button/but_prev.gif'/> " );
 		}
 		sb.append("|");
 		
@@ -89,7 +89,7 @@ public class Paging {
 				sb.append("</span>");
 			}else{
 				//i의 값이 현재 페이지 값과 다를 경우
-				sb.append("&nbsp;<a href='list.inc?");
+				sb.append("&nbsp;<a href='freeBoard.inc?");
 				sb.append("nowPage=");
 				sb.append(i);//nowPage파라미터값
 				sb.append("'>");
@@ -101,14 +101,14 @@ public class Paging {
 		
 		//다음기능을 할꺼냐 말껴냐?
 		if(isNextPage){
-			sb.append("<img src='images/button/but_next.gif'  " );
+			sb.append("<img src='img/button/but_next.gif'  " );
 			sb.append("onclick=' ");
 			sb.append("javascript:location.href=\"");
-			sb.append("list.inc?nowPage=");
+			sb.append("freeBoard.inc?nowPage=");
 			sb.append(endPage+1);
 			sb.append("\"' style='cursor:pointer'/>");
 		}else{
-			sb.append("<img src='images/button/but_next.gif'/> " );
+			sb.append("<img src='img/button/but_next.gif'/> " );
 		}
 		
 	}
