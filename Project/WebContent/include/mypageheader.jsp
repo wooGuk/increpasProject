@@ -18,7 +18,7 @@
 <style type="text/css">
 
 	div#aaa{
-		margin-left: 250px;
+		margin-left: 200px;
 		margin-right: 150px;
 		margin-top: 30px;
 		display: inline-block;
@@ -54,11 +54,11 @@
 	
 	.fff{
 		font-size: 19px;
-		}
+	}
 	
 	
 	
-	
+	/* 회원관리 */
 	div .left_side{
 		display:inline-block;
 		padding-left: 200px;
@@ -67,30 +67,32 @@
 	
 	#left_info{
 		border:0;
-		width:70px;
-		height: 50px;
-		border: 1px solid red;
-		
+		width:100px;
+		height: 100px;
+				
 	}
 
 	#left_info tbody tr td{
 		font-size:12pt;
-		color:green;	
+		color:green;
 		text-align: center;
+		font-weight: bold;
+		background-color: #D8D8D8;
 		}
 
 	#left_info thead tr th{
 		font-size:12pt;
 		font-weight:bold;
 		color:black; 
-		background-color:#0f0;
+		background-color:#AEAEAE;
 		text-align: center;
 		
 	}
 	
 	.hh{
 		padding-bottom: 10px;
-	}
+		padding: 5px;
+	} 
 	
 </style>
  <script type="text/javascript">
@@ -116,6 +118,18 @@
 		document.c.submit();
 	   }
 	}
+	
+	function memdel(){
+		var isDel = confirm("정말로 탈퇴하시겠습니까?");
+		  if(isDel){
+			  f.action = "memdel.inc";
+			  f.method = "post";
+			  f.submit();
+		  }
+		  else{
+		   return;
+		  }
+		 }
 </script> 
 </head>
 <body>
@@ -176,7 +190,7 @@
 				<td class="hh"><a href="memedit.inc">회원수정</a></td>
 			</tr>	
 			<tr>
-				<td class="hh"><a href="memdel.inc">회원탈퇴</a></td>
+				<td class="hh"><a onclick="memdel()" style="cursor:pointer">회원탈퇴</a></td>
 			</tr>
 		</tbody>
 	</table>
