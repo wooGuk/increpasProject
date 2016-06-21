@@ -78,7 +78,7 @@
 	 <!-- 회원 코인 삭감 2016/06/21 오우석-->
 	 <update id="delcoin" parameterType="java.util.Map">
 	 	update member
-	 	set coin = coin #{coin}
+	 	set coin = coin-#{coin}
 	 	where id = #{id}
 	 </update>
 </mapper>
