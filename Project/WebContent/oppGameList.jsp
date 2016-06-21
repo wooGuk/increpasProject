@@ -9,6 +9,7 @@
 			2.왼쪽 탭 링크연결 (오우석 2016/06/13)
 	*/
  -->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,8 +33,8 @@ table thead tr {
 }
 </style>
 <script type="text/javascript">
-function info_send(){
-	document.getElementById("f").submit();
+function info_send(index){
+	document.forms[index].submit();
 }
 </script>
 </head>
@@ -65,9 +66,9 @@ function info_send(){
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_code }</font></td>
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.teamName(game.home_code) }:${game.teamName(game.away_code) }</font></td>
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_year }년${game.match_month }월${game.match_day } 자정</font></td>
-						<td height="20" bgcolor="#669AB3" width="56"><a href="javascript:info_send()"><font color="blue"> 게임구매</font></a></td>
+						<td height="20" bgcolor="#669AB3" width="56"><a href="javascript:info_send('${stat.index}')"><font color="blue"> 게임구매</font></a></td>
 					</tr>
-					<form name="f" id="f" action="buyGame.inc" method="post">
+						<form name="f" id="f" action="buyGame.inc" method="post">
 							<input type="hidden" id="match_code" name="match_code"
 								value="${game.match_code }" /> <input type="hidden"
 								id="home_code" name="home_code" value="${game.home_code }" /> <input

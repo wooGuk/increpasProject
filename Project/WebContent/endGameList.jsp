@@ -20,8 +20,8 @@
 <link type="text/css" rel="stylesheet" href="css/basic.css">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 <script type="text/javascript">
-	function info_send(){
-		document.getElementById("f").submit();
+	function info_send(index){
+		document.forms[index].submit();
 	}
 </script>
 <style type="text/css">
@@ -138,7 +138,7 @@
 											color="#000">${game.match_month}-${game.match_day}</font></td>
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><font
 											color="#000">${game.match_month}-${game.match_day}</font></td>
-								<td height="20" align="center" bgcolor="#669AB3" width="56"><a href="javascript:info_send()"><font
+								<td height="20" align="center" bgcolor="#669AB3" width="56"><a href="javascript:info_send('${stat.index}')"><font
 											color="orange"> 상세보기</font></a></td>
 							</tr>
 						<form name="f" id="f" action="detailGame.inc" method="post">
