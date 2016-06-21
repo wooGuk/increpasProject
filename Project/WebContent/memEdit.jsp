@@ -25,29 +25,29 @@
 	}
 
 
-	.b_agree{
-		width: 117px;
-		height: 27px;
+	.b_agre{
+		width: 70px;
+		height: 26px;
 	
 	}
 
-	.b_noagree{
-		width: 117px;
-		height: 27px;
+	.b_noagre{
+		width: 70px;
+		height: 26px;
 	
 	}
 
 	.btn1{
 	
 		display: inline-block;
-		background: url("img/a.PNG");
+		background: url("img/edit.PNG");
 		text-indent: -9999px;
 	}
 
 	.btn2{
 		
 		display: inline-block;
-		background: url("img/b.PNG");
+		background: url("img/back.PNG");
 		text-indent: -9999px;
 	}
 	
@@ -199,8 +199,8 @@ $(function(){
 			
 			</table>
 			<div class="btn_center">
-					<p class="btn1 b_agree btn"><a onclick="edit()" style="cursor:pointer">회원수정</a></p>	
-					<p class="btn2 b_noagree btn"><a onclick="javascript:location.href='main.inc'" style="cursor:pointer">취소</a></p>
+					<p class="btn1 b_agre btn"><a onclick="edit()" style="cursor:pointer">회원수정</a></p>	
+					<p class="btn2 b_noagre btn"><a onclick="javascript:location.href='main.inc'" style="cursor:pointer">취소</a></p>
 			</div>
 			</form>
 		</div>
