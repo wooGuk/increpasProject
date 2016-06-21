@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.MemberDAO;
@@ -17,6 +18,7 @@ import mybatis.vo.MemberVO;
 	로 그 :  1.프로그램 최초 생성 (장준수 2016/06/14)
 				2. 충전시 메인이나 마이페이지 다시 클릭시 전에 있든 금액으로 나타난것을
 					충전시 그 금액으로 나타남.(장준수 2016/06/16)
+					3. 회원수정 (장준수 2016/06/20) 
 	 */	
 
 @Controller
@@ -64,6 +66,34 @@ public class ChargeControl {
 		/*mv.addObject("vo1", vo);*/
 		mv.setViewName("/mypage");
 		
+		return mv;
+	}
+	
+	// 현재 로그인한 유저의 정보를 가지고 간다?
+	@RequestMapping("/memedit.inc")
+	public ModelAndView mem(){
+		
+		MemberVO vo = (MemberVO) session.getAttribute("vo");
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("vo", vo);
+		mv.setViewName("/memEdit");
+		return mv;
+	}
+	
+	@RequestMapping(value="memedit.inc",method=RequestMethod.POST)
+	public ModelAndView memdit(MemberVO vo){
+		
+		MemberVO vo1 = (MemberVO) session.getAttribute("vo");
+		
+		vo1.setPassword(vo.getPassword());
+		vo1.setPhone(vo.getPhone());
+		vo1.setAddress(vo.getAddress());
+		
+		mdao.memEdit(vo1);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/main.inc");
 		return mv;
 	}
 }
