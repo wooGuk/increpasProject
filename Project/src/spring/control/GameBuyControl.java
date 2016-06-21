@@ -18,7 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import mybatis.dao.BatDAO;
 import mybatis.dao.MatchDAO;
+import mybatis.dao.MemberDAO;
+import mybatis.vo.BatVO;
 import mybatis.vo.MatchVO;
 import spring.include.Paging;
 
@@ -27,6 +30,12 @@ public class GameBuyControl {
 	
 	@Autowired
 	MatchDAO mDao;
+	
+	@Autowired
+	MemberDAO memDao;
+	
+	@Autowired
+	BatDAO bDao;
 	
 	@Autowired
 	HttpServletRequest request;
@@ -145,6 +154,52 @@ public class GameBuyControl {
 		
 		mv.addObject("game", vo);
 		mv.setViewName("detailGame");
+		return mv;
+	}
+	
+	// 종료된 게임에서 세부사항을 보내주는 컨트롤러 오우석(2016/06/20)
+	@RequestMapping("/buyGame.inc")
+	public ModelAndView gameBuy(){
+		ModelAndView mv = new ModelAndView();
+		MatchVO vo = new MatchVO();
+		vo.setMatch_code(Integer.parseInt(request.getParameter("match_code")));
+		vo.setHome_code(Integer.parseInt(request.getParameter("home_code")));
+		vo.setAway_code(Integer.parseInt(request.getParameter("away_code")));
+		vo.setResult(Integer.parseInt(request.getParameter("result")));
+		vo.setMatch_year(Integer.parseInt(request.getParameter("match_year")));
+		vo.setMatch_month(Integer.parseInt(request.getParameter("match_month")));
+		vo.setMatch_day(Integer.parseInt(request.getParameter("match_day")));
+		vo.setMatch_hour(Integer.parseInt(request.getParameter("match_hour")));
+		
+		mv.addObject("game", vo);
+		mv.setViewName("gamebuy");
+		return mv;
+	}
+	@RequestMapping("/buy")
+	public ModelAndView buy(){
+		ModelAndView mv = new ModelAndView();
+		System.out.println(request.getParameter("id"));
+		System.out.println(request.getParameter("match_code"));
+		System.out.println(request.getParameter("result"));
+		System.out.println(request.getParameter("coin"));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ID", (String)request.getParameter("id"));
+		map.put("MATCH_CODE", Integer.parseInt(request.getParameter("match_code")));
+		map.put("RE_RESULT", Integer.parseInt(request.getParameter("result")));
+		map.put("BAT_COST", Integer.parseInt(request.getParameter("coin")));
+		
+		boolean check = bDao.insertBat(map);
+		if(check){
+			Map<String, Object> map2 = new HashMap<String, Object>();
+			map2.put("id", (String)request.getParameter("id"));
+			map2.put("coin", Integer.parseInt(request.getParameter("coin")));
+			memDao.delCoin(map2);
+		}
+		
+		
+		//경고창 띄워야됨
+		mv.setViewName("redirect:/main.inc");
 		return mv;
 	}
 }
