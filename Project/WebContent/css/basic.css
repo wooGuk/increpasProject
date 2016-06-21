@@ -205,7 +205,7 @@ label{padding-left:5px; padding-right:10px; vertical-align:middle;}
 label:hover {color:#347bce;}
 label.hidden {display:none;}
 
-input[type=text] {border:1px solid #999; height:20px; background:#fff; text-indent:5px; vertical-align:middle;}
+input[type=text] {border:1px solid #999; height:20px; background:#fff; text-indent:5px; vertical-align:middle; width: 148px;}
 input[type=text]:hover {border:1px solid #ff5000; height:20px; background:#fff;}
 input[type=password] {border:1px solid #999; height:20px; background:#fff; text-indent:5px; vertical-align:middle; width: 148px;}
 input[type=password]:hover {border:1px solid #ff5000; height:20px; background:#fff;}
