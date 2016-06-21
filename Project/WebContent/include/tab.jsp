@@ -60,19 +60,19 @@
 		<table class="panel panel-default center_table" style="width: 100%">
 			<thead class="panel-heading">
 				<tr>
-					<td>경 기</td>
-					<td>경기시간 ▼<br/>경기장소</td>
-					<td>홈 vs 원정</td>
-					<td>결 과</td>
-					<td>상 금</td>
+					<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">경 기</font></td>
+					<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">경기시간 ▼<br/>경기장소</font></td>
+					<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">홈 vs 원정</font></td>
+					<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">결 과</font></td>
+					<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">상 금</font></td>
 				</tr>
 			</thead>
 			<tbody class="panel-bod">
 				<tr>
-					<td>${game.match_code }</td>
-					<td>${game.match_year }-${game.match_month }-${game.match_day }<br/>${game.homeName(game.home_code) }구장</td>
-					<td>${game.teamName(game.home_code) } vs ${game.teamName(game.away_code) }</td>
-					<td><font color="red">${game.teamName(game.result) } 승리</font></td>
+					<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">${game.match_code }</font></td>
+					<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">${game.match_year }-${game.match_month }-${game.match_day }<br/>${game.homeName(game.home_code) }구장</font></td>
+					<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">${game.teamName(game.home_code) } vs ${game.teamName(game.away_code) }</font></td>
+					<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="red">${game.teamName(game.result) } 승리</font></td>
 					<td></td>
 				</tr>
 			</tbody>

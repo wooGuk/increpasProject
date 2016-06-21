@@ -127,17 +127,17 @@
 
 							<tr>
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-											color="#00F">프로야구</font></td>
+											color="#000">프로야구</font></td>
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-											color="#00F">${game.match_code }</font></td>
+											color="#000">${game.match_code }</font></td>
 								<!-- 팀명출력 오우석(2016.06.15) -->
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-											color="#00F">${game.teamName(game.home_code) }:
+											color="#000">${game.teamName(game.home_code) }:
 									${game.teamName(game.away_code) }</font></td>
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-											color="#00F">${game.match_month}-${game.match_day}</font></td>
+											color="#000">${game.match_month}-${game.match_day}</font></td>
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-											color="#00F">${game.match_month}-${game.match_day}</font></td>
+											color="#000">${game.match_month}-${game.match_day}</font></td>
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><a href="javascript:info_send()"><font
 											color="orange"> 상세보기</font></a></td>
 							</tr>

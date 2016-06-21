@@ -55,12 +55,12 @@ table thead tr {
 				<tbody class="panel-bod">
 					<c:forEach var="game" items="${games }" varStatus="stat">
 					<tr>
-						<td height="20" bgcolor="#669AB3" width="56"><font color="#00F"></font></td>
-						<td height="20" bgcolor="#669AB3" width="56"><font color="#00F">프로야구</font></td>
-						<td height="20" bgcolor="#669AB3" width="56"><font color="#00F">${game.match_code }</font></td>
-						<td height="20" bgcolor="#669AB3" width="56"><font color="#00F">${game.teamName(game.home_code) }:${game.teamName(game.away_code) }</font></td>
-						<td height="20" bgcolor="#669AB3" width="56"><font color="#00F">${game.match_year }년${game.match_month }월${game.match_day } 자정</font></td>
-						<td height="20" bgcolor="#669AB3" width="56"><font color="#00F"><a href=""> 게임구매</a></font></td>
+						<td height="20" bgcolor="#669AB3" width="56"><font color="#000"></font></td>
+						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">프로야구</font></td>
+						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_code }</font></td>
+						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.teamName(game.home_code) }:${game.teamName(game.away_code) }</font></td>
+						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_year }년${game.match_month }월${game.match_day } 자정</font></td>
+						<td height="20" bgcolor="#669AB3" width="56"><font color="RED"><a href=""> 게임구매</a></font></td>
 					</tr>
 					</c:forEach>
 					<c:if test="${empty games }">

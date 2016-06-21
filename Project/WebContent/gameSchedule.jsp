@@ -45,9 +45,9 @@
 				<table class="panel panel-default center_table" width="750px">
 					<thead class="panel-heading">
 						<tr>
-							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000000">게임명</font></td>
-							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000000">게임일정</font></td>
-							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000000">상태</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">게임명</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">게임일정</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">상태</font></td>
 						</tr>
 					</thead>
 					<tbody class="panel-bod">
@@ -118,8 +118,8 @@
 							</c:if> --%>
 							<tr>
 								<!-- 팀명출력 오우석(2016.06.15)  -->
-								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">${vo.teamName(vo.home_code) } : ${vo.teamName(vo.away_code) }</font></td>
-								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">${vo.match_month}-${vo.match_day}</font></td>
+								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">${vo.teamName(vo.home_code) } : ${vo.teamName(vo.away_code) }</font></td>
+								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">${vo.match_month}-${vo.match_day}</font></td>
 								<!-- 해당경기가 판매중인지 마감 되었는지 확인 오우석(2016.06.15)-->
 								<c:if test="${vo.match_day lt vo.findToday()}">
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="red"> 마감</font></td>
