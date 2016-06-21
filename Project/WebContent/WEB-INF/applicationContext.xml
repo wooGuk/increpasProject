@@ -36,7 +36,10 @@ location="classpath:mybatis/props/jdbc.properties"/>
 		<constructor-arg ref="factory" index="0"/>
 	</bean>
 	
+	<!-- 회원DAO (장준수) -->
 	<bean id="aDao" class="mybatis.dao.MemberDAO"/>
+	<!-- 자유게시판DAO (장준수,박상원) -->
+	<bean id="fDao" class="mybatis.dao.FreeBoardDAO"/>
 	<!-- 경기DAO추가 생성 (오우석) -->
 	<bean id="mDao" class="mybatis.dao.MatchDAO"/>
 	<!-- 팀DAO추가 생성 (정성훈) -->
