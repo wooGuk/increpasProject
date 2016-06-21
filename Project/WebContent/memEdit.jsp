@@ -71,25 +71,26 @@
 		padding-bottom: 40px;
 	}
 </style>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 
-	$(function() {
-		$('#password').keyup(function() {
-			$('font[name=check]').text('');
-		});
+$(function(){
+	  $('#password').keyup(function(){
+	   $('font[name=check]').text('');
+	  }); 
 
-		$('#password2').keyup(function() {
-			if ($('#password').val() != $('#password2').val()) {
-				$('font[name=check]').text('');
-				$('font[name=check]').css("color", "red");
-				$('font[name=check]').html("비밀번호가 다름니다.");
-			} else {
-				$('font[name=check]').text('');
-				$('font[name=check]').css("color", "blue");
-				$('font[name=check]').html("비밀번호가 맞습니다.");
-			}
-		});
-	});
+	  $('#password2').keyup(function(){
+	   if($('#password').val()!=$('#password2').val()){
+	    $('font[name=check]').text('');
+	    $('font[name=check]').css("color","red");
+	    $('font[name=check]').html("비밀번호가 다름니다.");
+	   }else{
+	    $('font[name=check]').text('');
+	    $('font[name=check]').css("color","blue");
+	    $('font[name=check]').html("비밀번호가 맞습니다.");
+	   }
+	  }); 
+	 });
 	
 	function edit(){
 		
@@ -115,7 +116,7 @@
 </head>
 <body>
 	<div id="wrap">
-	<%-- <jsp:include page="include/header.jsp"></jsp:include> --%>
+	<jsp:include page="include/header.jsp"></jsp:include>
 		
 		<div id="contents_sub1">
 			<h1 class="sub_title title01"></h1>
@@ -152,8 +153,7 @@
 					<tr>
 						<th><span class="req"></span>비밀번호</th>
 						<td>
-							<p class="guide_txt">안전을 위해 10개 이상의 문자조합(영문 대소문자 + 숫자 또는
-								기호(!, ~ , @ , #))를 입력해주세요.</p>
+							<p class="guide_txt">비밀번호를 입력해 주세요.</p>
 							<p>
 								<label for="password" class="hidden">비밀번호</label> <input
 									type="password" name="password" id="password" class="join" />
