@@ -16,6 +16,8 @@
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="css/basic.css"/>
 <style type="text/css">
+
+	/* 아이디중복체크 */
 	label#box{
 		display: inline-block;
 		font-size: 11px;
@@ -31,7 +33,7 @@
 	}
 	
 	
-	
+	/* 회원가입 css */
 	div#contents_sub1{
 		width: 900px;
 		height: auto;
@@ -44,8 +46,6 @@
 		margin: 30px;
 	}
 
-
-
 	.b_agree{
 		width: 117px;
 		height: 27px;
@@ -57,7 +57,6 @@
 		height: 27px;
 	
 	}
-
 
 	.btn1{
 	
@@ -72,32 +71,26 @@
 		background: url("img/b.PNG");
 		text-indent: -9999px;
 	}
-	
-	 /* .btn{
-		display: inline-block;
-		background: url("../img/btn.png") no-repeat;
-		text-indent: -9999px;
-	} 
-	 */
+
 	.btn a{
 		display: block;
 		width: 100%;
 		height: 100%;
 	} 
 	h1.title01{
-	height: 30px;
-	background-position: 0 0;
+		height: 30px;
+		background-position: 0 0;
 	
 	}
 	
 	p.title_src{
-	font-size: 15px;
-	font-weight: bold;
-	color: #222;
-	padding-top: 10px;
-	padding-left: 5px;
-	padding-bottom: 40px;
-}
+		font-size: 15px;
+		font-weight: bold;
+		color: #222;
+		padding-top: 10px;
+		padding-left: 5px;
+		padding-bottom: 40px;
+	}
 	
 
 
@@ -106,18 +99,6 @@
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script>
 	function reg(){
-		/* var id = document.getElementById("id").value.trim();
-		var pwd = document.getElementById("pwd").value.trim();
-		var pwd2 = document.getElementById("pwd2").value.trim();
-		var phone = document.getElementById("phone").value.trim();
-		var name = document.getElementById("name").value.trim();
-		var address = document.getElementById("address").value.trim(); */
-		
-		/* alert("가입을 축하합니다.")
-		document.forms[0].submit(); */
-	/* 	}else{
-			alert("하나도 빠짐없이 기입하셔야 합니다.");
-		}*/
 		
 		if(document.getElementById("name").value.trim() == ""){
 			alert("이름를 입력하세요.");
@@ -142,7 +123,7 @@
 		
 	} 
 	
-	// 비밀번호, 비밀번호확인 20116/06/10 장준수 
+	// 비밀번호, 비밀번호확인 2016/06/10 장준수 
 	$(function(){
 		  $('#password').keyup(function(){
 		   $('font[name=check]').text('');
