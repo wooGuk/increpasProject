@@ -16,18 +16,18 @@ import java.util.Calendar;
 public class MatchVO {
 	private int match_code, home_code, away_code, result;
 	private int match_year,match_month,match_day,match_hour;
-	private String home_picther,away_picther;
+	private String home_pitcher,away_pitcher;
 	public String getHome_picther() {
-		return home_picther;
+		return home_pitcher;
 	}
 	public void setHome_picther(String home_picther) {
-		this.home_picther = home_picther;
+		this.home_pitcher = home_picther;
 	}
 	public String getAway_picther() {
-		return away_picther;
+		return away_pitcher;
 	}
 	public void setAway_picther(String away_picther) {
-		this.away_picther = away_picther;
+		this.away_pitcher = away_picther;
 	}
 	public int getMatch_hour() {
 		return match_hour;
