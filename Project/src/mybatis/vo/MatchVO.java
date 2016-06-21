@@ -6,6 +6,7 @@
 			3.팀명출력을 위한 teamName 메소드 추가(오우석 2016/06/15)
 			4.웹페이지에서 오늘 날짜와 비교하기 위한 메소드 추가 오우석(2016/06/15)
 			5.홈구장 출력을 위한 메소드 추가(오우석 2016/06/20)
+			6.테이블 변경으로 인한 변수와 게터 세터 추가 (오우석 2016/06/21)
 	*/
 package mybatis.vo;
 
@@ -15,6 +16,19 @@ import java.util.Calendar;
 public class MatchVO {
 	private int match_code, home_code, away_code, result;
 	private int match_year,match_month,match_day,match_hour;
+	private String home_picther,away_picther;
+	public String getHome_picther() {
+		return home_picther;
+	}
+	public void setHome_picther(String home_picther) {
+		this.home_picther = home_picther;
+	}
+	public String getAway_picther() {
+		return away_picther;
+	}
+	public void setAway_picther(String away_picther) {
+		this.away_picther = away_picther;
+	}
 	public int getMatch_hour() {
 		return match_hour;
 	}
