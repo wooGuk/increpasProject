@@ -7,7 +7,8 @@
 	제 목 : mypageheader.jps
 	역 할 : 마이페이지 상단부
 	로 그 : 1.프로그램 최초 생성 (장준수 2016/06/16)
-
+		  2. 122번째줄 팝업창 함수 추가하여 delmember.jsp 로 이동하는 소스 추가
+		  
 
  -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -120,16 +121,14 @@
 	}
 	
 	function memdel(){
-		var isDel = confirm("정말로 탈퇴하시겠습니까?");
-		  if(isDel){
-			  f.action = "memdel.inc";
-			  f.method = "post";
-			  f.submit();
-		  }
-		  else{
-		   return;
-		  }
-		 }
+		open("","pop","width=450,height=240,top=200,left=300");
+		 document.delform.action = "delmember.jsp"; // 클릭시 이동하는 페이지 
+	     document.delform.target = "pop"; // 이 부분이 핵심! 열어놓은 빈 창(pop)을 form2가 날아갈 target으로 정한다.
+	     document.delform.method = "post"; // post방식으로 보내기~!
+	     document.delform.submit(); // 
+	     
+		
+	}
 </script> 
 </head>
 <body>
@@ -179,6 +178,7 @@
 		
 		<!-- 회원관리 폼 -->
 		<div class="left_side">
+		<form name="delform">
 	<table id="left_info">
 		<thead>
 			<tr>
@@ -190,10 +190,11 @@
 				<td class="hh"><a href="memedit.inc">회원수정</a></td>
 			</tr>	
 			<tr>
-				<td class="hh"><a onclick="memdel()" style="cursor:pointer">회원탈퇴</a></td>
+				<td class="hh"><a href="javascript:memdel()">회원탈퇴</a></td>
 			</tr>
 		</tbody>
 	</table>
+	</form>
 	</div>
 	
 	
