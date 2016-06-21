@@ -12,6 +12,7 @@
 	        4.지난 경기데이터 쿼리문 수정, 경기일정 모두 가져오는 쿼리문 추가 (2016/06/13)
 	        5.다른 곳에서 시간을 좀더 세분화 하여 비교 하기 위해 쿼리문 변경  오우석(2016/06/15)
 	        6.게임구매 가능한 리스트 불러오기 오우석(2016/06/12)
+	        7.게임코드 별로 내림차순 정렬 오우석(2016/06/21)
 	*/
  -->
 <mapper namespace="match">
@@ -54,6 +55,7 @@
 	<!-- 지난경기 -->
 	<select id="matchEnd" resultType="mybatis.vo.MatchVO" parameterType="java.util.Map">
 		<!-- 페이징 기법으로 인한 쿼리문 수정 (2016/06/12) -->
+		<!-- 게임코드 별로 내림차순 정렬 오우석(2016/06/21)-->
 		select r_num,
 		MATCH_CODE,HOME_CODE,AWAY_CODE,
 		to_number(to_char(MATCH_DAY,'YYYY')) MATCH_YEAR,
@@ -64,12 +66,13 @@
 		from 
 		(select rownum as r_num, a.* from
   			(select * from match where to_char(match_day,'yyyyy/mm/dd') &lt; to_char(sysdate,'yyyyy/mm/dd')
-  				order by match_day desc) a) 
+  				order by match_code desc) a) 
   			where r_num between #{begin} and #{end}  
 	</select>
 	
 	<!-- 게임일정  추가 오우석 2016/06/13-->
 	<!-- 다른 곳에서 시간을 좀더 세분화 하여 비교 하기 위해 쿼리문 변경  오우석(2016/06/15) -->
+	<!-- 게임코드 별로 내림차순 정렬 오우석(2016/06/21)-->
 	<select id="schedule" resultType="mybatis.vo.MatchVO">
 		select MATCH_CODE,HOME_CODE,AWAY_CODE,
 		to_number(to_char(MATCH_DAY,'YYYY')) MATCH_YEAR,
@@ -77,6 +80,7 @@
 		to_number(to_char(MATCH_DAY,'DD')) MATCH_DAY,
 		to_number(to_char(MATCH_DAY,'HH')) MATCH_HOUR
 		from match
+		order by match_code desc
 	</select>
 	
 </mapper>
