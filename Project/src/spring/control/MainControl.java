@@ -209,17 +209,27 @@ public class MainControl {
 		ArrayList<MatchVO> list = new ArrayList<>();
 		
 		Calendar cal = Calendar.getInstance();
-		//오늘 날짜 구하기
+
+		cal.add(Calendar.DATE,-1);
+		int preYear=cal.get(Calendar.YEAR);
+		int preMonth=cal.get(Calendar.MONTH)+1;
+		int preDay=cal.get(Calendar.DAY_OF_MONTH);
+
+		cal.add(Calendar.DATE,1);
 		int nowYear=cal.get(Calendar.YEAR);
 		int nowMonth=cal.get(Calendar.MONTH)+1;
-		//월은 0부터 시작하므로 1월 표시를 위해 1을 더해 줍니다.
 		int nowDay=cal.get(Calendar.DAY_OF_MONTH);
+
+		cal.add(Calendar.DATE,1);
+		int nextYear=cal.get(Calendar.YEAR);
+		int nextMonth=cal.get(Calendar.MONTH)+1;
+		int nextDay=cal.get(Calendar.DAY_OF_MONTH);
 		
 		switch(day){
 		case "yesterday":
 			for(int i=0; i<allGames.length; i++){
 				MatchVO vo = allGames[i];
-				if(nowYear == vo.getMatch_year() && nowMonth == vo.getMatch_month() && nowDay-1 == vo.getMatch_day()){
+				if(preYear == vo.getMatch_year() && preMonth == vo.getMatch_month() && preDay == vo.getMatch_day()){
 					list.add(vo);
 				}
 			}
@@ -235,7 +245,7 @@ public class MainControl {
 		case "tomorrow":
 			for(int i=0; i<allGames.length; i++){
 				MatchVO vo = allGames[i];
-				if(nowYear == vo.getMatch_year() && nowMonth == vo.getMatch_month() && nowDay+1 == vo.getMatch_day()){
+				if(nextYear == vo.getMatch_year() && nextMonth == vo.getMatch_month() && nextDay+1 == vo.getMatch_day()){
 					list.add(vo);
 				}
 			}
