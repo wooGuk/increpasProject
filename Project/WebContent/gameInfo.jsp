@@ -7,6 +7,7 @@
 			3. 경기일정보기 (정성훈 2016.06.20)
 			4. 어제,오늘,내일경기보기 (정성훈 2016.06.21)
 			5. 선발투수, 장소 추가 (정성훈 2016.06.21)
+			6. 날짜 선택 추가(정성훈 2016.06.22)
 	*/
  -->
 
@@ -20,8 +21,8 @@
         <%@ taglib prefix="c"
  uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	//로고 이미지 경로 저장
-	//팀코드, 경로
+//로고 이미지 경로 저장
+//팀코드, 경로
 Map<Integer, String> logo = new HashMap<Integer, String>();
 logo.put(1, "img/team/emblem_OB.png");
 logo.put(2, "img/team/emblem_NC.png");
@@ -34,26 +35,31 @@ logo.put(8, "img/team/emblem_HT.png");
 logo.put(9, "img/team/emblem_HH.png");
 logo.put(10, "img/team/emblem_KT.png");
 
-MatchVO[] games = (MatchVO[])request.getAttribute("games");
+//ModelAndView에 담은 파라미터 받기
+MatchVO[] games = (MatchVO[])request.getAttribute("games"); // 경기정보
+String yyyy = String.valueOf(request.getAttribute("yyyy")); // 선택한 년도
+String mm = String.valueOf(request.getAttribute("mm")); // 선택한 월
+String dd = String.valueOf(request.getAttribute("dd")); // 선택한 일
 
+//어제, 오늘, 내일 날짜 구하기
 Calendar cal = Calendar.getInstance();
 
-cal.add(Calendar.DATE,-1);
+cal.add(Calendar.DATE,-1); // 어제(오늘에서 -1)
 int preYear=cal.get(Calendar.YEAR);
 int preMonth=cal.get(Calendar.MONTH)+1;
 int preDay=cal.get(Calendar.DAY_OF_MONTH);
 
-cal.add(Calendar.DATE,1);
+cal.add(Calendar.DATE,1); // 오늘(어제에서 +1)
 int nowYear=cal.get(Calendar.YEAR);
 int nowMonth=cal.get(Calendar.MONTH)+1;
 int nowDay=cal.get(Calendar.DAY_OF_MONTH);
 
-cal.add(Calendar.DATE,1);
+cal.add(Calendar.DATE,1); // 내일(오늘에서 +1)
 int nextYear=cal.get(Calendar.YEAR);
 int nextMonth=cal.get(Calendar.MONTH)+1;
 int nextDay=cal.get(Calendar.DAY_OF_MONTH);
 
-
+//어제, 오늘, 내일 날짜 포맷 설정
 String yesterday = String.format("%d/%d/%d", preYear, preMonth, preDay);
 String today = String.format("%d/%d/%d", nowYear, nowMonth, nowDay);
 String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
@@ -70,7 +76,18 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 	.info th, .info td{
 		text-align: center;
 	}
+	.table-condensed select{
+		width: 60px;
+	}
 </style>
+<script type="text/javascript">
+	function sendDate(){
+		//날짜 선택을 해주는 form을 찾아서
+		var f = document.getElementById("selectDateForm");
+		//전송
+		f.submit();
+	}
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -81,6 +98,7 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 		
 		<!-- 콘텐츠영역시작 -->
  		<div id="contents">
+ 			<!-- 좌측메뉴 시작 -->
 			<div class="fl" style="margin-right: 50px">
 				<table class="panel panel-primary" id="list-group">
 					<thead class="panel-heading">
@@ -98,6 +116,146 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 					</tbody>
 				</table>
 			</div>
+			<!-- 좌측메뉴 종료 -->
+			<!-- 날짜선택 table 시작 -->
+			<form action="viewSelectDateMatch.inc" method="post" id="selectDateForm">
+				<table class="table-condensed info">
+					<tbody>
+						<tr>
+							<td>
+								<!-- 년 -->
+								<select name="yyyy">
+									<%
+										//yyyy가 null이면 현재 년도로
+										if(yyyy==null){
+											for(int i=2014; i<=2016; i++){
+												if(i == nowYear){
+									%>
+												<option value="<%=i%>" selected="selected"><%=i%></option>
+									<%				
+												}
+												else{
+									%>
+												<option value="<%=i%>"><%=i%></option>		
+									<%				
+												}
+											}
+										}
+										//yyyy가 null이 아니면 선택한 년도로
+										else{
+											for(int i=2014; i<=2016; i++){
+												if(i == Integer.parseInt(yyyy)){
+									%>
+												<option value="<%=i%>" selected="selected"><%=i%></option>
+									<%				
+												}
+												else{
+									%>
+												<option value="<%=i%>"><%=i%></option>		
+									<%				
+												}
+											}
+										}
+									%>
+								</select>
+								<span>년</span>
+							</td>
+							<td>
+								<!-- 월 -->
+								<select name="mm">
+									<%
+										//mm이 null이면 현재 월로
+										if(mm==null){
+											for(int i=1; i<=12; i++){
+												if(i == nowMonth){
+									%>
+												<option value="<%=i%>" selected="selected"><%=i%></option>
+									<%				
+												}
+												else{
+									%>
+												<option value="<%=i%>"><%=i%></option>		
+									<%				
+												}
+											}
+										}
+										//mm이 null이 아니면 선택한 월로
+										else{
+											for(int i=1; i<=12; i++){
+												if(i == Integer.parseInt(mm)){
+									%>
+												<option value="<%=i%>" selected="selected"><%=i%></option>
+									<%				
+												}
+												else{
+									%>
+												<option value="<%=i%>"><%=i%></option>		
+									<%				
+												}
+											}
+										}
+									%>
+								</select>
+								<span>월</span>
+							</td>
+							<td>
+								<!-- 일 -->
+								<select name="dd">
+									<%
+										//dd가 null이면 현재 일로
+										if(dd==null){
+											for(int i=1; i<=31; i++){
+												if(i == nowDay){
+									%>
+												<option value="<%=i%>" selected="selected"><%=i%></option>
+									<%				
+												}
+												else{
+									%>
+												<option value="<%=i%>"><%=i%></option>		
+									<%				
+												}
+											}
+										}
+										//dd가 null이 아니면 선택한 일로
+										else{
+											for(int i=1; i<=31; i++){
+												if(i == Integer.parseInt(dd)){
+									%>
+												<option value="<%=i%>" selected="selected"><%=i%></option>
+									<%				
+												}
+												else{
+									%>
+												<option value="<%=i%>"><%=i%></option>		
+									<%				
+												}
+											}
+										}
+									%>
+								</select>
+								<span>일</span>
+							</td>
+							<td>
+								<a href="javascript:sendDate()">경기보기</a>
+							</td>
+							<td>
+								<a href="viewMatch.inc?day=yesterday">어제경기</a><br>
+								<span><%=yesterday %></span>
+							</td>
+							<td>
+								<a href="viewMatch.inc?day=today">오늘경기</a><br>
+								<span><%=today %></span>
+							</td>
+							<td>
+								<a href="viewMatch.inc?day=tomorrow">내일경기</a><br>
+								<span><%=tomorrow%></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+			<!-- 날짜선택 table 종료 -->
 			<!-- 팀 순위보기 시작 -->
 			<c:if test="${infoFlag =='viewRank' }">
 				<table class="table-condensed info">
@@ -130,20 +288,6 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 			<c:if test="${infoFlag =='viewMatch'}">
 				<table class="table-condensed info">
 					<thead>
-						<tr>
-							<th>
-								<a href="viewMatch.inc?day=yesterday">어제경기</a><br>
-								<span><%=yesterday %></span>
-							</th>
-							<th colspan="3">
-								<a href="viewMatch.inc?day=today">오늘경기</a><br>
-								<span><%=today %></span>
-							</th>
-							<th>
-								<a href="viewMatch.inc?day=tomorrow">내일경기</a><br>
-								<span><%=tomorrow%></span>
-							</th>
-						</tr>
 						<tr>
 							<th>HOME</th>
 							<th>SCORE</th>
