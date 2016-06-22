@@ -13,7 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.FreeBoardDAO;
+import mybatis.dao.MemberDAO;
 import mybatis.vo.FreeBoardVO;
+import mybatis.vo.MemberVO;
 import spring.util.FileSaveUtil;
 
 @Controller
@@ -28,6 +30,7 @@ public class WriteControl {
 	@Autowired
 	ServletContext servletContext;
 	
+
 	private String uploadPath; 
 							   
 	public void setUploadPath(String uploadPath) {
@@ -35,12 +38,9 @@ public class WriteControl {
 	}
 	
 	@RequestMapping(value="/write.inc",method=RequestMethod.POST)
-	public ModelAndView write(FreeBoardVO vo)throws Exception{
-		
-		String title = request.getParameter("title");
-		System.out.println(title);
-		
-		/*if(vo.getUpload().getSize() > 0){
+	public ModelAndView writerr(FreeBoardVO vo)throws Exception{
+	
+		if(vo.getUpload().getSize() > 0){
 			
 			String path = servletContext.getRealPath(uploadPath);
 			
@@ -57,22 +57,24 @@ public class WriteControl {
 			// 파일명 저장
 			vo.setUploadFileName(f_name);
 			
-		}else*/
+		}else
 			vo.setUploadFileName("");
 		
-		
+		/*MemberVO mvo = (MemberVO) request.getAttribute("vo");
+		vo.setId(mvo.getId());*/
 		vo.setIp(request.getRemoteAddr());
 		vo.setBname("BBS");
 		
 	
 		fdao.writeBbs(vo);
-		
 	
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("redirect:/list.inc");
- 		
+		mv.setViewName("redirect:/freeBoard.inc");
+		
 		return mv;
+	
+		
 		
 	}
 

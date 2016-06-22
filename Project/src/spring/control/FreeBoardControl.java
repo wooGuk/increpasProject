@@ -7,16 +7,17 @@ import java.util.Map;
 
 
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.FreeBoardDAO;
+import mybatis.dao.MemberDAO;
 import mybatis.vo.FreeBoardVO;
 import mybatis.vo.MemberVO;
 import spring.include.Paging;
@@ -27,6 +28,9 @@ public class FreeBoardControl {
 
 	@Autowired
 	FreeBoardDAO fdao;
+	
+	@Autowired
+	MemberDAO adao;
 	
 	@Autowired
 	HttpServletRequest request;
@@ -46,8 +50,8 @@ public class FreeBoardControl {
 		String searchType, searchValue; // 나중에 검색 기능에 필요한 변수들
 		
 		@RequestMapping("/freeBoard.inc")
-		public ModelAndView list(){
-			// 사용자가 브러우저에서 list.inc로 요청했을 때 수행하는 곳
+		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			
 			
 			// 현재 페이지값 받기 *
 			String c_page = request.getParameter("nowPage");
@@ -85,8 +89,7 @@ public class FreeBoardControl {
 			
 			FreeBoardVO[] ar = fdao.getList(map);
 			
-			// JSP에서 표현할 수 있도록 반환객체 생성 한 후
-			// 그곳에서 표현할 값들을 저장한다.
+			// JSP에서 표현할 수 있도록 반환객체 생성 한 후 그곳에서 표현할 값들을 저장한다.
 			ModelAndView mv = new ModelAndView();
 			mv.addObject("list", ar);
 			mv.addObject("nowPage", nowPage);
@@ -104,11 +107,42 @@ public class FreeBoardControl {
 		@RequestMapping("/writeForm.inc")
 		public ModelAndView writeForm(){
 
-			MemberVO vo = (MemberVO) session.getAttribute("vo");
+			//MemberVO vo = (MemberVO) session.getAttribute("vo");
 			
 			ModelAndView mv = new ModelAndView();
-			mv.addObject("vo", vo);
+			//mv.addObject("vo", vo);
 			mv.setViewName("/write");
+			
+			return mv;
+		}
+		
+		// 글 보기 (장준수 2016/06/21)
+		@RequestMapping("/view.inc")
+		public ModelAndView view(String seq,String nowPage)throws Exception{
+			
+			FreeBoardVO vo = fdao.getBbs(seq);
+			
+			session.setAttribute("vo1", vo);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("vo1", vo);
+			mv.addObject("nowPage", nowPage);
+			mv.addObject("seq", seq);
+			mv.setViewName("/view");
+			
+			return mv;
+		}
+		
+		
+		// 글삭제 (장준수 2016/06/22)
+		@RequestMapping(value="/del.inc",method=RequestMethod.GET)
+		public ModelAndView del(FreeBoardVO vo){
+			System.out.println(vo.getId());
+			System.out.println(vo.getPassword());
+			fdao.delBbs(vo);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("redirect:/freeBoard.inc");
 			
 			return mv;
 		}
