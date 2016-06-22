@@ -125,91 +125,7 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 				</table>
 			</div>
 			<!-- 좌측메뉴 종료 -->
-			<!-- 날짜선택 table 시작 -->
-			<form action="viewSelectDateMatch.inc" method="post" id="selectDateForm">
-				<table class="table-condensed info">
-					<tbody>
-						<tr>
-							<td>
-								<!-- 년 -->
-								<select name="yyyy">
-									<%
-										for(int i=2014; i<=2016; i++){
-											if(i == Integer.parseInt(yyyy)){
-									%>
-												<option value="<%=i%>" selected="selected"><%=i%></option>
-									<%				
-											}
-											else{
-									%>
-											<option value="<%=i%>"><%=i%></option>		
-									<%				
-											}
-										}
-									%>
-								</select>
-								<span>년</span>
-							</td>
-							<td>
-								<!-- 월 -->
-								<select name="mm">
-									<%
-										for(int i=1; i<=12; i++){
-											if(i == Integer.parseInt(mm)){
-									%>
-												<option value="<%=i%>" selected="selected"><%=i%></option>
-									<%				
-											}
-											else{
-									%>
-											<option value="<%=i%>"><%=i%></option>		
-									<%				
-											}
-										}
-									%>
-								</select>
-								<span>월</span>
-							</td>
-							<td>
-								<!-- 일 -->
-								<select name="dd">
-								<%
-									for(int i=1; i<=31; i++){
-										if(i == Integer.parseInt(dd)){
-								%>
-										<option value="<%=i%>" selected="selected"><%=i%></option>
-								<%				
-										}
-										else{
-								%>
-										<option value="<%=i%>"><%=i%></option>		
-								<%				
-										}
-									}
-								%>
-								</select>
-								<span>일</span>
-							</td>
-							<td style="text-align: left;">
-								<a href="javascript:sendDate()">경기보기</a>
-							</td>
-							<td>
-								<a href="viewMatch.inc?day=yesterday">어제경기</a><br>
-								<span><%=yesterday %></span>
-							</td>
-							<td>
-								<a href="viewMatch.inc?day=today">오늘경기</a><br>
-								<span><%=today %></span>
-							</td>
-							<td>
-								<a href="viewMatch.inc?day=tomorrow">내일경기</a><br>
-								<span><%=tomorrow%></span>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</form>
-			<!-- 날짜선택 table 종료 -->
+
 			<!-- 팀 순위보기 시작 -->
 			<c:if test="${infoFlag =='viewRank' }">
 				<table class="table-condensed info">
@@ -238,8 +154,95 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 				</table>
 			</c:if>
 			<!-- 팀 순위보기 종료 -->
+			
 			<!-- 경기일정보기 시작 -->
 			<c:if test="${infoFlag =='viewMatch'}">
+				<!-- 날짜선택 table 시작 -->
+				<form action="viewSelectDateMatch.inc" method="post" id="selectDateForm">
+					<table class="table-condensed info">
+						<tbody>
+							<tr>
+								<td>
+									<!-- 년 -->
+									<select name="yyyy">
+										<%
+											for(int i=2014; i<=2016; i++){
+												if(i == Integer.parseInt(yyyy)){
+										%>
+													<option value="<%=i%>" selected="selected"><%=i%></option>
+										<%				
+												}
+												else{
+										%>
+												<option value="<%=i%>"><%=i%></option>		
+										<%				
+												}
+											}
+										%>
+									</select>
+									<span>년</span>
+								</td>
+								<td>
+									<!-- 월 -->
+									<select name="mm">
+										<%
+											for(int i=1; i<=12; i++){
+												if(i == Integer.parseInt(mm)){
+										%>
+													<option value="<%=i%>" selected="selected"><%=i%></option>
+										<%				
+												}
+												else{
+										%>
+												<option value="<%=i%>"><%=i%></option>		
+										<%				
+												}
+											}
+										%>
+									</select>
+									<span>월</span>
+								</td>
+								<td>
+									<!-- 일 -->
+									<select name="dd">
+									<%
+										for(int i=1; i<=31; i++){
+											if(i == Integer.parseInt(dd)){
+									%>
+											<option value="<%=i%>" selected="selected"><%=i%></option>
+									<%				
+											}
+											else{
+									%>
+											<option value="<%=i%>"><%=i%></option>		
+									<%				
+											}
+										}
+									%>
+									</select>
+									<span>일</span>
+								</td>
+								<td style="text-align: left;">
+									<a href="javascript:sendDate()">경기보기</a>
+								</td>
+								<td>
+									<a href="viewMatch.inc?day=yesterday">어제경기</a><br>
+									<span><%=yesterday %></span>
+								</td>
+								<td>
+									<a href="viewMatch.inc?day=today">오늘경기</a><br>
+									<span><%=today %></span>
+								</td>
+								<td>
+									<a href="viewMatch.inc?day=tomorrow">내일경기</a><br>
+									<span><%=tomorrow%></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				<!-- 날짜선택 table 종료 -->
+			
 				<table class="table-condensed info">
 					<thead>
 						<tr>
