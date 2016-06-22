@@ -82,7 +82,7 @@
 	
 	<!-- 메뉴들 -->
 	<ul class="gnb">
-		<li><a href="noticeBoard.inc"><span class="menu m01">공지사항</span></a></li>
+		<li><a href="notice.inc"><span class="menu m01">공지사항</span></a></li>
 		<li><a href="todaylist.inc"><span class="menu m02">경기구매</span></a></li>
 		<li><a href="gameInfo.inc"><span class="menu m03">경기정보</span></a></li>
 		<li><a href="mypageCheck.inc"><span class="menu m04">마이페이지</span></a></li>

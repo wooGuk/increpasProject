@@ -46,6 +46,8 @@ location="classpath:mybatis/props/jdbc.properties"/>
 	<bean id="tDao" class="mybatis.dao.TeamDAO"/>
 	<!-- 배팅DAO추가 생성 (오우석) -->
 	<bean id="bDao" class="mybatis.dao.BatDAO"/>
+	<!-- 공지사항 (PSW) -->
+	<bean id="nDao" class="mybatis.dao.NoticeDAO"/>
 		
 </beans>        
 

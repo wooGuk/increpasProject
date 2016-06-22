@@ -8,6 +8,16 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
    
 	<context:annotation-config/>
+
+
+
+ <bean id="multipartResolver"
+   class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+   		<property name="defaultEncoding" value="utf-8"/>
+   		<property name="maxUploadSize" value="-1"/>
+   </bean>
+ 
+
 	
 	<!-- 자유게시판 (장준수 2016/06/21) -->
  	<bean id="board" class="spring.control.FreeBoardControl"/>
@@ -16,6 +26,7 @@
    		<property name="uploadPath" value="/upload"/>
    </bean>
    
+
 	<bean id="reg" class="spring.control.RegControl"/>
 	<!-- LoginControl,LogoutControl MainControl로 이동 -->
 <!-- 	<bean id="login" class="spring.control.LoginControl"/>
@@ -26,6 +37,10 @@
 	<bean id="search" class="spring.control.SearchControl"/>
 	<!-- 첫 시작시 main페이지로 이동 (정성훈 16/06/09) -->
 	<bean id="main" class="spring.control.MainControl"/>
+	<!-- 공지사항 쓰기,보기 컨트롤러!@# (박상원 16/06/22) -->
+	<bean id="notice" class="spring.control.NoticeControl"/>
+	<bean id="nowrite" class="spring.control.NoWriteControl"/>
+	
 	
 	<!-- 게임구매 컨트롤러 추가 (오우석) -->
 	<bean id="gameBuy" class="spring.control.GameBuyControl"/>
