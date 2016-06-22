@@ -4,6 +4,7 @@
 	역 할 : 상세보기 탬 
 	로 그 : 1.프로그램 최초 생성(오우석 2016/06/16)
 	        2.광고추가, 알림창 추가, 정보 수정(오우석 2016/06/20)
+	        3.게임구매방법tab 완료(오우석 2016/06/21)
 	*/ 
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -30,6 +31,22 @@
 	text-align: center;
 	border-bottom: 1px dashed gray;
 }
+.title{
+	font-size: 20px;
+	font: bold;
+	color: blue; 
+}
+#info_text ul {
+	margin-left: 10px;
+}
+#info_text ul li{
+	margin: 10px;
+}
+.sub_title{
+	font-size: 15px;
+	font: bold;
+	color: highlighttext; 
+}
 </style>
 <div class="center_side">
 	<ul class="nav nav-tabs nav-justified">
@@ -42,7 +59,43 @@
 	</ul>
 </div>
 <div class="fclear"></div>
-<div class="tab_cont" id="tab1">첫번째 tab</div>
+<div class="tab_cont" id="tab1">
+<!-- 게임구매방법tab 완료(오우석 2016/06/21) -->
+	<div id="buy_info" style="border: none;">
+		<img alt="" src="img/info.jpg" width="100%" />
+	</div>
+	<div id="info_text">
+		<div id="information">
+			<h3 class="title">01 프로야구 승무패란?</h3>
+			<ul>
+				<li><h5 class="sub_title">1.게임방법</h5></li>
+				<li><span> 국내 프로야구 하루 5경기를 대상으로 홈팀의 승/무/패를 맞히는 게임입니다.<br />
+						연장전도 포함됩니다.<br /></span></li>
+				<li><p>※ 승 : 홈팀 승 / 무: 무승부 / 패 : 홈팀 패</p></li>
+				<br />
+				<li><h5 class="sub_title">
+						2.최소구매가능금액은 <font color="orange">1000</font>원 입니다.
+					</h5></li>
+			</ul>
+			<br />
+			<h3 class="title">02 경기정보 활용법</h3>
+			<ul>
+				<li><h1 class="sub_title" style="text-align: center;">
+						Many Information 구매 시 필요한 다앙한 정보를 제공합니다.<br />
+					</h1>
+				<li><img alt="" src="img/match_info.jpg" width="100%" /></li>
+			</ul>
+			<h3 class="title">03 구매하기</h3>
+			<ul>
+				<li><img alt="" src="img/buy_info.jpg" width="100%" /></li>
+				<li class="sub_title"><span> <font color="red">홈팀
+							기준입니다.</font><br /></span></li>
+				<li><p>※ 승 : 홈팀 승 / 무: 무승부 / 패 : 홈팀 패</p></li>
+				<li>최소 1000원이상 구매하셔야 합니다.</li>
+			</ul>
+		</div>
+	</div>
+</div>
 <div class="tab_cont show" id="tab2">
 	<div id="ad">
 		<p>
