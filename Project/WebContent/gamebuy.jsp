@@ -4,6 +4,7 @@
 	역 할 : 구매페이지 
 	로 그 : 1.프로그램 최초 생성(오우석 2016/06/21)
 			2.게임구매방법tab 완료(오우석 2016/06/21)
+			2.게임결제시 최소금액 1000원 검사 로직 추가(오우석 2016/06/22)
 	*/ 
  -->
 <%@page import="mybatis.vo.MemberVO"%>
@@ -90,8 +91,12 @@ function trans(temp) {
 	}
 }
 function info_send(){
-	hiddenWin();
-	document.getElementById("f").submit();
+	if(document.getElementById("coin").value < 1000){
+		alert("최소구매가능금액은 1000원입니다.");
+	}else{
+		hiddenWin();
+		document.getElementById("f").submit();
+	}
 }
 function showWin(){
 	if('${vo}' == null){
@@ -303,8 +308,8 @@ function hiddenWin(){
 		 	<input type="radio" name="result" value="${game.away_code }"/>패
 		 	<br/>
 		 	<label for="coin">배팅코인: </label>
-		 	<input type="text" id="coin" name="coin"/>
-		 	<button id="go" onclick="javascript:info_send()">배팅하기</button>
+		 	<input type="text" id="coin" name="coin"/><br/>
+		 	<input type="button" id="go" onclick="javascript:info_send()" value="배팅하기"/>
 			<input name="match_code" type="hidden" value="${game.match_code }"/>
 			<input name="id" type="hidden" value="${vo.id }"/>
 		</form>
