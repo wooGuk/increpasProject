@@ -78,11 +78,22 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 <style type="text/css">
-	.info{
-		width: 70%;
+	a:HOVER{
+		background-color: #red;
 	}
-	.info th, .info td{
+	.info, .selectTable{
+		width: 70%;
+		border: 1px solid black;
+	}
+	.selectTable input{
+		height: 30px;
+		width: 90px;
+	}
+	.info th, .info td, .info tr{
 		text-align: center;
+	}
+	.info tr, .info td{
+		border: 1px solid black;
 	}
 	.table-condensed select{
 		width: 60px;
@@ -159,7 +170,7 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 			<c:if test="${infoFlag =='viewMatch'}">
 				<!-- 날짜선택 table 시작 -->
 				<form action="viewSelectDateMatch.inc" method="post" id="selectDateForm">
-					<table class="table-condensed info">
+					<table class="table-condensed selectTable">
 						<tbody>
 							<tr>
 								<td>
@@ -214,7 +225,7 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 											}
 											else{
 									%>
-											<option value="<%=i%>"><%=i%></option>		
+											<option value="<%=i%>" onclick="sendDate()"><%=i%></option>		
 									<%				
 											}
 										}
@@ -222,20 +233,18 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 									</select>
 									<span>일</span>
 								</td>
-								<td style="text-align: left;">
-									<a href="javascript:sendDate()">경기보기</a>
+								<td></td>
+								<td>
+									<input type="button" value="어제경기보기" 
+									onclick="javascript:location.href='viewMatch.inc?day=yesterday'" title="<%=yesterday%>"> 
 								</td>
 								<td>
-									<a href="viewMatch.inc?day=yesterday">어제경기</a><br>
-									<span><%=yesterday %></span>
+									<input type="button" value="오늘경기보기" 
+									onclick="javascript:location.href='viewMatch.inc?day=today'" title="<%=today%>"> 
 								</td>
 								<td>
-									<a href="viewMatch.inc?day=today">오늘경기</a><br>
-									<span><%=today %></span>
-								</td>
-								<td>
-									<a href="viewMatch.inc?day=tomorrow">내일경기</a><br>
-									<span><%=tomorrow%></span>
+									<input type="button" value="내일경기보기" 
+									onclick="javascript:location.href='viewMatch.inc?day=tomorrow'" title="<%=tomorrow%>"> 
 								</td>
 							</tr>
 						</tbody>
@@ -245,10 +254,8 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 				<%
 					if(games.length == 0){
 				%>
-					<div style="text-align: center; margin-top: 20px;" >
-						<span style="font-size: 30px; color: red">
-							경기정보가 DB에 없습니다.
-						</span>
+					<div style="text-align: center; margin-top: 20px; width: 85%;" >
+						<span style="font-size: 30px; color: red">경기정보가 DB에 없습니다.</span>
 					</div>
 				<%		
 					}
@@ -258,9 +265,9 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 						<thead>
 							<tr>
 								<th>HOME</th>
-								<th>SCORE</th>
+								<th style="width: 50px;">SCORE</th>
 								<th>장소</th>
-								<th>SCORE</th>
+								<th style="width: 50px;">SCORE</th>
 								<th>AWAY</th>
 							</tr>
 						</thead>
