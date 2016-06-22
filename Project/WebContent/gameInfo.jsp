@@ -242,49 +242,64 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 					</table>
 				</form>
 				<!-- 날짜선택 table 종료 -->
-			
-				<table class="table-condensed info">
-					<thead>
-						<tr>
-							<th>HOME</th>
-							<th>SCORE</th>
-							<th>장소</th>
-							<th>SCORE</th>
-							<th>AWAY</th>
-						</tr>
-					</thead>
-					<tbody>
-						<!-- 반복문 돌면서 경기일정 출력 -->
-						<%
-							for(int i=0; i<games.length; i++){
-						%>
-								<tr>
-									<td>
-										<img alt="" src="<%=logo.get(games[i].getHome_code()) %>"><br>
-										<b><%=games[i].teamName(games[i].getHome_code()) %></b><br>
-										<b>(선발투수:<%=games[i].getHome_pitcher() %>)</b>
-									</td>
-									<td>
-										<b><%=games[i].getHome_score() %></b>
-									</td>
-									<td>
-										<b>vs</b><br>
-										<b>(<%=games[i].homeName(games[i].getHome_code()) %>)</b>
-									</td>
-									<td>
-										<b><%=games[i].getAway_score() %></b>
-									</td>
-									<td>
-										<img alt="" src="<%=logo.get(games[i].getAway_code()) %>"><br>
-										<b><%=games[i].teamName(games[i].getAway_code()) %></b><br>
-										<b>(선발투수:<%=games[i].getAway_pitcher() %>)</b>
-									</td>
-								</tr>
-						<%
-							}//for()
-						%>		
-					</tbody>
-				</table>
+				<%
+					if(games.length == 0){
+				%>
+					<div style="text-align: center; margin-top: 20px;" >
+						<span style="font-size: 30px; color: red">
+							경기정보가 DB에 없습니다.
+						</span>
+					</div>
+				<%		
+					}
+					else{
+				%>
+					<table class="table-condensed info">
+						<thead>
+							<tr>
+								<th>HOME</th>
+								<th>SCORE</th>
+								<th>장소</th>
+								<th>SCORE</th>
+								<th>AWAY</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- 반복문 돌면서 경기일정 출력 -->
+							<%
+								for(int i=0; i<games.length; i++){
+							%>
+									<tr>
+										<td>
+											<img alt="" src="<%=logo.get(games[i].getHome_code()) %>"><br>
+											<b><%=games[i].teamName(games[i].getHome_code()) %></b><br>
+											<b>(선발투수:<%=games[i].getHome_pitcher() %>)</b>
+										</td>
+										<td>
+											<b><%=games[i].getHome_score() %></b>
+										</td>
+										<td>
+											<b>vs</b><br>
+											<b>(<%=games[i].homeName(games[i].getHome_code()) %>)</b>
+										</td>
+										<td>
+											<b><%=games[i].getAway_score() %></b>
+										</td>
+										<td>
+											<img alt="" src="<%=logo.get(games[i].getAway_code()) %>"><br>
+											<b><%=games[i].teamName(games[i].getAway_code()) %></b><br>
+											<b>(선발투수:<%=games[i].getAway_pitcher() %>)</b>
+										</td>
+									</tr>
+							<%
+								}//for()
+							%>		
+						</tbody>
+					</table>
+				<%		
+					}
+				%>
+
 			</c:if>
 			<!-- 경기일정보기 종료 -->
 			<div class="fclear"></div>
