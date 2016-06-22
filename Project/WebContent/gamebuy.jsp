@@ -193,7 +193,7 @@ function hiddenWin(){
 							color="#000">${game.teamName(game.home_code) } vs
 								${game.teamName(game.away_code) }</font></td>
 						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-							color="blue">_vs_</font></td>
+							color="blue">${game.home_pitcher } vs ${game.away_pitcher }</font></td>
 						<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="red"> 2배 </font></td>
 					</tr>
 					<tr>
