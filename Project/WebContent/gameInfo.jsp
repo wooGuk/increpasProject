@@ -190,7 +190,7 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 								</select>
 								<span>일</span>
 							</td>
-							<td>
+							<td style="text-align: left;">
 								<a href="javascript:sendDate()">경기보기</a>
 							</td>
 							<td>
