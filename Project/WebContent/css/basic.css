@@ -175,7 +175,7 @@ input.join{
 	height: 100%;
 	margin: auto;
 }
-.gameInfoTable td{
+.gameInfoTable td, th{
 	text-align: center;
 	border: 1px solid black;
 }
