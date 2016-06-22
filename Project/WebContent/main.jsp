@@ -54,6 +54,11 @@
  					<td colspan="2">
  						<div class="gameInfo">
  							<table class="gameInfoTable">
+ 								<thead>
+ 									<tr>
+ 										<th colspan="3">TODAY MATCH</th>
+ 									</tr>
+ 								</thead>
 								<tbody>
 								<!-- 반복문 돌면서 경기일정 출력 -->
 								<%
