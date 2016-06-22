@@ -59,6 +59,14 @@ int nextYear=cal.get(Calendar.YEAR);
 int nextMonth=cal.get(Calendar.MONTH)+1;
 int nextDay=cal.get(Calendar.DAY_OF_MONTH);
 
+//yyyy가 파라미터에 없다는 소리는 첫 화면진입.
+//이때는 현재날짜로 세팅
+if(yyyy.equals("null")){
+	yyyy=String.valueOf(nowYear);
+	mm=String.valueOf(nowMonth);
+	dd=String.valueOf(nowDay);
+}
+
 //어제, 오늘, 내일 날짜 포맷 설정
 String yesterday = String.format("%d/%d/%d", preYear, preMonth, preDay);
 String today = String.format("%d/%d/%d", nowYear, nowMonth, nowDay);
@@ -126,34 +134,16 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 								<!-- 년 -->
 								<select name="yyyy">
 									<%
-										//yyyy가 null이면 현재 년도로
-										if(yyyy==null){
-											for(int i=2014; i<=2016; i++){
-												if(i == nowYear){
+										for(int i=2014; i<=2016; i++){
+											if(i == Integer.parseInt(yyyy)){
 									%>
 												<option value="<%=i%>" selected="selected"><%=i%></option>
 									<%				
-												}
-												else{
-									%>
-												<option value="<%=i%>"><%=i%></option>		
-									<%				
-												}
 											}
-										}
-										//yyyy가 null이 아니면 선택한 년도로
-										else{
-											for(int i=2014; i<=2016; i++){
-												if(i == Integer.parseInt(yyyy)){
+											else{
 									%>
-												<option value="<%=i%>" selected="selected"><%=i%></option>
+											<option value="<%=i%>"><%=i%></option>		
 									<%				
-												}
-												else{
-									%>
-												<option value="<%=i%>"><%=i%></option>		
-									<%				
-												}
 											}
 										}
 									%>
@@ -164,34 +154,16 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 								<!-- 월 -->
 								<select name="mm">
 									<%
-										//mm이 null이면 현재 월로
-										if(mm==null){
-											for(int i=1; i<=12; i++){
-												if(i == nowMonth){
+										for(int i=1; i<=12; i++){
+											if(i == Integer.parseInt(mm)){
 									%>
 												<option value="<%=i%>" selected="selected"><%=i%></option>
 									<%				
-												}
-												else{
-									%>
-												<option value="<%=i%>"><%=i%></option>		
-									<%				
-												}
 											}
-										}
-										//mm이 null이 아니면 선택한 월로
-										else{
-											for(int i=1; i<=12; i++){
-												if(i == Integer.parseInt(mm)){
+											else{
 									%>
-												<option value="<%=i%>" selected="selected"><%=i%></option>
+											<option value="<%=i%>"><%=i%></option>		
 									<%				
-												}
-												else{
-									%>
-												<option value="<%=i%>"><%=i%></option>		
-									<%				
-												}
 											}
 										}
 									%>
@@ -201,38 +173,20 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 							<td>
 								<!-- 일 -->
 								<select name="dd">
-									<%
-										//dd가 null이면 현재 일로
-										if(dd==null){
-											for(int i=1; i<=31; i++){
-												if(i == nowDay){
-									%>
-												<option value="<%=i%>" selected="selected"><%=i%></option>
-									<%				
-												}
-												else{
-									%>
-												<option value="<%=i%>"><%=i%></option>		
-									<%				
-												}
-											}
+								<%
+									for(int i=1; i<=31; i++){
+										if(i == Integer.parseInt(dd)){
+								%>
+										<option value="<%=i%>" selected="selected"><%=i%></option>
+								<%				
 										}
-										//dd가 null이 아니면 선택한 일로
 										else{
-											for(int i=1; i<=31; i++){
-												if(i == Integer.parseInt(dd)){
-									%>
-												<option value="<%=i%>" selected="selected"><%=i%></option>
-									<%				
-												}
-												else{
-									%>
-												<option value="<%=i%>"><%=i%></option>		
-									<%				
-												}
-											}
+								%>
+										<option value="<%=i%>"><%=i%></option>		
+								<%				
 										}
-									%>
+									}
+								%>
 								</select>
 								<span>일</span>
 							</td>
