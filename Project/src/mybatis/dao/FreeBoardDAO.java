@@ -41,18 +41,14 @@ public class FreeBoardDAO {
 	}
 	
 	// 원글 저장 메서드
-	public boolean wirteBbs(FreeBoardVO vo){
-		
-		
-		int cnt = template.insert("board.write",vo);
-		if(cnt > 0)
-			return true;
-		else
-			return false;
+	public FreeBoardVO writeBbs(FreeBoardVO vo){
+		//template.insert("board.write",vo);
+		template.insert("board.write", vo);
+		return vo;
 	}
 	
 	// 기본키로 게시물을 보는 메서드
-	public FreeBoardVO getBbs(String seq){
+	/*public FreeBoardVO getBbs(String seq){
 		
 		FreeBoardVO vo = template.selectOne("board.getBbs",seq);
 
@@ -79,6 +75,6 @@ public class FreeBoardDAO {
 	public void delBbs(FreeBoardVO vo){
 		template.update("board.delBbs",vo);
 	}
-		
+		*/
 	
 }
