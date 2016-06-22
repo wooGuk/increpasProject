@@ -169,7 +169,8 @@ public class MainControl {
 	public ModelAndView gameInfo(){
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/gameInfo");
+		//오늘 경기일정보여주기로 바로 이동
+		mv.setViewName("redirect:/viewMatch.inc?day=today");
 	
 		return mv;
 	}
