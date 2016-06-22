@@ -12,6 +12,7 @@
 			9.경기일정보기(정성훈2016.06.20)
 			10.어제경기,오늘경기,내일경기보기 (정성훈 2016.06.21)
 			11.선발투수, 장소 추가 (정성훈 2016.06.21)
+			12.경기날짜 선택 기능 추가(정성훈 2016.06.22)
 	*/
 
 package spring.control;
@@ -195,9 +196,9 @@ public class MainControl {
 		ModelAndView mv = new ModelAndView();
 		//모든경기일정 가져오기
 		MatchVO[] allGames = matchDao.schedule();
-		MatchVO[] games = selectDayMatch(allGames, day);
+		//파라미터로 받은 day로 구분하여 경기정보를 리턴해주는 함수 호출
+		MatchVO[] games = recentDayMatch(allGames, day, mv);
 		
-
 		mv.addObject("games", games);
 		mv.addObject("infoFlag", "viewMatch");
 		mv.setViewName("/gameInfo");
@@ -205,22 +206,68 @@ public class MainControl {
 		return mv;
 	}
 	
-	private MatchVO[] selectDayMatch(MatchVO[] allGames, String day){
+	//선택된 날짜 경기 보여주기 (정성훈 2016.06.22)
+	@RequestMapping("/viewSelectDateMatch.inc")
+	public ModelAndView viewSelectDateMatch(){
+		
+		//선택된 날짜를 파라미터로 받는다.
+		int yyyy = Integer.parseInt(request.getParameter("yyyy"));
+		int mm = Integer.parseInt(request.getParameter("mm"));
+		int dd = Integer.parseInt(request.getParameter("dd"));
+		
+		//DB 모든경기일정 가져오기
+		MatchVO[] allGames = matchDao.schedule();
+		
+		//선택된 날짜의 경기를 담을 리스트
 		ArrayList<MatchVO> list = new ArrayList<>();
+		
+		//모든경기일정을 돌면서
+		for(int i=0; i<allGames.length; i++){
+			//선택된 날짜와 같은 날짜 경기만 뽑는다.
+			if(allGames[i].getMatch_year() == yyyy && allGames[i].getMatch_month()== mm && allGames[i].getMatch_day()==dd){
+				//리스트에 추가시킨다.
+				list.add(allGames[i]);
+			}
+		}//for()
+		
+		//리스트 크기만큼 배열을 만들어 복사한다.
+		MatchVO[] games = null;
+		if(list != null || !(list.isEmpty())){
+			games = new MatchVO[list.size()];
+			list.toArray(games);
+		}
+		//games배열에는 선택된 날짜의 경기가 들어가게 된다.
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("games", games);
+		mv.addObject("infoFlag", "viewMatch");
+		//선택한 날짜 파라미터에 담기
+		mv.addObject("yyyy", yyyy);
+		mv.addObject("mm", mm);
+		mv.addObject("dd", dd);
+		mv.setViewName("/gameInfo");
+		
+		return mv;
+	}
+	
+	//어제, 오늘, 내일 경기보기 클릭시 
+	//어제, 오늘, 내일을 구분해서 해당 경기정보 리턴해주는 함수
+	private MatchVO[] recentDayMatch(MatchVO[] allGames, String day, ModelAndView mv){
+		ArrayList<MatchVO> list = new ArrayList<>(); // 경기정보를 담을 리스트
 		
 		Calendar cal = Calendar.getInstance();
 
-		cal.add(Calendar.DATE,-1);
+		cal.add(Calendar.DATE,-1); // 어제(오늘에서 -1)
 		int preYear=cal.get(Calendar.YEAR);
 		int preMonth=cal.get(Calendar.MONTH)+1;
 		int preDay=cal.get(Calendar.DAY_OF_MONTH);
 
-		cal.add(Calendar.DATE,1);
+		cal.add(Calendar.DATE,1); // 오늘(어제에서 +1)
 		int nowYear=cal.get(Calendar.YEAR);
 		int nowMonth=cal.get(Calendar.MONTH)+1;
 		int nowDay=cal.get(Calendar.DAY_OF_MONTH);
 
-		cal.add(Calendar.DATE,1);
+		cal.add(Calendar.DATE,1); // 내일(오늘에서 +1)
 		int nextYear=cal.get(Calendar.YEAR);
 		int nextMonth=cal.get(Calendar.MONTH)+1;
 		int nextDay=cal.get(Calendar.DAY_OF_MONTH);
@@ -231,6 +278,10 @@ public class MainControl {
 				MatchVO vo = allGames[i];
 				if(preYear == vo.getMatch_year() && preMonth == vo.getMatch_month() && preDay == vo.getMatch_day()){
 					list.add(vo);
+					//어제 날짜 파라미터로 설정
+					mv.addObject("yyyy", preYear);
+					mv.addObject("mm", preMonth);
+					mv.addObject("dd", preDay);
 				}
 			}
 			break;
@@ -239,6 +290,10 @@ public class MainControl {
 				MatchVO vo = allGames[i];
 				if(nowYear == vo.getMatch_year() && nowMonth == vo.getMatch_month() && nowDay == vo.getMatch_day()){
 					list.add(vo);
+					//오늘 날짜 파라미터로 설정
+					mv.addObject("yyyy", nowYear);
+					mv.addObject("mm", nowMonth);
+					mv.addObject("dd", nowDay);
 				}
 			}
 			break;
@@ -247,10 +302,16 @@ public class MainControl {
 				MatchVO vo = allGames[i];
 				if(nextYear == vo.getMatch_year() && nextMonth == vo.getMatch_month() && nextDay == vo.getMatch_day()){
 					list.add(vo);
+					//내일 날짜 파라미터로 설정
+					mv.addObject("yyyy", nextYear);
+					mv.addObject("mm", nextMonth);
+					mv.addObject("dd", nextDay);
 				}
 			}
 			break;
 		}//switch()
+		
+		//리스트 사이즈만큼의 배열에 경기정보를 담는다.
 		MatchVO[] games = null;
 		if(list != null || !(list.isEmpty())){
 			games = new MatchVO[list.size()];
