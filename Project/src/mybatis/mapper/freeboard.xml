@@ -22,10 +22,10 @@
 	<!-- 원글 저장하기 -->
 	<insert id="write" parameterType="mybatis.vo.FreeBoardVO">
 		insert into freeboard(seq, title, content, hit, groups, step, lev, bname,
-		regdate, uploadFileName, ip, status)
-		values(freeboard_seq.NEXTVAL, #{title}, #{content}, 0, freeboard_group.NEXTVAL,
+		regdate, uploadFileName, ip, status,id,password)
+		values(freeboard_seq.nextval, #{title}, #{content}, 0, freeboard_group.nextval,
 		0, 0, #{bname}, sysdate, #{uploadFileName},
-		#{ip}, 0)
+		#{ip}, 0,#{id},#{password})
 	</insert>
 
 
@@ -44,12 +44,12 @@
 	</insert> -->
 
 	<!-- 게시물 보기 기능을 위해 기본키로 검색하는 select -->
-	<!-- <select id="getBbs" parameterType="String" resultType="mybatis.vo.FreeBoardVO">
+	 <select id="getBbs" parameterType="String" resultType="mybatis.vo.FreeBoardVO">
 		select *
 		from FreeBoard
 		where seq = #{seq}
 	</select>
- -->
+
 
 	<!-- 게시물을 수정하는 update(기본키와 비밀번호가 필요) -->
 	 <!-- <update id="edit" parameterType="mybatis.vo.FreeBoardVO">
@@ -63,10 +63,10 @@
 		where seq = #{seq} AND pwd = #{pwd}
 	</update> -->
 
-	 <!-- <update id="delBbs" parameterType="mybatis.vo.FreeBoardVO">
+	<update id="delBbs" parameterType="mybatis.vo.FreeBoardVO">
 		UPDATE FreeBoard
 		SET status = 1
-		WHERE seq = #{seq} AND pwd = #{pwd}
-	</update>  -->
+		WHERE id = #{id} AND password = #{password}
+	</update> 
 
 </mapper>
