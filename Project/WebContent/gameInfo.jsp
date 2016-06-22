@@ -65,7 +65,7 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 <style type="text/css">
 	.info{
-		width: 80%;
+		width: 70%;
 	}
 	.info th, .info td{
 		text-align: center;
@@ -135,7 +135,7 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 								<a href="viewMatch.inc?day=yesterday">어제경기</a><br>
 								<span><%=yesterday %></span>
 							</th>
-							<th>
+							<th colspan="3">
 								<a href="viewMatch.inc?day=today">오늘경기</a><br>
 								<span><%=today %></span>
 							</th>
@@ -146,7 +146,9 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 						</tr>
 						<tr>
 							<th>HOME</th>
-							<th></th>
+							<th>SCORE</th>
+							<th>장소</th>
+							<th>SCORE</th>
 							<th>AWAY</th>
 						</tr>
 					</thead>
@@ -157,17 +159,23 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 						%>
 								<tr>
 									<td>
-										<img alt="" src="<%=logo.get(games[i].getHome_code()) %>">
-										<b><%=games[i].teamName(games[i].getHome_code()) %></b>
+										<img alt="" src="<%=logo.get(games[i].getHome_code()) %>"><br>
+										<b><%=games[i].teamName(games[i].getHome_code()) %></b><br>
 										<b>(선발투수:<%=games[i].getHome_pitcher() %>)</b>
+									</td>
+									<td>
+										<b><%=games[i].getHome_score() %></b>
 									</td>
 									<td>
 										<b>vs</b><br>
 										<b>(<%=games[i].homeName(games[i].getHome_code()) %>)</b>
 									</td>
 									<td>
-										<img alt="" src="<%=logo.get(games[i].getAway_code()) %>">
-										<b><%=games[i].teamName(games[i].getAway_code()) %></b>
+										<b><%=games[i].getAway_score() %></b>
+									</td>
+									<td>
+										<img alt="" src="<%=logo.get(games[i].getAway_code()) %>"><br>
+										<b><%=games[i].teamName(games[i].getAway_code()) %></b><br>
 										<b>(선발투수:<%=games[i].getAway_pitcher() %>)</b>
 									</td>
 								</tr>
