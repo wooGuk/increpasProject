@@ -10,7 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 
 import mybatis.vo.FreeBoardVO;
-
+/*
+	제 목 : FreeBoardDAO
+	역 할 : id검색, 로그인, 회원가입 등등을 한다.
+	로 그 : 자유게시판 (장준수 2016/06/22)
+		
+*/
 public class FreeBoardDAO {
 	
 	@Autowired
@@ -48,14 +53,19 @@ public class FreeBoardDAO {
 	}
 	
 	// 기본키로 게시물을 보는 메서드
-	/*public FreeBoardVO getBbs(String seq){
+	public FreeBoardVO getBbs(String seq){
 		
 		FreeBoardVO vo = template.selectOne("board.getBbs",seq);
 
 		return vo;
 	}
 	
-	public void editBbs(FreeBoardVO vo){
+	// 삭제
+	public void delBbs(FreeBoardVO vo){
+		template.update("board.delBbs",vo);
+	}
+	
+	/*public void editBbs(FreeBoardVO vo){
 		
 		template.update("board.edit", vo);
 	
@@ -71,10 +81,6 @@ public class FreeBoardDAO {
 		template.insert("board.addAns",vo);
 	}
 	
-	// 삭제
-	public void delBbs(FreeBoardVO vo){
-		template.update("board.delBbs",vo);
-	}
 		*/
 	
 }
