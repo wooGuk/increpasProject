@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-
+<%@page import="java.util.List, mybatis.vo.FreeBoardVO, mybatis.vo.MemberVO" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -58,7 +58,7 @@
 					<tr>
 					  <td class="t1" style="background:#669AB3;"><font color="#FFFFFF">번호</font></td>
 					  <td class="t2" style="background:#669AB3;"><font color="#FFFFFF">제목</font></td>
-					  <td class="t3" style="background:#669AB3;"><font color="#FFFFFF">글쓴이</font></td>
+					  <td class="t3" style="background:#669AB3;"><font color="#FFFFFF">아이디</font></td>
 					  <td class="t4" style="background:#669AB3;"><font color="#FFFFFF">날짜</font></td>
 					  <td class="t5" style="background:#669AB3;"><font color="#FFFFFF">조회수</font></td>
 					</tr>
@@ -87,7 +87,7 @@
 							${vo.title }
 						</a>
                       </td>
-					  <td style="background:#F2F7F9">${vo.writer }</td>
+					  <td style="background:#F2F7F9"></td>
 					  <td style="background:#F2F7F9">${vo.regdate }</td>
 					  <td style="background:#F2F7F9">${vo.hit }</td>
 					</tr>
