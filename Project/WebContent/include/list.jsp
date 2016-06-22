@@ -13,14 +13,14 @@ div#contents_sub {
 	margin-left: 350px;
 }
 
-	.t1{width: 10%;text-align: center; height: 20px;}
-	.t2{width: 40%;text-align: center; height: 20px;}
-	.t3{width: 20%;text-align: center; height: 20px;}
-	.t4{width: 30px;text-align: center; height: 20px;}
-	.t5{width: 30px;text-align: center; height: 20px;}
+	.t1{width: 5%;text-align: center; height: 30px; border-right:1px solid #ccc;}
+	.t2{width: 40%;text-align: center; height: 30px; border-right:1px solid #ccc;}
+	.t3{width: 10%;text-align: center; height: 30px; border-right:1px solid #ccc;}
+	.t4{width: 30px;text-align: center; height: 30px; border-right:1px solid #ccc;}
+	.t5{width: 30px;text-align: center; height: 30px;}
 
 #writebtn {
-	margin-left: 750px;
+	margin-left: 780px;
 }
 
 #listTable{
@@ -29,6 +29,10 @@ div#contents_sub {
 		height: 150px;
 		margin-top: 20px;
 }
+
+/* #listTable tr td{
+	border-right:1px solid #ccc;
+} */
 
 </style>
 </head>
