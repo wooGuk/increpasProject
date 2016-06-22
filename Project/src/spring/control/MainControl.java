@@ -245,7 +245,7 @@ public class MainControl {
 		case "tomorrow":
 			for(int i=0; i<allGames.length; i++){
 				MatchVO vo = allGames[i];
-				if(nextYear == vo.getMatch_year() && nextMonth == vo.getMatch_month() && nextDay+1 == vo.getMatch_day()){
+				if(nextYear == vo.getMatch_year() && nextMonth == vo.getMatch_month() && nextDay == vo.getMatch_day()){
 					list.add(vo);
 				}
 			}
