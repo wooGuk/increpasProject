@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,96 +7,103 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function check(ff){
-		var title = document.getElementById("title").value;
-		var upload = document.getElementById("upload").value;
-		var content = document.getElementById("content").value;
-		alert(title);
-		alert(content);
-		alert(upload);
+
 		ff.submit();
 }
 </script>
+<style type="text/css">
+	#writetable{
+		margin-top: 40px;
+		margin-left: 500px;
+	}
+	
+	#writetable {border:none; border-top:2px solid #ddd;}
+	#writetable th {border-bottom:1px solid #ccc; border-left:1px solid #ccc; 
+	border-right:1px solid #ccc; padding:10px 0 10px 25px; font-weight:bold; background:#efefef; font-size: 15px}
+	#writetable td {border-bottom:1px solid #ddd; padding:10px; font-weight: bold;}
+	
+	#title{margin: -9px;}
+	#content{margin: -9px;}
+	#upload{margin-left: -9px;}
+	
+	#move{
+		display: inline-block;
+		margin-left: 680px;
+		margin-top: 20px;
+	}
+	
+	div#move input[type=button],input[type=reset] {
+		display: inline;
+		width: 70px;
+		height: 27px;
+		margin: 10px auto;
+		font-size: 15px;
+		font-weight: bold;
+		border: 1px solid #dcdcdc;
+		margin-left: 10px;
+	}
+	
+	#idcolor{
+		color: #FF0000;
+	}
+	
+</style>
 </head>
 <body>
+<body>
+	<div id="wrap">
+		<jsp:include page="include/header.jsp"></jsp:include>
+	
+		<div id="write">
+		<form action="write.inc" method="post" enctype="multipart/form-data">
+			<input type="hidden" id="id" name="id" value=${vo.id } /> <input
+				type="hidden" id="password" name="password" value=${vo.password } />
 
-<form action="write.inc" method="post" enctype="multipart/form-data">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td valign="top">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td align="center" height="10"></td>
-        </tr>
-        <tr>
-          <td align="center"><u><b>자유게시판</b></u></td>
-        </tr>
-        <tr>
-          <td align="center" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td>&nbsp;</td>
-              </tr>
-            </table>
-            
-            <table width="556" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td height="2" bgcolor="#C3C3C3"></td>
-              </tr>
-              <tr>
-                <td bgcolor="#E5E5E5"><table width="100%" border="0" cellspacing="1" cellpadding="2">
+			<table id="writetable">
+				<colgroup>
+					<col width="130px">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>아이디</th>
+						<td>
+							<label for="name" class="hidden">아이디</label>
+							<h3 id="idcolor">${vo.id }</h3>
+						</td>
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td>
+							<label for="title" class="hidden">제목</label>
+							<input type="text" name="title" id="title" class="join"/>
+						</td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td id="area">
+							 <label for="content" class="hidden">내용</label>
+							 <textarea rows="13" cols="50" name="content" id="content" class="join"></textarea>
+	
+						</td>
+					</tr>
 
-                    <tr>
-                      <td width="90" height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">아이디</font></td>
-                      <td bgcolor="#F2F7F9" align="left">${vo.id}</td>
-                    </tr>
-
-                    <tr>
-                      <td height="20" align="center" bgcolor="#669AB3">
-                      <font color="#FFFFFF">제목</font></td>
-                      <td bgcolor="#F2F7F9" align="left">
-                      <input type="text" name="title" id="title" size="50" theme="simple"/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">내용</font></td>
-                      <td bgcolor="#F2F7F9" align="left"><textarea name="content" id="content" cols="50" rows="10" theme="simple"></textarea></td>
-                    </tr>
-                    <tr>
-                      <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">첨부파일</font></td>
-                      <td bgcolor="#F2F7F9" align="left">
-                        <input type="file" name="upload" id="upload" cssStyle="width:300px" theme="simple"/>
-                      </td>
-                    </tr>
-                    
-                  </table></td>
-              </tr>
-            </table>
-            <table width="556" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td height="20" valign="middle"><img src="/img/sub_it/point_line.gif" width="556" height="3"></td>
-              </tr>
-              <tr>
-                <td align="right"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="315" align="center">
-                        
-                      </td>
-                      <td width="241" align="right">
-                      <input type="button" onclick="check(this.form)" value="보내기"/>
-                      <input type="reset" value="재입력"/>
-                      <input type="button" value="취소" onclick="javascript:location.href='freeBoard.inc'"/>
-                      </td>
-                    </tr>
-                  </table></td>
-              </tr>
-            </table></td>
-        </tr>
-        <tr>
-          <td height="19"></td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
-</form>
+					<tr>
+						<th>첨부파일</th>
+						<td>
+							 <label for="file" class="hidden">첨부파일</label>
+							 <input type="file" name="upload" id="upload" class="join"/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div id="move">
+				<input type="button" onclick="check(this.form)" value="보내기" />
+				<input type="reset" value="재입력" />
+				<input type="button" value="취소"onclick="javascript:location.href='freeBoard.inc'" />
+			</div>	
+		</form>
+	</div>
+</div>
 </body>
 </html>
