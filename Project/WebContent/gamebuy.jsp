@@ -23,8 +23,8 @@ function trans(temp) {
 	var tab1 = document.getElementById("tab1");
 	var tab2 = document.getElementById("tab2");
 	var tab3 = document.getElementById("tab3");
-	var tab3 = document.getElementById("tab4");
-	var tab3 = document.getElementById("tab5");
+	var tab4 = document.getElementById("tab4");
+	var tab5 = document.getElementById("tab5");
 	var t1 = document.getElementById("t1");
 	var t2 = document.getElementById("t2");
 	var t3 = document.getElementById("t3");
@@ -254,10 +254,46 @@ function hiddenWin(){
 		</div>
 		
 	</div>
-	<div class="tab_cont" id="tab3">
-
-	</div>
-	<div class="tab_cont" id="tab4">첫번째 tab</div>
+	<!-- 여기는 맞대결전적(상대전적 가져오기) -->
+		<div class="tab_cont" id="tab3">
+			<div class="vs_info" style="padding-top: 20px">
+				<h3>홈 기준 상대전적입니다.</h3>
+				<h4>양팀 상대 전적: ${total }전 ${win }승 ${lose }패</h4>
+				<table class="panel panel-default center_table" style="width: 100%">
+					<thead class="panel-heading">
+						<tr>
+							<td height="20" bgcolor="#669AB3" width="56"><font
+								color="#00F">회자</font></td>
+							<td height="20" bgcolor="#669AB3" width="56"><font
+								color="#00F">경기일자</font></td>
+							<td height="20" bgcolor="#669AB3" width="56"><font
+								color="#00F">대상경기</font></td>
+							<td height="20" bgcolor="#669AB3" width="56"><font
+								color="#00F">스코어</font></td>
+							<td height="20" bgcolor="#669AB3" width="56"><font
+								color="#00F">결과</font></td>
+						</tr>
+					</thead>
+					<tbody class="panel-bod">
+						<c:forEach var="vsgame" items="${vsGame }" varStatus="stat">
+							<tr>
+								<td height="20" bgcolor="#669AB3" width="56"><font
+									color="#000">${vsgame.match_code }</font></td>
+								<td height="20" bgcolor="#669AB3" width="56"><font
+									color="#000">${vsgame.match_year }년${vsgame.match_month }월${vsgame.match_day }</font></td>
+								<td height="20" bgcolor="#669AB3" width="56"><font
+									color="#000">${vsgame.teamName(vsgame.home_code) }:${vsgame.teamName(vsgame.away_code) }</font></td>
+								<td height="20" bgcolor="#669AB3" width="56"><font
+									color="#000">${vsgame.home_score } :${vsgame.away_score }</font></td>
+								<td height="20" bgcolor="#669AB3" width="56"><font
+									color="red">${vsgame.teamName(vsgame.result) } 승</font></a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="tab_cont" id="tab4">첫번째 tab</div>
 	<div class="tab_cont" id="tab5">첫번째 tab</div>
 	</div>
 	<div id="bat_window">
