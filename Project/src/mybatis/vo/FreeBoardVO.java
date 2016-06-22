@@ -5,10 +5,28 @@ import org.springframework.web.multipart.MultipartFile;
 public class FreeBoardVO {
 	
 	private String seq,title,content,hit,groups,step,lev,bname,regdate,
-	uploadFileName,ip,status;
+	uploadFileName,ip,status,id,password;
 	
 	private int nowPage;
 	
+	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	// 스프링환경에서 첨부된 파일을 받을 때는 반드시 다음의 자료형으로 받아야한다.
 	private MultipartFile upload;
 
