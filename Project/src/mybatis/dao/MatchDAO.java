@@ -95,5 +95,16 @@ public class MatchDAO {
 		System.out.println(list.size());
 		return games;
 	}
-
+	
+	//상대전적을 가저오기 위한 메소드 오숙 2016/06/22
+	public MatchVO[] vsMatch(Map<String, Integer> map){
+		List<MatchVO> list = template.selectList("match.vsMatch", map);
+		MatchVO[] games = null;
+		if(list != null || !(list.isEmpty())){
+			games = new MatchVO[list.size()];
+			list.toArray(games);
+		}
+		System.out.println(list.size());
+		return games;
+	}
 }

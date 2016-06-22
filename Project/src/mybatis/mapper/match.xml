@@ -97,6 +97,23 @@
 		order by match_code desc
 	</select>
 	
+	<!-- 상대전적을 가져오기 위한 sql문 개발(2016/06/22) -->
+	<!-- 상대전적 그리고 테이블 활용한 점수 까지 표현 가능 -->
+	<select id="vsMatch" resultType="mybatis.vo.MatchVO" parameterType="java.util.Map">
+		select MATCH_CODE,HOME_CODE,AWAY_CODE,
+		to_number(to_char(MATCH_DAY,'YYYY')) MATCH_YEAR,
+		to_number(to_char(MATCH_DAY,'MM')) MATCH_MONTH,
+		to_number(to_char(MATCH_DAY,'DD')) MATCH_DAY,
+		to_number(to_char(MATCH_DAY,'HH')) MATCH_HOUR,
+		HOME_PITCHER,
+		AWAY_PITCHER,
+		HOME_SCORE,
+		AWAY_SCORE,
+		RESULT
+		from match
+		where HOME_CODE =#{home_code} and AWAY_CODE=#{away_code} and result is not null
+	</select>
+	
 </mapper>
 
 

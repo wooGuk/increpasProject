@@ -163,10 +163,17 @@ public class GameBuyControl {
 		return mv;
 	}
 	
-	// 종료된 게임에서 세부사항을 보내주는 컨트롤러 오우석(2016/06/20)
+	// 게임구매 클릭시 나오는 세부사항 세팅 컨트롤러 오우석(2016/06/20)
+	// 상대전적을 구하기위한 과정 추가 오우석 (2016/06/22)
 	@RequestMapping("/buyGame.inc")
 	public ModelAndView gameBuy(){
+		int win=0,lose=0,total=0;
 		ModelAndView mv = new ModelAndView();
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("home_code", Integer.parseInt(request.getParameter("home_code")));
+		map.put("away_code", Integer.parseInt(request.getParameter("away_code")));
+		MatchVO[] vsGames=mDao.vsMatch(map);
+		
 		MatchVO vo = new MatchVO();
 		vo.setMatch_code(Integer.parseInt(request.getParameter("match_code")));
 		vo.setHome_code(Integer.parseInt(request.getParameter("home_code")));
@@ -179,8 +186,23 @@ public class GameBuyControl {
 		vo.setHome_pitcher(request.getParameter("home_pitcher"));
 		vo.setAway_pitcher(request.getParameter("away_pitcher"));
 		
+		
+		//승패 계산하기 위한 로직
+		total = vsGames.length;
+		for(int i=0;i<total;i++){
+			if(vsGames[i].getResult()==vsGames[i].getHome_code()){
+				win++;
+			}else{
+				lose++;
+			}
+		}
+		System.out.println(vsGames.length);
 		mv.addObject("game", vo);
-		mv.setViewName("gamebuy");
+		mv.addObject("vsGame",vsGames);
+		mv.addObject("total", total);
+		mv.addObject("win", win);
+		mv.addObject("lose", lose);
+		mv.setViewName("gamebuy"); //상대전적시 필요한 배열
 		return mv;
 	}
 	@RequestMapping("/buy")
