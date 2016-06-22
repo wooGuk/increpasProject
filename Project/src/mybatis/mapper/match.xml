@@ -37,6 +37,8 @@
 		to_number(to_char(MATCH_DAY,'HH')) MATCH_HOUR,
 		HOME_PITCHER,
 		AWAY_PITCHER,
+		HOME_SCORE,
+		AWAY_SCORE,
 		RESULT 
 		from match
  		where to_char(match_day,'yyyyy/mm/dd') = to_char(sysdate,'yyyyy/mm/dd')
@@ -87,7 +89,9 @@
 		to_number(to_char(MATCH_DAY,'DD')) MATCH_DAY,
 		to_number(to_char(MATCH_DAY,'HH')) MATCH_HOUR,
 		HOME_PITCHER,
-		AWAY_PITCHER
+		AWAY_PITCHER,
+		HOME_SCORE,
+		AWAY_SCORE,
 		from match
 		order by match_code desc
 	</select>

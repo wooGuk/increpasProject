@@ -15,9 +15,22 @@ import java.util.Calendar;
 
 public class MatchVO {
 	private int match_code, home_code, away_code, result;
-	private int match_year,match_month,match_day,match_hour;
+	private int match_year,match_month,match_day,match_hour,home_score,away_score;
 	private String home_pitcher,away_pitcher;
 	
+	
+	public int getHome_score() {
+		return home_score;
+	}
+	public void setHome_score(int home_score) {
+		this.home_score = home_score;
+	}
+	public int getAway_score() {
+		return away_score;
+	}
+	public void setAway_score(int away_score) {
+		this.away_score = away_score;
+	}
 	public String getHome_pitcher() {
 		return home_pitcher;
 	}
