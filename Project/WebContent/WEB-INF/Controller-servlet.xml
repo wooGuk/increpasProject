@@ -11,6 +11,11 @@
 	
 	<!-- 자유게시판 (장준수 2016/06/21) -->
  	<bean id="board" class="spring.control.FreeBoardControl"/>
+ 	<!-- 자유게시판 글쓰기 (장준수 2016/06/21) -->
+ 	 <bean id="write" class="spring.control.WriteControl">
+   		<property name="uploadPath" value="/upload"/>
+   </bean>
+   
 	<bean id="reg" class="spring.control.RegControl"/>
 	<!-- LoginControl,LogoutControl MainControl로 이동 -->
 <!-- 	<bean id="login" class="spring.control.LoginControl"/>
