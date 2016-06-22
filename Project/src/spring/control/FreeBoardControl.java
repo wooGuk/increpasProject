@@ -5,23 +5,22 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.FreeBoardDAO;
 import mybatis.vo.FreeBoardVO;
 import mybatis.vo.MemberVO;
 import spring.include.Paging;
-import spring.util.FileSaveUtil;
+
 
 @Controller
 public class FreeBoardControl {
@@ -35,11 +34,6 @@ public class FreeBoardControl {
 	@Autowired
 	HttpSession session;
 	
-	@Autowired
-	ServletContext servletContext;
-	
-	/*@Autowired
-	private String uploadPath;*/
 	
 	// 페이징 기법에 필요한 변수들
 		public static final int BLOCK_LIST = 10; // 한페이지당 보여질 게시물 수(10개)
@@ -51,8 +45,6 @@ public class FreeBoardControl {
 		
 		String searchType, searchValue; // 나중에 검색 기능에 필요한 변수들
 		
-		
-		// 자유게시판 이동 (장준수 2016/06/21)
 		@RequestMapping("/freeBoard.inc")
 		public ModelAndView list(){
 			// 사용자가 브러우저에서 list.inc로 요청했을 때 수행하는 곳
@@ -120,49 +112,4 @@ public class FreeBoardControl {
 			
 			return mv;
 		}
-		
-		// 글 저장(장준수 2016/06/21)
-		/*@RequestMapping(value="/write.inc",method=RequestMethod.POST)
-		public ModelAndView write(FreeBoardVO vo) throws Exception{
-			if(vo.getUpload().getSize() > 0){
-				// 파일첨부를 하지 않아도 null을 받지 않는다. 다만 사이즈가 0이다.
-				
-				// 사이즈가 0보다 크다는 것은 파일이 첨부되었다는 것이고, upload의 절대경로를 얻어내야한다.
-				String path = servletContext.getRealPath(uploadPath);
-				
-				// 첨부파일 가져오기
-				MultipartFile upload = vo.getUpload();
-				String f_name = upload.getOriginalFilename();
-				
-				// 이미 같은 이름이 있을 경우 파일명을 변경한다.
-				f_name = FileSaveUtil.checkSameFileName(f_name, path);
-				
-				// 파일저장!
-				//upload.transferTo(new File(path,f_name));
-				upload.transferTo(new File(path,f_name));
-				
-				// 파일명 저장
-				vo.setUploadFileName(f_name);
-				
-			}else
-				vo.setUploadFileName("");
-			
-			// ip지정
-			vo.setIp(request.getRemoteAddr());
-			vo.setBname("BBS");
-			
-			// DB저장
-			fdao.wirteBbs(vo);
-			
-			// 반환객체 생성
-			ModelAndView mv = new ModelAndView();
-			
-			// ReDirect개념으로 list.inc를 뷰지정 
-			mv.setViewName("redirect:/freeBoard.inc");
-	 		
-			
-			return mv;
-		}*/
-			
-	
 }
