@@ -20,8 +20,6 @@ public class FreeBoardVO {
 		this.seq = seq;
 	}
 
-	
-
 	public String getTitle() {
 		return title;
 	}
@@ -38,7 +36,6 @@ public class FreeBoardVO {
 		this.content = content;
 	}
 
-	
 	public String getHit() {
 		return hit;
 	}
