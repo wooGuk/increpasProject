@@ -91,7 +91,8 @@
 		HOME_PITCHER,
 		AWAY_PITCHER,
 		HOME_SCORE,
-		AWAY_SCORE
+		AWAY_SCORE,
+		RESULT
 		from match
 		order by match_code desc
 	</select>
