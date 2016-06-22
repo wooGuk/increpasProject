@@ -11,6 +11,7 @@
 	*/
  -->
 
+<%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
 <%@page import="mybatis.vo.MatchVO"%>
@@ -71,6 +72,15 @@ if(yyyy.equals("null")){
 String yesterday = String.format("%d/%d/%d", preYear, preMonth, preDay);
 String today = String.format("%d/%d/%d", nowYear, nowMonth, nowDay);
 String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
+
+//요일구하기
+String[] week = {"일","월","화","수","목","금","토"};
+int wod;
+
+GregorianCalendar gcalendar = 
+new GregorianCalendar(Integer.parseInt(yyyy), Integer.parseInt(mm)-1, Integer.parseInt(dd));
+wod = gcalendar.get(Calendar.DAY_OF_WEEK);
+String dayOfWeek = week[wod-1];
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -185,7 +195,7 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 												}
 												else{
 										%>
-												<option value="<%=i%>"><%=i%></option>		
+												<option value="<%=i%>" onclick="sendDate()"><%=i%></option>		
 										<%				
 												}
 											}
@@ -205,7 +215,7 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 												}
 												else{
 										%>
-												<option value="<%=i%>"><%=i%></option>		
+												<option value="<%=i%>" onclick="sendDate()"><%=i%></option>		
 										<%				
 												}
 											}
@@ -216,24 +226,24 @@ String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
 								<td>
 									<!-- 일 -->
 									<select name="dd">
-									<%
-										for(int i=1; i<=31; i++){
-											if(i == Integer.parseInt(dd)){
-									%>
-											<option value="<%=i%>" selected="selected"><%=i%></option>
-									<%				
+										<%
+											for(int i=1; i<=31; i++){
+												if(i == Integer.parseInt(dd)){
+										%>
+												<option value="<%=i%>" selected="selected"><%=i%></option>
+										<%				
+												}
+												else{
+										%>
+												<option value="<%=i%>" onclick="sendDate()"><%=i%></option>		
+										<%				
+												}
 											}
-											else{
-									%>
-											<option value="<%=i%>" onclick="sendDate()"><%=i%></option>		
-									<%				
-											}
-										}
-									%>
+										%>
 									</select>
 									<span>일</span>
 								</td>
-								<td></td>
+								<td><%=dayOfWeek %>요일</td>
 								<td>
 									<input type="button" value="어제경기보기" 
 									onclick="javascript:location.href='viewMatch.inc?day=yesterday'" title="<%=yesterday%>"> 
