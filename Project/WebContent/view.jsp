@@ -9,17 +9,83 @@
 <style type="text/css">
 div#del_win {
 	position: absolute;
-	top: 150px;
-	left: 200px;
+	top: 380px;
+	left: 750px;
 	width: 160px;
 	height: 70px;
-	background-color: #fff;
 	padding-top: 10px;
 	border-radius: 10px;
 	border: 1px solid black;
-	text-align: center;
+	/* text-align: center; */
 	display: none;
+	background: #EEEEEE;
 }
+div#del_win input[type=button]{
+		display:inline-block;
+		width: 40px;
+		height: 25px;
+		font-size: 13px;
+		font-weight: bold;
+		border: 1px solid #dcdcdc;	
+		margin-left: 28px;
+		margin-top: 5px;
+}
+
+div#del_win input[type=password]{width: 80px;}
+
+#viewTable{
+		border:none; border-top:2px solid #5E5E5E;
+		width: 700px;
+		height: 500px;
+		margin-top: 40px;
+		margin-left: 500px;
+		
+	}
+#viewtitle{font-size: 15px; font-weight: bold;}
+#viewtitle,#viewdate{height: 40px;background: #F3F3F3;}
+#viewid, #viewhit{height: 40px;}	
+#viewupload{height: 40px; background: #F3F3F3;}	
+#viewtitle{padding-left: 3px;}	
+#viewid{padding-left: 3px; font-size: 15px; font-weight: bold;}
+#viewcontent{padding-left: 3px;}
+#viewupload{padding-left: 3px; font-size: 15px; font-weight: bold;}
+#viewhit{padding-right: 3px;}
+#viewdate{padding-right: 3px;}	
+#viewtitle,#viewdate{border:none; border-bottom:2px solid #5E5E5E;}
+#viewhit,#viewdate{text-align: right;}
+#viewcontent{padding-top: 5px;}
+
+#viewid, #viewhit, #viewcontent,#viewupload{
+	border:none; border-bottom:2px solid #ddd;
+}
+
+
+#move{
+		margin-top: 15px;
+		display: inline-block;
+		margin-left: 1008px;
+		
+	}
+	
+#move2{
+		margin-top: 15px;
+		display: inline-block;
+		padding-left: 93px;
+		
+		
+}
+
+div#move input[type=button],div#move2 input[type=button]{
+		
+		width: 45px;
+		height: 28px;
+		font-size: 15px;
+		font-weight: bold;
+		border: 1px solid #dcdcdc;	
+		
+}
+
+
 </style>
 <script type="text/javascript">
 	function download(fname){
@@ -38,96 +104,68 @@ div#del_win {
 		win.style.display = "none";
 	}
 	
-	
-	
+	function check(){
+		var password1 = document.f.password1.value; // 텍스트값
+		var password = document.f.password.value; // 유저 비밀번호
+		if(password == password1){ // 비교
+			document.f.submit(); // 텍스트값과 유저비밀번호값이 맞으면
+		}else{ 
+			alert("비밀번호를 다시 입력해주세요."); // 맞지않으면
+			return;
+		}
+		
+	}
 </script>
 </head>
 <body>
 <div id="wrap">
 	<jsp:include page="include/header.jsp"></jsp:include>
-		<div>
-			<table width="100%" border="0" cellspacing="1" cellpadding="3">
-				<tr>
-				  <td width="80" height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">아이디</font></td>
-                  <td bgcolor="#F2F7F9">${vo1.id }</td>
-				  <td width="80" align="center" bgcolor="#669AB3"><font color="#FFFFFF">등록일</font></td>
-				  <td width="150" align="center" bgcolor="#F2F7F9">${vo1.regdate}</td>
-				</tr>
-				<tr>
-				  <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">메일</font></td>
-				  <td bgcolor="#F2F7F9"></td>
-				  <td align="center" bgcolor="#669AB3"><font color="#FFFFFF">조회수</font></td>
-				  <td align="center" bgcolor="#F2F7F9">${vo1.hit}</td>
-				</tr>
-				<tr>
-				  <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">첨부파일</font></td>
-				  <td colspan="3" bgcolor="#F2F7F9">
-				  <a href="javascript:download('${vo1.uploadFileName}')">
-				  	${vo1.uploadFileName}
-				  </a>
-				  </td>
-				</tr>
-				<tr>
-				  <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">제목</font></td>
-				  <td colspan="3" bgcolor="#F2F7F9">${vo1.title}</td>
-				</tr>
-				<tr valign="top">
-				  <td height="23" colspan="4" bgcolor="#FFFFFF">
-					<table width="100%" border="0" cellspacing="0" cellpadding="15">
-					  <tr>
-						<td valign="top"> <pre>${vo1.content}</pre>
-						  <p>&nbsp;</p></td>
-					  </tr>
-					</table></td>
-				</tr>
-			  </table>
-			</td>
-		  </tr>
-		</table>
-		<table width="556" border="0" cellspacing="0" cellpadding="0" align="center">
-		  <tr>
-			<td height="20" valign="middle"><img src="/img/sub_it/point_line.gif" width="556" height="3"></td>
-		  </tr>
-		  <tr>
-			<td align="right"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-				  <td align="left">
-					&nbsp;
-				  </td>
-				  <td width="241" align="right">
-				    <img src="img/button/but_answer.gif" width="56" height="21" onClick="javaScript:location.href='answer.inc?seq=${vo1.seq}&groups=${vo1.groups }&step=${vo1.step }&lev=${vo1.lev }&nowPage=${nowPage }'" style="cursor:pointer">
-					<img src="img/button/but_list.gif" width="56" height="21" onClick="javaScript:location.href='freeBoard.inc?nowPage=${nowPage}'" style="cursor:pointer">
-					
-					<c:if test="${vo.id == vo1.id }">
-					<img src="img/button/but_modify.gif" width="56" height="21" onClick="javascript:location.href='edit.inc?seq=${vo1.seq}&nowPage=${nowPage }'" style="cursor:pointer">
-					<img src="img/button/but_del.gif" width="56" height="21" onclick="showDel()" style="cursor:pointer">
-					</c:if>
-					</td>
-				</tr>
-			  </table></td>
-		  </tr>
-		  <tr>
-			<td height="19">&nbsp;</td>
-		  </tr>
+		<div id="moveView">
+			<table id="viewTable">
+				<tbody>
+					<tr>
+						<td id="viewtitle"> 제목</td><td id="viewtitle">${view.title }</td><td id="viewdate">${view.regdate }</td>
+					</tr>
+					<tr>
+						<td id="viewid">${view.id }</td><td id="viewid"></td><td id="viewhit">조회수 ${view.hit }</td>
+					</tr>
+					<tr>
+						<td id="viewcontent">${view.content}</td><td id="viewcontent"></td><td id="viewcontent"></td>
+					</tr>
 
-			  
+					<tr>
+						<td id="viewupload">첨부파일</td><td id="viewupload"><u><a href="javascript:download('${view.uploadFileName}')">${view.uploadFileName}</a></u></td><td id="viewupload"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div id="move">
+			<c:if test="${vo.id == view.id }">
+				<input type="button" value="수정" onClick="javascript:location.href='edit.inc?seq=${vo1.seq}&nowPage=${nowPage }'" style="cursor:pointer"/>
+				<input type="button" value="삭제" onclick="showDel()" style="cursor:pointer"/>
+				<input type="button" value="답글" onClick="javaScript:location.href='answer.inc?seq=${vo1.seq}&groups=${vo1.groups }&step=${vo1.step }&lev=${vo1.lev }&nowPage=${nowPage }'" style="cursor:pointer"/>
+				<input type="button" value="목록" onClick="javaScript:location.href='freeBoard.inc?nowPage=${nowPage}'" style="cursor:pointer"/>
+				</c:if>
+			</div>
+			<c:if test="${vo.id != view.id }">
+			<div id="move2">
+				<input type="button" value="답글" onClick="javaScript:location.href='answer.inc?seq=${vo1.seq}&groups=${vo1.groups }&step=${vo1.step }&lev=${vo1.lev }&nowPage=${nowPage }'" style="cursor:pointer"/>
+				<input type="button" value="목록" onClick="javaScript:location.href='freeBoard.inc?nowPage=${nowPage}'" style="cursor:pointer"/>
+			</div>
+			</c:if>
+		</div>
+	</div>
 
-		</table>
-		<iframe id="check_f" border='0' width="0" height="0" frameborder='0' marginwidth='0' marginheight='0' scrolling="no"></iframe>
-		</td>
-	</tr>
-	<tr>
-	  <td height="19">&nbsp;</td>
-	</tr>
-  </table>
     <div id="del_win">
-		<label for="passwordd">비밀번호:</label> 
-		<input type="password" id="password" size="7" /><br /> 
-		<input type="button" value="삭제" onClick="javascript:location.href='del.inc?id=${vo1.id}&nowPage=${nowPage }&password=${vo.password }'" style="cursor:pointer"/>
+    	<form action="del.inc" method="post" name="f">
+		<label for="password">비밀번호:</label> 
+		<input type="password" id="password1" name="password1" size="7" /><br /> 
+		<input type="button" value="삭제" onclick="check()"/> 
 		<input type="button" value="취소" onclick="cancel()" />
+		<input type="hidden" id="id" name="id" value="${view.id }"/>
+		<input type="hidden" id="nowPage" name="nowPage" value="${nowPage }"/>
+		<input type="hidden" id="seq" name="seq" value="${view.seq }"/>
 		<input type="hidden" name="password" value="${vo.password }"/>
+		</form>
 	</div>
-	</div>
-	</div>
-  </body>
-  </html>
+</body>
+</html>
