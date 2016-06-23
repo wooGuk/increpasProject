@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.FreeBoardDAO;
@@ -21,6 +22,15 @@ import mybatis.dao.MemberDAO;
 import mybatis.vo.FreeBoardVO;
 import mybatis.vo.MemberVO;
 import spring.include.Paging;
+import spring.include.Paging_board;
+import spring.util.FileSaveUtil;
+
+
+/*
+	제 목 : FreeBoardControl
+	역 할 : 게시판 리스트, 글보기 
+	로 그 :  1.프로그램 최초 생성 (장준수 2016/06/23)
+*/
 
 
 @Controller
@@ -55,6 +65,7 @@ public class FreeBoardControl {
 			
 			// 현재 페이지값 받기 *
 			String c_page = request.getParameter("nowPage");
+			System.out.println(c_page);
 			
 			if(c_page == null)
 				nowPage = 1;
@@ -64,10 +75,10 @@ public class FreeBoardControl {
 			// 게시판을 구별하는 문자열 
 			String bname = "BBS";
 			rowTotal = fdao.getTotalCount(bname);
-//			System.out.println(bname);
-			
+			//System.out.println(bname);
+			//System.out.println(rowTotal);
 			// 페이징 객체(Page) 생성
-			Paging page = new Paging(nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE);
+			Paging_board page = new Paging_board(nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE);
 			 
 			// 페이징 HTML코드를 기억하는 있는 sb를 가져온다.
 			StringBuffer sb = page.getSb();
@@ -125,7 +136,7 @@ public class FreeBoardControl {
 			session.setAttribute("vo1", vo);
 			
 			ModelAndView mv = new ModelAndView();
-			mv.addObject("vo1", vo);
+			mv.addObject("view", vo);
 			mv.addObject("nowPage", nowPage);
 			mv.addObject("seq", seq);
 			mv.setViewName("/view");
@@ -133,17 +144,4 @@ public class FreeBoardControl {
 			return mv;
 		}
 		
-		
-		// 글삭제 (장준수 2016/06/22)
-		@RequestMapping(value="/del.inc",method=RequestMethod.GET)
-		public ModelAndView del(FreeBoardVO vo){
-			System.out.println(vo.getId());
-			System.out.println(vo.getPassword());
-			fdao.delBbs(vo);
-			
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("redirect:/freeBoard.inc");
-			
-			return mv;
-		}
 }
