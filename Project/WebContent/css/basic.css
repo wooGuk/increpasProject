@@ -246,7 +246,7 @@ input.join[type=password]:hover {border:1px solid #999; height:22px; background:
 테이블 타입 
 *****************************************************/
 .table_type01 {border:none; border-top:2px solid #ddd;}
-.table_type01 th {border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:10px 0 10px 25px; font-weight:bold; background:#efefef;}
+.table_type01 th {border-bottom:1px solid #ccc; border-left:1px solid #ccc; border-right:1px solid #ccc; padding:10px 0 10px 25px; font-weight:bold; background:#efefef;}
 .table_type01 td {border-bottom:1px solid #ddd; padding:10px;}
 .table_type01 td p .btn {position:relative; top:-4px;}
 
