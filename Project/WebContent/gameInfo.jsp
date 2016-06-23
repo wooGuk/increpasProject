@@ -52,11 +52,26 @@ MatchVO[] games = (MatchVO[])request.getAttribute("games"); // 경기정보
 		width: 70%;
 		border: 1px solid black;
 	}
-	#match td, #rank td, #selectDate td{
+	#match td, #rank td, #selectDate td, #match pre{
 		text-align: center;
 	}
 	#match td, #rank td{
 		border: 1px solid black;
+	}
+	.score{
+		font-size: 20px;
+	}
+	.win{
+		color: #00f;
+		font-weight: bold;
+	}
+	.draw{
+		color: #0f0;
+		font-weight: bold;
+	}
+	.lose, .cancel{
+		color: #f00;
+		font-weight: bold;
 	}
 </style>
 <script type="text/javascript">
@@ -215,10 +230,37 @@ MatchVO[] games = (MatchVO[])request.getAttribute("games"); // 경기정보
 										src="<%=logo.get(games[i].getHome_code())%>"><br> <b><%=games[i].teamName(games[i].getHome_code())%></b><br>
 										<b>(선발투수:<%=games[i].getHome_pitcher()%>)
 									</b></td>
-									<td><b><%=games[i].getHome_score()%></b></td>
-									<td><b>vs</b><br> <b>(<%=games[i].homeName(games[i].getHome_code())%>)
-									</b></td>
-									<td><b><%=games[i].getAway_score()%></b></td>
+									<td>
+										<b class="score"><%=games[i].getHome_score()%></b>
+										<c:if test="<%=games[i].getHome_code()==games[i].getResult() %>">
+											<pre class="win">(승)</pre>
+										</c:if>
+										<c:if test="<%=games[i].getResult()==11 %>">
+											<pre class="draw">(무)</pre>
+										</c:if>
+										<c:if test="<%=games[i].getAway_code()==games[i].getResult() %>">
+											<pre class="lose">(패)</pre>
+										</c:if>
+									</td>
+									<td>
+										<b>vs</b><br> 
+										<b>(<%=games[i].homeName(games[i].getHome_code())%>)</b><br>
+										<c:if test="<%=games[i].getResult()==99 %>">
+											<pre class="cancel">경기취소</pre>
+										</c:if>
+									</td>
+									<td>
+										<b class="score"><%=games[i].getAway_score()%></b>
+										<c:if test="<%=games[i].getAway_code()==games[i].getResult() %>">
+											<pre class="win">(승)</pre>
+										</c:if>
+										<c:if test="<%=games[i].getResult()==11 %>">
+											<pre class="draw">(무)</pre>
+										</c:if>
+										<c:if test="<%=games[i].getHome_code()==games[i].getResult() %>">
+											<pre class="lose">(패)</pre>
+										</c:if>
+									</td>
 									<td><img alt=""
 										src="<%=logo.get(games[i].getAway_code())%>"><br> <b><%=games[i].teamName(games[i].getAway_code())%></b><br>
 										<b>(선발투수:<%=games[i].getAway_pitcher()%>)
@@ -229,7 +271,6 @@ MatchVO[] games = (MatchVO[])request.getAttribute("games"); // 경기정보
 								%>
 							</tbody>
 						</c:if>
-						
 					</table>
 					<!-- 경기정보 table 종료 -->
 				</c:if>
