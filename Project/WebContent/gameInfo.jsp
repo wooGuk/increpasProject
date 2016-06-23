@@ -38,49 +38,6 @@ logo.put(10, "img/team/emblem_KT.png");
 
 //ModelAndView에 담은 파라미터 받기
 MatchVO[] games = (MatchVO[])request.getAttribute("games"); // 경기정보
-String yyyy = String.valueOf(request.getAttribute("yyyy")); // 선택한 년도
-String mm = String.valueOf(request.getAttribute("mm")); // 선택한 월
-String dd = String.valueOf(request.getAttribute("dd")); // 선택한 일
-
-//어제, 오늘, 내일 날짜 구하기
-Calendar cal = Calendar.getInstance();
-
-cal.add(Calendar.DATE,-1); // 어제(오늘에서 -1)
-int preYear=cal.get(Calendar.YEAR);
-int preMonth=cal.get(Calendar.MONTH)+1;
-int preDay=cal.get(Calendar.DAY_OF_MONTH);
-
-cal.add(Calendar.DATE,1); // 오늘(어제에서 +1)
-int nowYear=cal.get(Calendar.YEAR);
-int nowMonth=cal.get(Calendar.MONTH)+1;
-int nowDay=cal.get(Calendar.DAY_OF_MONTH);
-
-cal.add(Calendar.DATE,1); // 내일(오늘에서 +1)
-int nextYear=cal.get(Calendar.YEAR);
-int nextMonth=cal.get(Calendar.MONTH)+1;
-int nextDay=cal.get(Calendar.DAY_OF_MONTH);
-
-//yyyy가 파라미터에 없다는 소리는 첫 화면진입.
-//이때는 현재날짜로 세팅
-if(yyyy.equals("null")){
-	yyyy=String.valueOf(nowYear);
-	mm=String.valueOf(nowMonth);
-	dd=String.valueOf(nowDay);
-}
-
-//어제, 오늘, 내일 날짜 포맷 설정
-String yesterday = String.format("%d/%d/%d", preYear, preMonth, preDay);
-String today = String.format("%d/%d/%d", nowYear, nowMonth, nowDay);
-String tomorrow = String.format("%d/%d/%d", nextYear, nextMonth, nextDay);
-
-//요일구하기
-String[] week = {"일","월","화","수","목","금","토"};
-int wod;
-
-GregorianCalendar gcalendar = 
-new GregorianCalendar(Integer.parseInt(yyyy), Integer.parseInt(mm)-1, Integer.parseInt(dd));
-wod = gcalendar.get(Calendar.DAY_OF_WEEK);
-String dayOfWeek = week[wod-1];
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -88,25 +45,18 @@ String dayOfWeek = week[wod-1];
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 <style type="text/css">
-	a:HOVER{
-		background-color: #red;
+	#selectDate, #rank, #match{
+		margin: auto;
 	}
-	.info, .selectTable{
+	#rank, #match{
 		width: 70%;
 		border: 1px solid black;
 	}
-	.selectTable input{
-		height: 30px;
-		width: 90px;
-	}
-	.info th, .info td, .info tr{
+	#match td, #rank td, #selectDate td{
 		text-align: center;
 	}
-	.info tr, .info td{
+	#match td, #rank td{
 		border: 1px solid black;
-	}
-	.table-condensed select{
-		width: 60px;
 	}
 </style>
 <script type="text/javascript">
@@ -128,7 +78,7 @@ String dayOfWeek = week[wod-1];
 		<!-- 콘텐츠영역시작 -->
  		<div id="contents">
  			<!-- 좌측메뉴 시작 -->
-			<div class="fl" style="margin-right: 50px">
+			<div id="leftMenu" class="fl">
 				<table class="panel panel-primary" id="list-group">
 					<thead class="panel-heading">
 						<tr>
@@ -147,178 +97,145 @@ String dayOfWeek = week[wod-1];
 			</div>
 			<!-- 좌측메뉴 종료 -->
 
-			<!-- 팀 순위보기 시작 -->
-			<c:if test="${infoFlag =='viewRank' }">
-				<table class="table-condensed info">
-					<thead>
-						<tr style="border: 1px solid black;">
-							<th>순위</th>
-							<th>팀명</th>
-							<th>승</th>
-							<th>패</th>
-							<th>팀타율</th>
-							<th>팀방어율</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="team" items="${teams }">
-						<tr>
-							<td>${team.rank }</td>
-							<td>${team.name }</td>
-							<td>${team.win }</td>
-							<td>${team.lose }</td>
-							<td>${team.team_avg }</td>
-							<td>${team.team_era }</td>
-						</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</c:if>
-			<!-- 팀 순위보기 종료 -->
-			
-			<!-- 경기일정보기 시작 -->
-			<c:if test="${infoFlag =='viewMatch'}">
-				<!-- 날짜선택 table 시작 -->
-				<form action="viewSelectDateMatch.inc" method="post" id="selectDateForm">
-					<table class="table-condensed selectTable">
-						<tbody>
-							<tr>
-								<td>
-									<!-- 년 -->
-									<select name="yyyy">
-										<%
-											for(int i=2014; i<=2016; i++){
-												if(i == Integer.parseInt(yyyy)){
-										%>
-													<option value="<%=i%>" selected="selected"><%=i%></option>
-										<%				
-												}
-												else{
-										%>
-												<option value="<%=i%>" onclick="sendDate()"><%=i%></option>		
-										<%				
-												}
-											}
-										%>
-									</select>
-									<span>년</span>
-								</td>
-								<td>
-									<!-- 월 -->
-									<select name="mm">
-										<%
-											for(int i=1; i<=12; i++){
-												if(i == Integer.parseInt(mm)){
-										%>
-													<option value="<%=i%>" selected="selected"><%=i%></option>
-										<%				
-												}
-												else{
-										%>
-												<option value="<%=i%>" onclick="sendDate()"><%=i%></option>		
-										<%				
-												}
-											}
-										%>
-									</select>
-									<span>월</span>
-								</td>
-								<td>
-									<!-- 일 -->
-									<select name="dd">
-										<%
-											for(int i=1; i<=31; i++){
-												if(i == Integer.parseInt(dd)){
-										%>
-												<option value="<%=i%>" selected="selected"><%=i%></option>
-										<%				
-												}
-												else{
-										%>
-												<option value="<%=i%>" onclick="sendDate()"><%=i%></option>		
-										<%				
-												}
-											}
-										%>
-									</select>
-									<span>일</span>
-								</td>
-								<td><%=dayOfWeek %>요일</td>
-								<td>
-									<input type="button" value="어제경기보기" 
-									onclick="javascript:location.href='viewMatch.inc?day=yesterday'" title="<%=yesterday%>"> 
-								</td>
-								<td>
-									<input type="button" value="오늘경기보기" 
-									onclick="javascript:location.href='viewMatch.inc?day=today'" title="<%=today%>"> 
-								</td>
-								<td>
-									<input type="button" value="내일경기보기" 
-									onclick="javascript:location.href='viewMatch.inc?day=tomorrow'" title="<%=tomorrow%>"> 
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</form>
-				<!-- 날짜선택 table 종료 -->
-				<%
-					if(games.length == 0){
-				%>
-					<div style="text-align: center; margin-top: 20px; width: 85%;" >
-						<span style="font-size: 30px; color: red">경기정보가 DB에 없습니다.</span>
-					</div>
-				<%		
-					}
-					else{
-				%>
-					<table class="table-condensed info">
+			<!-- 가운데 정보 영역 시작 -->
+			<div id="centerInfo">
+				<!-- 팀 순위보기 시작 -->
+				<c:if test="${infoFlag =='viewRank' }">
+					<table id="rank" class="table-condensed">
 						<thead>
 							<tr>
-								<th>HOME</th>
-								<th style="width: 50px;">SCORE</th>
-								<th>장소</th>
-								<th style="width: 50px;">SCORE</th>
-								<th>AWAY</th>
+								<th>순위</th>
+								<th>팀명</th>
+								<th>승</th>
+								<th>패</th>
+								<th>팀타율</th>
+								<th>팀방어율</th>
 							</tr>
 						</thead>
 						<tbody>
-							<!-- 반복문 돌면서 경기일정 출력 -->
-							<%
-								for(int i=0; i<games.length; i++){
-							%>
-									<tr>
-										<td>
-											<img alt="" src="<%=logo.get(games[i].getHome_code()) %>"><br>
-											<b><%=games[i].teamName(games[i].getHome_code()) %></b><br>
-											<b>(선발투수:<%=games[i].getHome_pitcher() %>)</b>
-										</td>
-										<td>
-											<b><%=games[i].getHome_score() %></b>
-										</td>
-										<td>
-											<b>vs</b><br>
-											<b>(<%=games[i].homeName(games[i].getHome_code()) %>)</b>
-										</td>
-										<td>
-											<b><%=games[i].getAway_score() %></b>
-										</td>
-										<td>
-											<img alt="" src="<%=logo.get(games[i].getAway_code()) %>"><br>
-											<b><%=games[i].teamName(games[i].getAway_code()) %></b><br>
-											<b>(선발투수:<%=games[i].getAway_pitcher() %>)</b>
-										</td>
-									</tr>
-							<%
-								}//for()
-							%>		
+							<c:forEach var="team" items="${teams }">
+								<tr>
+									<td>${team.rank }</td>
+									<td>${team.name }</td>
+									<td>${team.win }</td>
+									<td>${team.lose }</td>
+									<td>${team.team_avg }</td>
+									<td>${team.team_era }</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
-				<%		
-					}
-				%>
+				</c:if>
+				<!-- 팀 순위보기 종료 -->
 
-			</c:if>
-			<!-- 경기일정보기 종료 -->
+				<!-- 경기일정보기 시작 -->
+				<c:if test="${infoFlag =='viewMatch'}">
+					<!-- 날짜선택 table 시작 -->
+					<form action="viewSelectDateMatch.inc" method="post"
+						id="selectDateForm">
+						<table id="selectDate" class="table-condensed">
+							<tbody>
+								<tr>
+									<td>
+										<a href="viewSelectDateMatch.inc?yyyy=${yyyy }&mm=${mm }&dd=${dd }&day=pre">
+											<img alt="" src="img/prevDay.png">
+										</a>
+									</td>
+									<td>
+										<!-- 년 --> <select name="yyyy">
+										<c:forEach var="i" begin="2014" end="2016">
+											<c:if test="${i == yyyy }">
+												<option value="${i }" selected="selected">${i }</option>
+											</c:if>
+											<c:if test="${i != yyyy }">
+												<option value="${i }" onclick="sendDate()">${i }</option>
+											</c:if>
+										</c:forEach>
+									</select> <span>년</span>
+									</td>
+									<td>
+										<!-- 월 --> <select name="mm">
+										<c:forEach var="i" begin="1" end="12">
+											<c:if test="${i == mm }">
+												<option value="${i }" selected="selected">${i }</option>
+											</c:if>
+											<c:if test="${i != mm }">
+												<option value="${i }" onclick="sendDate()">${i }</option>
+											</c:if>
+										</c:forEach>
+									</select> <span>월</span>
+									</td>
+									<td>
+										<!-- 일 --> <select name="dd">
+										<c:forEach var="i" begin="1" end="${countDay }">
+											<c:if test="${i == dd }">
+												<option value="${i }" selected="selected">${i }</option>
+											</c:if>
+											<c:if test="${i != dd }">
+												<option value="${i }" onclick="sendDate()">${i }</option>
+											</c:if>
+										</c:forEach>
+									</select> <span>일</span>
+									</td>
+									<td>${day }요일</td>
+									<td>
+										<a href="viewSelectDateMatch.inc?yyyy=${yyyy }&mm=${mm }&dd=${dd }&day=next">
+											<img alt="" src="img/nextDay.png">
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<!-- 날짜선택 table 종료 -->
+					<!-- 경기정보 table 시작 -->
+					<table id="match" class="table-condensed">
+						<c:if test="${games==null }">
+							<tr>
+								<td style="height: 200px; font-size: 40px; color: #f00">경기정보가 DB에 없습니다.</td>
+							</tr>
+						</c:if>
+						<c:if test="${games!=null }">
+							<thead>
+								<tr>
+									<th>HOME</th>
+									<th style="width: 50px;">SCORE</th>
+									<th>장소</th>
+									<th style="width: 50px;">SCORE</th>
+									<th>AWAY</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- 반복문 돌면서 경기일정 출력 -->
+								<%
+									for (int i = 0; i < games.length; i++) {
+								%>
+								<tr>
+									<td><img alt=""
+										src="<%=logo.get(games[i].getHome_code())%>"><br> <b><%=games[i].teamName(games[i].getHome_code())%></b><br>
+										<b>(선발투수:<%=games[i].getHome_pitcher()%>)
+									</b></td>
+									<td><b><%=games[i].getHome_score()%></b></td>
+									<td><b>vs</b><br> <b>(<%=games[i].homeName(games[i].getHome_code())%>)
+									</b></td>
+									<td><b><%=games[i].getAway_score()%></b></td>
+									<td><img alt=""
+										src="<%=logo.get(games[i].getAway_code())%>"><br> <b><%=games[i].teamName(games[i].getAway_code())%></b><br>
+										<b>(선발투수:<%=games[i].getAway_pitcher()%>)
+									</b></td>
+								</tr>
+								<%
+									} //for()
+								%>
+							</tbody>
+						</c:if>
+						
+					</table>
+					<!-- 경기정보 table 종료 -->
+				</c:if>
+				<!-- 경기일정보기 종료 -->
+			</div>
+			<!-- 가운데 정보 영역 종료 -->
 			<div class="fclear"></div>
 		</div>
 		<!-- 콘텐츠영역종료 -->
