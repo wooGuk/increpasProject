@@ -17,8 +17,11 @@
 
 package spring.control;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -188,22 +191,32 @@ public class MainControl {
 		return mv;
 	}
 	
-	//경기일정 보여주기 (정성훈 2016.06.20)
+	//오늘경기일정 보여주기 (정성훈 2016.06.20)
 	@RequestMapping("/viewMatch.inc")
 	public ModelAndView viewMatch(){
 		
-		String day = request.getParameter("day");
-		System.out.println(day);
-		ModelAndView mv = new ModelAndView();
-		//모든경기일정 가져오기
-		MatchVO[] allGames = matchDao.schedule();
-		//파라미터로 받은 day로 구분하여 경기정보를 리턴해주는 함수 호출
-		MatchVO[] games = recentDayMatch(allGames, day, mv);
+		//오늘 날짜 구하기
+		Calendar cal = Calendar.getInstance();
+		int yyyy=cal.get(Calendar.YEAR);
+		int mm=cal.get(Calendar.MONTH)+1;
+		int dd=cal.get(Calendar.DAY_OF_MONTH);
+		//월의 날짜 수
+		int countDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+		//오늘날짜 경기 구하기
+		MatchVO[] games = findMatches(yyyy, mm, dd);
 		
+		//파라미터 저장
+		ModelAndView mv = new ModelAndView();
 		mv.addObject("games", games);
 		mv.addObject("infoFlag", "viewMatch");
+		mv.addObject("yyyy", yyyy); // 년
+		mv.addObject("mm", mm); // 월
+		mv.addObject("dd", dd); // 일
+		mv.addObject("day", findDay(yyyy, mm, dd)); // 요일
+		mv.addObject("countDay", countDay); // 월의 날짜 수
 		mv.setViewName("/gameInfo");
-	
+		
 		return mv;
 	}
 	
@@ -215,106 +228,83 @@ public class MainControl {
 		int yyyy = Integer.parseInt(request.getParameter("yyyy"));
 		int mm = Integer.parseInt(request.getParameter("mm"));
 		int dd = Integer.parseInt(request.getParameter("dd"));
+		//day는 이전, 다음 클릭시에만 넘어온다.
+		String day = request.getParameter("day");
 		
-		//DB 모든경기일정 가져오기
-		MatchVO[] allGames = matchDao.schedule();
-		
-		//선택된 날짜의 경기를 담을 리스트
-		ArrayList<MatchVO> list = new ArrayList<>();
-		
-		//모든경기일정을 돌면서
-		for(int i=0; i<allGames.length; i++){
-			//선택된 날짜와 같은 날짜 경기만 뽑는다.
-			if(allGames[i].getMatch_year() == yyyy && allGames[i].getMatch_month()== mm && allGames[i].getMatch_day()==dd){
-				//리스트에 추가시킨다.
-				list.add(allGames[i]);
+		Calendar cal = Calendar.getInstance();
+		//이전, 다음 클릭시 day는 null이 아님
+		if(day != null){
+			//선택한 날짜로 세팅
+			//월에서 -1을 해야 정상처리됨
+			cal.set(yyyy, mm-1, dd);
+			switch(day){
+			case "pre":
+				//선택된 날짜의 이전 날짜로
+				cal.add(Calendar.DATE, -1);
+				break;
+			case "next":
+				//선택된 날짜의 다음 날짜로
+				cal.add(Calendar.DATE, +1);
+				break;
 			}
-		}//for()
-		
-		//리스트 크기만큼 배열을 만들어 복사한다.
-		MatchVO[] games = null;
-		if(list != null || !(list.isEmpty())){
-			games = new MatchVO[list.size()];
-			list.toArray(games);
+			
+			//이전 or 다음 날짜로 세팅
+			yyyy=cal.get(Calendar.YEAR);
+			mm =cal.get(Calendar.MONTH)+1;
+			dd =cal.get(Calendar.DAY_OF_MONTH);
 		}
-		//games배열에는 선택된 날짜의 경기가 들어가게 된다.
+		//월의 날짜 수
+		int countDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+		//선택된 날짜 경기 구하기
+		MatchVO[] games = findMatches(yyyy, mm, dd);
 		
+		//파라미터 저장
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("games", games);
 		mv.addObject("infoFlag", "viewMatch");
-		//선택한 날짜 파라미터에 담기
-		mv.addObject("yyyy", yyyy);
-		mv.addObject("mm", mm);
-		mv.addObject("dd", dd);
+		mv.addObject("yyyy", yyyy); // 년
+		mv.addObject("mm", mm); // 월
+		mv.addObject("dd", dd); // 일
+		mv.addObject("day", findDay(yyyy, mm, dd)); // 요일
+		mv.addObject("countDay", countDay); // 월의 날짜 수
 		mv.setViewName("/gameInfo");
-		
+			
 		return mv;
 	}
 	
-	//어제, 오늘, 내일 경기보기 클릭시 
-	//어제, 오늘, 내일을 구분해서 해당 경기정보 리턴해주는 함수
-	private MatchVO[] recentDayMatch(MatchVO[] allGames, String day, ModelAndView mv){
-		ArrayList<MatchVO> list = new ArrayList<>(); // 경기정보를 담을 리스트
+	
+	
+	//날짜 정보를 받아 해당 날짜의 요일을 리턴해주는 함수
+	private String findDay(int yyyy, int mm, int dd){
+		String[] week = {"일","월","화","수","목","금","토"};
+		int wod;
+		//월에서 -1을 해야 정상처리됨
+		GregorianCalendar gcalendar = 
+		new GregorianCalendar(yyyy, mm-1, dd);
+		wod = gcalendar.get(Calendar.DAY_OF_WEEK);
+		String dayOfWeek = week[wod-1];
+		return dayOfWeek;
+	}
+	
+	//날짜 정보를 받아 해당 날짜의 경기들을 리턴해주는 함수
+	private MatchVO[] findMatches(int yyyy, int mm, int dd) {
 		
-		Calendar cal = Calendar.getInstance();
-
-		cal.add(Calendar.DATE,-1); // 어제(오늘에서 -1)
-		int preYear=cal.get(Calendar.YEAR);
-		int preMonth=cal.get(Calendar.MONTH)+1;
-		int preDay=cal.get(Calendar.DAY_OF_MONTH);
-
-		cal.add(Calendar.DATE,1); // 오늘(어제에서 +1)
-		int nowYear=cal.get(Calendar.YEAR);
-		int nowMonth=cal.get(Calendar.MONTH)+1;
-		int nowDay=cal.get(Calendar.DAY_OF_MONTH);
-
-		cal.add(Calendar.DATE,1); // 내일(오늘에서 +1)
-		int nextYear=cal.get(Calendar.YEAR);
-		int nextMonth=cal.get(Calendar.MONTH)+1;
-		int nextDay=cal.get(Calendar.DAY_OF_MONTH);
+		//모든경기 불러오기
+		MatchVO[] allGames = matchDao.schedule();
 		
-		switch(day){
-		case "yesterday":
-			for(int i=0; i<allGames.length; i++){
-				MatchVO vo = allGames[i];
-				if(preYear == vo.getMatch_year() && preMonth == vo.getMatch_month() && preDay == vo.getMatch_day()){
-					list.add(vo);
-					//어제 날짜 파라미터로 설정
-					mv.addObject("yyyy", preYear);
-					mv.addObject("mm", preMonth);
-					mv.addObject("dd", preDay);
-				}
-			}
-			break;
-		case "today":
-			for(int i=0; i<allGames.length; i++){
-				MatchVO vo = allGames[i];
-				if(nowYear == vo.getMatch_year() && nowMonth == vo.getMatch_month() && nowDay == vo.getMatch_day()){
-					list.add(vo);
-					//오늘 날짜 파라미터로 설정
-					mv.addObject("yyyy", nowYear);
-					mv.addObject("mm", nowMonth);
-					mv.addObject("dd", nowDay);
-				}
-			}
-			break;
-		case "tomorrow":
-			for(int i=0; i<allGames.length; i++){
-				MatchVO vo = allGames[i];
-				if(nextYear == vo.getMatch_year() && nextMonth == vo.getMatch_month() && nextDay == vo.getMatch_day()){
-					list.add(vo);
-					//내일 날짜 파라미터로 설정
-					mv.addObject("yyyy", nextYear);
-					mv.addObject("mm", nextMonth);
-					mv.addObject("dd", nextDay);
-				}
-			}
-			break;
-		}//switch()
+		// 경기정보를 담을 리스트
+		ArrayList<MatchVO> list = new ArrayList<>();
 		
-		//리스트 사이즈만큼의 배열에 경기정보를 담는다.
+		//모든경기를 돌면서 해당 날짜 경기만 리스트에 담는다.
+		for (int i = 0; i < allGames.length; i++) {
+			MatchVO vo = allGames[i];
+			if (yyyy == vo.getMatch_year() && mm == vo.getMatch_month() && dd == vo.getMatch_day()) {
+				list.add(vo);
+			}
+		}
+		// 리스트를 배열에 복사
 		MatchVO[] games = null;
-		if(list != null || !(list.isEmpty())){
+		if (list != null && list.size()>0) {
 			games = new MatchVO[list.size()];
 			list.toArray(games);
 		}
