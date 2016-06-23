@@ -17,7 +17,13 @@ import mybatis.dao.MemberDAO;
 import mybatis.vo.FreeBoardVO;
 import mybatis.vo.MemberVO;
 import spring.util.FileSaveUtil;
-
+	
+/*
+	제 목 : WriteControl
+	역 할 : 글쓰기, 글수정, 글삭제 이동하는 컨트롤러 
+	로 그 :  1.프로그램 최초 생성 (장준수 2016/06/23)
+*/
+	
 @Controller
 public class WriteControl {
 	
@@ -37,15 +43,16 @@ public class WriteControl {
 		this.uploadPath = uploadPath;
 	}
 	
+	// 글쓰기 (장준수 2016/06/21)
 	@RequestMapping(value="/write.inc",method=RequestMethod.POST)
-	public ModelAndView writerr(FreeBoardVO vo)throws Exception{
+	public ModelAndView writerr(FreeBoardVO vo1)throws Exception{
 	
-		if(vo.getUpload().getSize() > 0){
+		if(vo1.getUpload().getSize() > 0){
 			
 			String path = servletContext.getRealPath(uploadPath);
 			
 			
-			MultipartFile upload = vo.getUpload();
+			MultipartFile upload = vo1.getUpload();
 			String f_name = upload.getOriginalFilename();
 			
 			// 이미 같은 이름이 있을 경우 파일명을 변경한다.
@@ -55,27 +62,83 @@ public class WriteControl {
 			upload.transferTo(new File(path,f_name));
 			
 			// 파일명 저장
-			vo.setUploadFileName(f_name);
+			vo1.setUploadFileName(f_name);
 			
 		}else
-			vo.setUploadFileName("");
+			vo1.setUploadFileName("");
 		
 		/*MemberVO mvo = (MemberVO) request.getAttribute("vo");
 		vo.setId(mvo.getId());*/
-		vo.setIp(request.getRemoteAddr());
-		vo.setBname("BBS");
+		vo1.setIp(request.getRemoteAddr());
+		vo1.setBname("BBS");
 		
 	
-		fdao.writeBbs(vo);
+		fdao.writeBbs(vo1);
 	
 		ModelAndView mv = new ModelAndView();
 		
 		mv.setViewName("redirect:/freeBoard.inc");
 		
 		return mv;
+	}
 	
+	// 글삭제 (장준수 2016/06/22)
+	@RequestMapping(value = "/del.inc", method = RequestMethod.POST)
+	public ModelAndView del(FreeBoardVO vo1) {
+		System.out.println(vo1.getId());
+		System.out.println(vo1.getPassword());
+		fdao.delBbs(vo1);
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/freeBoard.inc");
+
+		return mv;
+	}
+	
+	@RequestMapping("/edit.inc")
+	public ModelAndView edit(String nowPage) throws Exception {
 		
-		
+		// seq라는 파라미터는 유실된다. 그래도 괜찮은 것이 우리가 표현할 vo가 이미 ViewControl에서 session에
+		// "vo"라는 이름으로 저장했으므로 연결되는 페이지 이동에서는 session에 있는 정보를 계속 사용할 수 있다.
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("nowPage", nowPage);
+		mv.setViewName("/edit");
+
+		return mv;
+	}
+	
+
+	// 글수정 (장준수 2016/06/23)
+	@RequestMapping(value = "/edit.inc", method = RequestMethod.POST)
+	public ModelAndView edit(FreeBoardVO vo1) throws Exception {
+		if (vo1.getUpload().getSize() > 0) {
+			// 파일첨부를 하지 않아도 null을 받지 않는다. 다만 사이즈가 0이다.
+
+			// 사이즈가 0보다 크다는 것은 파일이 첨부되었다는 것이고, upload의 절대경로를 얻어내야한다.
+			String path = servletContext.getRealPath(uploadPath);
+
+			// 첨부파일 가져오기
+			MultipartFile upload = vo1.getUpload();
+			String f_name = upload.getOriginalFilename();
+
+			// 이미 같은 이름이 있을 경우 파일명을 변경한다.
+			f_name = FileSaveUtil.checkSameFileName(f_name, path);
+
+			// 파일저장!
+			upload.transferTo(new File(path, f_name));
+
+			// 파일명 저장
+			vo1.setUploadFileName(f_name);
+
+		} else
+			vo1.setUploadFileName("");
+		System.out.println(vo1.getNowPage());
+		vo1.setIp(request.getRemoteAddr());
+		fdao.editBbs(vo1);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/view.inc?seq=" + vo1.getSeq() + "&nowPage=" + vo1.getNowPage());
+
+		return mv;
 	}
 
 }
