@@ -6,7 +6,7 @@
 
 	<!-- 페이징 기법을 위한 전체 게시물의 수를 반환 select -->
 	 	<select id="totalCount" resultType="int" parameterType="String">
-		select count(*) from freeboard where bname = #{n}
+		select count(*) from freeboard where bname = #{n} and status = 0
 	</select>
 
 	<!-- 페이징 기법을 활용한 목록 select -->
@@ -52,7 +52,7 @@
 
 
 	<!-- 게시물을 수정하는 update(기본키와 비밀번호가 필요) -->
-	 <!-- <update id="edit" parameterType="mybatis.vo.FreeBoardVO">
+	 <update id="edit" parameterType="mybatis.vo.FreeBoardVO">
 		update freeboard set
 		title = #{title},
 		content = #{content},
@@ -60,13 +60,13 @@
 		<if test="uploadFileName != ''">
 			,uploadFileName = #{uploadFileName}
 		</if>
-		where seq = #{seq} AND pwd = #{pwd}
-	</update> -->
+		where seq = #{seq}
+	</update>
 
 	<update id="delBbs" parameterType="mybatis.vo.FreeBoardVO">
 		UPDATE FreeBoard
 		SET status = 1
-		WHERE id = #{id} AND password = #{password}
+		WHERE id = #{id} AND password = #{password} and seq = #{seq}
 	</update> 
 
 </mapper>
