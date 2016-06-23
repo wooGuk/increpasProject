@@ -9,51 +9,81 @@
 <!-- <link href="css/text.css" rel="stylesheet" type="text/css"> -->
 <style type="text/css">
 
-div#contents_sub {
-	margin-left: 350px;
+div#listdiv {
+	margin-left: 450px;
+	
+	display: inline-block;
 }
 
-	.t1{width: 5%;text-align: center; height: 30px; border-right:1px solid #ccc;}
-	.t2{width: 40%;text-align: center; height: 30px; border-right:1px solid #ccc;}
-	.t3{width: 10%;text-align: center; height: 30px; border-right:1px solid #ccc;}
-	.t4{width: 30px;text-align: center; height: 30px; border-right:1px solid #ccc;}
-	.t5{width: 30px;text-align: center; height: 30px;}
+	.t1{width: 5px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	.t2{width: 50px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	.t3{width: 10px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	.t4{width: 30px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	.t5{width: 8px;  text-align: center; height: 35px;}
 
-#writebtn {
-	margin-left: 780px;
-}
 
-#listTable{
+
+#listTable{	
 		border:0;
-		width:900px;
-		height: 150px;
-		margin-top: 20px;
+		width:700px;
+		height: 400px;
+		margin-top: 40px;
 }
 
-/* #listTable tr td{
-	border-right:1px solid #ccc;
-} */
+#listTable thead tr{
+	height:10px;
+}	
 
+#page{
+	
+	display: inline-block;
+}
+
+
+#write_btn{
+	margin-top: 5px;
+	margin-left: 522px;
+	display: inline-block;
+}
+
+div#write_btn input[type=button]{
+	display: inline;
+		width: 68px;
+		height: 27px;
+		margin: 10px auto;
+		font-size: 15px;
+		font-weight: bold;
+		border: 1px solid #dcdcdc;
+		margin-left: 10px;
+}
+	.a1{
+		background: #F6F6F6; 
+		text-align: center; 
+		border-right:1px solid #FFFFFF; 
+		border-bottom:1px solid #FFFFFF;
+		height: 25px;
+}
 </style>
 </head>
-<body topmargin=0 leftmargin=0 marginwidth="0" marginheight="0">
+<body>
 	<!--주요내용시작 -->
-	<div id="contents_sub">
-		<form name="ff2">
+	<div id="listdiv">
 			<table id="listTable">
+				<thead>
 				<tr>
-					<td class="t1" style="background: #5D5D5D;"><font color="#FFFFFF">번호</font></td>
-					<td class="t2" style="background: #5D5D5D;"><font color="#FFFFFF">제목</font></td>
-					<td class="t3" style="background: #5D5D5D;"><font color="#FFFFFF">아이디</font></td>
-					<td class="t4" style="background: #5D5D5D;"><font color="#FFFFFF">날짜</font></td>
-					<td class="t5" style="background: #5D5D5D;"><font color="#FFFFFF">조회수</font></td>
+					<td class="t1" style="background: #5D5D5D; height: 35px; font-weight: bold;"><font color="#FFFFFF">번호</font></td>
+					<td class="t2" style="background: #5D5D5D; height: 35px; font-weight: bold;"><font color="#FFFFFF">제목</font></td>
+					<td class="t3" style="background: #5D5D5D; height: 35px; font-weight: bold;"><font color="#FFFFFF">아이디</font></td>
+					<td class="t4" style="background: #5D5D5D; height: 35px; font-weight: bold;"><font color="#FFFFFF">날짜</font></td>
+					<td class="t5" style="background: #5D5D5D; height: 35px; font-weight: bold;"><font color="#FFFFFF">조회수</font></td>
 				</tr>
+				</thead>
 				<c:forEach var="list" items="${list }" varStatus="stat">
 					<tr>
-						<td style="background: #DBDBDB; text-align: center;">
+						<td class="a1">
 							${rowTotal-((nowPage-1)*blockList+stat.index) }
 						</td>
-						<td style="background: #DBDBDB;" style="text-align:center">
+						<td class="a1">
 						
 							<%-- step값만큼 들여쓰기하는 반복문 --%> 
 							<c:forEach begin="1" end="${list.step }">
@@ -64,34 +94,26 @@ div#contents_sub {
 								<img src="img/arrow.JPG" />
 							</c:if> 
 							
-							<a id="title1" href="view.inc?seq=${list.seq }&nowPage=${nowPage}"> ${list.title }</a>
+							<a href="view.inc?seq=${list.seq }&nowPage=${nowPage}">${list.title }</a>
 						</td>
-						<td style="background: #DBDBDB; text-align: center;">${list.id }</td>
-						<td style="background: #DBDBDB; text-align: center;">${list.regdate }</td>
-						<td style="background: #DBDBDB; text-align: center;">${list.hit }</td>
+						<td class="a1">${list.id }</td>
+						<td class="a1">${list.regdate }</td>
+						<td class="a1">${list.hit }</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${empty list }">
 					<tr>
-						<td style="background: #F2F7F9; text-align: center" colspan="5"
+						<td style="background: #DBDBDB; text-align: center" colspan="5"
 							height="70">등록된 게시물이 없습니다.</td>
 					</tr>
 				</c:if>
-				<tr>
-					<td height="20" valign="middle">
-					<img src="/img/sub_it/point_line.gif" width="556" height="3"></td>
-				</tr>
-				<tr>
-					<td width="315" align="left">${pageCode }</td>
-					<td width="241" align="right">
-					<c:if test="${vo != null }">
-					<img src="img/but_write.gif" width="56" height="21" id="writebtn" style="cursor: pointer"
-						onClick="javascript:location.href='writeForm.inc'"></td>
-					</c:if>	
-				</tr>
 			</table>
-			
-		</form>
+				<div id="page">${pageCode }</div>
+				<div id="write_btn">
+				<c:if test="${vo != null }">
+					<input type="button" value="글쓰기" onclick="javascript:location.href='writeForm.inc'"/>
+				</c:if>
+				</div>
 	</div>
 	<!--주요내용끝 -->
 </body>
