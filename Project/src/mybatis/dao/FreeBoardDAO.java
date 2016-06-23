@@ -12,7 +12,7 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 import mybatis.vo.FreeBoardVO;
 /*
 	제 목 : FreeBoardDAO
-	역 할 : id검색, 로그인, 회원가입 등등을 한다.
+	역 할 : 글리스트, 글쓰기 ,글보기, 글삭제 등등
 	로 그 : 자유게시판 (장준수 2016/06/22)
 		
 */
@@ -65,12 +65,12 @@ public class FreeBoardDAO {
 		template.update("board.delBbs",vo);
 	}
 	
-	/*public void editBbs(FreeBoardVO vo){
+	public void editBbs(FreeBoardVO vo1){
 		
-		template.update("board.edit", vo);
+		template.update("board.edit", vo1);
 	
 	}
-	
+	/*
 	// 답변저장시 lev를 조정하는 기능
 	public void updateLev(Map<String, String> map){
 		template.update("board.updateLev",map);
