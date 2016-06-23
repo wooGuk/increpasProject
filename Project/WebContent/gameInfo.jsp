@@ -157,37 +157,37 @@ MatchVO[] games = (MatchVO[])request.getAttribute("games"); // 경기정보
 										</a>
 									</td>
 									<td>
-										<!-- 년 --> <select name="yyyy">
+										<!-- 년 --> <select name="yyyy" onchange="sendDate()">
 										<c:forEach var="i" begin="2014" end="2016">
 											<c:if test="${i == yyyy }">
 												<option value="${i }" selected="selected">${i }</option>
 											</c:if>
 											<c:if test="${i != yyyy }">
-												<option value="${i }" onclick="sendDate()">${i }</option>
+												<option value="${i }">${i }</option>
 											</c:if>
 										</c:forEach>
 									</select> <span>년</span>
 									</td>
 									<td>
-										<!-- 월 --> <select name="mm">
+										<!-- 월 --> <select name="mm" onchange="sendDate()">
 										<c:forEach var="i" begin="1" end="12">
 											<c:if test="${i == mm }">
 												<option value="${i }" selected="selected">${i }</option>
 											</c:if>
 											<c:if test="${i != mm }">
-												<option value="${i }" onclick="sendDate()">${i }</option>
+												<option value="${i }">${i }</option>
 											</c:if>
 										</c:forEach>
 									</select> <span>월</span>
 									</td>
 									<td>
-										<!-- 일 --> <select name="dd">
+										<!-- 일 --> <select name="dd" onchange="sendDate()">
 										<c:forEach var="i" begin="1" end="${countDay }">
 											<c:if test="${i == dd }">
 												<option value="${i }" selected="selected">${i }</option>
 											</c:if>
 											<c:if test="${i != dd }">
-												<option value="${i }" onclick="sendDate()">${i }</option>
+												<option value="${i }">${i }</option>
 											</c:if>
 										</c:forEach>
 									</select> <span>일</span>
