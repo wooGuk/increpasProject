@@ -8,14 +8,14 @@
 		제 목 : notice.xml
 		역 할 : 공지사항 게시판~ 
 		로 그 :  1.프로그램 최초 생성 (박상원 2016/06/22)
-			
+			2. 전체게시물반환 문장 수정~!
  	-->
 
 
 
 	<!-- 페이징 기법을 위한 전체 게시물의 수를 반환 select -->
 	<select id="totalCount" resultType="int" parameterType="String">
-		select count(*) from notice where bname = #{n}
+		select count(*) from notice where bname = #{n} and status = 0
 	</select>
 
 	<!-- 페이징 기법을 활용한 목록 select -->
@@ -58,7 +58,7 @@
 	</insert>
 
 	<!-- 게시물 보기 기능을 위해 기본키로 검색하는 select -->
-	<select id="getBbs" parameterType="String" resultType="mybatis.vo.NoticeVO">
+	<select id="getnotice" parameterType="String" resultType="mybatis.vo.NoticeVO">
 		select *
 		from notice
 		where seq = #{seq}
@@ -77,10 +77,10 @@
 		where seq = #{seq} AND pwd = #{pwd}
 	</update>
 
-	<update id="delBbs" parameterType="mybatis.vo.NoticeVO">
+	<update id="delnotice" parameterType="mybatis.vo.NoticeVO">
 		UPDATE notice
 		SET status = 1
-		WHERE seq = #{seq} AND pwd = #{pwd}
+		WHERE seq = #{seq} 
 	</update>
 
 </mapper>

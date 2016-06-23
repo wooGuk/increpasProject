@@ -1,13 +1,14 @@
 /*
 		제 목 : notice.xml
+
 		역 할 : 공지사항 게시판~ 
 		로 그 :  1.프로그램 최초 생성 (박상원 2016/06/22)
-			
+				2. id,coin getter,setter 추가 (박상원 2016/06/23)
 */
 package mybatis.vo;
 
 import org.springframework.web.multipart.MultipartFile;
-
+				
 public class NoticeVO {
 
 	//공지사항!@#!
@@ -16,6 +17,24 @@ public class NoticeVO {
 	
 	private int nowPage;
 	
+	private String id,coin;
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getCoin() {
+		return coin;
+	}
+
+	public void setCoin(String coin) {
+		this.coin = coin;
+	}
+
 	private MultipartFile upload;
 
 	public String getSeq() {

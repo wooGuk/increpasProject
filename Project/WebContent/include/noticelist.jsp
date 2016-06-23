@@ -107,7 +107,7 @@
 <!--                           <s:a href="%{viewURL}"> -->
 <!--                               <s:property value="title"/> -->
 <!--                           </s:a> -->
-						<a href="view.inc?seq=${vo.seq }&nowPage=${nowPage}"> 
+						<a href="noticeview.inc?seq=${vo.seq }&nowPage=${nowPage}"> 
 							${vo.title }
 						</a>
                       </td>

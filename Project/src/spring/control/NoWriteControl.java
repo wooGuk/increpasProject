@@ -1,8 +1,10 @@
  
 		/*제 목 : NoWriteControl.java
+
 		역 할 : 공지사항 게시판컨트롤러
 		로 그 :  1.프로그램 최초 생성 (박상원 2016/06/22)
 			   -> 공지사항 게시글 작성!
+			   2. 파일첨부기능 추가 (박상원 2016/06/23)
 			
 		*/
 
@@ -49,7 +51,7 @@ public class NoWriteControl {
 		
 		String title = request.getParameter("title");
 		
-		/*if(vo.getUpload().getSize() > 0){
+		if(vo.getUpload().getSize() > 0){
 			
 			String path = servletContext.getRealPath(uploadPath);
 			
@@ -66,7 +68,7 @@ public class NoWriteControl {
 			// 파일명 저장
 			vo.setUploadFileName(f_name);
 			
-		}else*/
+		}else
 			vo.setUploadFileName("");
 		
 		
