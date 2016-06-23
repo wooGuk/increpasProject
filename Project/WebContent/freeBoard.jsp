@@ -25,6 +25,7 @@
 	</div>	 
 		
 	
-
+	<!-- Footer 영역 -->
+	<%@include file="include/footer.jsp"%>
 </body>
 </html>
