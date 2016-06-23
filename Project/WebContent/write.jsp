@@ -13,22 +13,23 @@ function check(ff){
 </script>
 <style type="text/css">
 	#writetable{
-		margin-top: 40px;
-		margin-left: 500px;
+		margin-top: 70px;
+		margin-left: 450px;
 	}
 	
 	#writetable {border:none; border-top:2px solid #ddd;}
 	#writetable th {border-bottom:1px solid #ccc; border-left:1px solid #ccc; 
-	border-right:1px solid #ccc; padding:10px 0 10px 25px; font-weight:bold; background:#efefef; font-size: 15px}
+	border-right:1px solid #ccc; padding:10px 0 10px 25px; font-weight:bold; background:#efefef; font-size: 15px;
+	text-align: center;}
 	#writetable td {border-bottom:1px solid #ddd; padding:10px; font-weight: bold;}
 	
-	#title{margin: -9px;}
+	#title{margin: -9px; width: 575px;}
 	#content{margin: -9px;}
-	#upload{margin-left: -9px;}
+	#upload{margin-left: -9px; width: 380px;}
 	
 	#move{
 		display: inline-block;
-		margin-left: 680px;
+		margin-left: 730px;
 		margin-top: 20px;
 	}
 	
@@ -44,20 +45,20 @@ function check(ff){
 	}
 	
 	#idcolor{
-		color: #FF0000;
+		color: #000000;
 	}
+	
 	
 </style>
 </head>
-<body>
 <body>
 	<div id="wrap">
 		<jsp:include page="include/header.jsp"></jsp:include>
 	
 		<div id="write">
 		<form action="write.inc" method="post" enctype="multipart/form-data">
-			<input type="hidden" id="id" name="id" value=${vo.id } /> <input
-				type="hidden" id="password" name="password" value=${vo.password } />
+			<input type="hidden" id="id" name="id" value=${vo.id } /> 
+			<input type="hidden" id="password" name="password" value=${vo.password } />
 
 			<table id="writetable">
 				<colgroup>
@@ -83,7 +84,7 @@ function check(ff){
 						<th>내용</th>
 						<td id="area">
 							 <label for="content" class="hidden">내용</label>
-							 <textarea rows="13" cols="50" name="content" id="content" class="join"></textarea>
+							 <textarea rows="25" cols="70" name="content" id="content" class="join"></textarea>
 	
 						</td>
 					</tr>
@@ -105,5 +106,6 @@ function check(ff){
 		</form>
 	</div>
 </div>
+
 </body>
 </html>
