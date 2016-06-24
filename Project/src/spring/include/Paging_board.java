@@ -1,3 +1,9 @@
+
+	/*
+	제 목 : Paging_board
+	역 할 : 자유게시판 페이징 기법
+	로 그 : 1. 자유게시판 페이징(장준수 2016/06/23)
+	*/
 package spring.include;
  
 public class Paging_board {
