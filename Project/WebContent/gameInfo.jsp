@@ -45,6 +45,12 @@ MatchVO[] games = (MatchVO[])request.getAttribute("games"); // 경기정보
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 <style type="text/css">
+	table th{
+		text-align: center;
+		border: 1px solid black;
+		background-color: #000;
+		color: #fff;
+	}
 	#selectDate, #rank, #match{
 		margin: auto;
 	}

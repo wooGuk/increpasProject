@@ -7,6 +7,7 @@
 			3. 경기일정 보기란 로고띄우기 (정성훈 20160616)
 			4. 마이페이지 이동시 로그인 유무 체크 (정성훈 20160616)
 			5. 선발투수, 장소 추가 (정성훈 2016.06.21)
+			6. 자유게시판, 공지사항 추가 (정성훈 2016.06.24)
 	*/
  -->
 
@@ -40,6 +41,45 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+<style type="text/css">
+
+/* 경기정보 table */
+	#gameInfoTable{
+		margin:auto;
+		width: 70%;
+	}
+	
+/* 공지사항 table */
+
+/* 자유게시판 table */	
+
+/* 공지사항, 자유게시판 공통 */
+
+	.boardTitle td{
+		font-size: 20px;
+		font-weight: bold;
+		padding: 10px 0px;
+	}
+	.subTitle td{
+		font-size: 15px;
+		font-weight: bold;
+		padding: 5px 0px;
+	}
+		
+/* 공통 */
+	table a:HOVER {
+		text-decoration: underline;
+		color: #f00;
+	}
+	table td{
+		text-align: center;
+	}
+	table thead td{
+		background-color: #000;
+		color: #fff;
+	}
+</style>
 </head>
 <body>
 	<div id="wrap">
@@ -49,58 +89,85 @@
 		
 		<!-- 콘텐츠영역시작 -->
  		<div id="contents">
- 			<table id="contents_sub">
- 				<tr>
- 					<td colspan="2">
- 						<div class="gameInfo">
- 							<table class="gameInfoTable">
- 								<thead>
- 									<tr>
- 										<th colspan="3">TODAY MATCH</th>
- 									</tr>
- 								</thead>
-								<tbody>
-								<!-- 반복문 돌면서 경기일정 출력 -->
-								<%
-									for(int i=0; i<games.length; i++){
-								%>
-										<tr>
-											<td>
-												<img alt="" src="<%=logo.get(games[i].getHome_code()) %>">
-												<b><%=games[i].teamName(games[i].getHome_code()) %></b>
-												<b>(선발투수:<%=games[i].getHome_pitcher() %>)</b>
-											</td>
-											<td>
-												<b>vs</b>
-												<b>(<%=games[i].homeName(games[i].getHome_code()) %>)</b>
-											</td>
-											<td>
-												<img alt="" src="<%=logo.get(games[i].getAway_code()) %>">
-												<b><%=games[i].teamName(games[i].getAway_code()) %></b>
-												<b>(선발투수:<%=games[i].getAway_pitcher() %>)</b>
-											</td>
-										</tr>
-								<%
-									}//for()
-								%>		
-								</tbody>
-							</table>
- 						</div>
- 					</td>
- 				</tr>
- 				<tr>
- 					<td>
- 						<div class="noticeBoard">
- 							공지사항
- 						</div>
- 					</td>
- 					<td>
- 						<div class="freeBoard">
- 							자유게시판
- 						</div>
- 					</td>
- 				</tr>
- 			</table>
+			<table id="gameInfoTable" class="table table-striped">
+				<thead>
+					<tr class="boardTitle">
+						<td colspan="3">TODAY MATCH&nbsp;&nbsp;&nbsp;&nbsp;<a href="gameInfo.inc" style="color: #fff">더 보기</a></td>
+					</tr>
+				</thead>
+				<tbody>
+				<!-- 반복문 돌면서 경기일정 출력 -->
+				<%
+					for(int i=0; i<games.length; i++){
+				%>
+						<tr>
+							<td>
+								<img alt="" src="<%=logo.get(games[i].getHome_code()) %>">
+								<b><%=games[i].teamName(games[i].getHome_code()) %></b>
+								<b>(선발투수:<%=games[i].getHome_pitcher() %>)</b>
+							</td>
+							<td>
+								<b>vs</b><br>
+								<b>(<%=games[i].homeName(games[i].getHome_code()) %>)</b>
+							</td>
+							<td>
+								<img alt="" src="<%=logo.get(games[i].getAway_code()) %>">
+								<b><%=games[i].teamName(games[i].getAway_code()) %></b>
+								<b>(선발투수:<%=games[i].getAway_pitcher() %>)</b>
+							</td>
+						</tr>
+				<%
+					}//for()
+				%>		
+				</tbody>
+			</table>
+			<div class="fl" style="width: 440px; margin-top: 20px;">
+				<table id="noticeTable" class="table table-striped noticeFree">
+					<thead>
+						<tr class="boardTitle">
+							<td colspan="3">공지사항&nbsp;&nbsp;&nbsp;&nbsp;<a href="notice.inc" style="color: #fff">더 보기</a></td>
+						</tr>
+						<tr class="subTitle">
+							<td>작성자</td>
+							<td>제목</td>
+							<td>작성일</td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="vo" items="${nList }">
+							<tr>
+								<td>${vo.id }</td>
+								<td><a href="noticeview.inc?seq=${vo.seq }&nowPage=<%=1%>">${vo.title }</a></td>
+								<td style="font-size: 10px;">${vo.regdate }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<div class="fr" style="width: 440px; margin-top: 20px;">
+				<table id="freeTable" class="table table-striped noticeFree">
+					<thead>
+						<tr class="boardTitle">
+							<td colspan="3">자유게시판&nbsp;&nbsp;&nbsp;&nbsp;<a href="freeBoard.inc" style="color: #fff">더 보기</a></td>
+						</tr>
+						<tr class="subTitle">
+							<td>작성자</td>
+							<td>제목</td>
+							<td>작성일</td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="vo" items="${fList }">
+							<tr>
+								<td>${vo.id }</td>
+								<td><a href="view.inc?seq=${vo.seq }&nowPage=<%=1%>">${vo.title }</a></td>
+								<td style="font-size: 10px;">${vo.regdate }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<div class="fclear"></div>
 		</div>
 		<!-- 콘텐츠영역종료 -->
 
