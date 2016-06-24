@@ -1,3 +1,12 @@
+<!-- 
+	/*
+	제 목 : write.jsp
+	역 할 : write 페이지
+	로 그 : 1. 자유게판 글쓰기(장준수 2016/06/23)
+	*/
+ -->
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
