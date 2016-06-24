@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,12 +33,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import mybatis.dao.FreeBoardDAO;
 import mybatis.dao.MatchDAO;
 import mybatis.dao.MemberDAO;
+import mybatis.dao.NoticeDAO;
 import mybatis.dao.TeamDAO;
+import mybatis.vo.FreeBoardVO;
 import mybatis.vo.MatchVO;
 import mybatis.vo.MemberVO;
+import mybatis.vo.NoticeVO;
 import mybatis.vo.TeamVO;
+import spring.include.Paging_board;
 
 @Controller
 public class MainControl {
@@ -48,24 +55,40 @@ public class MainControl {
 	@Autowired
 	TeamDAO teamDao;
 	@Autowired
+	FreeBoardDAO freeDao;
+	@Autowired
+	NoticeDAO noticeDao;
+	
+	@Autowired
 	HttpServletRequest request;
 	@Autowired
 	HttpSession session;
+	
+	public static final int BLOCK_LIST = 10; // 한페이지당 보여질 게시물 수(10개)
+	public static final int BLOCK_PAGE = 5; // 한블럭당 보여질 페이지 수(5장)
 	
 	@RequestMapping("/main.inc")
 	public ModelAndView main(MemberVO vo){
 		
 		String flag = request.getParameter("flag");
 		
-		//오늘 날짜 경기일정 가져오기
-		MatchVO[] games= matchDao.scheduleToday();
-		
 		ModelAndView mv = new ModelAndView();
-		//경기일정, flag저장
-		mv.addObject("games", games);
 		if(flag == null || flag.equals("0")){
 			//처음이동 || 정상로그인
 			//main.jsp로 이동
+			
+			//오늘 날짜 경기일정 가져오기
+			MatchVO[] games= matchDao.scheduleToday();
+			//공지사항 최근 10개 가져오기
+			NoticeVO[] nList = getNlist();
+			//자유게시판 최근 10개 가져오기
+			FreeBoardVO[] fList = getFlist();
+			
+			//경기일정, flag저장
+			mv.addObject("games", games);
+			//공지사항,자유게시판 저장
+			mv.addObject("nList", nList);
+			mv.addObject("fList", fList);
 			mv.setViewName("/main");
 		}
 		else{
@@ -76,6 +99,52 @@ public class MainControl {
 		return mv;
 	}
 	
+	private FreeBoardVO[] getFlist() {
+		// 게시판을 구별하는 문자열 
+		String bname = "BBS";
+		int rowTotal = freeDao.getTotalCount(bname);
+		// 페이징 객체(Page) 생성
+		Paging_board page = new Paging_board(1, rowTotal, BLOCK_LIST, BLOCK_PAGE);
+		 
+		int begin = page.getBegin();
+		int end = page.getEnd();
+		
+		if(end > rowTotal)
+			end = rowTotal;
+		
+		// mybatis환경에 호출한 map구조를 생성한다.
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("bname", bname);
+		map.put("begin", String.valueOf(begin));
+		map.put("end", String.valueOf(end));
+		
+		FreeBoardVO[] ar = freeDao.getList(map);
+		return ar;
+	}
+
+	private NoticeVO[] getNlist() {
+		// 게시판을 구별하는 문자열 
+		String bname = "NOTICE";
+		int rowTotal = noticeDao.getTotalCount(bname);
+		// 페이징 객체(Page) 생성
+		Paging_board page = new Paging_board(1, rowTotal, BLOCK_LIST, BLOCK_PAGE);
+		 
+		int begin = page.getBegin();
+		int end = page.getEnd();
+		
+		if(end > rowTotal)
+			end = rowTotal;
+		
+		// mybatis환경에 호출한 map구조를 생성한다.
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("bname", bname);
+		map.put("begin", String.valueOf(begin));
+		map.put("end", String.valueOf(end));
+		
+		NoticeVO[] ar = noticeDao.getList(map);
+		return ar;
+	}
+
 	//회원가입 페이지로 이동 (정성훈 2016/06/10) 
 	@RequestMapping("/goJoin.inc")
 	public ModelAndView mainPage(){
