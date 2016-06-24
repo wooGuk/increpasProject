@@ -51,23 +51,7 @@ public class FreeBoardDAO {
 		template.insert("board.write", vo);
 		return vo;
 	}
-	
-	
-	// 글 클릭시 댓글 보기 (장준수 2016/06/24)
-	/*public FreeCommVO[] getansList(Map<String, String> map){
-		
-		List<FreeCommVO> list = template.selectList("board.anslist",map);
-		
-		// 받은 list구조를 다시 배열로 변환
-		FreeCommVO[] ar = null;
-		if(list != null && list.size() > 0){
-			ar = new FreeCommVO[list.size()];
-			
-			// list구조에 있는 요소들을 그대로 ar이라는 배열에 복사하기
-			list.toArray(ar);
-		}
-		return ar;
-	}*/
+
 	
 	//댓글 저장 메서드
 	public FreeCommVO addAns(FreeCommVO vo){
