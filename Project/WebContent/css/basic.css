@@ -177,7 +177,6 @@ input.join{
 }
 .gameInfoTable td, th{
 	text-align: center;
-	border: 1px solid black;
 }
 .gameInfoTable b{
 	display:block;
