@@ -121,7 +121,7 @@
 				%>		
 				</tbody>
 			</table>
-			<div class="fl" style="width: 440px; margin-top: 20px;">
+			<div class="fl" style="width: 470px; margin-top: 20px;">
 				<table id="noticeTable" class="table table-striped noticeFree">
 					<thead>
 						<tr class="boardTitle">
@@ -144,7 +144,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="fr" style="width: 440px; margin-top: 20px;">
+			<div class="fr" style="width: 470px; margin-top: 20px;">
 				<table id="freeTable" class="table table-striped noticeFree">
 					<thead>
 						<tr class="boardTitle">
