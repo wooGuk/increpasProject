@@ -3,6 +3,7 @@ package spring.control;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import mybatis.dao.FreeBoardDAO;
 import mybatis.dao.MemberDAO;
 import mybatis.vo.FreeBoardVO;
+import mybatis.vo.FreeCommVO;
 import mybatis.vo.MemberVO;
 import spring.include.Paging;
 import spring.include.Paging_board;
@@ -65,7 +67,7 @@ public class FreeBoardControl {
 			
 			// 현재 페이지값 받기 *
 			String c_page = request.getParameter("nowPage");
-			System.out.println(c_page);
+			System.out.println("fbc:"+c_page);
 			
 			if(c_page == null)
 				nowPage = 1;
@@ -99,6 +101,7 @@ public class FreeBoardControl {
 			map.put("end", String.valueOf(end));
 			
 			FreeBoardVO[] ar = fdao.getList(map);
+			session.setAttribute("anslist", ar);
 			
 			// JSP에서 표현할 수 있도록 반환객체 생성 한 후 그곳에서 표현할 값들을 저장한다.
 			ModelAndView mv = new ModelAndView();
@@ -132,16 +135,30 @@ public class FreeBoardControl {
 		public ModelAndView view(String seq,String nowPage)throws Exception{
 			
 			FreeBoardVO vo = fdao.getBbs(seq);
+			System.out.println("게시판PK:"+seq);
 			
+			// 게시물 내용을 찍는 세션
 			session.setAttribute("vo1", vo);
 			
 			ModelAndView mv = new ModelAndView();
-			mv.addObject("view", vo);
-			mv.addObject("nowPage", nowPage);
-			mv.addObject("seq", seq);
-			mv.setViewName("/view");
 			
-			return mv;
+			if(vo.getAnslist() == null){
+				System.out.println("널이다");
+			}
+			
+			if(vo != null){
+				List<FreeCommVO> listcom = vo.getAnslist();
+				
+				mv.addObject("anslist1", listcom);
+				mv.addObject("view", vo);
+				mv.addObject("nowPage", nowPage);
+				mv.addObject("seq", seq);
+				mv.setViewName("/view");
+				
+				return mv;
+			}
+			
+			return null;
 		}
 		
 }
