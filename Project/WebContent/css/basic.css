@@ -158,7 +158,7 @@ input.join{
 #footer .copyright {font-size:11px;}
 
 /* 컨텐츠영역 */
-#contents {width:970px; height:auto; margin:auto; margin-top: 50px;}
+#contents {width:970px; height:auto; margin:auto;}
 #contents_sub {width:900px; height:auto; margin:auto; padding-top:30px;}
 .sub_tit {background:url(../img/sub_title.png) no-repeat; text-indent:-9999px;}
 .tit_src {font-size:15px; color:#222; padding-bottom:40px; line-height:1.3em;}
