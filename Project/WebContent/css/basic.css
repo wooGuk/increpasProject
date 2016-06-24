@@ -160,28 +160,6 @@ input.join{
 /* 컨텐츠영역 */
 #contents {width:970px; height:auto; margin:auto; margin-top: 50px;}
 #contents_sub {width:900px; height:auto; margin:auto; padding-top:30px;}
-#contents_sub div{
-	text-align: center;
-	border: 1px solid black;
-}
-#contents_sub div.gameInfo{
-	height: 40em;
-}
-#contents_sub div.noticeBoard, #contents_sub div.freeBoard{
-	height: 20em;
-}
-.gameInfoTable{
-	width: 60%;
-	height: 100%;
-	margin: auto;
-}
-.gameInfoTable td, th{
-	text-align: center;
-}
-.gameInfoTable b{
-	display:block;
-	margin-top: 5px;
-}
 .sub_tit {background:url(../img/sub_title.png) no-repeat; text-indent:-9999px;}
 .tit_src {font-size:15px; color:#222; padding-bottom:40px; line-height:1.3em;}
 
