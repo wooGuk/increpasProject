@@ -36,9 +36,15 @@ table thead tr {
 function info_send(index){
 	document.forms[index].submit();
 }
+function check(alertMessage) {
+	if(alertMessage != ""){
+		alert(alertMessage);
+	}
+}
+
 </script>
 </head>
-<body>
+<body onload="check('${alert}'})">
 	<!-- Header 영역 -->
 	<%@include file="include/header.jsp"%>
 	<!-- 컨텐츠 영억 -->
@@ -66,7 +72,7 @@ function info_send(index){
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_code }</font></td>
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.teamName(game.home_code) }:${game.teamName(game.away_code) }</font></td>
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_year }년${game.match_month }월${game.match_day } 자정</font></td>
-						<td height="20" bgcolor="#669AB3" width="56"><a href="javascript:info_send('${stat.index+1}')"><font color="blue"> 게임구매</font></a></td>
+						<td height="20" bgcolor="#669AB3" width="56"><a href="javascript:info_send('${stat.index}')"><font color="blue"> 게임구매</font></a></td>
 					</tr>
 						<form name="f" id="f" action="buyGame.inc" method="post">
 							<input type="hidden" id="match_code" name="match_code"

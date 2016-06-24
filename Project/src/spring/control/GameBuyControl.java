@@ -60,7 +60,12 @@ public class GameBuyControl {
 	public ModelAndView showList(){
 		ModelAndView mv = new ModelAndView();
 		MatchVO[] games = mDao.matchPos();
+		String alert="";
+		if(request.getAttribute("alert") != null){
+			alert=(String)request.getAttribute("alert");
+		}
 		mv.addObject("games", games);
+		mv.addObject("alert", alert);
 		mv.setViewName("oppGameList");
 		return mv;
 	}
@@ -220,20 +225,27 @@ public class GameBuyControl {
 		map.put("RE_RESULT", Integer.parseInt(request.getParameter("result")));
 		map.put("BAT_COST", Integer.parseInt(request.getParameter("coin")));
 		
-		boolean check = bDao.insertBat(map);
-		if(check){
-			Map<String, Object> map2 = new HashMap<String, Object>();
-			map2.put("id", (String)request.getParameter("id"));
-			map2.put("coin", Integer.parseInt(request.getParameter("coin")));
-			memDao.delCoin(map2);
-			MemberVO vo=(MemberVO)session.getAttribute("vo");
-			vo.setCoin(vo.getCoin()-Integer.parseInt(request.getParameter("coin")));
-			session.setAttribute("vo", vo);
-		}
-		
+//		boolean doublecheck = bDao.checkBat(map);
+//		if(!doublecheck){
+//			MemberVO vo=(MemberVO)session.getAttribute("vo");
+//			vo.setCoin(vo.getCoin()-Integer.parseInt(request.getParameter("coin")));
+//			session.setAttribute("vo", vo);
+//			mv.addObject("alert", "이미 거래한 게임입니다");
+//		}else{
+			boolean check = bDao.insertBat(map);
+			if(check){
+				Map<String, Object> map2 = new HashMap<String, Object>();
+				map2.put("id", (String)request.getParameter("id"));
+				map2.put("coin", Integer.parseInt(request.getParameter("coin")));
+				memDao.delCoin(map2);
+				MemberVO vo=(MemberVO)session.getAttribute("vo");
+				vo.setCoin(vo.getCoin()-Integer.parseInt(request.getParameter("coin")));
+				session.setAttribute("vo", vo);
+			}
+//		}
 		
 		//경고창 띄워야됨
-		mv.setViewName("redirect:/main.inc");
+		mv.setViewName("redirect:/todaylist.inc");
 		return mv;
 	}
 	

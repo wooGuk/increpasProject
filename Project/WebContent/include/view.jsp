@@ -5,7 +5,7 @@
 <%
 	String msg = (String)request.getAttribute("msg");
 	String check = "possible";
-	if(msg.equals("소인코지부족") ||msg.equals("1000원이상구매가능")){
+	if(msg.equals("소지코인부족") ||msg.equals("1000원이상구매가능")){
 		check ="impossible";
 	}
 %>
