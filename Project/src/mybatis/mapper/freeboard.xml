@@ -4,13 +4,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
 
+	<!-- 
+		제 목 : freeboard.xml
+		역 할 : 게시물 리스트, 글쓰기, 글수정, 글삭제, 글보기 등등 
+		로 그 :  1.프로그램 최초 생성 (장준수 2016/06/23)
+ 	-->
+ 	
+ 	<resultMap type="mybatis.vo.FreeBoardVO" id="map1">
+ 		<id property="seq" column="seq"/>
+ 		
+		<collection property="list" 
+		  select="commList" 
+		  column="seq"
+		  ofType="mybatis.vo.FreeCommVO"/>
+ 	</resultMap>
+ 	
+ 	
+ 	
+ 	
 	<!-- 페이징 기법을 위한 전체 게시물의 수를 반환 select -->
 	 	<select id="totalCount" resultType="int" parameterType="String">
 		select count(*) from freeboard where bname = #{n} and status = 0
 	</select>
 
 	<!-- 페이징 기법을 활용한 목록 select -->
-	 <select id="list" resultType="mybatis.vo.FreeBoardVO" parameterType="java.util.Map">
+	 <select id="list" resultType="mybatis.vo.FreeBoardVO" parameterType="java.util.Map" resultMap="map1">
 		select * from (
 		select rownum as r_num, a.* from (
 		select * from freeboard where bname = #{bname} and status = 0
@@ -29,19 +47,16 @@
 	</insert>
 
 
-	<!-- 답변을 저장하기 전에 lev값 조정하기(참조글의 groups와 같고 참조글의 lev보다 큰 lev값을 1씩 증가시킨다. -->
-	<!-- <update id="updateLev" parameterType="java.util.Map">
-		update freeboard set lev = lev+1 where groups = #{groups} and lev &gt; #{lev}
-	</update> -->
-
-
-	<!-- 답변저장하는 insert -->
-	<!-- <insert id="addAns" parameterType="mybatis.vo.FreeBoardVO">
-		INSERT INTO FreeBoard(seq, title, content, hit, groups, step, lev, bname,
-		regdate, uploadFileName, ip, status)
-		VALUES(freeboard_seq.NEXTVAL,#{title}, #{content},0, #{groups}, #{step}, #{lev}, #{bname}, sysdate, 
-		#{uploadFileName}, #{ip}, 0)
-	</insert> -->
+	<select id="commList" parameterType="String" resultType="mybatis.vo.FreeCommVO">
+		select * FROM freeboard_comment_t where seq = #{seq}
+	</select>
+	
+	
+	<!-- 댓글저장 -->
+	<insert id="addAns" parameterType="mybatis.vo.FreeCommVO">
+		insert into freeboard_comment_t(seq_com,content,write_date, status,seq,id,password) 
+		values(freecomment_seq.NEXTVAL,#{content}, sysdate, 0 ,#{seq},#{id}, #{password})
+	</insert>
 
 	<!-- 게시물 보기 기능을 위해 기본키로 검색하는 select -->
 	 <select id="getBbs" parameterType="String" resultType="mybatis.vo.FreeBoardVO">
@@ -51,7 +66,7 @@
 	</select>
 
 
-	<!-- 게시물을 수정하는 update(기본키와 비밀번호가 필요) -->
+	<!-- 게시물을 수정하는 update -->
 	 <update id="edit" parameterType="mybatis.vo.FreeBoardVO">
 		update freeboard set
 		title = #{title},
