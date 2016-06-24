@@ -6,6 +6,7 @@
 			3.모든경기 불러오기 기능 추가(오우석 2016/06/13)
 			4.종료된 게임에서 세부사항을 보내주는 컨트롤러 오우석(2016/06/20)
 			5.선발투수 값 넘기기 오우석(2016/06/21)
+			6.코인체크 메소드 컨트롤러 추가 오우석(2016/06/24)
 	*/
 package spring.control;
 
@@ -205,7 +206,7 @@ public class GameBuyControl {
 		mv.setViewName("gamebuy"); //상대전적시 필요한 배열
 		return mv;
 	}
-	@RequestMapping("/buy")
+	@RequestMapping("/buy.inc")
 	public ModelAndView buy(){
 		ModelAndView mv = new ModelAndView();
 		System.out.println(request.getParameter("id"));
@@ -233,6 +234,31 @@ public class GameBuyControl {
 		
 		//경고창 띄워야됨
 		mv.setViewName("redirect:/main.inc");
+		return mv;
+	}
+	
+	@RequestMapping("/checkCoin.inc")
+	public ModelAndView checkCoin(){
+		String id = request.getParameter("id");
+		int coin = Integer.parseInt(request.getParameter("coin"));
+		String msg;
+		if(coin < 1000){
+			msg = "1000원이상구매가능";
+		}else{
+			System.out.println("여기는 들어옴??");
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", id);
+			map.put("coin", coin);
+			boolean check = bDao.checkCoin(map);
+	
+			msg = "소지코인부족";
+			if (check)
+				msg = "구매가능합니다.";
+			System.out.println(msg);
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("msg", msg);
+		mv.setViewName("/include/view");
 		return mv;
 	}
 }

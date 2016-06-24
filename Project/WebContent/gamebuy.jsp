@@ -4,7 +4,9 @@
 	역 할 : 구매페이지 
 	로 그 : 1.프로그램 최초 생성(오우석 2016/06/21)
 			2.게임구매방법tab 완료(오우석 2016/06/21)
-			2.게임결제시 최소금액 1000원 검사 로직 추가(오우석 2016/06/22)
+			3.게임결제시 최소금액 1000원 검사 로직 추가(오우석 2016/06/22)
+			4.Ajax활용을 위한 코인체크메소드 추가 오우석(2016/06/24)
+			  if문 조건 null 에서 ''로 수정 오우석(2016/06/24)
 	*/ 
  -->
 <%@page import="mybatis.vo.MemberVO"%>
@@ -18,6 +20,7 @@
 <%
 	MemberVO vo = (MemberVO)session.getAttribute("vo");
 %>
+<script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript">
 function trans(temp) {
 	// id가 tab1,tab2,tab3 모두를 검색한다.
@@ -99,7 +102,8 @@ function info_send(){
 	}
 }
 function showWin(){
-	if('${vo}' == null){
+	//if문 조건 null 에서 ''로 수정 오우석(2016/06/24)
+	if('${vo}' == ''){
 		alert("로그인이 필요합니다");
 		location.href="mypageCheck.inc";
 	}else{
@@ -108,6 +112,22 @@ function showWin(){
 }
 function hiddenWin(){
 	document.getElementById("bat_window").style.display = "none";
+}
+//Ajax활용을 위한 코인체크메소드 추가 오우석(2016/06/24)
+function checkCoin(){
+	var id = '${vo.id}';
+	var coin = document.getElementById("coin").value;
+	var param = "coin="+encodeURIComponent(coin)+"&id="+encodeURIComponent(id);
+	sendRequest("checkCoin.inc", param, res, "post", true);
+}
+
+function res() {
+	if(xhr.readyState==4 && xhr.status==200){
+		//현재문서에서 아이디가 view인
+		//객체를 검색한다.
+		var v =document.getElementById("pos");
+		v.innerHTML = xhr.responseText;
+	}
 }
 </script>
 <style>
@@ -159,6 +179,12 @@ function hiddenWin(){
 	font-size: 15px;
 	font: bold;
 	color: highlighttext; 
+}
+.possible{
+	color: blue;
+}
+.impossible{
+	color: red;
 }
 </style>
 <head>
@@ -308,7 +334,9 @@ function hiddenWin(){
 		 	<input type="radio" name="result" value="${game.away_code }"/>패
 		 	<br/>
 		 	<label for="coin">배팅코인: </label>
-		 	<input type="text" id="coin" name="coin"/><br/>
+		 	<input type="text" id="coin" name="coin" onkeyup="checkCoin()"/>
+		 	<span id="pos"></span>
+		 	<br/>
 		 	<input type="button" id="go" onclick="javascript:info_send()" value="배팅하기"/>
 			<input name="match_code" type="hidden" value="${game.match_code }"/>
 			<input name="id" type="hidden" value="${vo.id }"/>
