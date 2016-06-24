@@ -1,4 +1,13 @@
-
+<!-- 
+	/*
+	제 목 : view.jsp
+	역 할 : view 페이지
+	로 그 : 1. 자유게시판 글 클릭시 글 보기(장준수 2016/06/23)
+	*/
+ -->
+<%@page import="mybatis.vo.FreeBoardVO"%>
+<%@page import="mybatis.vo.FreeCommVO"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -63,7 +72,7 @@ div#del_win input[type=password]{width: 80px;}
 #move{
 		margin-top: 15px;
 		display: inline-block;
-		margin-left: 1008px;
+		margin-left: 1055px;
 		
 	}
 	
@@ -138,17 +147,58 @@ div#move input[type=button],div#move2 input[type=button]{
 					</tr>
 				</tbody>
 			</table>
+			<div>
+		
+
+			<c:if test="${anslist1 != null && anslist1.seq == vo1.seq}">
+				 <c:forEach items="${anslist1 }" var="list" >
+					<h1>${list.content }</h1>
+				</c:forEach> 
+			</c:if>
+
+			<c:if test="${anslist1 == null }">
+				<h1>안뜨네</h1>
+			</c:if>
+			 
+			
+			<form method="post" action="ans_write.inc">
+			<table>
+				<tr>
+				<th>이름:</th> 
+				<td>${vo.id }</td>
+				</tr>
+				
+				<tr>
+				<th>내용:</th>
+				<td>
+				<textarea rows="2" cols="40" name="content"></textarea>
+				</td>
+				</tr>
+				
+				<tr>
+				<th>비밀번호:</th>
+				<td><input type="password" name="pwd" /></td>
+				</tr>
+			</table>
+				<input type="hidden" name="seq" value="${seq }"/>
+				<input type="hidden" name="id" value="${vo.id }"/>
+				<input type="hidden" name="password" value="${vo.password }"/>
+				<input type="hidden" name="nowPage" value="${nowPage }"/>
+				<div>
+				<input type="submit" value="저장하기" />
+				</div>
+			</form>
+			</div>
+			
 			<div id="move">
 			<c:if test="${vo.id == view.id }">
 				<input type="button" value="수정" onClick="javascript:location.href='edit.inc?seq=${vo1.seq}&nowPage=${nowPage }'" style="cursor:pointer"/>
 				<input type="button" value="삭제" onclick="showDel()" style="cursor:pointer"/>
-				<input type="button" value="답글" onClick="javaScript:location.href='answer.inc?seq=${vo1.seq}&groups=${vo1.groups }&step=${vo1.step }&lev=${vo1.lev }&nowPage=${nowPage }'" style="cursor:pointer"/>
 				<input type="button" value="목록" onClick="javaScript:location.href='freeBoard.inc?nowPage=${nowPage}'" style="cursor:pointer"/>
 				</c:if>
 			</div>
 			<c:if test="${vo.id != view.id }">
 			<div id="move2">
-				<input type="button" value="답글" onClick="javaScript:location.href='answer.inc?seq=${vo1.seq}&groups=${vo1.groups }&step=${vo1.step }&lev=${vo1.lev }&nowPage=${nowPage }'" style="cursor:pointer"/>
 				<input type="button" value="목록" onClick="javaScript:location.href='freeBoard.inc?nowPage=${nowPage}'" style="cursor:pointer"/>
 			</div>
 			</c:if>
