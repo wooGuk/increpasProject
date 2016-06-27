@@ -103,15 +103,14 @@ public class FreeBoardControl {
 			FreeBoardVO[] ar = fdao.getList(map);
 			session.setAttribute("anslist", ar);
 			FreeBoardVO size = FreeBoardVO();
-			if(size != null && size.getAnslist().size() > 0){
-				System.out.println(size.getAnslist().size());
-			}else{
-				System.out.println("암것도없네");
-			}
+			
+			/*for (int i = 0; i < ar.length; i++) {
+				size = ar[i];
+			}*/
 			
 			// JSP에서 표현할 수 있도록 반환객체 생성 한 후 그곳에서 표현할 값들을 저장한다.
 			ModelAndView mv = new ModelAndView();
-			//mv.addObject("size",size);
+			mv.addObject("size",size);
 			mv.addObject("list", ar);
 			mv.addObject("nowPage", nowPage);
 			mv.addObject("pageCode", PageCode);
