@@ -18,72 +18,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+<link type="text/css" rel="stylesheet" href="css/basic.css">
 <style>
-	
-	p{
-		margin-top: 50px;
-		font-size:  40px;
-		text-align: center;
-	
-	}
-	
-	div#asd{
-		/* display:inline-block;
-		margin-left:auto;
-		margin-right:auto;
-		vertical-align: middle; */
-		width:1500px;
-		height:1000px;
-		margin-top: 20px;
+	#search{
 		border: 1px solid red;
 
-		display: table-cell;
+		margin-left: 500px;
+		margin-top: 50px;
 	}
 	
-	#form2{
-		width:500px;
-		height:50px;
-		border: 3px solid black;
-		  display:table-cell;  
-		padding-bottom: 100px;
-		text-align: center;
+	#searchid{
+		display: inline-block;
 	}
 	
-	#form3{
-		width:500px;
-		height:50px;
-		border: 3px solid black;
-		  display:table-cell; 
-		padding-bottom: 100px;
-		margin-right:100px;
-		text-align: center;
-		
+	#searchpassword{
+		display: inline-block;
+		padding-left: 50px;
+	} 
+	
+	#searchid input[type=text],#searchpassword input[type=text]{
+		width: 200px;
+		height: 20px;
+	}
+	
+	#idsearh{
+		display: inline-block;
+		border: 1px solid red;
+		padding-right: 300px;
+	}
+	
+	#passwordserach{
+		display: inline-block;
+		border: 1px solid red;
+	}
+	#searchmove{
+		display: inline-block;
+		border: 1px solid red;
+		margin-left: 600px;
 	}
 	
 	
-	#form1,#form4{
-		
-		display:inline;
-		
-	}
-	
-	#form4{
-		margin-left: 200px;
-	}
-	
-	label{
-		font-size: 20px;
-	}
-	
-	input{
-		margin-left: 20px;
-	}
-	
-	a{
-	margin-left: 200px;
-		font-size: 30px;
-	}
 </style>
 
 <script type="text/javascript">
@@ -107,54 +81,53 @@
 </script>
 </head>
 <body>
-
-	<p style="font-style: oblique;">아이디 / 패스워드 찾기</p>
-	<div id=asd>
-	
+	<div id="wrap">
+	<!-- 하단영역시작 -->
+		<jsp:include page="include/header.jsp"></jsp:include>
+		
+	<div id="search">
+	<div id="searchid">
 	<form id="form2" name="form2">
-	<p><img src="img/idsearchtitle.PNG"></img></p>
-	<p style="font-size: 16px; color: red; font-style: italic;">
-	 
-	아이디가 기억나지 않아 답답하셨나요?
-	이름과 번호를 입력하시면, 찾을 수 있어요.</p>
-	</br></br>
-		<label for="name">이 름:</label>&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="text" name="name" name="name" size="25" placeholder="이름을 입력하세요."/>
-		<br/>
-		<label for="phone">폰번호:</label>
-		<input type="text" name="phone" name="phone" size="25" placeholder="번호를 입력해주세요."/>
+		<table>
+		<tr>
+			<td>이름:</td><td><input type="text" name="name" name="name" size="25" placeholder="이름을 입력하세요."/></td>
+		</tr>
+		<tr> 
+			<td>전화번호:</td><td><input type="text" name="phone" name="phone" size="25" placeholder="번호를 입력해주세요."/></td>
+		</tr>
+		</table>
 	</form>
+	</div>
 	
+	<div id="searchpassword">
 	<form id="form3" name="form3">
-	<p><img src="img/pwsearchtitle.PNG"></img></p>
-	<p style="font-size: 16px; color: blue; font-style: italic;">
-	 
-	비밀번호가 기억나지 않아 답답하셨나요?
-	아이디와 이름을 입력하시면, 찾을 수 있어요.</p>
-	</br></br>
-		<label for="id">아이디:</label>
-		<input type="text" name="id" name="id" size="25" placeholder="아이디를 입력해주세요."/>
-		<br/>
-		<label for="id">이름:</label>
-		<input type="text" name="name" name="name" size="25" placeholder="이름을 입력해주세요."/>
+	<table>
+		<tr>
+			<td>이름:</td><td><input type="text" name="name" name="name" size="25" placeholder="이름을 입력하세요."/></td>
+		</tr>
+		<tr>
+			<td>아이디:</td><td><input type="text" name="id" name="id" size="25" placeholder="아이디를 입력해주세요."/></td>
+		</tr>
+		
+	</table>	
 	</form>
+	</div>
+	</div>
 	
-	
-	<form id="form1">
+	<div id="searchmove">
+	<form id="idsearh">
 	<a href="javascript:idSearch();"><img src="img/idsearch.PNG"></img></a>
 	</form>
 	
 	
-	<form id="form4" >
+	<form id="passwordserach" >
 	<a href="javascript:pwdSearch();"><img src="img/pwsearch.PNG"></img></a>
 	</form>
-	
-	
 	</div>
-	<div id="wrap">
-	<!-- 하단영역시작 -->
+	
+	
 		<jsp:include page="include/footer.jsp"></jsp:include>
 		<!-- 하단영역종료 -->
-		</div>
+	</div>
 </body>
 </html>
