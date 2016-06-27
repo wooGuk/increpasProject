@@ -1,24 +1,39 @@
 <!-- 
-	/*
-	제 목 : memEdit.jsp
-	역 할 : 회원수정
-	로 그 : 1. 회원정보 수정(장준수 2016/06/20)
-	*/
- -->
+	
+	제 목 : join.jps
+	역 할 : 회원가입
+	로 그 : 1.프로그램 최초 생성 (장준수 2016/06/08)
+	
+		 
+-->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="css/basic.css"/>
-
 <title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="css/basic.css"/>
 <style type="text/css">
 
-
-	/*  회원수정 css */
+	/* 아이디중복체크 */
+	label#box{
+		display: inline-block;
+		font-size: 11px;
+		font-weight: bold;
+	}
+	
+	.success{
+		color: #00f;
+	}
+	
+	.fail{
+		color: #f00;
+	}
+	
+	
+	/* 회원가입 css */
 	div#contents_sub1{
 		width: 900px;
 		height: auto;
@@ -31,15 +46,14 @@
 		margin: 30px;
 	}
 
-
 	.b_agre{
-		width: 70px;
+		width: 71px;
 		height: 26px;
 	
 	}
 
 	.b_noagre{
-		width: 70px;
+		width: 71px;
 		height: 26px;
 	
 	}
@@ -57,7 +71,7 @@
 		background: url("img/back.PNG");
 		text-indent: -9999px;
 	}
-	
+
 	.btn a{
 		display: block;
 		width: 100%;
@@ -77,6 +91,9 @@
 		padding-left: 5px;
 		padding-bottom: 40px;
 	}
+	
+
+
 </style>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
@@ -123,8 +140,23 @@ $(function(){
 </head>
 <body>
 	<div id="wrap">
-	<jsp:include page="include/header.jsp"></jsp:include>
+		<!-- 상단영역 -->
+		<div id="header">
+			<!-- 상단 좌측 로고, 클릭 시 main페이지로 이동  -->
+			<h1 class="fl"><a href="main.inc"><img alt="logo" src="img/logo.png"></a></h1>
 		
+			
+			<ul class="gnb">
+				<li><a href="notice.inc"><span class="menu m01">공지사항</span></a></li>
+				<li><a href="todaylist.inc"><span class="menu m02">경기구매</span></a></li>
+				<li><a href="gameInfo.inc"><span class="menu m03">경기정보</span></a></li>
+				<li><a href="mypageCheck.inc"><span class="menu m04">마이페이지</span></a></li>
+				<li><a href="freeBoard.inc"><span class="menu m05">자유게시판</span></a></li>
+			</ul>
+		</div>
+		<!-- 상단영역 끝 -->
+		
+		<!-- 콘텐츠영역 -->
 		<div id="contents_sub1">
 			<h1 class="sub_title title01"></h1>
 			<p class="title_src">회 원 수 정</p>
@@ -134,7 +166,7 @@ $(function(){
 				</span>
 			</p> 
 			<br />
-		<form method="post" action="memedit.inc">
+		<form method="post" action="reg_ok.inc">
 			<table class="table_type01" style="width: 900px">
 				<colgroup>
 					<col width="130px">
@@ -206,26 +238,12 @@ $(function(){
 			
 			</table>
 			<div class="btn_center">
-					<p class="btn1 b_agre btn"><a onclick="edit()" style="cursor:pointer">회원수정</a></p>	
+					<p class="btn1 b_agre btn"><a onclick="reg()" style="cursor:pointer">가입하기</a></p>	
 					<p class="btn2 b_noagre btn"><a onclick="javascript:location.href='main.inc'" style="cursor:pointer">취소</a></p>
 			</div>
 			</form>
-		</div>
-		<!-- 콘텐츠영역 끝 -->
-		<!-- 하단영역 -->
-		<div id="footer">
-			<div class="footer_area">
-				<ul class="foot_guide">
-					<li><a href="">개인정보취급방침</a></li>
-					<li><a href="">웹회원 이용약관</a></li>
-					<li><a href="">책임한계와 법적고지</a></li>
-					<li><a href="">이메일 무단수집 거부</a></li>
-				</ul>
-				<address>adsasd</address>
-				<p class="copyright">asdasdas</p>
-			</div>
-		</div>
-	
+		</div>	
 	</div>
+<%@include file="include/footer.jsp"%>
 </body>
 </html>
