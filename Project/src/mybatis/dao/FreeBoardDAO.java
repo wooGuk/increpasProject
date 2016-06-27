@@ -65,11 +65,17 @@ public class FreeBoardDAO {
 		return vo;
 	}
 	
-	// 삭제
+	// 원글삭제
 	public void delBbs(FreeBoardVO vo){
 		template.update("board.delBbs",vo);
 	}
 	
+	// 댓글 삭제
+	public void comDel(FreeCommVO vo){
+		template.update("board.comDel",vo);
+	}
+	
+	// 원글 수정
 	public void editBbs(FreeBoardVO vo1){
 		
 		template.update("board.edit", vo1);
