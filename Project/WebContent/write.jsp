@@ -23,7 +23,7 @@ function check(ff){
 <style type="text/css">
 	#writetable{
 		margin-top: 70px;
-		margin-left: 350px;
+		margin-left: 120px;
 	}
 	
 	#writetable {border:none; border-top:2px solid #ddd;}
@@ -38,8 +38,9 @@ function check(ff){
 	
 	#move{
 		display: inline-block;
-		margin-left: 610px;
+		margin-left: 370px;
 		margin-top: 20px;
+		margin-bottom: 5px;
 	}
 	
 	div#move input[type=button],input[type=reset] {
@@ -55,6 +56,13 @@ function check(ff){
 	
 	#idcolor{
 		color: #000000;
+	}
+	
+	#write{
+		margin-top: 50px;
+		width: 970px;
+		border: 1px solid #191919;
+		margin-left: 305px;
 	}
 	
 	
@@ -115,6 +123,6 @@ function check(ff){
 		</form>
 	</div>
 </div>
-
+<%@include file="include/footer.jsp"%>
 </body>
 </html>
