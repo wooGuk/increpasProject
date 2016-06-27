@@ -5,6 +5,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,6 +31,7 @@ public class FileDownload extends HttpServlet {
 		// 파라미터값 받기(dir, filename)
 		String dir = request.getParameter("dir");
 		String fname = request.getParameter("filename");
+		String docName = URLEncoder.encode(fname,"UTF-8");
 	
 		// dir을 절대경로로 만든다.
 		String path = getServletContext().getRealPath(dir);
@@ -47,7 +50,7 @@ public class FileDownload extends HttpServlet {
 		
 		// 다운로드 대화상자 처리
 		response.setHeader("Content-Disposition",
-				"attachment;filename="+
+				"attachment;filename="+ docName +
 				new String(fname.getBytes(),"ISO8859_1")+";");
 		
 		// 전송타입이 이진데이터(binary)
