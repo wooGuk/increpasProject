@@ -44,10 +44,16 @@
 		#{ip}, 0,#{id},#{password})
 	</insert>
 
-
+	<!-- 댓글보기 -->
 	<select id="commList" parameterType="String" resultType="mybatis.vo.FreeCommVO">
-		select * FROM freeboard_comment_t where seq = #{seq}
+		select * FROM freeboard_comment_t where seq = #{seq} and status = 0
 	</select>
+	
+	<update id="comDel" parameterType="mybatis.vo.FreeCommVO">
+		update freeboard_comment_t set
+		status = 1
+		where seq_com = ${seq_com}
+	</update>
 	
 	
 	<!-- 댓글저장 -->
