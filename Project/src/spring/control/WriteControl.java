@@ -163,7 +163,25 @@ public class WriteControl {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("nowPage",nowPage );
 		mv.addObject("seq", seq);
-
+		mv.setViewName("redirect:/view.inc");
+		return mv;
+	}
+	
+	// 댓글삭제
+	@RequestMapping("/comdel.inc")
+	public ModelAndView ansDel(FreeCommVO vo){
+		String seq_com = request.getParameter("seq_com");
+		String nowPage = request.getParameter("nowPage");
+		String seq = request.getParameter("seq");
+		System.out.println(seq);
+		System.out.println(seq_com);
+		System.out.println(nowPage);
+		
+		fdao.comDel(vo);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("nowPage",nowPage );
+		mv.addObject("seq", seq);
 		mv.setViewName("redirect:/view.inc");
 		return mv;
 	}
