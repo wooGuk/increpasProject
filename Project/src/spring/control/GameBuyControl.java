@@ -7,6 +7,8 @@
 			4.종료된 게임에서 세부사항을 보내주는 컨트롤러 오우석(2016/06/20)
 			5.선발투수 값 넘기기 오우석(2016/06/21)
 			6.코인체크 메소드 컨트롤러 추가 오우석(2016/06/24)
+			7.분석글 불러오기(정성훈 2016.06.27)
+			8.세션처리(정성훈 2016.06.27)
 	*/
 package spring.control;
 
@@ -23,12 +25,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.BatDAO;
+import mybatis.dao.FreeBoardDAO;
 import mybatis.dao.MatchDAO;
 import mybatis.dao.MemberDAO;
 import mybatis.vo.BatVO;
+import mybatis.vo.FreeBoardVO;
 import mybatis.vo.MatchVO;
 import mybatis.vo.MemberVO;
 import spring.include.Paging;
+import spring.include.Paging_board;
 
 @Controller
 public class GameBuyControl {
@@ -41,6 +46,10 @@ public class GameBuyControl {
 	
 	@Autowired
 	BatDAO bDao;
+	
+	//정성훈 추가(2016.06.27)
+	@Autowired
+	FreeBoardDAO fdao;
 	
 	@Autowired
 	HttpServletRequest request;
@@ -202,12 +211,78 @@ public class GameBuyControl {
 				lose++;
 			}
 		}
+		
+		
+		//(정성훈 2016.06.27 추가시작)
+		// 현재 페이지값 받기 *
+		String c_page = request.getParameter("nowPage");
+		System.out.println("fbc:"+c_page);
+		
+		if(c_page == null)
+			nowPage = 1;
+		else
+			nowPage = Integer.parseInt(c_page);
+		
+		// 게시판을 구별하는 문자열 
+		String bname = String.valueOf(vo.getMatch_code());
+		rowTotal = fdao.getTotalCount(bname);
+		//System.out.println(bname);
+		//System.out.println(rowTotal);
+		// 페이징 객체(Page) 생성
+		Paging_board page = new Paging_board(nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE);
+		 
+		// 페이징 HTML코드를 기억하는 있는 sb를 가져온다.
+		StringBuffer sb = page.getSb();
+		
+		// HTML코드를 가져온다.
+		pageCode = sb.toString();
+		
+		int begin = page.getBegin();
+		int end = page.getEnd();
+		
+		if(end > rowTotal)
+			end = rowTotal;
+		
+		// mybatis환경에 호출한 map구조를 생성한다.
+		Map<String, String> map2 = new HashMap<String,String>();
+		map2.put("bname", bname);
+		map2.put("begin", String.valueOf(begin));
+		map2.put("end", String.valueOf(end));
+		
+		FreeBoardVO[] ar = fdao.getList(map2);
+		session.setAttribute("anslist", ar);
+		
+		// JSP에서 표현할 수 있도록 반환객체 생성 한 후 그곳에서 표현할 값들을 저장한다.
+		mv.addObject("list", ar);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("pageCode", pageCode);
+		mv.addObject("rowTotal", rowTotal);
+		mv.addObject("blockList", BLOCK_LIST);
+		//(정성훈 2016.06.27 추가종료)
+		
+		
+		
+		
 		System.out.println(vsGames.length);
 		mv.addObject("game", vo);
 		mv.addObject("vsGame",vsGames);
 		mv.addObject("total", total);
 		mv.addObject("win", win);
 		mv.addObject("lose", lose);
+		
+		//세션에 추가(정성훈 2016.06.27)
+		session.setAttribute("game", vo);
+		session.setAttribute("vsGame",vsGames);
+		session.setAttribute("total", total);
+		session.setAttribute("win", win);
+		session.setAttribute("lose", lose);
+		session.setAttribute("list", ar);
+		session.setAttribute("nowPage", nowPage);
+		session.setAttribute("pageCode", pageCode);
+		session.setAttribute("rowTotal", rowTotal);
+		session.setAttribute("blockList", BLOCK_LIST);
+		
+		
 		mv.setViewName("gamebuy"); //상대전적시 필요한 배열
 		return mv;
 	}
