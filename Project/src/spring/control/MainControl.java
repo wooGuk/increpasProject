@@ -13,11 +13,14 @@
 			10.어제경기,오늘경기,내일경기보기 (정성훈 2016.06.21)
 			11.선발투수, 장소 추가 (정성훈 2016.06.21)
 			12.경기날짜 선택 기능 추가(정성훈 2016.06.22)
+			13.분석글 추가(정성훈 2016.06.27)
 	*/
 
 package spring.control;
 
 import java.io.Console;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,12 +28,14 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.FreeBoardDAO;
@@ -44,6 +49,7 @@ import mybatis.vo.MemberVO;
 import mybatis.vo.NoticeVO;
 import mybatis.vo.TeamVO;
 import spring.include.Paging_board;
+import spring.util.FileSaveUtil;
 
 @Controller
 public class MainControl {
@@ -63,9 +69,115 @@ public class MainControl {
 	HttpServletRequest request;
 	@Autowired
 	HttpSession session;
+	@Autowired
+	ServletContext servletContext;
+	private String uploadPath;
+	   
+	public void setUploadPath(String uploadPath) {
+		this.uploadPath = uploadPath;
+	}
 	
-	public static final int BLOCK_LIST = 10; // 한페이지당 보여질 게시물 수(10개)
-	public static final int BLOCK_PAGE = 5; // 한블럭당 보여질 페이지 수(5장)
+	
+	//페이징 기법에 필요한 변수들
+		public static final int BLOCK_LIST = 10; //한페이지당 게시물 수
+		public static final int BLOCK_PAGE = 5;//한 블럭당 보여질 페이지 수
+		int nowPage;//현제페이지
+		int rowTotal;//총 게시물의 수
+		String pageCode;//페이징 처리된 HTML코드
+		//나중에 검색 기능에 필요한 변수들
+		String searchType, searchValue;
+	
+	@RequestMapping("/writeAnalForm.inc")
+	public ModelAndView writeAnalFrom(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/writeAnalForm");
+		return mv;
+	}
+	
+	@RequestMapping("/writeAnal.inc")
+	public ModelAndView writeAnalFrom(FreeBoardVO vo1) throws IllegalStateException, IOException{
+		MatchVO game = (MatchVO)session.getAttribute("game");
+		if(vo1.getUpload().getSize() > 0){
+			
+			String path = servletContext.getRealPath(uploadPath);
+			
+			
+			MultipartFile upload = vo1.getUpload();
+			String f_name = upload.getOriginalFilename();
+			
+			// 이미 같은 이름이 있을 경우 파일명을 변경한다.
+			f_name = FileSaveUtil.checkSameFileName(f_name, path);
+			
+			// 파일저장
+			upload.transferTo(new File(path,f_name));
+			
+			// 파일명 저장
+			vo1.setUploadFileName(f_name);
+			
+		}else
+			vo1.setUploadFileName("");
+		
+		/*MemberVO mvo = (MemberVO) request.getAttribute("vo");
+		vo.setId(mvo.getId());*/
+		vo1.setIp(request.getRemoteAddr());
+		vo1.setBname(String.valueOf(game.getMatch_code()));
+		
+	
+		freeDao.writeBbs(vo1);
+		
+		//(정성훈 2016.06.27 추가시작)
+				// 현재 페이지값 받기 *
+				String c_page = request.getParameter("nowPage");
+				System.out.println("fbc:"+c_page);
+				
+				if(c_page == null)
+					nowPage = 1;
+				else
+					nowPage = Integer.parseInt(c_page);
+				
+				// 게시판을 구별하는 문자열 
+				String bname = String.valueOf(game.getMatch_code());
+				rowTotal = freeDao.getTotalCount(bname);
+				//System.out.println(bname);
+				//System.out.println(rowTotal);
+				// 페이징 객체(Page) 생성
+				Paging_board page = new Paging_board(nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE);
+				 
+				// 페이징 HTML코드를 기억하는 있는 sb를 가져온다.
+				StringBuffer sb = page.getSb();
+				
+				// HTML코드를 가져온다.
+				pageCode = sb.toString();
+				
+				int begin = page.getBegin();
+				int end = page.getEnd();
+				
+				if(end > rowTotal)
+					end = rowTotal;
+				
+				// mybatis환경에 호출한 map구조를 생성한다.
+				Map<String, String> map2 = new HashMap<String,String>();
+				map2.put("bname", bname);
+				map2.put("begin", String.valueOf(begin));
+				map2.put("end", String.valueOf(end));
+				
+				FreeBoardVO[] ar = freeDao.getList(map2);
+				session.setAttribute("anslist", ar);
+				ModelAndView mv = new ModelAndView();
+				
+				// JSP에서 표현할 수 있도록 반환객체 생성 한 후 그곳에서 표현할 값들을 저장한다.
+				mv.addObject("list", ar);
+				mv.addObject("nowPage", nowPage);
+				mv.addObject("pageCode", pageCode);
+				mv.addObject("rowTotal", rowTotal);
+				mv.addObject("blockList", BLOCK_LIST);
+				//(정성훈 2016.06.27 추가종료)
+	
+		
+		mv.setViewName("/gamebuy");
+		
+		return mv;
+	}
 	
 	@RequestMapping("/main.inc")
 	public ModelAndView main(MemberVO vo){
@@ -259,6 +371,7 @@ public class MainControl {
 	
 		return mv;
 	}
+	
 	
 	//오늘경기일정 보여주기 (정성훈 2016.06.20)
 	@RequestMapping("/viewMatch.inc")
