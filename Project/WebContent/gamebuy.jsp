@@ -7,6 +7,7 @@
 			3.게임결제시 최소금액 1000원 검사 로직 추가(오우석 2016/06/22)
 			4.Ajax활용을 위한 코인체크메소드 추가 오우석(2016/06/24)
 			  if문 조건 null 에서 ''로 수정 오우석(2016/06/24)
+			5.분석글 추가(정성훈 2016.06.27)  
 	*/ 
  -->
 <%@page import="mybatis.vo.MemberVO"%>
@@ -325,7 +326,62 @@ function res() {
 			</div>
 		</div>
 		<div class="tab_cont" id="tab4">첫번째 tab</div>
-	<div class="tab_cont" id="tab5">첫번째 tab</div>
+		<div class="tab_cont" id="tab5" style="border: 1px solid black;">
+			<table id="listTable" style="width: 70%; margin: auto;">
+				<thead>
+					<tr>
+						<td class="t1"
+							style="background: #5D5D5D; height: 35px; font-weight: bold;"><font
+							color="#FFFFFF">번호</font></td>
+						<td class="t2"
+							style="background: #5D5D5D; height: 35px; font-weight: bold;"><font
+							color="#FFFFFF">제목</font></td>
+						<td class="t3"
+							style="background: #5D5D5D; height: 35px; font-weight: bold;"><font
+							color="#FFFFFF">아이디</font></td>
+						<td class="t4"
+							style="background: #5D5D5D; height: 35px; font-weight: bold;"><font
+							color="#FFFFFF">날짜</font></td>
+						<td class="t5"
+							style="background: #5D5D5D; height: 35px; font-weight: bold;"><font
+							color="#FFFFFF">조회수</font></td>
+					</tr>
+				</thead>
+				<c:forEach var="list" items="${list }" varStatus="stat">
+					<tr>
+						<td class="a1">${rowTotal-((nowPage-1)*blockList+stat.index) }
+						</td>
+						<td class="a1">
+							<%-- step값만큼 들여쓰기하는 반복문 --%> <c:forEach begin="1"
+								end="${list.step }">
+								<c:out value="&nbsp;&nbsp;" escapeXml="false" />
+							</c:forEach> <%-- step이 0이 아닌 경우엔 화살표 이미지 출력 --%> <c:if
+								test="${list.step > 0 }">
+								<img src="img/arrow.JPG" />
+							</c:if> <a href="view.inc?seq=${list.seq }&nowPage=${nowPage}">${list.title }</a>
+						</td>
+						<td class="a1">${list.id }</td>
+						<td class="a1">${list.regdate }</td>
+						<td class="a1">${list.hit }</td>
+					</tr>
+				</c:forEach>
+				<c:if test="${empty list }">
+					<tr>
+						<td style="background: #DBDBDB; text-align: center" colspan="5"
+							height="70">등록된 게시물이 없습니다.</td>
+					</tr>
+				</c:if>
+					<tr>
+						<td colspan="4" style="text-align: left;">${pageCode }</td>
+						<td style="text-align: right;">
+							<c:if test="${vo != null }">
+								<input type="button" value="글쓰기"
+									onclick="javascript:location.href='writeAnalForm.inc'" />
+							</c:if>
+						</td>
+					</tr>
+			</table>
+		</div>
 	</div>
 	<div id="bat_window">
 		<form action="buy.inc" id="f" name="f" method="post">
