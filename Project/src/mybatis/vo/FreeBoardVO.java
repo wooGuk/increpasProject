@@ -1,5 +1,7 @@
 package mybatis.vo;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class FreeBoardVO {
@@ -9,7 +11,17 @@ public class FreeBoardVO {
 	
 	private int nowPage;
 	
+	List<FreeCommVO> anslist;
 	
+	
+
+	public List<FreeCommVO> getAnslist() {
+		return anslist;
+	}
+
+	public void setAnslist(List<FreeCommVO> anslist) {
+		this.anslist = anslist;
+	}
 
 	public String getId() {
 		return id;
