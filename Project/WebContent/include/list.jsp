@@ -33,7 +33,7 @@ div#listdiv {
 #listTable{	
 		border:0;
 		width:700px;
-		height: 400px;
+		height: 50px;
 		margin-top: 40px;
 }
 
@@ -68,7 +68,10 @@ div#write_btn input[type=button]{
 		text-align: center; 
 		border-right:1px solid #FFFFFF; 
 		border-bottom:1px solid #FFFFFF;
-		height: 25px;
+		height: 40px;
+}
+#a{
+	display: none;
 }
 </style>
 </head>
@@ -78,31 +81,26 @@ div#write_btn input[type=button]{
 			<table id="listTable">
 				<thead>
 				<tr>
-					<td class="t1" style="background: #5D5D5D; height: 35px; font-weight: bold;"><font color="#FFFFFF">번호</font></td>
-					<td class="t2" style="background: #5D5D5D; height: 35px; font-weight: bold;"><font color="#FFFFFF">제목</font></td>
-					<td class="t3" style="background: #5D5D5D; height: 35px; font-weight: bold;"><font color="#FFFFFF">아이디</font></td>
-					<td class="t4" style="background: #5D5D5D; height: 35px; font-weight: bold;"><font color="#FFFFFF">날짜</font></td>
-					<td class="t5" style="background: #5D5D5D; height: 35px; font-weight: bold;"><font color="#FFFFFF">조회수</font></td>
+					<td class="t1" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">번호</font></td>
+					<td class="t2" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">제목</font></td>
+					<td class="t3" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">아이디</font></td>
+					<td class="t4" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">날짜</font></td>
+					<td class="t5" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">조회수</font></td>
 				</tr>
 				</thead>
 				<c:forEach var="list" items="${list }" varStatus="stat">
+					<div id="a">
+					<c:out value="${size = list }"></c:out>
+					</div>
 					<tr>
 						<td class="a1">
 							${rowTotal-((nowPage-1)*blockList+stat.index) }
 						</td>
 						<td class="a1">
-							<%--  step값만큼 들여쓰기하는 반복문 
-							<c:forEach begin="1" end="${list.step }">
-								<c:out value="&nbsp;&nbsp;" escapeXml="false" />
-							</c:forEach> step이 0이 아닌 경우엔 화살표 이미지 출력 
-							
-							<c:if test="${list.step > 0 }">
-								<img src="img/arrow.JPG" />
-							</c:if>  --%>
 							
 							<a href="view.inc?seq=${list.seq }&nowPage=${nowPage}">${list.title }
-							<c:if test="${size != null }">
-							 [${size.size()}]
+							<c:if test="${size != null && size.anslist.size() > 0}">
+							 [${size.anslist.size()}]
 							</c:if>
 							</a>
 						</td>
