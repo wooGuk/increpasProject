@@ -3,7 +3,7 @@
 	로 그 : 1.최초 개발( 비밀번호값 찾아서 찍어지는거 확인)
 					(css수정만 하면됨)
 	(박상원 2016/06/14)
-			
+			2. css 1차수정 (2016-06-27)
 			 -->
 
 
@@ -16,16 +16,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+div{
+		border: 1px solid red;
+		text-align: center;
+		margin-top: 70px;
+	}
+</style>
 </head>
 <body>
-
+	<div>
 	<c:if test="${vo != null }">
-		찾으시는 패스워드는	(${vo.password }) 입니다.
+		<img src="img/logo.png"><p style="font-style: italic;">찾으시는 패스워드는	( <span style="color:red"; >${vo.password } </span>) 입니다.</p>
 	</c:if>
 	
 	<c:if test="${vo == null }">
-		유효하지 않은 정보입니다.
+		<img src="img/logo.png"><p style="font-style: italic;">유효하지 않은 정보입니다.</p>
 	</c:if>
-
+</div>
 </body>
 </html>

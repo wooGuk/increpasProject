@@ -6,7 +6,7 @@
 	로 그 : 1.최초 개발(서버에 데이터들값 찾아지는거 확인) 
 					( css수정중)
 	(박상원 2016/06/14)
-			
+			2. css 1차수정 (2016-06-27)
 			 -->
 	
 
@@ -21,7 +21,7 @@
 <link type="text/css" rel="stylesheet" href="css/basic.css">
 <style>
 	#search{
-		border: 1px solid red;
+	
 
 		margin-left: 200px;
 		margin-top: 50px;
@@ -43,22 +43,23 @@
 	
 	#idsearh{
 		display: inline-block;
-		border: 1px solid red;
+		
 		padding-right: 300px;
 		
 	}
 	
 	#passwordserach{
 		display: inline-block;
-		border: 1px solid red;
+		
+		padding-left: 200px;
 	}
 	#searchmove{
 		display: inline-block;
-		border: 1px solid red;
-		margin-left: 600px;
+		
+		margin-left: 200px;
 	}
-	#ph_tr{
-		margin-top: 15px;
+	#tr>td{
+	padding-top: 15px;
 	}
 	
 </style>
@@ -93,19 +94,20 @@
 	<form id="form2" name="form2">
 		<table>
 <p><img src="img/idsearchtitle.PNG"></img></p>
+</br>
 	<p style="font-size: 16px; color: red; font-style: italic;">
 	 
 	아이디가 기억나지 않아 답답하셨나요?
 	이름과 번호를 입력하시면, 찾을 수 있어요.</p>
 	<br/><br/>
 		<tr>
-			<td>이 름:</td><td><input type="text" name="name" name="name" size="25" placeholder="이름을 입력하세요."/></td>
+			<td style="font-size: 15px;">이 름:</td><td><input type="text" name="name" name="name" size="25" placeholder="이름을 입력하세요."/></td>
 			
 		</tr>
 		
-		<tr >
+		<tr id="tr" >
 		 
-			<td>전화번호:&nbsp;&nbsp;&nbsp;</td><td><input type="text" name="phone" name="phone" size="25" placeholder="번호를 입력해주세요."/></td>
+			<td style="font-size: 15px;">전화번호 :&nbsp;&nbsp;&nbsp;</td><td><input type="text" name="phone" name="phone" size="25" placeholder="번호를 입력해주세요."/></td>
 		</tr>
 		</table>
 	</form>
@@ -115,16 +117,17 @@
 	<form id="form3" name="form3">
 	<table>
 	<p><img src="img/pwsearchtitle.PNG"></img></p>
+	</br>
 	<p style="font-size: 16px; color: blue; font-style: italic;">
 	 
 	비밀번호가 기억나지 않아 답답하셨나요?
 	아이디와 이름을 입력하시면, 찾을 수 있어요.</p>
 	</br></br>
 		<tr>
-			<td>이름:</td><td><input type="text" name="name" name="name" size="25" placeholder="이름을 입력하세요."/></td>
+			<td style="font-size: 15px;">이름:</td><td><input type="text" name="name" name="name" size="25" placeholder="이름을 입력하세요."/></td>
 		</tr>
-		<tr>
-			<td>아이디:</td><td><input type="text" name="id" name="id" size="25" placeholder="아이디를 입력해주세요."/></td>
+		<tr id="tr">
+			<td style="font-size: 15px;">아이디:&nbsp;&nbsp;&nbsp;</td><td><input type="text" name="id" name="id" size="25" placeholder="아이디를 입력해주세요."/></td>
 		</tr>
 		
 	</table>	
@@ -138,7 +141,9 @@
 	</form>
 	
 	
+	
 	<form id="passwordserach" >
+	</br></br>
 	<a href="javascript:pwdSearch();"><img src="img/pwsearch.PNG"></img></a>
 	</form>
 	</div>

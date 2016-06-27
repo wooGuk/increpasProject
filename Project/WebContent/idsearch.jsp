@@ -3,7 +3,7 @@
 	로 그 : 1.최초 개발( 아이디값 찾아서 찍어지는거 확인)
 					(css수정만 하면됨)
 	(박상원 2016/06/14)
-			
+			2. css 1차수정 (2016-06-27)
 			 -->
 
 
@@ -29,11 +29,11 @@
 
 	<div>
 		<c:if test="${vo != null }">
-		찾으시는 ID는	(${vo.id }) 입니다.
+		<img src="img/logo.png"><p style="font-style: italic;">찾으시는 ID는	(<span style="color:red"; > ${vo.id } </span> ) 입니다.</p>
 		</c:if>
  
   		<c:if test="${vo == null }">
-		유효하지않은 정보입니다.
+		<img src="img/logo.png"><p style="font-style: italic;">유효하지않은 정보입니다.</p>
 		</c:if>
 	
 	</div>
