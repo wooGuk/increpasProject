@@ -13,13 +13,11 @@
  	<resultMap type="mybatis.vo.FreeBoardVO" id="map1">
  		<id property="seq" column="seq"/>
  		
-		<collection property="list" 
+		<collection property="anslist" 
 		  select="commList" 
 		  column="seq"
 		  ofType="mybatis.vo.FreeCommVO"/>
  	</resultMap>
- 	
- 	
  	
  	
 	<!-- 페이징 기법을 위한 전체 게시물의 수를 반환 select -->
@@ -59,10 +57,8 @@
 	</insert>
 
 	<!-- 게시물 보기 기능을 위해 기본키로 검색하는 select -->
-	 <select id="getBbs" parameterType="String" resultType="mybatis.vo.FreeBoardVO">
-		select *
-		from FreeBoard
-		where seq = #{seq}
+	 <select id="getBbs" parameterType="String" resultType="mybatis.vo.FreeBoardVO" resultMap="map1">
+		select * from FreeBoard where seq = #{seq}
 	</select>
 
 
