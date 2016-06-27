@@ -180,11 +180,11 @@
 		
 			
 			<ul class="gnb">
-				<li><a href=""><span class="menu m01">공지사항</span></a></li>
+				<li><a href="notice.inc"><span class="menu m01">공지사항</span></a></li>
 				<li><a href="todaylist.inc"><span class="menu m02">경기구매</span></a></li>
-				<li><a href=""><span class="menu m03">경기정보</span></a></li>
+				<li><a href="gameInfo.inc"><span class="menu m03">경기정보</span></a></li>
 				<li><a href="mypageCheck.inc"><span class="menu m04">마이페이지</span></a></li>
-				<li><a href=""><span class="menu m05">자유게시판</span></a></li>
+				<li><a href="freeBoard.inc"><span class="menu m05">자유게시판</span></a></li>
 			</ul>
 		</div>
 		<!-- 상단영역 끝 -->
@@ -290,26 +290,7 @@
 			</div>
 			</form>
 		</div>
-		<!-- 콘텐츠영역 끝 -->
-		<!-- 하단영역 -->
-		<div id="footer">
-			<div class="footer_area">
-				<ul class="foot_guide">
-					<li><a href="">개인정보취급방침</a></li>
-					<li><a href="">웹회원 이용약관</a></li>
-					<li><a href="">책임한계와 법적고지</a></li>
-					<li><a href="">이메일 무단수집 거부</a></li>
-				</ul>
-				<address>adsasd</address>
-				<p class="copyright">asdasdas</p>
-			</div>
-		</div>
-		<!-- 하단영역 끝 -->
 	</div>
-	
-	<!-- <form name="f">
-		<input type="hidden" id="s_id" name="ss" onkeyup="idcheck()"/>
-	</form> -->
-
+	<jsp:include page="include/footer.jsp"></jsp:include>
 </body>
 </html>
