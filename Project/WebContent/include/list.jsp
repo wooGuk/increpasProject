@@ -17,7 +17,7 @@
 <style type="text/css">
 
 div#listdiv {
-	margin-left: 450px;
+	margin-left: 340px;
 	
 	display: inline-block;
 }
@@ -91,17 +91,20 @@ div#write_btn input[type=button]{
 							${rowTotal-((nowPage-1)*blockList+stat.index) }
 						</td>
 						<td class="a1">
-						
-							<%-- step값만큼 들여쓰기하는 반복문 --%> 
+							<%--  step값만큼 들여쓰기하는 반복문 
 							<c:forEach begin="1" end="${list.step }">
 								<c:out value="&nbsp;&nbsp;" escapeXml="false" />
-							</c:forEach> <%-- step이 0이 아닌 경우엔 화살표 이미지 출력 --%> 
+							</c:forEach> step이 0이 아닌 경우엔 화살표 이미지 출력 
 							
 							<c:if test="${list.step > 0 }">
 								<img src="img/arrow.JPG" />
-							</c:if> 
+							</c:if>  --%>
 							
-							<a href="view.inc?seq=${list.seq }&nowPage=${nowPage}">${list.title }</a>
+							<a href="view.inc?seq=${list.seq }&nowPage=${nowPage}">${list.title }
+							<c:if test="${size != null }">
+							 [${size.size()}]
+							</c:if>
+							</a>
 						</td>
 						<td class="a1">${list.id }</td>
 						<td class="a1">${list.regdate }</td>
