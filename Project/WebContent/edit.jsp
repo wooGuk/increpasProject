@@ -16,7 +16,7 @@
 <style type="text/css">
 #edittable{
 		margin-top: 70px;
-		margin-left: 450px;
+		margin-left: 120px;
 	}
 	
 	#edittable {border:none; border-top:2px solid #ddd;}
@@ -30,8 +30,9 @@
 	
 	#move{
 		display: inline-block;
-		margin-left: 730px;
+		margin-left: 410px;
 		margin-top: 20px;
+		margin-bottom: 10px;
 	}
 	
 	div#move input[type=button]{
@@ -47,6 +48,13 @@
 	
 	#idcolor{
 		color: #000000;
+	}
+	
+	#edit{
+		margin-top: 50px;
+		width: 970px;
+		border: 1px solid #191919;
+		margin-left: 305px;
 	}
 </style>
 <script type="text/javascript">
@@ -119,7 +127,7 @@
 		</form>
 	</div>
 </div>
-
+<%@include file="include/footer.jsp"%>
 </body>
 </html>
 
