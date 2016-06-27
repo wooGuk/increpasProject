@@ -23,7 +23,7 @@ function check(ff){
 <style type="text/css">
 	#writetable{
 		margin-top: 70px;
-		margin-left: 450px;
+		margin-left: 350px;
 	}
 	
 	#writetable {border:none; border-top:2px solid #ddd;}
@@ -38,7 +38,7 @@ function check(ff){
 	
 	#move{
 		display: inline-block;
-		margin-left: 730px;
+		margin-left: 610px;
 		margin-top: 20px;
 	}
 	
@@ -108,7 +108,7 @@ function check(ff){
 				</tbody>
 			</table>
 			<div id="move">
-				<input type="button" onclick="check(this.form)" value="보내기" />
+				<input type="button" onclick="check(this.form)" value="저장" />
 				<input type="reset" value="재입력" />
 				<input type="button" value="취소"onclick="javascript:location.href='freeBoard.inc'" />
 			</div>	
