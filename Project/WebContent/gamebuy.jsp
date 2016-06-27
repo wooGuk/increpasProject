@@ -344,12 +344,30 @@ function res() {
 						<td>홈구장 : ${game.homeName(game.away_code) }</td>
 					</tr>
 					<tr>
-						<td>순 위 : ${homeTeam.rank }</td>
-						<td>순 위 : ${awayTeam.rank }</td>
+						<td>순 위 : ${homeTeam.rank } 위</td>
+						<td>순 위 : ${awayTeam.rank } 위</td>
 					</tr>
 					<tr>
-						<td>${homeTeam.team_info[0].NAME }</td>
-						<td>${awayTeam.team_info[0].NAME }</td>
+						<td>(${homeTeam.win }승 ${homeTeam.lose }패)</td>
+						<td>(${awayTeam.win }승 ${awayTeam.lose }패)</td>
+					</tr>
+					<tr>
+						<td>
+					<c:forEach var="home" items="${homeTeam.team_info }" varStatus="stat">
+						${home.NAME }
+						<c:if test="${stat.count%3==0 }">
+							<br/>
+						</c:if>
+					</c:forEach>
+					</td>
+					<td>
+					<c:forEach var="away" items="${awayTeam.team_info }" varStatus="stat">
+						${away.NAME }
+						<c:if test="${stat.count%3==0 }">
+							<br/>
+						</c:if>
+					</c:forEach>
+					</td>
 					</tr>
 				</tbody>
 			</table>
