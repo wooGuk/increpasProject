@@ -140,15 +140,12 @@ public class FreeBoardControl {
 			// 게시물 내용을 찍는 세션
 			session.setAttribute("vo1", vo);
 			
-			ModelAndView mv = new ModelAndView();
-			
-			if(vo.getAnslist() == null){
-				System.out.println("널이다");
-			}
 			
 			if(vo != null){
-				List<FreeCommVO> listcom = vo.getAnslist();
 				
+			}
+				List<FreeCommVO> listcom = vo.getAnslist();
+				ModelAndView mv = new ModelAndView();
 				mv.addObject("anslist1", listcom);
 				mv.addObject("view", vo);
 				mv.addObject("nowPage", nowPage);
@@ -156,9 +153,6 @@ public class FreeBoardControl {
 				mv.setViewName("/view");
 				
 				return mv;
-			}
-			
-			return null;
 		}
 		
 }
