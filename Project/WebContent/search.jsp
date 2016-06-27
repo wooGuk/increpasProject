@@ -18,6 +18,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 <style>
 	
 	p{
@@ -44,7 +45,7 @@
 		width:500px;
 		height:50px;
 		border: 3px solid black;
-		display:table-cell;
+		  display:table-cell;  
 		padding-bottom: 100px;
 		text-align: center;
 	}
@@ -53,10 +54,11 @@
 		width:500px;
 		height:50px;
 		border: 3px solid black;
-		display:table-cell;
+		  display:table-cell; 
 		padding-bottom: 100px;
-		margin-left: 300px;
+		margin-right:100px;
 		text-align: center;
+		
 	}
 	
 	
@@ -105,37 +107,54 @@
 </script>
 </head>
 <body>
-	<p>아이디 / 패스워드 찾기</p>
+
+	<p style="font-style: oblique;">아이디 / 패스워드 찾기</p>
 	<div id=asd>
 	
 	<form id="form2" name="form2">
-		<label for="name">이름:</label>
-		<input type="text" name="name" name="name" size="10" />
+	<p><img src="img/idsearchtitle.PNG"></img></p>
+	<p style="font-size: 16px; color: red; font-style: italic;">
+	 
+	아이디가 기억나지 않아 답답하셨나요?
+	이름과 번호를 입력하시면, 찾을 수 있어요.</p>
+	</br></br>
+		<label for="name">이 름:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="text" name="name" name="name" size="25" placeholder="이름을 입력하세요."/>
 		<br/>
 		<label for="phone">폰번호:</label>
-		<input type="text" name="phone" name="phone" size="10" />
+		<input type="text" name="phone" name="phone" size="25" placeholder="번호를 입력해주세요."/>
 	</form>
 	
 	<form id="form3" name="form3">
+	<p><img src="img/pwsearchtitle.PNG"></img></p>
+	<p style="font-size: 16px; color: blue; font-style: italic;">
+	 
+	비밀번호가 기억나지 않아 답답하셨나요?
+	아이디와 이름을 입력하시면, 찾을 수 있어요.</p>
+	</br></br>
 		<label for="id">아이디:</label>
-		<input type="text" name="id" name="id" size="10" />
+		<input type="text" name="id" name="id" size="25" placeholder="아이디를 입력해주세요."/>
 		<br/>
 		<label for="id">이름:</label>
-		<input type="text" name="name" name="name" size="10" />
+		<input type="text" name="name" name="name" size="25" placeholder="이름을 입력해주세요."/>
 	</form>
 	
 	
 	<form id="form1">
-	<a href="javascript:idSearch();">ID Search</a>
+	<a href="javascript:idSearch();"><img src="img/idsearch.PNG"></img></a>
 	</form>
 	
 	
 	<form id="form4" >
-	<a href="javascript:pwdSearch();">PWD Search</a>
+	<a href="javascript:pwdSearch();"><img src="img/pwsearch.PNG"></img></a>
 	</form>
 	
 	
 	</div>
-
+	<div id="wrap">
+	<!-- 하단영역시작 -->
+		<jsp:include page="include/footer.jsp"></jsp:include>
+		<!-- 하단영역종료 -->
+		</div>
 </body>
 </html>
