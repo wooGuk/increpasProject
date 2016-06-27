@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 
+import mybatis.vo.BatVO;
 import mybatis.vo.MemberVO;
 
 	/*
@@ -81,6 +82,13 @@ public class MemberDAO {
 		// 코인삭감(오우석 2016/06/21)
 		public void delCoin(Map<String, Object> map){
 			template.update("mem.delcoin", map);
+		}
+		
+		// 베팅목록 가져오기(장준수 2016/06/27)
+		public BatVO batList(BatVO vo){
+			 BatVO v1 = template.selectOne("mem.batList", vo);
+			 return v1;
+			
 		}
 		
 	}
