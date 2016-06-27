@@ -100,7 +100,7 @@ div#move input[type=button],div#move2 input[type=button]{
 #comment2{
 	margin-top: 20px;
 	display:inline-block;
-	margin-left: 360px;
+	margin-left: 420px;
 	margin-bottom: 20px;
 }
 
@@ -137,10 +137,15 @@ div#move input[type=button],div#move2 input[type=button]{
 	/* margin-top: 20px; */
 }
 
-#listid{padding-left: 10px; font-weight: bold; font-size: 15px; padding-top: 10px;}
-#listdate{padding-left: 10px; font-size: 10px; padding-top: 10px;}
-#listcontent{padding-left: 10px; font-size: 15px; padding-top: 10px;}
+#viewcom{
+	display: inline-block;
+	
 }
+
+#listid{padding-left: 10px; font-weight: bold; font-size: 15px;}
+#listdate{padding-left: 10px; font-size: 10px;}
+#listcontent{padding-left: 10px; font-size: 15px; padding-top: 10px;}
+#listdel{text-align: right;}
 
 
 </style>
@@ -217,7 +222,6 @@ div#move input[type=button],div#move2 input[type=button]{
 			<form method="post" action="ans_write.inc" name="ff">
 			<table id="comtable">
 				<tr>
-					<td id="comid">아이디 : ${vo.id }</td>
 					<td id="comcontent"><textarea rows="2" cols="28" name="content">내용</textarea></td>
 					<td id="compwd">비밀번호 : <input type="password" name="pwd"/></td>
 					<td id="comsave"><input type="button" value="저장하기"  onclick="comcheck()"/></td>
@@ -237,13 +241,14 @@ div#move input[type=button],div#move2 input[type=button]{
 			 <c:forEach items="${anslist1 }" var="list" >
 			<%--  <h1>${anslist1.size() }</h1> --%>
 			 <div id="comment">
-				 <table>
+				 <table id="viewcom">
 				 <tr>
 					<td id="listid">${list.id }</td>
 					<td id="listdate">${list.write_date }</td>
 				</tr>	
 				<tr>
-					<td id="listcontent">${list.content }</td>
+					<td></td><td id="listcontent">${list.content }</td>
+					<td id="listdel"><input type="button" name="comdel" value="X"/></td>
 				</tr>
 				</table>
 				</div>
@@ -281,5 +286,7 @@ div#move input[type=button],div#move2 input[type=button]{
 		<input type="hidden" name="password" value="${vo.password }"/>
 		</form>
 	</div>
+	
+	<input type="hidden" name="size" value=${anslist1.size() }/>
 </body>
 </html>
