@@ -19,7 +19,7 @@
 div#del_win {
 	position: absolute;
 	top: 380px;
-	left: 750px;
+	left: 590px;
 	width: 160px;
 	height: 70px;
 	padding-top: 10px;
@@ -47,7 +47,7 @@ div#del_win input[type=password]{width: 80px;}
 		width: 700px;
 		height: 500px;
 		margin-top: 40px;
-		margin-left: 500px;
+		margin-left: 340px;
 		
 	}
 #viewtitle{font-size: 15px; font-weight: bold;}
@@ -72,8 +72,8 @@ div#del_win input[type=password]{width: 80px;}
 #move{
 		margin-top: 15px;
 		display: inline-block;
-		margin-left: 1055px;
-		
+		margin-left: 898px;
+
 	}
 	
 #move2{
@@ -88,10 +88,58 @@ div#move input[type=button],div#move2 input[type=button]{
 		
 		width: 45px;
 		height: 28px;
+		width: 45px;
+		height: 28px;
 		font-size: 15px;
 		font-weight: bold;
-		border: 1px solid #dcdcdc;	
+		border: 1px solid #dcdcdc;		
 		
+}
+
+/* 댓글쓰기 css */
+#comment2{
+	margin-top: 20px;
+	display:inline-block;
+	margin-left: 360px;
+	margin-bottom: 20px;
+}
+
+#comtable tr td{
+	font-size: 17px;
+	font-weight: bold;
+}
+
+#comsave input[type=button]{
+	width : 66px;
+	height: 38px;
+	font-size: 15px;
+	font-weight: bold;
+	border: 1px solid #dcdcdc;
+}
+
+#compwd input[type=password]{
+	width: 110px;
+	height: 34px;
+}
+
+#comcontent{padding-left: 10px;}
+#compwd{padding-left: 10px;}
+#comsave{padding-left: 10px;}
+
+
+/* 댓글 보여주기 css */
+
+#comment{
+	width: 700px;
+	height: 50px;
+	margin-left: 340px;
+	background: #E4E4E4;
+	/* margin-top: 20px; */
+}
+
+#listid{padding-left: 10px; font-weight: bold; font-size: 15px; padding-top: 10px;}
+#listdate{padding-left: 10px; font-size: 10px; padding-top: 10px;}
+#listcontent{padding-left: 10px; font-size: 15px; padding-top: 10px;}
 }
 
 
@@ -124,6 +172,23 @@ div#move input[type=button],div#move2 input[type=button]{
 		}
 		
 	}
+	
+	function comcheck(){
+		var password1 = document.ff.pwd.value;
+		var password = document.ff.password.value;
+		var id = document.ff.id.value;
+		
+		if(id == ""){
+			alert("로그인후 이용해주세요.");
+			return;
+		}else if(password != password1){
+			alert("비밀번호를 다시 입력해주세요.");
+			return;
+		}else if(password == password1){
+			document.ff.submit();
+		}
+	}
+	
 </script>
 </head>
 <body>
@@ -133,7 +198,7 @@ div#move input[type=button],div#move2 input[type=button]{
 			<table id="viewTable">
 				<tbody>
 					<tr>
-						<td id="viewtitle"> 제목</td><td id="viewtitle">${view.title }</td><td id="viewdate">${view.regdate }</td>
+						<td id="viewtitle">제목</td><td id="viewtitle">${view.title }</td><td id="viewdate">${view.regdate }</td>
 					</tr>
 					<tr>
 						<td id="viewid">${view.id }</td><td id="viewid"></td><td id="viewhit">조회수 ${view.hit }</td>
@@ -147,55 +212,54 @@ div#move input[type=button],div#move2 input[type=button]{
 					</tr>
 				</tbody>
 			</table>
-			<div>
-		
-
-			<c:if test="${anslist1 != null && anslist1.seq == vo1.seq}">
-				 <c:forEach items="${anslist1 }" var="list" >
-					<h1>${list.content }</h1>
-				</c:forEach> 
-			</c:if>
-
-			<c:if test="${anslist1 == null }">
-				<h1>안뜨네</h1>
-			</c:if>
-			 
 			
-			<form method="post" action="ans_write.inc">
-			<table>
+			<div id="comment2">
+			<form method="post" action="ans_write.inc" name="ff">
+			<table id="comtable">
 				<tr>
-				<th>이름:</th> 
-				<td>${vo.id }</td>
-				</tr>
-				
-				<tr>
-				<th>내용:</th>
-				<td>
-				<textarea rows="2" cols="40" name="content"></textarea>
-				</td>
-				</tr>
-				
-				<tr>
-				<th>비밀번호:</th>
-				<td><input type="password" name="pwd" /></td>
+					<td id="comid">아이디 : ${vo.id }</td>
+					<td id="comcontent"><textarea rows="2" cols="28" name="content">내용</textarea></td>
+					<td id="compwd">비밀번호 : <input type="password" name="pwd"/></td>
+					<td id="comsave"><input type="button" value="저장하기"  onclick="comcheck()"/></td>
 				</tr>
 			</table>
-				<input type="hidden" name="seq" value="${seq }"/>
+				<input type="hidden" name="seq" value="${view.seq }"/>
 				<input type="hidden" name="id" value="${vo.id }"/>
 				<input type="hidden" name="password" value="${vo.password }"/>
 				<input type="hidden" name="nowPage" value="${nowPage }"/>
-				<div>
-				<input type="submit" value="저장하기" />
-				</div>
 			</form>
 			</div>
 			
+			
+			
+			<div id="top1">
+			 <c:if test="${anslist1 != null && seq == vo1.seq}">
+			 <c:forEach items="${anslist1 }" var="list" >
+			<%--  <h1>${anslist1.size() }</h1> --%>
+			 <div id="comment">
+				 <table>
+				 <tr>
+					<td id="listid">${list.id }</td>
+					<td id="listdate">${list.write_date }</td>
+				</tr>	
+				<tr>
+					<td id="listcontent">${list.content }</td>
+				</tr>
+				</table>
+				</div>
+				</c:forEach>
+			</c:if>
+			</div>
+			<%--<c:if test="${anslist1 == null}">
+				<h1>없네</h1>
+			</c:if>  --%>
+			 </div>
 			<div id="move">
 			<c:if test="${vo.id == view.id }">
 				<input type="button" value="수정" onClick="javascript:location.href='edit.inc?seq=${vo1.seq}&nowPage=${nowPage }'" style="cursor:pointer"/>
 				<input type="button" value="삭제" onclick="showDel()" style="cursor:pointer"/>
 				<input type="button" value="목록" onClick="javaScript:location.href='freeBoard.inc?nowPage=${nowPage}'" style="cursor:pointer"/>
-				</c:if>
+			</c:if>
 			</div>
 			<c:if test="${vo.id != view.id }">
 			<div id="move2">
@@ -203,7 +267,7 @@ div#move input[type=button],div#move2 input[type=button]{
 			</div>
 			</c:if>
 		</div>
-	</div>
+	
 
     <div id="del_win">
     	<form action="del.inc" method="post" name="f">
