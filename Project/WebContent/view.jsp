@@ -117,6 +117,7 @@ div#move input[type=button],div#move2 input[type=button]{
 	border: 1px solid #dcdcdc;
 }
 
+
 #compwd input[type=password]{
 	width: 110px;
 	height: 34px;
@@ -137,16 +138,22 @@ div#move input[type=button],div#move2 input[type=button]{
 	/* margin-top: 20px; */
 }
 
-#viewcom{
-	display: inline-block;
-	
+/* 댓글삭제 css */
+#listdel input[type=button]{
+	width: 15px;
+	height: 15px;
+	font-weight: bold;
+	border: 1px solid #B1B1B1;
 }
 
 #listid{padding-left: 10px; font-weight: bold; font-size: 15px;}
 #listdate{padding-left: 10px; font-size: 10px;}
 #listcontent{padding-left: 10px; font-size: 15px; padding-top: 10px;}
-#listdel{text-align: right;}
+#listdel{padding-top: 11px;}
 
+#viewcom tr td{
+	display: inline-block;
+}
 
 </style>
 <script type="text/javascript">
@@ -247,8 +254,11 @@ div#move input[type=button],div#move2 input[type=button]{
 					<td id="listdate">${list.write_date }</td>
 				</tr>	
 				<tr>
-					<td></td><td id="listcontent">${list.content }</td>
-					<td id="listdel"><input type="button" name="comdel" value="X"/></td>
+					<td id="listcontent">${list.content }</td>
+					<c:if test="${vo.id == list.id || view.id == vo.id}">
+					<td id="listdel"><input type="button" name="comdel" value="X" 
+					onClick="javaScript:location.href='comdel.inc?nowPage=${nowPage}&seq=${vo1.seq }&seq_com=${list.seq_com }'" style="cursor:pointer"/>
+					</c:if>
 				</tr>
 				</table>
 				</div>
@@ -287,6 +297,5 @@ div#move input[type=button],div#move2 input[type=button]{
 		</form>
 	</div>
 	
-	<input type="hidden" name="size" value=${anslist1.size() }/>
 </body>
 </html>
