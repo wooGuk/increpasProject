@@ -12,6 +12,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="css/basic.css"/>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link href="text.css" rel="stylesheet" type="text/css">
@@ -47,7 +49,7 @@ div#del_win input[type=password]{width: 80px;}
 		width: 700px;
 		height: 500px;
 		margin-top: 40px;
-		margin-left: 340px;
+		margin-left: 150px;
 		
 	}
 #viewtitle{font-size: 15px; font-weight: bold;}
@@ -56,13 +58,13 @@ div#del_win input[type=password]{width: 80px;}
 #viewupload{height: 40px; background: #F3F3F3;}	
 #viewtitle{padding-left: 3px;}	
 #viewid{padding-left: 3px; font-size: 15px; font-weight: bold;}
-#viewcontent{padding-left: 3px;}
+#viewcontent{padding-left: 3px; padding-top: 5px; background-color: #F9F9F9;}
 #viewupload{padding-left: 3px; font-size: 15px; font-weight: bold;}
 #viewhit{padding-right: 3px;}
 #viewdate{padding-right: 3px;}	
 #viewtitle,#viewdate{border:none; border-bottom:2px solid #5E5E5E;}
 #viewhit,#viewdate{text-align: right;}
-#viewcontent{padding-top: 5px;}
+
 
 #viewid, #viewhit, #viewcontent,#viewupload{
 	border:none; border-bottom:2px solid #ddd;
@@ -72,7 +74,7 @@ div#del_win input[type=password]{width: 80px;}
 #move{
 		margin-top: 15px;
 		display: inline-block;
-		margin-left: 898px;
+		margin-left: 1140px;
 
 	}
 	
@@ -100,7 +102,7 @@ div#move input[type=button],div#move2 input[type=button]{
 #comment2{
 	margin-top: 20px;
 	display:inline-block;
-	margin-left: 420px;
+	margin-left: 240px;
 	margin-bottom: 20px;
 }
 
@@ -133,9 +135,11 @@ div#move input[type=button],div#move2 input[type=button]{
 #comment{
 	width: 700px;
 	height: 50px;
-	margin-left: 340px;
+	margin-left: 150px;
 	background: #E4E4E4;
 	/* margin-top: 20px; */
+	margin-bottom: 2px;
+	padding-bottom: 20px;
 }
 
 /* 댓글삭제 css */
@@ -153,6 +157,17 @@ div#move input[type=button],div#move2 input[type=button]{
 
 #viewcom tr td{
 	display: inline-block;
+}
+
+#moveView{
+	border: 2px solid #191919;
+	width: 972px;
+	margin-top: 20px;
+	margin-left: 305px;
+}
+
+#top1{
+	padding-bottom: 20px;
 }
 
 </style>
@@ -296,6 +311,5 @@ div#move input[type=button],div#move2 input[type=button]{
 		<input type="hidden" name="password" value="${vo.password }"/>
 		</form>
 	</div>
-	
 </body>
 </html>
