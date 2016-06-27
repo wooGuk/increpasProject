@@ -44,7 +44,7 @@ function check(alertMessage) {
 
 </script>
 </head>
-<body onload="check('${alert}'})">
+<body onload="check('${alert}')">
 	<!-- Header 영역 -->
 	<%@include file="include/header.jsp"%>
 	<!-- 컨텐츠 영억 -->
