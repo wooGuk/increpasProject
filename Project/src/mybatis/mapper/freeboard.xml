@@ -47,6 +47,7 @@
 	<!-- 댓글보기 -->
 	<select id="commList" parameterType="String" resultType="mybatis.vo.FreeCommVO">
 		select * FROM freeboard_comment_t where seq = #{seq} and status = 0
+		order by seq_com desc
 	</select>
 	
 	<update id="comDel" parameterType="mybatis.vo.FreeCommVO">
