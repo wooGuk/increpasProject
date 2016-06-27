@@ -7,6 +7,8 @@
 	제 목 : bat.xml
 	역 할 : Batting DB의 mapper.
 	로 그 : 1.프로그램 최초 생성,당일 경기데이터 쿼리문 작성 (오우석 2016/06/21)
+	        2.코인체크 쿼리문 추가 오우석(2016/06/24)
+	        3.해당경기를 이미거래를 했는지 안했는지 체크
 	*/
  -->
 <mapper namespace="batting">
@@ -14,4 +16,19 @@
 		insert into batting(BAT_CODE,ID,MATCH_CODE,RE_RESULT,BAT_COST)
 		values(bat_seq.nextval,#{ID},#{MATCH_CODE},#{RE_RESULT},#{BAT_COST})
 	</insert>
+	<!-- 코인체크 쿼리문 추가 오우석(2016/06/24) -->
+	<select id="checkCoin" parameterType="java.util.Map" resultType="mybatis.vo.MemberVO">
+		select *
+		from member
+		where coin > 1000 and
+		      coin >= #{coin} and
+		      id = #{id}
+	</select>
+	<!-- 해당경기를 이미거래를 했는지 안했는지 체크 오우석(2016/06/24) -->
+<!-- 	<select id="checkBat" parameterType="java.util.Map" resultType="mybatis.vo.MemberVO">
+		select *
+		from batting
+		where id = #{ID}
+		  and match_code = #{MATCH_CODE}
+	</select> -->
 </mapper>

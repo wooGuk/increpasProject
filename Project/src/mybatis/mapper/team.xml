@@ -7,14 +7,33 @@
 	제 목 : team.xml
 	역 할 : Team DB의 mapper.
 	로 그 : 1. 생성 (정성훈 2016.06.20)
+			2. 선수명단을 가져오기 위한 문장 추가(오우석 2016.06.27)(resrultMap,teamHA,player)
 	*/
  -->
 <mapper namespace="team">
+
+	<resultMap type="mybatis.vo.TeamVO" id="teamMap">
+		<id property="TEAM_CODE" column="TEAM_CODE "/>
+		<collection property="team_info" ofType="mybatis.vo.PlayerVO" select="player" column="TEAM_CODE"/>
+	</resultMap>
+
 	<select id="all" resultType="mybatis.vo.TeamVO">
 		select *
 		from team
 		order by rank
 	</select>
+	
+	<select id="teamHA" parameterType="int" resultMap="teamMap">
+		select *
+		from team
+		where team_code = #{team_code}
+	</select>
+	<select id="player" resultType="mybatis.vo.PlayerVO" parameterType="int">
+		select *
+		from team_info
+		where team_code = #{team_code}
+	</select>
+	
 </mapper>
 
 

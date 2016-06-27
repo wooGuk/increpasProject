@@ -24,7 +24,7 @@ import mybatis.vo.MemberVO;
 		    5.구매가능 경기 불러오기 (오우석 2016/06/20)
 */
 public class MatchDAO {
-
+	
 	@Autowired
 	SqlSessionTemplate template;
 	

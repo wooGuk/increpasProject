@@ -2,6 +2,7 @@
 	제 목 : TeamDAO
 	역 할 : team db 테이블 접근 클래스
 	로 그 : 프로그램 최초 생성 (정성훈 2016/06/20)
+	       2.홈 vs 원정 팀정보 가져오기(오우석 2016/06/27)
 	*/
 
 package mybatis.dao;
@@ -32,5 +33,11 @@ public class TeamDAO {
 			list.toArray(teams);
 		}
 		return teams;
+	}
+	
+	//홈 vs 원정 팀정보 가져오기(오우석 2016/06/27)
+	public TeamVO getTeamHA(int team_code){
+		TeamVO vo = template.selectOne("team.teamHA", team_code);
+		return vo;
 	}
 }

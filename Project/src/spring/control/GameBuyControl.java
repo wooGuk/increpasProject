@@ -9,6 +9,7 @@
 			6.코인체크 메소드 컨트롤러 추가 오우석(2016/06/24)
 			7.분석글 불러오기(정성훈 2016.06.27)
 			8.세션처리(정성훈 2016.06.27)
+			9.팀정보 추가(오우석 2016.06.27)
 	*/
 package spring.control;
 
@@ -28,10 +29,12 @@ import mybatis.dao.BatDAO;
 import mybatis.dao.FreeBoardDAO;
 import mybatis.dao.MatchDAO;
 import mybatis.dao.MemberDAO;
+import mybatis.dao.TeamDAO;
 import mybatis.vo.BatVO;
 import mybatis.vo.FreeBoardVO;
 import mybatis.vo.MatchVO;
 import mybatis.vo.MemberVO;
+import mybatis.vo.TeamVO;
 import spring.include.Paging;
 import spring.include.Paging_board;
 
@@ -46,7 +49,9 @@ public class GameBuyControl {
 	
 	@Autowired
 	BatDAO bDao;
-	
+	//오우석 추가(2016.06.27)
+	@Autowired
+	TeamDAO tDao;
 	//정성훈 추가(2016.06.27)
 	@Autowired
 	FreeBoardDAO fdao;
@@ -201,6 +206,10 @@ public class GameBuyControl {
 		vo.setHome_pitcher(request.getParameter("home_pitcher"));
 		vo.setAway_pitcher(request.getParameter("away_pitcher"));
 		
+		//team정보 받아오기
+		TeamVO homeTeam,awayTeam;
+		homeTeam = tDao.getTeamHA(vo.getHome_code());
+		awayTeam = tDao.getTeamHA(vo.getAway_code());
 		
 		//승패 계산하기 위한 로직
 		total = vsGames.length;
@@ -269,6 +278,9 @@ public class GameBuyControl {
 		mv.addObject("total", total);
 		mv.addObject("win", win);
 		mv.addObject("lose", lose);
+		//팀정보 추가(오우석 2016.06.27)
+		mv.addObject("homeTeam", homeTeam);
+		mv.addObject("awayTeam", awayTeam);
 		
 		//세션에 추가(정성훈 2016.06.27)
 		session.setAttribute("game", vo);
@@ -281,6 +293,9 @@ public class GameBuyControl {
 		session.setAttribute("pageCode", pageCode);
 		session.setAttribute("rowTotal", rowTotal);
 		session.setAttribute("blockList", BLOCK_LIST);
+		//세션에 팀정보 추가(오우석 2016.06.27)
+		session.setAttribute("homeTeam", homeTeam);
+		session.setAttribute("awayTeam", awayTeam);
 		
 		
 		mv.setViewName("gamebuy"); //상대전적시 필요한 배열

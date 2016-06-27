@@ -330,7 +330,30 @@ function res() {
 				</table>
 			</div>
 		</div>
-		<div class="tab_cont" id="tab4">첫번째 tab</div>
+		<div class="tab_cont" id="tab4">
+			<table id="team_intro" class="panel panel-default center_table" style="width: 100%">
+				<thead class="panel-heading">
+					<tr>
+						<td>${game.teamName(game.home_code) }</td>
+						<td>${game.teamName(game.away_code) }</td>
+					</tr>
+				</thead>
+				<tbody class="panel-bod">
+					<tr>
+						<td>홈구장 : ${game.homeName(game.home_code) }</td>
+						<td>홈구장 : ${game.homeName(game.away_code) }</td>
+					</tr>
+					<tr>
+						<td>순 위 : ${homeTeam.rank }</td>
+						<td>순 위 : ${awayTeam.rank }</td>
+					</tr>
+					<tr>
+						<td>${homeTeam.team_info[0].NAME }</td>
+						<td>${awayTeam.team_info[0].NAME }</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		<div class="tab_cont" id="tab5">
 			<table id="listTable" style="width: 70%; margin: auto;">
 				<thead>
