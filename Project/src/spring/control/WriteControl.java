@@ -1,9 +1,13 @@
 package spring.control;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 import mybatis.dao.FreeBoardDAO;
 import mybatis.dao.MemberDAO;
 import mybatis.vo.FreeBoardVO;
+import mybatis.vo.FreeCommVO;
 import mybatis.vo.MemberVO;
+import spring.include.Paging_board;
 import spring.util.FileSaveUtil;
 	
 /*
@@ -35,6 +41,9 @@ public class WriteControl {
 	
 	@Autowired
 	ServletContext servletContext;
+	
+	@Autowired
+	HttpSession session;
 	
 
 	private String uploadPath; 
@@ -95,6 +104,7 @@ public class WriteControl {
 		return mv;
 	}
 	
+	// 글수정 이동(장준수 20160/06/23)
 	@RequestMapping("/edit.inc")
 	public ModelAndView edit(String nowPage) throws Exception {
 		
@@ -140,5 +150,22 @@ public class WriteControl {
 
 		return mv;
 	}
+	
+	// 댓글저장
+	@RequestMapping(value="/ans_write.inc",method=RequestMethod.POST)
+	public ModelAndView ansWrite(FreeCommVO vo){
+		String nowPage = request.getParameter("nowPage");
+		String seq = request.getParameter("seq");
 
+		fdao.addAns(vo);
+		session.setAttribute("ans", vo);
+		 
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("nowPage",nowPage );
+		mv.addObject("seq", seq);
+
+		mv.setViewName("redirect:/view.inc");
+		return mv;
+	}
+	
 }
