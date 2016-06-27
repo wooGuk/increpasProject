@@ -23,7 +23,7 @@
 	#search{
 		border: 1px solid red;
 
-		margin-left: 500px;
+		margin-left: 200px;
 		margin-top: 50px;
 	}
 	
@@ -45,6 +45,7 @@
 		display: inline-block;
 		border: 1px solid red;
 		padding-right: 300px;
+		
 	}
 	
 	#passwordserach{
@@ -56,7 +57,9 @@
 		border: 1px solid red;
 		margin-left: 600px;
 	}
-	
+	#ph_tr{
+		margin-top: 15px;
+	}
 	
 </style>
 
@@ -89,11 +92,20 @@
 	<div id="searchid">
 	<form id="form2" name="form2">
 		<table>
+<p><img src="img/idsearchtitle.PNG"></img></p>
+	<p style="font-size: 16px; color: red; font-style: italic;">
+	 
+	아이디가 기억나지 않아 답답하셨나요?
+	이름과 번호를 입력하시면, 찾을 수 있어요.</p>
+	<br/><br/>
 		<tr>
-			<td>이름:</td><td><input type="text" name="name" name="name" size="25" placeholder="이름을 입력하세요."/></td>
+			<td>이 름:</td><td><input type="text" name="name" name="name" size="25" placeholder="이름을 입력하세요."/></td>
+			
 		</tr>
-		<tr> 
-			<td>전화번호:</td><td><input type="text" name="phone" name="phone" size="25" placeholder="번호를 입력해주세요."/></td>
+		
+		<tr >
+		 
+			<td>전화번호:&nbsp;&nbsp;&nbsp;</td><td><input type="text" name="phone" name="phone" size="25" placeholder="번호를 입력해주세요."/></td>
 		</tr>
 		</table>
 	</form>
@@ -102,6 +114,12 @@
 	<div id="searchpassword">
 	<form id="form3" name="form3">
 	<table>
+	<p><img src="img/pwsearchtitle.PNG"></img></p>
+	<p style="font-size: 16px; color: blue; font-style: italic;">
+	 
+	비밀번호가 기억나지 않아 답답하셨나요?
+	아이디와 이름을 입력하시면, 찾을 수 있어요.</p>
+	</br></br>
 		<tr>
 			<td>이름:</td><td><input type="text" name="name" name="name" size="25" placeholder="이름을 입력하세요."/></td>
 		</tr>
