@@ -64,6 +64,7 @@
 		
 		<!-- 로그인 후, 개인 정보 화면 보여주기-->
  		<c:if test="${vo != null }">
+ 			<form action=""></form>
 	 		<table id="loginTable">
 				<caption>MY 테이블</caption>
 				<tbody>
