@@ -202,40 +202,33 @@
 			<table id="bbb">
 				<thead>
 					<tr align="center">
-						<th class="t1">경기날짜</th>
-						<th class="t2">경기시간</th>
-						<th class="t3">HOME팀 VS AWAY팀</th>
-						<th class="t4">베당율</th>
+						<td class="t1" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
+						<td class="t2" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
+						<td class="t3" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
+						<td class="t4" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
+						<td class="t5" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
 					</tr>
 					<tr>
 						<td class="line" colspan="4"></td>
 					</tr>
 				</thead>
 				<tbody>
+				<c:if test="${batlist != null}">
+				<c:forEach var="list" items="${batlist }" varStatus="stat">
 					<tr align="center">
-						<td>2016/06/15</td>
-						<td>22:00</td>
-						<td>리버풀 : 리버풀2군</td>
-						<td>3.11 : 7.12</td>
+					 	<td>${list.id }</td>
+						<td>${list.id }</td>
+						<td>${list.id }</td>
+						<td>${list.id }</td> 
 					</tr>
-
+					</c:forEach>
+				</c:if>	
+					<c:if test="${batlist == null}">
 					<tr>
-						<td>2016/06/15</td>
-						<td>22:00</td>
-						<td>리버풀 : 리버풀2군</td>
-						<td>3.11 : 7.12</td>
+						<td style="background: #DBDBDB; text-align: center" colspan="5"
+							height="70">구매하신 베팅이 없습니다.</td>
 					</tr>
-
-					<tr>
-						<td>2016/06/15</td>
-						<td>22:00</td>
-						<td>리버풀 : 리버풀2군</td>
-						<td>3.11 : 7.12</td>
-					</tr>
-
-					<tr>
-						<td colspan="4" class="line"></td>
-					</tr>
+					</c:if>
 				</tbody>
 			</table>
 		</div>
