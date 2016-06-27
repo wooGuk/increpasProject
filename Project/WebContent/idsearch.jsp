@@ -16,14 +16,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+	div{
+		border: 1px solid red;
+		text-align: center;
+		margin-top: 60px;
+	}
+
+</style>
 </head>
 <body>
-	<c:if test="${vo != null }">
+
+	<div>
+		<c:if test="${vo != null }">
 		찾으시는 ID는	(${vo.id }) 입니다.
-	</c:if>
+		</c:if>
  
-  	<c:if test="${vo == null }">
+  		<c:if test="${vo == null }">
 		유효하지않은 정보입니다.
-	</c:if>
+		</c:if>
+	
+	</div>
 </body>
 </html>
