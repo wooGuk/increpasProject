@@ -13,13 +13,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<!-- <link href="css/text.css" rel="stylesheet" type="text/css"> -->
 <style type="text/css">
 
 div#listdiv {
-	margin-left: 340px;
-	
+	margin-left: 450px;
+	margin-top: 50px;
 	display: inline-block;
+	
 }
 
 	.t1{width: 5px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
@@ -35,6 +35,7 @@ div#listdiv {
 		width:700px;
 		height: 50px;
 		margin-top: 40px;
+		margin-bottom: 20px;
 }
 
 #listTable thead tr{
