@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import mybatis.dao.BatDAO;
 import mybatis.dao.MemberDAO;
+import mybatis.vo.BatVO;
 import mybatis.vo.MemberVO;
 
 	/*
@@ -28,18 +30,21 @@ public class MyPageControl {
 	@Autowired
 	HttpSession session;
 	
+	@Autowired
+	BatDAO bdao;
+
+	
 	@RequestMapping("/mypage.inc")
 	public ModelAndView mypage(){
 		
-		/*String id= (String) request.getParameter("id");*/
-		//System.out.println(id);
-		 
 		MemberVO vo = (MemberVO) session.getAttribute("vo");
-		/*MemberVO vo = tdao.idCheck(id);*/
-	
+		BatVO bat = new BatVO();
+		BatVO b =  tdao.batList(bat);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("vo", vo);
+		mv.addObject("batlist",b);
+		mv.addObject("batlist1",bat);
 		mv.setViewName("/mypage");
 		return mv;
 	}
