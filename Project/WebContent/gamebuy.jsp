@@ -97,7 +97,12 @@ function trans(temp) {
 function info_send(){
 	if(document.getElementById("coin").value < 1000){
 		alert("최소구매가능금액은 1000원입니다.");
+	}else if(document.getElementById("coin").value == ""){
+		alert("구매금액을 입력해 주십시오");
+	}else if(document.getElementById("pos").firstChild.getClassName == "impossible"){
+		alert("구매금액을 확인하십시오");
 	}else{
+		//alert(document.getElementById("pos").);
 		hiddenWin();
 		document.getElementById("f").submit();
 	}
@@ -326,7 +331,7 @@ function res() {
 			</div>
 		</div>
 		<div class="tab_cont" id="tab4">첫번째 tab</div>
-		<div class="tab_cont" id="tab5" style="border: 1px solid black;">
+		<div class="tab_cont" id="tab5">
 			<table id="listTable" style="width: 70%; margin: auto;">
 				<thead>
 					<tr>
