@@ -90,6 +90,42 @@ public class MainControl {
 		//나중에 검색 기능에 필요한 변수들
 		String searchType, searchValue;
 	
+	// 분석글 댓글저장(준수 코드 복사)
+	@RequestMapping(value="/ans_writeAnal.inc",method=RequestMethod.POST)
+	public ModelAndView ansWrite(FreeCommVO vo){
+		String nowPage = request.getParameter("nowPage");
+		String seq = request.getParameter("seq");
+
+		freeDao.addAns(vo);
+		session.setAttribute("ans", vo);
+		 
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("nowPage",nowPage );
+		mv.addObject("seq", seq);
+		mv.setViewName("redirect:/view.inc");
+		return mv;
+	}
+	
+	// 분석글 댓글삭제(준수 코드 복사)
+	@RequestMapping("/comdelAnal.inc")
+	public ModelAndView ansDel(FreeCommVO vo){
+		String seq_com = request.getParameter("seq_com");
+		String nowPage = request.getParameter("nowPage");
+		String seq = request.getParameter("seq");
+		System.out.println(seq);
+		System.out.println(seq_com);
+		System.out.println(nowPage);
+		
+		freeDao.comDel(vo);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("nowPage",nowPage );
+		mv.addObject("seq", seq);
+		mv.setViewName("redirect:/view.inc");
+		return mv;
+	}	
+	
+		
 	// 분석글 쓰기 이동 (정성훈 2016.06.27)	
 	@RequestMapping("/writeAnalForm.inc")
 	public ModelAndView writeAnalFrom(){
