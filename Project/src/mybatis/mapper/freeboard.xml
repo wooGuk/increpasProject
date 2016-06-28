@@ -8,6 +8,9 @@
 		제 목 : freeboard.xml
 		역 할 : 게시물 리스트, 글쓰기, 글수정, 글삭제, 글보기 등등 
 		로 그 :  1.프로그램 최초 생성 (장준수 2016/06/23)
+				2. 댓글달기,댓글보기
+				3. 댓글삭제
+				4. 조회수 증가
  	-->
  	
  	<resultMap type="mybatis.vo.FreeBoardVO" id="map1">
@@ -50,12 +53,12 @@
 		order by seq_com desc
 	</select>
 	
+	<!-- 댓글삭제 -->
 	<update id="comDel" parameterType="mybatis.vo.FreeCommVO">
 		update freeboard_comment_t set
 		status = 1
 		where seq_com = ${seq_com}
 	</update>
-	
 	
 	<!-- 댓글저장 -->
 	<insert id="addAns" parameterType="mybatis.vo.FreeCommVO">
@@ -80,6 +83,14 @@
 		</if>
 		where seq = #{seq}
 	</update>
+	
+	<!-- 게시물 목록시 조회수 1씩 증가 -->
+	<update id="hit" parameterType="String">
+		update freeboard
+		set hit = hit+1
+		WHERE seq = #{seq}
+	</update>
+	
 
 	<update id="delBbs" parameterType="mybatis.vo.FreeBoardVO">
 		UPDATE FreeBoard
