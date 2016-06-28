@@ -33,9 +33,11 @@
 		<!-- 상단영역시작 -->
 		<jsp:include page="include/mypageheader.jsp"></jsp:include>
 		<!-- 상단영역종료 -->
+		<!-- <div id="contents"> -->
+	<%-- 	<%@include file="include/mypagelefter.jsp"%> --%>
 		
 
-		
+		<!-- </div> -->
 	</div>
 		<!-- 하단영역시작 -->
 		<jsp:include page="include/footer.jsp"></jsp:include>
