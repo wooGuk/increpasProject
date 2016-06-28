@@ -20,8 +20,8 @@
 <style type="text/css">
 div#del_win {
 	position: absolute;
-	top: 380px;
-	left: 590px;
+	top: 575px;
+	left: 720px;
 	width: 160px;
 	height: 70px;
 	padding-top: 10px;
@@ -65,6 +65,9 @@ div#del_win input[type=password]{width: 80px;}
 #viewtitle,#viewdate{border:none; border-bottom:2px solid #5E5E5E;}
 #viewhit,#viewdate{text-align: right;}
 
+#viewupload a:HOVER{
+		text-decoration: underline;
+	}	
 
 #viewid, #viewhit, #viewcontent,#viewupload{
 	border:none; border-bottom:2px solid #ddd;
@@ -235,7 +238,7 @@ div#move input[type=button],div#move2 input[type=button]{
 					</tr>
 
 					<tr>
-						<td id="viewupload">첨부파일</td><td id="viewupload"><u><a href="javascript:download('${view.uploadFileName}')">${view.uploadFileName}</a></u></td><td id="viewupload"></td>
+						<td id="viewupload">첨부파일</td><td id="viewupload"><a href="javascript:download('${view.uploadFileName}')">${view.uploadFileName}</a></td><td id="viewupload"></td>
 					</tr>
 				</tbody>
 			</table>
