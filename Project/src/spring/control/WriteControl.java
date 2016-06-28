@@ -151,7 +151,7 @@ public class WriteControl {
 		return mv;
 	}
 	
-	// 댓글저장
+	// 댓글저장(장준수 20160/06/27)
 	@RequestMapping(value="/ans_write.inc",method=RequestMethod.POST)
 	public ModelAndView ansWrite(FreeCommVO vo){
 		String nowPage = request.getParameter("nowPage");
@@ -167,7 +167,7 @@ public class WriteControl {
 		return mv;
 	}
 	
-	// 댓글삭제
+	// 댓글삭제(장준수 20160/06/27)
 	@RequestMapping("/comdel.inc")
 	public ModelAndView ansDel(FreeCommVO vo){
 		String seq_com = request.getParameter("seq_com");
