@@ -70,10 +70,15 @@ div#write_btn input[type=button]{
 		border-right:1px solid #FFFFFF; 
 		border-bottom:1px solid #FFFFFF;
 		height: 40px;
-}
-#a{
+	}
+
+	#a{
 	display: none;
-}
+	}
+	
+	.a1 a:HOVER{
+		text-decoration: underline;
+	}	
 </style>
 </head>
 <body>
