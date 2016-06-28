@@ -292,7 +292,7 @@ div#move input[type=button],div#move2 input[type=button]{
 			<c:if test="${vo.id == view.id }">
 				<input type="button" value="수정" onClick="javascript:location.href='edit.inc?seq=${vo1.seq}&nowPage=${nowPage }'" style="cursor:pointer"/>
 				<input type="button" value="삭제" onclick="showDel()" style="cursor:pointer"/>
-				<input type="button" value="목록" onClick="javaScript:location.href='freeBoard.inc?nowPage=${nowPage}'" style="cursor:pointer"/>
+				<input type="button" value="목록" onClick="exe()" style="cursor:pointer"/>
 			</c:if>
 			</div>
 			<c:if test="${vo.id != view.id }">
