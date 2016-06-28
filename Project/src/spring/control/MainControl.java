@@ -332,19 +332,7 @@ public class MainControl {
 	public ModelAndView mypageCheck(){
 		
 		ModelAndView mv = new ModelAndView();
-		
-		//세션에 저장된 값이 있는지 체크
-		MemberVO vo = (MemberVO)session.getAttribute("vo");
-		if(vo == null){
-			//로그인 후 사용해야하는 flag표시
-			String flag = "3";
-			//로그인 후 사용하라는 flag와 함께 main페이지로 이동
-			mv.setViewName("redirect:/main.inc?flag="+flag);
-		}else{
-			//로그인이 되어 있으므로 mypage로 이동
-			mv.setViewName("/mypage");
-		}
-		
+		mv.setViewName("/mypage");
 		return mv;
 	}
 	
