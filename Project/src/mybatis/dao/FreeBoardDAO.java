@@ -52,7 +52,6 @@ public class FreeBoardDAO {
 		return vo;
 	}
 
-	
 	//댓글 저장 메서드
 	public FreeCommVO addAns(FreeCommVO vo){
 		template.insert("board.addAns", vo);
@@ -81,17 +80,10 @@ public class FreeBoardDAO {
 		template.update("board.edit", vo1);
 	
 	}
-	/*
-	// 답변저장시 lev를 조정하는 기능
-	public void updateLev(Map<String, String> map){
-		template.update("board.updateLev",map);
-	};
 	
-	// 답변 저장
-	public void addAns(FreeBoardVO vo){
-		template.insert("board.addAns",vo);
+	// 조회수 증가
+	public void boardHit(String seq){
+		template.update("board.hit",seq);
 	}
-	
-		*/
 	
 }
