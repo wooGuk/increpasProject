@@ -17,6 +17,7 @@ import mybatis.vo.MemberVO;
 	역 할 : id검색, 로그인, 회원가입 등등을 한다.
 	로 그 : 프로그램 최초 생성 (장준수 2016/06/08)
 			2.코인삭감(오우석 2016/06/21)
+			3. 베팅목록 수정 (장준수 2016/06/27)
 	*/
 public class MemberDAO {
 
@@ -85,10 +86,15 @@ public class MemberDAO {
 		}
 		
 		// 베팅목록 가져오기(장준수 2016/06/27)
-		public BatVO batList(BatVO vo){
-			 BatVO v1 = template.selectOne("mem.batList", vo);
+		public BatVO[] batList(MemberVO vo){
+			 String id = vo.getId();
+			  List<BatVO> list= template.selectList("mem.batList", id);
+			  BatVO[] v1=null;
+			  if(!list.isEmpty()){
+				  v1 = new BatVO[list.size()];
+				  list.toArray(v1);
+			  }
 			 return v1;
-			
 		}
 		
 	}
