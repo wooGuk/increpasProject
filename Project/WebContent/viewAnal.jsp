@@ -300,7 +300,7 @@ div#move input[type=button],div#move2 input[type=button]{
 	
 
     <div id="del_win">
-    	<form action="del.inc" method="post" name="f">
+    	<form action="delAnal.inc" method="post" name="f">
 		<label for="password">비밀번호:</label> 
 		<input type="password" id="password1" name="password1" size="7" /><br /> 
 		<input type="button" value="삭제" onclick="check()"/> 
