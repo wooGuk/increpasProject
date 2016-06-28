@@ -53,6 +53,7 @@ import mybatis.vo.MatchVO;
 import mybatis.vo.MemberVO;
 import mybatis.vo.NoticeVO;
 import mybatis.vo.TeamVO;
+import spring.include.Paging;
 import spring.include.Paging_board;
 import spring.util.FileSaveUtil;
 
@@ -515,6 +516,7 @@ public class MainControl {
 		mv.setViewName("/mypage");
 		return mv;
 	}
+	
 	
 	//게임정보 페이지로 이동하기 (정성훈 2016.06.20)
 	@RequestMapping("/gameInfo.inc")
