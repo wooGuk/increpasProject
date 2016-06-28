@@ -272,7 +272,7 @@ div#move input[type=button],div#move2 input[type=button]{
 					<td id="listcontent">${list.content }</td>
 					<c:if test="${vo.id == list.id || view.id == vo.id}">
 					<td id="listdel"><input type="button" name="comdel" value="X" 
-					onClick="javaScript:location.href='comdel.incAnal?nowPage=${nowPage}&seq=${vo1.seq }&seq_com=${list.seq_com }'" style="cursor:pointer"/>
+					onClick="javaScript:location.href='comdelAnal.inc?nowPage=${nowPage}&seq=${vo1.seq }&seq_com=${list.seq_com }'" style="cursor:pointer"/>
 					</c:if>
 				</tr>
 				</table>
