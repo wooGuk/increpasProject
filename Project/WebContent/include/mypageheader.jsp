@@ -19,28 +19,44 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-	div#aaa{
-		margin-left: 200px;
-		margin-right: 150px;
-		margin-top: 30px;
+/* 충전 css*/
+
+#chargetable{
+	width: 500px;
+	border:2px solid #4C4C4C;
+	margin-left: 50px;
+	margin-top: 50px;
+}
+
+#user{
+	text-align: center;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#coin{
+	text-align: center;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+
+/* 구매페이지 css */
+	div#buy{
+		margin-left: 100px;
+		margin-right: 130px;
+		margin-top: 80px;
 		display: inline-block;
 	}
 
-	#bbb{
+	#buytable{
 		border:0;
-		width:500px;
+		width:800px;
 		height: 150px;
 		margin-top: 20px;
 	}
 
-	#bbb tbody tr td{
-		font-size:9pt;
-		color:green;	
-		text-align: center;
-		margin-top: 20px;
-		}
-
-	#bbb thead tr th{
+	#buytable thead tr th{
 		font-size:9pt;
 		font-weight:bold;
 		color:black; 
@@ -49,15 +65,16 @@
 		
 	}
 
-	.t1{width:30%}
-	.t2{width:30%}
-	.t3{width:70%}
-	.t4{width:20%}
+	.t1{width: 5px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	.t2{width: 50px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	.t3{width: 10px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	.t4{width: 30px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	.t5{width: 8px;  text-align: center; height: 35px;}
+
 	
 	.fff{
 		font-size: 19px;
 	}
-	
 	
 	
 	/* 회원관리 */
@@ -76,7 +93,7 @@
 
 	#left_info tbody tr td{
 		font-size:12pt;
-		color:green;
+		color:#191919;
 		text-align: center;
 		font-weight: bold;
 		background-color: #D8D8D8;
@@ -91,10 +108,19 @@
 		
 	}
 	
-	.hh{
-		padding-bottom: 10px;
-		padding: 5px;
-	} 
+	#user_edit{
+		width: 20px;
+	}
+	
+	#edituser{
+		border-bottom: 1px solid #FFFFFF; 
+	}
+	
+	#edituser a:HOVER{
+		text-decoration: underline;
+		font-size: 15px;
+	}
+	 
 	
 </style>
  <script type="text/javascript">
@@ -163,44 +189,44 @@
 		</div>
 		
 		<!-- 컨텐츠 영역 -->
-		<div id="mmm">
+		<div id="charge">
 			<form action="charge.inc" method="post" id="c" name="c">
-				${vo.id }님의 잔액 : <input type="text" id="usercoin" name="usercoin" 
-											value="<c:out value="${vo.coin }"/>" readonly />
-				<label for="coin">코인충전 :</label>
-				<input type="text" id="coin" name="coin" value="0" />
-				<input type="button" value="충전" onclick="charge()" />
+			<table id="chargetable">
+				<tr>
+					<td id="user">${vo.id } 님의 잔액 : </td><td id="user"><input type="text" id="usercoin" name="usercoin" 
+										value="<c:out value="${vo.coin }"/>" readonly /></td>
+					<td id="coin">코인충전 : </td><td id="coin"><input type="text" id="coin" name="coin" value="0" /></td>		
+					<td><input type="button" value="충전" onclick="charge()" style="cursor:pointer"/></td>
+				</tr>
+			</table>	
 				<input type="hidden"id="id1" name="id" value="<c:out value="${vo.id }"/>" />
 				<input type="hidden" id="password" name="password" value="<c:out value="${vo.password }"/>" />
 				<input type="hidden" id="name" name="name" value="<c:out value="${vo.name }"/>" />
 			</form>
-		
 		</div>
 		
 		<!-- 회원관리 폼 -->
 		<div class="left_side">
-		<form name="delform">
-	<table id="left_info">
-		<thead>
-			<tr>
-				<th class="hh">회원관리</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="hh"><a href="memedit.inc">회원수정</a></td>
-			</tr>	
-			<tr>
-				<td class="hh"><a href="javascript:memdel()">회원탈퇴</a></td>
-			</tr>
-		</tbody>
-	</table>
-	</form>
-	</div>
-	
-	
-		<div id="aaa">
-			<table id="bbb">
+			<table id="left_info">
+				<thead>
+					<tr>
+						<th id="user_edit">회원관리</th>
+					</tr>
+					</thead>
+				<tbody>
+					<tr>
+						<td id="edituser"><a href="memedit.inc">회원수정</a></td>
+					</tr>
+					<tr>
+						<td id="edituser"><a href="javascript:memdel()">회원탈퇴</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<div id="buy">
+			<table id="buytable">
 				<thead>
 					<tr align="center">
 						<td class="t1" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
@@ -209,12 +235,8 @@
 						<td class="t4" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
 						<td class="t5" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
 					</tr>
-					<tr>
-						<td class="line" colspan="4"></td>
-					</tr>
 				</thead>
 				<tbody>
-				<c:if test="${batlist != null}">
 				<c:forEach var="list" items="${batlist }" varStatus="stat">
 					<tr align="center">
 					 	<td>${list.id }</td>
@@ -223,7 +245,6 @@
 						<td>${list.id }</td> 
 					</tr>
 					</c:forEach>
-				</c:if>	
 					<c:if test="${batlist == null}">
 					<tr>
 						<td style="background: #DBDBDB; text-align: center" colspan="5"
