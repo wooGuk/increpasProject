@@ -215,10 +215,10 @@
 					</thead>
 				<tbody>
 					<tr>
-						<td id="edituser"><a href="memedit.inc">회원수정</a></td>
+						<td id="edituser"><a href="memedit.inc">회원수정▶</a></td>
 					</tr>
 					<tr>
-						<td id="edituser"><a href="javascript:memdel()">회원탈퇴</a></td>
+						<td id="edituser"><a href="javascript:memdel()">회원탈퇴▶</a></td>
 					</tr>
 				</tbody>
 			</table>
