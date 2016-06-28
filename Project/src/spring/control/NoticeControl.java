@@ -1,11 +1,14 @@
  
 		/*제 목 : NoticeControl.java
 
+
 		역 할 : 공지사항 게시판컨트롤러
 		로 그 :  1.프로그램 최초 생성 (박상원 2016/06/22)
 			-> 페이징기법 적용해주고, 공지사항을 쓰는 jsp페이지로 이동시켜주는 역할
 			
 			2. 공지사항 삭제기능 추가 ( 박상원 2016/06/23)
+			
+			3. 조회수추가 ( psw 06/28)
 		*/
 package spring.control;
 
@@ -137,6 +140,9 @@ public class NoticeControl {
 				
 				
 				NoticeVO no = noti_dao.getnotice(seq);
+				
+				if(no != null)
+					noti_dao.addHit(seq);
 				
 				session.setAttribute("no", no);
 				

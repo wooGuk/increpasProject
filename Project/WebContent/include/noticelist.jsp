@@ -2,7 +2,9 @@
 		제 목 : noticelist.jsp
 		역 할 : 공지사항 리스트보여주는 jsp파일 notice.jsp에서 include한 파일
 		로 그 :  1.프로그램 최초 생성 (박상원 2016/06/22)
-			 ->메인에서 공지사항 배너클릭시 넘어와서 공지사항 리스트를 보여줌! -->
+			 ->메인에서 공지사항 배너클릭시 넘어와서 공지사항 리스트를 보여줌! 
+			 2.조회수추가 (06/28)
+			 -->
 			
 		
 
@@ -44,7 +46,9 @@
 		text-indent: -9999px;
 	}
 	
-
+	#hit{
+		text-align: center;
+	}
 </style>
 </head>
 <body topmargin=0 leftmargin=0 marginwidth="0" marginheight="0">
@@ -113,7 +117,7 @@
                       </td>
 					  <td style="background:#F2F7F9">Admin</td>
 					  <td style="background:#F2F7F9">${vo.regdate }</td>
-					  <td style="background:#F2F7F9">${vo.hit }</td>
+					  <td id="hit" style="background:#F2F7F9">${vo.hit }</td>
 					</tr>
        </c:forEach>
        <c:if test="${empty list }">

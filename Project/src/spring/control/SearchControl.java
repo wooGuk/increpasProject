@@ -58,7 +58,7 @@ public class SearchControl {
 		
 		
 		MemberVO mvo = mdao.pwdsearch(vo);
-		System.out.println(vo.getId());
+		/*System.out.println(vo.getId()); <- 06/28 제거*/
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("vo", mvo);

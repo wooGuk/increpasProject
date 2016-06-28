@@ -9,6 +9,7 @@
 		역 할 : 공지사항 게시판~ 
 		로 그 :  1.프로그램 최초 생성 (박상원 2016/06/22)
 			2. 전체게시물반환 문장 수정~!
+			3. 조회수기능 추가 ( 06/28)
  	-->
 
 
@@ -77,10 +78,19 @@
 		where seq = #{seq} AND pwd = #{pwd}
 	</update>
 
+		<!-- 게시물삭제요 -->
 	<update id="delnotice" parameterType="mybatis.vo.NoticeVO">
 		UPDATE notice
 		SET status = 1
 		WHERE seq = #{seq} 
 	</update>
+	
+		<!-- 게시물 목록시 조회수 1씩 증가 -->
+	<update id="hit" parameterType="String">
+		update notice
+		set hit = hit+1
+		WHERE seq = #{seq}
+	</update>
+	
 
 </mapper>

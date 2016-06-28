@@ -16,6 +16,7 @@ import mybatis.vo.NoticeVO;
 역 할 : 공지사항
 로 그 : 프로그램 최초 생성 (박상원 2016/06/22)
 		1.  6/22 현재 공지사항 게시판 글쓰기와 리스트보기만 가능~
+		2. 조회수 추가 (06 / 28)
 */
 
 
@@ -86,6 +87,11 @@ public class NoticeDAO {
 	// 삭제
 	public void delnotice(NoticeVO vo){
 		template.update("notice.delnotice",vo);
+	}
+	
+	//조회수 증가
+	public void addHit(String seq){
+		template.update("notice.hit",seq);
 	}
 		
 	

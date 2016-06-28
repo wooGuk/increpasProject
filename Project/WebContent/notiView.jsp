@@ -6,6 +6,8 @@
 			session.setAttribute("no", no); 
 			 
 			 vo-> no 로 변경하여 notiView.jsp에도 수정
+			 
+			 3. 조회수 추가 06/28 
 --%>
 
 <%@page import="mybatis.vo.MemberVO"%>
@@ -90,7 +92,7 @@ div#del_win {
 				  <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">메일</font></td>
 				  <td bgcolor="#F2F7F9"></td>
 				  <td align="center" bgcolor="#669AB3"><font color="#FFFFFF">조회수</font></td>
-				  <td align="center" bgcolor="#F2F7F9">${no.hit}</td>
+				  <td align="center" bgcolor="#F2F7F9" style="text-align: center">${no.hit}</td>
 				</tr>
 				<tr>
 				  <td height="20" align="center" bgcolor="#669AB3"><font color="#FFFFFF">첨부파일</font></td>
