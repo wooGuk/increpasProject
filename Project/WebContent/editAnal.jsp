@@ -1,39 +1,28 @@
 <!-- 
 	/*
-	제 목 : writeAnalFrom.jsp
-	역 할 : 분석글 쓰기 페이지
-	로 그 : 1. 자유게판 글쓰기(장준수 2016/06/23)부분에서 조금 수정( 정성훈 2016.06.27)
+	제 목 : editAnal.jsp
+	역 할 : 분석글 수정 페이지
+	로 그 : 1. 자유게시판 글 수정(장준수 2016/06/23)에서 조금 수정(정성훈 2016.06.27)
 	*/
  -->
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>Insert title here</title>
-<script type="text/javascript">
-function check(ff){
-
-		ff.submit();
-}
-function exe(){
-	history.back();
-}
-</script>
 <style type="text/css">
-	#writetable{
+#edittable{
 		margin-top: 70px;
-		margin-left: 450px;
+		margin-left: 120px;
 	}
 	
-	#writetable {border:none; border-top:2px solid #ddd;}
-	#writetable th {border-bottom:1px solid #ccc; border-left:1px solid #ccc; 
-	border-right:1px solid #ccc; padding:10px 0 10px 25px; font-weight:bold; background:#efefef; font-size: 15px;
-	text-align: center;}
-	#writetable td {border-bottom:1px solid #ddd; padding:10px; font-weight: bold;}
+	#edittable {border:none; border-top:2px solid #ddd;}
+	#edittable th {border-bottom:1px solid #ccc; border-left:1px solid #ccc; 
+	border-right:1px solid #ccc; padding:10px 0 10px 25px; font-weight:bold; background:#efefef; font-size: 15px}
+	#edittable td {border-bottom:1px solid #ddd; padding:10px; font-weight: bold;}
 	
 	#title{margin: -9px; width: 575px;}
 	#content{margin: -9px;}
@@ -41,11 +30,12 @@ function exe(){
 	
 	#move{
 		display: inline-block;
-		margin-left: 730px;
+		margin-left: 410px;
 		margin-top: 20px;
+		margin-bottom: 10px;
 	}
 	
-	div#move input[type=button],input[type=reset] {
+	div#move input[type=button]{
 		display: inline;
 		width: 70px;
 		height: 27px;
@@ -60,19 +50,36 @@ function exe(){
 		color: #000000;
 	}
 	
-	
+	#edit{
+		margin-top: 50px;
+		width: 970px;
+		border: 1px solid #191919;
+		margin-left: 305px;
+	}
 </style>
+<script type="text/javascript">
+	function check(ff){
+		//유효성 검사
+		
+		ff.submit();
+	}
+</script>
 </head>
 <body>
-	<div id="wrap">
+<div id="wrap">
 		<jsp:include page="include/header.jsp"></jsp:include>
 	
-		<div id="write">
-		<form action="writeAnal.inc" method="post" enctype="multipart/form-data">
+		<div id="edit">
+		<form action="editAnal.inc" method="post" enctype="multipart/form-data">
 			<input type="hidden" id="id" name="id" value=${vo.id } /> 
 			<input type="hidden" id="password" name="password" value=${vo.password } />
+			<input type="hidden" name="seq" value="${vo1.seq }"/>
+			<input type="hidden" name="nowPage" value="${nowPage }"/>
+			<input type="hidden" name="groups" value="${vo1.groups }"/>
+			<input type="hidden" name="step" value="${vo1.step }"/>
+			<input type="hidden" name="lev" value="${vo1.lev }"/>
 
-			<table id="writetable">
+			<table id="edittable">
 				<colgroup>
 					<col width="130px">
 					<col width="*">
@@ -89,14 +96,14 @@ function exe(){
 						<th>제목</th>
 						<td>
 							<label for="title" class="hidden">제목</label>
-							<input type="text" name="title" id="title" class="join"/>
+							<input type="text" name="title" id="title" class="join" value="${vo1.title }"/>
 						</td>
 					</tr>
 					<tr>
 						<th>내용</th>
 						<td id="area">
 							 <label for="content" class="hidden">내용</label>
-							 <textarea rows="25" cols="70" name="content" id="content" class="join"></textarea>
+							 <textarea rows="25" cols="70" name="content" id="content" class="join">${vo1.content }</textarea>
 	
 						</td>
 					</tr>
@@ -106,18 +113,21 @@ function exe(){
 						<td>
 							 <label for="file" class="hidden">첨부파일</label>
 							 <input type="file" name="upload" id="upload" class="join"/>
+							 <c:if test="${vo1.uploadFileName != '' }">
+							 	(${vo1.uploadFileName })
+							</c:if>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			<div id="move">
 				<input type="button" onclick="check(this.form)" value="보내기" />
-				<input type="reset" value="재입력" />
-				<input type="button" value="취소" onclick="exe()" />
+				<input type="button" value="취소" onclick="javaScript:location.href='gamebuy.jsp'" />
 			</div>	
 		</form>
 	</div>
 </div>
-
+<%@include file="include/footer.jsp"%>
 </body>
 </html>
+
