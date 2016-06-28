@@ -528,7 +528,7 @@ function res() {
 							</c:forEach> <%-- step이 0이 아닌 경우엔 화살표 이미지 출력 --%> <c:if
 								test="${list.step > 0 }">
 								<img src="img/arrow.JPG" />
-							</c:if> <a href="view.inc?seq=${list.seq }&nowPage=${nowPage}">${list.title }</a>
+							</c:if> <a href="viewAnal.inc?seq=${list.seq }&nowPage=${nowPage}">${list.title }</a>
 						</td>
 						<td class="a1">${list.id }</td>
 						<td class="a1">${list.regdate }</td>
