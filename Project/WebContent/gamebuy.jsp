@@ -8,6 +8,8 @@
 			4.Ajax활용을 위한 코인체크메소드 추가 오우석(2016/06/24)
 			  if문 조건 null 에서 ''로 수정 오우석(2016/06/24)
 			5.분석글 추가(정성훈 2016.06.27)  
+			6.배팅취소하기 버튼 추가(오우석 2016.06.28)
+			7.팀정보의 팀 전적정보 추가, 선수정보 레이아웃 정의(오우석 2016.06.28)
 	*/ 
  -->
 <%@page import="mybatis.vo.MemberVO"%>
@@ -101,6 +103,8 @@ function info_send(){
 		alert("구매금액을 입력해 주십시오");
 	}else if(document.getElementById("pos").firstChild.getClassName == "impossible"){
 		alert("구매금액을 확인하십시오");
+	}else if(document.getElementsByName("result").value == null){
+		alert("결과를 선택하십시오");
 	}else{
 		//alert(document.getElementById("pos").);
 		hiddenWin();
@@ -191,6 +195,9 @@ function res() {
 }
 .impossible{
 	color: red;
+}
+#team_intro tbody tr{
+	border-bottom: 0.5px dotted gray;
 }
 </style>
 <head>
@@ -298,7 +305,7 @@ function res() {
 				<h4>양팀 상대 전적: ${total }전 ${win }승 ${lose }패</h4>
 				<table class="panel panel-default center_table" style="width: 100%">
 					<thead class="panel-heading">
-						<tr>
+						<tr style="font: blue; text-align: center; font: bold 15px;">
 							<td height="20" bgcolor="#669AB3" width="56"><font
 								color="#00F">회자</font></td>
 							<td height="20" bgcolor="#669AB3" width="56"><font
@@ -331,47 +338,164 @@ function res() {
 			</div>
 		</div>
 		<div class="tab_cont" id="tab4">
-			<table id="team_intro" class="panel panel-default center_table" style="width: 100%">
-				<thead class="panel-heading">
-					<tr>
-						<td>${game.teamName(game.home_code) }</td>
-						<td>${game.teamName(game.away_code) }</td>
+			<div id="team_main">
+				<p style="font: bold 15px; color: blue;">●팀 정보</p>
+				<table id="team_intro" class="panel panel-default center_table"
+					style="width: 100%; margin-top: 10px">
+					<thead class="panel-heading">
+						<tr>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#00F">${game.teamName(game.home_code) }</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#00F">${game.teamName(game.away_code) }</font></td>
+						</tr>
+					</thead>
+					<tbody class="panel-bod">
+						<tr>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000">홈구장 : ${game.homeName(game.home_code) }</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000">홈구장 : ${game.homeName(game.away_code) }</font></td>
+						</tr>
+						<tr>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000">순 위 : ${homeTeam.rank } 위</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000">순 위 : ${awayTeam.rank } 위</font></td>
+						</tr>
+						<tr>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000">(${homeTeam.win }승 ${homeTeam.lose }패)</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000">(${awayTeam.win }승 ${awayTeam.lose }패)</font></td>
+						</tr>
+						<tr>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">
+							투수 :
+								<c:forEach var="home" items="${homeTeam.team_info }" varStatus="stat">
+								<c:if test="${home.POSITION=='투수' }">
+									<a href=""> ${home.NAME }</a>
+ 									<c:if test="${stat.count%3==0 }">
+										<br />
+									</c:if>
+								</c:if>
+								</c:forEach>
+							</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">
+							투수 :
+								<c:forEach var="away" items="${awayTeam.team_info }" varStatus="stat">
+								<c:if test="${away.POSITION=='투수' }">
+									<a href=""> ${away.NAME }</a>
+									<c:if test="${stat.count%3==0 }">
+										<br />
+									</c:if>
+								</c:if>
+								</c:forEach>
+							</font></td>
+						</tr>
+						<tr>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">
+							야수 :
+								<c:forEach var="home" items="${homeTeam.team_info }" varStatus="stat">
+								<c:if test="${home.POSITION=='야수' }">
+									<a href=""> ${home.NAME }</a>
+									<c:if test="${stat.count%3==0 }">
+										<br />
+									</c:if>
+								</c:if>
+								</c:forEach>
+							</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">
+							야수 :
+								<c:forEach var="away" items="${awayTeam.team_info }" varStatus="stat">
+								<c:if test="${away.POSITION=='야수' }">
+									<a href=""> ${away.NAME }</a>
+									<c:if test="${stat.count%3==0 }">
+										<br />
+									</c:if>
+								</c:if>
+								</c:forEach>
+							</font></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="team_sub">
+				<p style="font: bold 15px; color: blue;">●팀 전적</p>
+				<table id="team_intro" class="panel panel-default center_table"
+					style="width: 100%; margin-top: 10px">
+					<thead class="panel-heading">
+						<tr>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#00F"> 팀명 </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#00F"> 순위 </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#00F"> 경기수 </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#00F"> 승 </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#00F"> 패 </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#00F"> 타율 </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#00F"> 방어율 </font></td>
+						</tr>
+					</thead>
+					<tbody class="panel-bod">
+					<tr style="border-bottom: 0.5px dotted gray;">
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${homeTeam.name }</font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${homeTeam.rank } </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${homeTeam.win + homeTeam.lose } </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${homeTeam.win } </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${homeTeam.lose } </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${homeTeam.team_avg } </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${homeTeam.team_era }</font></td>
 					</tr>
-				</thead>
-				<tbody class="panel-bod">
 					<tr>
-						<td>홈구장 : ${game.homeName(game.home_code) }</td>
-						<td>홈구장 : ${game.homeName(game.away_code) }</td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${awayTeam.name }</font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${awayTeam.rank } </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${awayTeam.win + homeTeam.lose } </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${awayTeam.win } </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${awayTeam.lose } </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${awayTeam.team_avg } </font></td>
+						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#000"> ${awayTeam.team_era } </font></td>
 					</tr>
-					<tr>
-						<td>순 위 : ${homeTeam.rank } 위</td>
-						<td>순 위 : ${awayTeam.rank } 위</td>
-					</tr>
-					<tr>
-						<td>(${homeTeam.win }승 ${homeTeam.lose }패)</td>
-						<td>(${awayTeam.win }승 ${awayTeam.lose }패)</td>
-					</tr>
-					<tr>
-						<td>
-					<c:forEach var="home" items="${homeTeam.team_info }" varStatus="stat">
-						${home.NAME }
-						<c:if test="${stat.count%3==0 }">
-							<br/>
-						</c:if>
-					</c:forEach>
-					</td>
-					<td>
-					<c:forEach var="away" items="${awayTeam.team_info }" varStatus="stat">
-						${away.NAME }
-						<c:if test="${stat.count%3==0 }">
-							<br/>
-						</c:if>
-					</c:forEach>
-					</td>
-					</tr>
-				</tbody>
+					</tbody>
+				</table>
+			</div>
+			<div id="player_info">
+			<p style="font: bold 15px; color: blue;">●선수 정보</p>
+			<table id="player_intro" class="panel panel-default center_table"
+					style="width: 100%; margin-top: 10px">
+					<thead class="panel-heading">
+						<tr>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#00F"> 이름</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#00F"> 포지션</font></td>
+							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+							color="#00F"> 정보들을 추가시키자</font></td>
+						</tr>
+					</thead>
 			</table>
+			</div>
 		</div>
+		
 		<div class="tab_cont" id="tab5">
 			<table id="listTable" style="width: 70%; margin: auto;">
 				<thead>
@@ -440,6 +564,7 @@ function res() {
 		 	<span id="pos"></span>
 		 	<br/>
 		 	<input type="button" id="go" onclick="javascript:info_send()" value="배팅하기"/>
+		 	<input type="button" id="cancel" onclick="javascript:hiddenWin()" value="취    소"/>
 			<input name="match_code" type="hidden" value="${game.match_code }"/>
 			<input name="id" type="hidden" value="${vo.id }"/>
 		</form>
