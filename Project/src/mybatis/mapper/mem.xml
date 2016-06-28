@@ -78,7 +78,9 @@
 	 <!-- 베팅목록 가져오기 2016/06/27 장준수 -->
 	 <select id="batList" parameterType="String" resultType="mybatis.vo.BatVO">
 	 select * from batting where id = #{id}
+	 order by bat_code desc
 	 </select>
+	 
 </mapper>
 
 
