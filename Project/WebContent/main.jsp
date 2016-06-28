@@ -79,6 +79,10 @@
 		background-color: #000;
 		color: #fff;
 	}
+	
+	#hide{
+		display: none;
+	}
 </style>
 </head>
 <body>
@@ -159,8 +163,14 @@
 					<tbody>
 						<c:forEach var="vo" items="${fList }">
 							<tr>
+								<div id="hide">							
+								<c:out value="${size = vo }"></c:out>
+								</div>
 								<td>${vo.id }</td>
-								<td><a href="view.inc?seq=${vo.seq }&nowPage=<%=1%>">${vo.title }</a></td>
+								<td><a href="view.inc?seq=${vo.seq }&nowPage=<%=1%>">${vo.title }
+								<c:if test="${size != null && size.anslist.size() > 0}">
+							 	[${size.anslist.size()}]
+								</c:if></a></td>
 								<td style="font-size: 10px;">${vo.regdate }</td>
 							</tr>
 						</c:forEach>
