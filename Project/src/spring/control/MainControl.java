@@ -14,6 +14,7 @@
 			11.선발투수, 장소 추가 (정성훈 2016.06.21)
 			12.경기날짜 선택 기능 추가(정성훈 2016.06.22)
 			13.분석글 추가(정성훈 2016.06.27)
+			14.리스트를 불러오기 위한 로직 추가 (2016/06/28 장준수)
 	*/
 
 package spring.control;
@@ -45,6 +46,7 @@ import mybatis.dao.MatchDAO;
 import mybatis.dao.MemberDAO;
 import mybatis.dao.NoticeDAO;
 import mybatis.dao.TeamDAO;
+import mybatis.vo.BatVO;
 import mybatis.vo.FreeBoardVO;
 import mybatis.vo.FreeCommVO;
 import mybatis.vo.MatchVO;
@@ -500,7 +502,16 @@ public class MainControl {
 	@RequestMapping("/mypageCheck.inc")
 	public ModelAndView mypageCheck(){
 		
+		// 리스트를 불러오기 위한 로직 추가 (2016/06/28 장준수)
+		MemberVO vo = (MemberVO) session.getAttribute("vo");
 		ModelAndView mv = new ModelAndView();
+		if(vo != null){
+			BatVO bat = new BatVO();
+			BatVO[] b = memberDao.batList(vo);
+
+			mv.addObject("vo", vo);
+			mv.addObject("batlist", b);
+		}
 		mv.setViewName("/mypage");
 		return mv;
 	}
