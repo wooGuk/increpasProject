@@ -102,15 +102,10 @@ public class FreeBoardControl {
 			
 			FreeBoardVO[] ar = fdao.getList(map);
 			session.setAttribute("anslist", ar);
-			FreeBoardVO size = FreeBoardVO();
+			//FreeBoardVO size = FreeBoardVO();
 			
-			/*for (int i = 0; i < ar.length; i++) {
-				size = ar[i];
-			}*/
-			
-			// JSP에서 표현할 수 있도록 반환객체 생성 한 후 그곳에서 표현할 값들을 저장한다.
 			ModelAndView mv = new ModelAndView();
-			mv.addObject("size",size);
+			//mv.addObject("size",size);
 			mv.addObject("list", ar);
 			mv.addObject("nowPage", nowPage);
 			mv.addObject("pageCode", PageCode);
@@ -122,13 +117,6 @@ public class FreeBoardControl {
 			return mv;
 		}
 		
-		
-		private FreeBoardVO FreeBoardVO() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-
 		// 글쓰기폼 이동 (장준수 2016/06/21)
 		@RequestMapping("/writeForm.inc")
 		public ModelAndView writeForm(){
@@ -142,30 +130,27 @@ public class FreeBoardControl {
 			return mv;
 		}
 		
-		// 글 보기 (장준수 2016/06/21)
+		// 글 보기 (장준수 2016/06/21)댓글 보기(장준수 20160/06/27)
 		@RequestMapping("/view.inc")
 		public ModelAndView view(String seq,String nowPage)throws Exception{
 			
 			FreeBoardVO vo = fdao.getBbs(seq);
-			System.out.println("게시판PK:"+seq);
+			
+			if(vo != null)
+			fdao.boardHit(seq); // 해당 게시물 조회수 증가
 			
 			// 게시물 내용을 찍는 세션
 			session.setAttribute("vo1", vo);
-			
-			if(vo != null){
 				
-			}
+			List<FreeCommVO> listcom = vo.getAnslist();
+			ModelAndView mv = new ModelAndView();
+			//session.setAttribute("size", listcom);
+			mv.addObject("anslist1", listcom);
+			mv.addObject("view", vo);
+			mv.addObject("nowPage", nowPage);
+			mv.addObject("seq", seq);
+			mv.setViewName("/view");
 				
-				List<FreeCommVO> listcom = vo.getAnslist();
-				ModelAndView mv = new ModelAndView();
-				//session.setAttribute("size", listcom);
-				mv.addObject("anslist1", listcom);
-				mv.addObject("view", vo);
-				mv.addObject("nowPage", nowPage);
-				mv.addObject("seq", seq);
-				mv.setViewName("/view");
-				
-				return mv;
+			return mv;
 		}
-		
 }
