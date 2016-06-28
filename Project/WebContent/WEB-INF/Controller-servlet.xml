@@ -36,7 +36,7 @@
 	<!-- LoginControl,LogoutControl MainControl로 이동 -->
 <!-- 	<bean id="login" class="spring.control.LoginControl"/>
 	<bean id="logout" class="spring.control.LogoutControl"/> -->
-	<bean id="mypage" class="spring.control.MyPageControl"/>
+	<!-- <bean id="mypage" class="spring.control.MyPageControl"/> 불필요 -->
 	<bean id="idcheck" class="spring.control.IdCheckControl"/>
 	<bean id="charge" class="spring.control.ChargeControl"/>
 	<bean id="search" class="spring.control.SearchControl"/>
