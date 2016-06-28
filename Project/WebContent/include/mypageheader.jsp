@@ -21,11 +21,12 @@
 
 /* 충전 css*/
 
+
 #chargetable{
 	width: 500px;
 	border:2px solid #4C4C4C;
 	margin-left: 50px;
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 #user{
@@ -42,18 +43,19 @@
 
 
 /* 구매페이지 css */
-	div#buy{
-		margin-left: 100px;
-		margin-right: 130px;
+	
+
+	#buy{
+		margin-left: 180px;
 		margin-top: 80px;
 		display: inline-block;
+		padding: 30px;
 	}
 
 	#buytable{
 		border:0;
-		width:800px;
+		width:600px;
 		height: 150px;
-		margin-top: 20px;
 	}
 
 	#buytable thead tr th{
@@ -65,33 +67,39 @@
 		
 	}
 
-	.t1{width: 5px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	.t2{width: 50px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	.t3{width: 10px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	.t4{width: 30px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	.t5{width: 8px;  text-align: center; height: 35px;}
+	.t1{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	.t2{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	.t3{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	.t4{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	.t5{width: 20px;  text-align: center; height: 35px;  border-right:1px solid #ccc;}
+	.t6{width: 20px;  text-align: center; height: 35px;}
 
 	
-	.fff{
-		font-size: 19px;
+	#bat{
+		background: #F6F6F6; 
+		text-align: center; 
+		border-right:1px solid #FFFFFF; 
+		border-bottom:1px solid #FFFFFF;
+		height: 25px;
 	}
-	
 	
 	/* 회원관리 */
-	div .left_side{
+	#mem_left{
 		display:inline-block;
-		padding-left: 200px;
-		margin-bottom: 100px;
-	}
-	
-	#left_info{
+		/* padding-left: 200px; */
+		border: 1px solid red;
+		/* width: 500px;
+		height: -500px; */
+	} 
+	#mem_info{
 		border:0;
 		width:100px;
 		height: 100px;
 				
 	}
+	
 
-	#left_info tbody tr td{
+	#mem_info tbody tr td{
 		font-size:12pt;
 		color:#191919;
 		text-align: center;
@@ -99,13 +107,12 @@
 		background-color: #D8D8D8;
 		}
 
-	#left_info thead tr th{
+	#mem_info thead tr th{
 		font-size:12pt;
 		font-weight:bold;
 		color:black; 
 		background-color:#AEAEAE;
 		text-align: center;
-		
 	}
 	
 	#user_edit{
@@ -120,7 +127,6 @@
 		text-decoration: underline;
 		font-size: 15px;
 	}
-	 
 	
 </style>
  <script type="text/javascript">
@@ -205,9 +211,10 @@
 			</form>
 		</div>
 		
-		<!-- 회원관리 폼 -->
-		<div class="left_side">
-			<table id="left_info">
+
+	 	<!-- 회원관리 폼 -->
+	<!--	<div id="mem_left">
+			<table id="mem_info">
 				<thead>
 					<tr>
 						<th id="user_edit">회원관리</th>
@@ -222,27 +229,31 @@
 					</tr>
 				</tbody>
 			</table>
-		</div>
-
-
+		</div>-->
+		 
+		
+		
 		<div id="buy">
 			<table id="buytable">
 				<thead>
 					<tr align="center">
-						<td class="t1" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
-						<td class="t2" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
-						<td class="t3" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
-						<td class="t4" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
-						<td class="t5" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">123</font></td>
+						<td class="t1" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">아이디</font></td>
+						<td class="t2" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">회차</font></td>
+						<td class="t3" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">예상결과</font></td>
+						<td class="t4" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">실제결과</font></td>
+						<td class="t5" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">베팅금액</font></td>
+						<td class="t6" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">수령금액</font></td>
 					</tr>
 				</thead>
 				<tbody>
 				<c:forEach var="list" items="${batlist }" varStatus="stat">
 					<tr align="center">
-					 	<td>${list.id }</td>
-						<td>${list.id }</td>
-						<td>${list.id }</td>
-						<td>${list.id }</td> 
+					 	<td id="bat">${list.id }</td>
+						<td id="bat">${list.match_code }</td>
+						<td id="bat">${list.re_result }</td>
+						<td id="bat">${list.ac_result }</td>
+						<td id="bat">${list.bat_cost }</td> 
+						<td id="bat">${list.bat_avg }</td>
 					</tr>
 					</c:forEach>
 					<c:if test="${batlist == null}">
@@ -255,6 +266,5 @@
 			</table>
 		</div>
 	</c:if>
-
 </body>
 </html>
