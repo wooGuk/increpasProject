@@ -26,6 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -35,6 +36,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -44,6 +46,7 @@ import mybatis.dao.MemberDAO;
 import mybatis.dao.NoticeDAO;
 import mybatis.dao.TeamDAO;
 import mybatis.vo.FreeBoardVO;
+import mybatis.vo.FreeCommVO;
 import mybatis.vo.MatchVO;
 import mybatis.vo.MemberVO;
 import mybatis.vo.NoticeVO;
@@ -87,6 +90,7 @@ public class MainControl {
 		//나중에 검색 기능에 필요한 변수들
 		String searchType, searchValue;
 	
+	// 분석글 쓰기 이동 (정성훈 2016.06.27)	
 	@RequestMapping("/writeAnalForm.inc")
 	public ModelAndView writeAnalFrom(){
 		ModelAndView mv = new ModelAndView();
@@ -94,6 +98,77 @@ public class MainControl {
 		return mv;
 	}
 	
+	// 분석글수정 이동(정성훈 2016/06/28)
+		@RequestMapping("/editAnal.inc")
+		public ModelAndView edit(String nowPage) throws Exception {
+			
+			// seq라는 파라미터는 유실된다. 그래도 괜찮은 것이 우리가 표현할 vo가 이미 ViewControl에서 session에
+			// "vo"라는 이름으로 저장했으므로 연결되는 페이지 이동에서는 session에 있는 정보를 계속 사용할 수 있다.
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("nowPage", nowPage);
+			mv.setViewName("/editAnal");
+
+			return mv;
+		}
+	
+	// 분석글수정 (정성훈 2016/06/28)
+		@RequestMapping(value = "/editAnal.inc", method = RequestMethod.POST)
+		public ModelAndView edit(FreeBoardVO vo1) throws Exception {
+			if (vo1.getUpload().getSize() > 0) {
+				// 파일첨부를 하지 않아도 null을 받지 않는다. 다만 사이즈가 0이다.
+
+				// 사이즈가 0보다 크다는 것은 파일이 첨부되었다는 것이고, upload의 절대경로를 얻어내야한다.
+				String path = servletContext.getRealPath(uploadPath);
+
+				// 첨부파일 가져오기
+				MultipartFile upload = vo1.getUpload();
+				String f_name = upload.getOriginalFilename();
+
+				// 이미 같은 이름이 있을 경우 파일명을 변경한다.
+				f_name = FileSaveUtil.checkSameFileName(f_name, path);
+
+				// 파일저장!
+				upload.transferTo(new File(path, f_name));
+
+				// 파일명 저장
+				vo1.setUploadFileName(f_name);
+
+			} else
+				vo1.setUploadFileName("");
+			System.out.println(vo1.getNowPage());
+			vo1.setIp(request.getRemoteAddr());
+			freeDao.editBbs(vo1);
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("redirect:/viewAnal.inc?seq=" + vo1.getSeq() + "&nowPage=" + vo1.getNowPage());
+
+			return mv;
+		}
+	
+	// 분석글 보기 (정성훈 2016.06.27)
+	@RequestMapping("/viewAnal.inc")
+	public ModelAndView writeAnalFrom(String seq,String nowPage){
+		FreeBoardVO vo = freeDao.getBbs(seq);
+		
+		if(vo != null)
+		freeDao.boardHit(seq); // 해당 게시물 조회수 증가
+		
+		// 게시물 내용을 찍는 세션
+		session.setAttribute("vo1", vo);
+			
+		List<FreeCommVO> listcom = vo.getAnslist();
+		ModelAndView mv = new ModelAndView();
+		//session.setAttribute("size", listcom);
+		mv.addObject("anslist1", listcom);
+		mv.addObject("view", vo);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("seq", seq);
+		mv.setViewName("/viewAnal");
+			
+		return mv;
+	}
+	
+	
+	//분석글 쓰기 (정성훈 2016.06.27)
 	@RequestMapping("/writeAnal.inc")
 	public ModelAndView writeAnalFrom(FreeBoardVO vo1) throws IllegalStateException, IOException{
 		MatchVO game = (MatchVO)session.getAttribute("game");
