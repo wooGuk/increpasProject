@@ -8,6 +8,7 @@
 			4. 마이페이지 이동시 로그인 유무 체크 (정성훈 20160616)
 			5. 선발투수, 장소 추가 (정성훈 2016.06.21)
 			6. 자유게시판, 공지사항 추가 (정성훈 2016.06.24)
+			7. 공지사항 작성자 공통적으로 Admin 찍히게 수정 ( 박상원 2016/06/28)
 	*/
  -->
 
@@ -140,7 +141,7 @@
 					<tbody>
 						<c:forEach var="vo" items="${nList }">
 							<tr>
-								<td>${vo.id }</td>
+								<td>Admin</td>
 								<td><a href="noticeview.inc?seq=${vo.seq }&nowPage=<%=1%>">${vo.title }</a></td>
 								<td style="font-size: 10px;">${vo.regdate }</td>
 							</tr>
