@@ -48,27 +48,17 @@ color:#000; font-weight:bold; font-size:16px; padding-left:40px; background:url(
 	}
 
 	/* 충전 */
-	div#mmm{
+	div#charge{
 		margin-left: 500px;
-		margin-top: 30px; 
-	
-	}
-
-	div#mmm form{
-		font-size: 19px;
+		margin-top: 60px;	
 	}
 	
-	div#mmm label{
-		font-size: 19px;
-		margin-left: 10px;
-	} 
-	
-	div#mmm input[type=text]{
+	div#charge input[type=text]{
 		width: 100px;
 		height: 24px;
 	}
 	
-	div#mmm input[type=button] {
+	div#charge input[type=button] {
 		display: inline;
 		width: 70px;
 		height: 27px;
@@ -77,74 +67,8 @@ color:#000; font-weight:bold; font-size:16px; padding-left:40px; background:url(
 		font-weight: bold;
 		border: 1px solid #dcdcdc;
 		margin-left: 10px;
-	}
+	}	
 	
-	/* 경기구매 */
-
-	
-	
-
-
- /* 조인 버튼 */
-/*.btn{
-	display: inline-block;
-	background: url("../img/btn.png") no-repeat;
-	text-indent: -9999px;
-}
-.b_bdcheck{
-	width: 60px;
-	height: 25px;
-	background-position: 0 -150px;
-}
-.btn a{
-	display: block;
-	width: 100%;
-	height: 100%;
-}
-input.join{
-	border: 1px solid #ccc;
-	height: 23px;
-	width: 120px;
-	text-indent: 5px;
-} 
- label.hidden{display: none;}  
-
-
-.btn_center{
-	text-align: center;
-}
-
-
-
-.b_agree{
-	width: 121px;
-	height: 30px;
-	
-}
-
-.b_noagree{
-	width: 121px;
-	height: 30px;
-	
-}
-
-
-.btn1{
-	display: inline-block;
-	background: url("../img/a.PNG") no-repeat;
-	text-indent: -9999px;
-}
-
-.btn2{
-	display: inline-block;
-	background: url("../img/b.PNG") no-repeat;
-	text-indent: -9999px;
-}
-
- */
-
-
-
 
 /* 푸터영역 */
 #footer {width:auto; padding:40px 0 50px; background:#eee; margin-top:100px;}
