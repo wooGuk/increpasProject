@@ -1,6 +1,6 @@
-package spring.control;
+/*package spring.control;
 
-import javax.servlet.http.HttpServletRequest;
+/*import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +13,12 @@ import mybatis.dao.MemberDAO;
 import mybatis.vo.BatVO;
 import mybatis.vo.MemberVO;
 
-	/*
+	
 	제 목 : MypageControl
 	역 할 : 마이페이지로 이동하여 수행하는 컨트롤러 
 	로 그 :  1.프로그램 최초 생성 (장준수 2016/06/14)
-	*/
+			2. 필요없음(2016/06/28)
+	
 @Controller
 public class MyPageControl {
 
@@ -37,17 +38,11 @@ public class MyPageControl {
 	@RequestMapping("/mypage.inc")
 	public ModelAndView mypage(){
 		
-		MemberVO vo = (MemberVO) session.getAttribute("vo");
-		BatVO bat = new BatVO();
-		BatVO b =  tdao.batList(bat);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("vo", vo);
-		mv.addObject("batlist",b);
-		mv.addObject("batlist1",bat);
+		//mv.addObject("batlist1",bat);
 		mv.setViewName("/mypage");
 		return mv;
 	}
 	
 	
 }
+*/
