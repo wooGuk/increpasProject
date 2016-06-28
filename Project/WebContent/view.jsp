@@ -215,6 +215,10 @@ div#move input[type=button],div#move2 input[type=button]{
 			document.ff.submit();
 		}
 	}
+	function exe(){
+		history.back();
+	}
+	
 	
 </script>
 </head>
@@ -293,7 +297,7 @@ div#move input[type=button],div#move2 input[type=button]{
 			</div>
 			<c:if test="${vo.id != view.id }">
 			<div id="move2">
-				<input type="button" value="목록" onClick="javaScript:location.href='freeBoard.inc?nowPage=${nowPage}'" style="cursor:pointer"/>
+				<input type="button" value="목록" onClick="exe()" style="cursor:pointer"/>
 			</div>
 			</c:if>
 		</div>
