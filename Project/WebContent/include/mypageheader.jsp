@@ -8,6 +8,7 @@
 	역 할 : 마이페이지 상단부
 	로 그 : 1.프로그램 최초 생성 (장준수 2016/06/16)
 		  2. 122번째줄 팝업창 함수 추가하여 delmember.jsp 로 이동하는 소스 추가
+		  3.마이페이지 링크 수정(mypage.inc -> mypageCheck.inc) (정성훈 2016.06.28)
 		  
 
  -->
@@ -156,7 +157,7 @@
 				<li><a href="notice.inc"><span class="menu m01">공지사항</span></a></li>
 				<li><a href="todaylist.inc"><span class="menu m02">경기구매</span></a></li>
 				<li><a href="gameInfo.inc"><span class="menu m03">경기정보</span></a></li>
-				<li><a href="mypage.inc"><span class="menu m04">마이페이지</span></a></li>
+				<li><a href="mypageCheck.inc"><span class="menu m04">마이페이지</span></a></li>
 				<li><a href="freeBoard.inc"><span class="menu m05">자유게시판</span></a></li>
 			</ul>
 		</div>
