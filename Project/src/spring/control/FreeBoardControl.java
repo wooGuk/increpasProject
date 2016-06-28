@@ -117,6 +117,7 @@ public class FreeBoardControl {
 			return mv;
 		}
 		
+		
 		// 글쓰기폼 이동 (장준수 2016/06/21)
 		@RequestMapping("/writeForm.inc")
 		public ModelAndView writeForm(){
@@ -144,7 +145,7 @@ public class FreeBoardControl {
 				
 			List<FreeCommVO> listcom = vo.getAnslist();
 			ModelAndView mv = new ModelAndView();
-			//session.setAttribute("size", listcom);
+			session.setAttribute("size", listcom);
 			mv.addObject("anslist1", listcom);
 			mv.addObject("view", vo);
 			mv.addObject("nowPage", nowPage);
