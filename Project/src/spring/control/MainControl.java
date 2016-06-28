@@ -90,6 +90,64 @@ public class MainControl {
 		//나중에 검색 기능에 필요한 변수들
 		String searchType, searchValue;
 	
+	// 글삭제 (장준수 2016/06/22) 코드 복사
+		@RequestMapping(value = "/delAnal.inc", method = RequestMethod.POST)
+		public ModelAndView del(FreeBoardVO vo1) {
+			System.out.println(vo1.getId());
+			System.out.println(vo1.getPassword());
+			freeDao.delBbs(vo1);
+			
+			//(정성훈 2016.06.27 추가시작)
+			// 현재 페이지값 받기 *
+			String c_page = request.getParameter("nowPage");
+			System.out.println("fbc:"+c_page);
+			
+			if(c_page == null)
+				nowPage = 1;
+			else
+				nowPage = Integer.parseInt(c_page);
+			
+			// 게시판을 구별하는 문자열 
+			MatchVO game = (MatchVO)session.getAttribute("game");
+			String bname = String.valueOf(game.getMatch_code());
+			rowTotal = freeDao.getTotalCount(bname);
+			//System.out.println(bname);
+			//System.out.println(rowTotal);
+			// 페이징 객체(Page) 생성
+			Paging_board page = new Paging_board(nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE);
+			 
+			// 페이징 HTML코드를 기억하는 있는 sb를 가져온다.
+			StringBuffer sb = page.getSb();
+			
+			// HTML코드를 가져온다.
+			pageCode = sb.toString();
+			
+			int begin = page.getBegin();
+			int end = page.getEnd();
+			
+			if(end > rowTotal)
+				end = rowTotal;
+			
+			// mybatis환경에 호출한 map구조를 생성한다.
+			Map<String, String> map2 = new HashMap<String,String>();
+			map2.put("bname", bname);
+			map2.put("begin", String.valueOf(begin));
+			map2.put("end", String.valueOf(end));
+			
+			FreeBoardVO[] ar = freeDao.getList(map2);
+			session.setAttribute("anslist", ar);
+			session.setAttribute("list", ar);
+			session.setAttribute("nowPage", nowPage);
+			
+			// JSP에서 표현할 수 있도록 반환객체 생성 한 후 그곳에서 표현할 값들을 저장한다.
+			//(정성훈 2016.06.27 추가종료)
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("/gamebuy");
+
+			return mv;
+		}	
+		
 	// 분석글 댓글저장(준수 코드 복사)
 	@RequestMapping(value="/ans_writeAnal.inc",method=RequestMethod.POST)
 	public ModelAndView ansWrite(FreeCommVO vo){
