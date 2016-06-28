@@ -2,7 +2,7 @@
 	/*
 	제 목 : viewAnal.jsp
 	역 할 : 분석글 보기
-	로 그 : 1. 자유게시판 글 클릭시 글 보기(장준수 2016/06/23)에서 조금 수정 (정성훈 2016.06.27)
+	로 그 : 1. 자유게시판 글 클릭시 글 보기(장준수 2016/06/23)에서 조금 수정 (정성훈 2016.06.27) (자유게시판으로 가지는 문제 해결)
 	*/
  -->
 <%@page import="mybatis.vo.FreeBoardVO"%>
@@ -241,7 +241,7 @@ div#move input[type=button],div#move2 input[type=button]{
 			</table>
 			
 			<div id="comment2">
-			<form method="post" action="ans_write.inc" name="ff">
+			<form method="post" action="ans_writeAnal.inc" name="ff">
 			<table id="comtable">
 				<tr>
 					<td id="comcontent"><textarea rows="2" cols="28" name="content">내용</textarea></td>
@@ -272,7 +272,7 @@ div#move input[type=button],div#move2 input[type=button]{
 					<td id="listcontent">${list.content }</td>
 					<c:if test="${vo.id == list.id || view.id == vo.id}">
 					<td id="listdel"><input type="button" name="comdel" value="X" 
-					onClick="javaScript:location.href='comdel.inc?nowPage=${nowPage}&seq=${vo1.seq }&seq_com=${list.seq_com }'" style="cursor:pointer"/>
+					onClick="javaScript:location.href='comdel.incAnal?nowPage=${nowPage}&seq=${vo1.seq }&seq_com=${list.seq_com }'" style="cursor:pointer"/>
 					</c:if>
 				</tr>
 				</table>
