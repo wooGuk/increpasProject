@@ -102,7 +102,7 @@ public class MainControl {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("nowPage",nowPage );
 		mv.addObject("seq", seq);
-		mv.setViewName("redirect:/view.inc");
+		mv.setViewName("redirect:/viewAnal.inc");
 		return mv;
 	}
 	
@@ -121,7 +121,7 @@ public class MainControl {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("nowPage",nowPage );
 		mv.addObject("seq", seq);
-		mv.setViewName("redirect:/view.inc");
+		mv.setViewName("redirect:/viewAnal.inc");
 		return mv;
 	}	
 	
