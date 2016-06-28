@@ -2,6 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	MemberVO vo = (MemberVO)session.getAttribute("vo");
+%>
 <!-- 
 	
 	제 목 : mypage.jps
@@ -17,8 +20,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="css/basic.css" />
 <title>Insert title here</title>
+<script type="text/javascript">
+
+/* 	function check(){
+			location.href="mypage.inc";
+	}
+ */
+</script>
 </head>
-<body>
+<body >
 	<div id="wrap">
 		<!-- 상단영역시작 -->
 		<jsp:include page="include/mypageheader.jsp"></jsp:include>
