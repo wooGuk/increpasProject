@@ -518,6 +518,7 @@ public class MainControl {
 		
 		rowTotal = memberDao.getBat(vo.getId());
 		
+		
 		//페이징 객체(page) 생성
 		Paging_batting page = new Paging_batting(nowPage, rowTotal, BLOCK_LIST, BLOCK_LIST);
 		int begin = page.getBegin();
