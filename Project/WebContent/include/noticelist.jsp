@@ -4,6 +4,7 @@
 		로 그 :  1.프로그램 최초 생성 (박상원 2016/06/22)
 			 ->메인에서 공지사항 배너클릭시 넘어와서 공지사항 리스트를 보여줌! 
 			 2.조회수추가 (06/28)
+			 3.css수정 (06/29 psw)
 			 -->
 			
 		
@@ -32,7 +33,25 @@
 <style type="text/css">
 	
 	div#contents_sub{
-		margin-left: 500px;
+		  /* margin-left: 500px; */ 
+		text-align:center; 
+		/*  border: 1px solid red; */
+		
+		
+	}
+	
+	form{
+		
+		/* border:1px solid blue; */
+		
+	}
+	
+	#bbs_table1{
+		margin-left:15%;
+		/* border: 1px solid green;  */
+		position: relative;
+		
+		
 	}
 	
 	.t1{width: 56px; text-align: center;}
@@ -44,6 +63,7 @@
 	#writebtn{
 		background: url("/img/but_write.gif");
 		text-indent: -9999px;
+		margin-left: 150px;
 	}
 	
 	#hit{
@@ -55,7 +75,7 @@
 
 <!--주요내용시작 -->
 <div id="contents_sub">
-<form name="ff2" method="post">
+<form name="ff2" method="post" >
 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="bbs_table1">
   <tr>
 	<td valign="top">
@@ -76,7 +96,7 @@
 				<td>&nbsp;</td>
 			  </tr>
 			</table>
-			<table width="556" border="0" cellspacing="0" cellpadding="0" id="bbs_table3">
+			<table width="700"  border="0" cellspacing="0" cellpadding="0" id="bbs_table3">
 			  <tr>
 				<td height="2" style="background:#C3C3C3"></td>
 			  </tr>
@@ -92,7 +112,7 @@
 					</tr>
      	  <c:forEach var="vo" items="${list }" varStatus="stat">
 					<tr>
-					  <td style="background:#F2F7F9">
+					  <td style="background:#F2F7F9; text-align: center;" >
 <!--                           <s:property value="rowTotal-((nowPage-1)*blockList+#stat.index)"/> -->
 						${rowTotal-((nowPage-1)*blockList+stat.index) }
                       </td>
@@ -128,7 +148,7 @@
 				  </table></td>
 			  </tr>
 			</table>
-			<table width="556" border="0" cellspacing="0" cellpadding="0" id="bbs_table5">
+			<table width="556" border="0" cellspacing="0" cellpadding="0" id="bbs_table5" style="margin-left: 10%;">
 			  <tr>
 				<td height="20" valign="middle"><img src="/img/sub_it/point_line.gif" width="556" height="3"></td>
 			  </tr>
@@ -155,6 +175,10 @@
 </form>
 </div>
  <!--주요내용끝 -->
-
+	<!-- 하단영역시작 -->
+	
+		<jsp:include page="footer.jsp"></jsp:include>
+		<!-- 하단영역종료 -->
+	
 </body>
 </html>
