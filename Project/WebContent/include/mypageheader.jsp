@@ -46,10 +46,10 @@
 	
 
 	#buy{
-		margin-left: 405px;
+		margin-left: 430px;
 		margin-top: 10px;
 		display: inline-block;
-		padding: 30px;
+		border: 0;
 	}
 
 	#buytable{
@@ -105,8 +105,8 @@
 	#mem_info thead tr th{
 		font-size:12pt;
 		font-weight:bold;
-		color:black; 
-		background-color:#AEAEAE;
+		color:#FFFFFF; 
+		background-color:#5D5D5D;
 		text-align: center;
 	}
 	
@@ -212,15 +212,15 @@
 			<table id="mem_info">
 				<thead>
 					<tr>
-						<th id="user_edit">회원관리</th>
+						<th id="user_edit"> 회 원 관 리 </th>
 					</tr>
 					</thead>
 				<tbody>
 					<tr>
-						<td id="edituser"><a href="memedit.inc">회원수정▶</a></td>
+						<td id="edituser"><a href="memedit.inc"> 회 원 수 정 > </a></td>
 					</tr>
 					<tr>
-						<td id="edituser"><a href="javascript:memdel()">회원탈퇴▶</a></td>
+						<td id="edituser"><a href="javascript:memdel()"> 회 원 탈 퇴 > </a></td>
 					</tr>
 				</tbody>
 			</table>
