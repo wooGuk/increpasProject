@@ -19,6 +19,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="css/basic.css" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 <title>Insert title here</title>
 <script type="text/javascript">
 
