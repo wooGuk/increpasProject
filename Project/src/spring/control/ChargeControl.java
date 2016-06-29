@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.MemberDAO;
+import mybatis.vo.BatVO;
 import mybatis.vo.MemberVO;
 
 	/*
@@ -20,6 +21,7 @@ import mybatis.vo.MemberVO;
 					충전시 그 금액으로 나타남 ㅡㅡ> 수정 (장준수 2016/06/16)
 					3. 회원수정 (장준수 2016/06/20) 
 					4. 회원탈퇴 추가 (박상원 2016/06/21)
+					5. 구매 취소 및 반환금 받기 (장준수 2016/06/29) 
 	 */	
 
 @Controller
@@ -67,7 +69,7 @@ public class ChargeControl {
 		ModelAndView mv = new ModelAndView();
 		/*mv.addObject("vo", mvo);*/
 		/*mv.addObject("vo1", vo);*/
-		mv.setViewName("/mypage");
+		mv.setViewName("redirect:/mypageCheck.inc");
 		
 		return mv;
 	}
@@ -115,4 +117,34 @@ public class ChargeControl {
 			return mv;
 			
 		}
+	
+		// 구매 취소 및 반환금 받기 
+		@RequestMapping("/batcancel.inc")
+		public ModelAndView batcancel(){
+			
+			MemberVO vo = (MemberVO) session.getAttribute("vo");
+			String c = request.getParameter("pk");
+			String n = request.getParameter("batcoin");
+			String id = request.getParameter("id");
+		
+			int code = Integer.parseInt(c);
+			int coin = Integer.parseInt(n);
+			System.out.println(coin);
+			
+			int a = vo.getCoin();
+			int s = a+coin;
+			
+			vo.setId(id);
+			vo.setCoin(s);
+			
+			mdao.returnCoin(vo);
+			mdao.delBat(code);
+			
+			ModelAndView mv = new ModelAndView();
+			
+			mv.setViewName("redirect:/mypageCheck.inc");
+			return mv;
+			
+		}
+	
 }
