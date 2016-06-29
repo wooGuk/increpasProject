@@ -46,33 +46,25 @@
 	
 
 	#buy{
-		margin-left: 180px;
-		margin-top: 80px;
+		margin-left: 405px;
+		margin-top: 10px;
 		display: inline-block;
 		padding: 30px;
 	}
 
 	#buytable{
+		padding-top: 20px;
 		border:0;
-		width:600px;
-		height: 150px;
+		width:700px;
+		height: 50px;
 	}
 
-	#buytable thead tr th{
-		font-size:9pt;
-		font-weight:bold;
-		color:black; 
-		background-color:#A3D4F7;
-		text-align: center;
-		
-	}
-
-	.t1{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	.t2{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	.t3{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	.t4{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	.t5{width: 20px;  text-align: center; height: 35px;  border-right:1px solid #ccc;}
-	.t6{width: 20px;  text-align: center; height: 35px;}
+	#t1{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	#t2{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	#t3{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	#t4{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	#t5{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	#t6{width: 20px;  text-align: center; height: 35px; }
 
 	
 	#bat{
@@ -83,22 +75,25 @@
 		height: 25px;
 	}
 	
+	#page{
+	margin-top: 10px;
+	}
+	
 	/* 회원관리 */
-	#mem_left{
+	/* #mem_left{
 		display:inline-block;
-		/* padding-left: 200px; */
-		border: 1px solid red;
-		/* width: 500px;
-		height: -500px; */
-	} 
+		padding-left: 200px; 
+		width: 0;
+		height: 400px;
+		border: 1px solid gold;
+	}  */
 	#mem_info{
+		margin-left: 200px;
 		border:0;
 		width:100px;
 		height: 100px;
-				
 	}
 	
-
 	#mem_info tbody tr td{
 		font-size:12pt;
 		color:#191919;
@@ -213,7 +208,7 @@
 		
 
 	 	<!-- 회원관리 폼 -->
-	<!--	<div id="mem_left">
+		<div id="mem_left">
 			<table id="mem_info">
 				<thead>
 					<tr>
@@ -229,7 +224,7 @@
 					</tr>
 				</tbody>
 			</table>
-		</div>-->
+		</div>
 		 
 		
 		
@@ -237,12 +232,12 @@
 			<table id="buytable">
 				<thead>
 					<tr align="center">
-						<td class="t1" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">아이디</font></td>
-						<td class="t2" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">회차</font></td>
-						<td class="t3" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">예상결과</font></td>
-						<td class="t4" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">실제결과</font></td>
-						<td class="t5" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">베팅금액</font></td>
-						<td class="t6" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">수령금액</font></td>
+						<td id="t1" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">아이디</font></td>
+						<td id="t2" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">회차</font></td>
+						<td id="t3" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">예상결과</font></td>
+						<td id="t4" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">실제결과</font></td>
+						<td id="t5" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">베팅금액</font></td>
+						<td id="t6" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">수령금액</font></td>
 					</tr>
 				</thead>
 				<tbody>
@@ -264,6 +259,7 @@
 					</c:if>
 				</tbody>
 			</table>
+			<div id="page">${pageCode }</div>
 		</div>
 	</c:if>
 </body>
