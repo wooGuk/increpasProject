@@ -55,6 +55,7 @@ import mybatis.vo.MemberVO;
 import mybatis.vo.NoticeVO;
 import mybatis.vo.TeamVO;
 import spring.include.Paging;
+import spring.include.Paging_batting;
 import spring.include.Paging_board;
 import spring.util.FileSaveUtil;
 
@@ -518,7 +519,7 @@ public class MainControl {
 		rowTotal = memberDao.getBat(vo.getId());
 		
 		//페이징 객체(page) 생성
-		Paging page = new Paging(nowPage, rowTotal, BLOCK_LIST, BLOCK_LIST);
+		Paging_batting page = new Paging_batting(nowPage, rowTotal, BLOCK_LIST, BLOCK_LIST);
 		int begin = page.getBegin();
 		int end = page.getEnd();
 		//페이징 HTML코드를 기억하고 있는 sb를 가져온다.
@@ -539,6 +540,10 @@ public class MainControl {
 			BatVO[] b = memberDao.batList(map);
 			mv.addObject("vo", vo);
 			mv.addObject("batlist", b);
+			mv.addObject("nowPage", nowPage);
+			mv.addObject("pageCode", pageCode);
+			mv.addObject("rowTotal", rowTotal);
+			mv.addObject("blockList", BLOCK_LIST);
 		}
 		mv.setViewName("/mypage");
 		return mv;
