@@ -86,17 +86,23 @@ public class MemberDAO {
 		}
 		
 		// 베팅목록 가져오기(장준수 2016/06/27)
-		public BatVO[] batList(MemberVO vo){
-			 String id = vo.getId();
-			  List<BatVO> list= template.selectList("mem.batList", id);
-			  BatVO[] v1=null;
-			  if(!list.isEmpty()){
-				  v1 = new BatVO[list.size()];
-				  list.toArray(v1);
-			  }
-			 return v1;
+		public BatVO[] batList(Map<String, String> map) {
+			List<BatVO> list = template.selectList("mem.batList", map);
+			BatVO[] v1 = null;
+			if (!list.isEmpty()) {
+				v1 = new BatVO[list.size()];
+				list.toArray(v1);
+			}
+			return v1;
 		}
 		
+		// 유저가 베팅한 목록 
+		public int getBat(String id){
+			//String id = vo.getId();
+			//System.out.println("아이디는:"+id);
+			return template.selectOne("mem.batCount",id);
+		}
+
 	}
 
 
