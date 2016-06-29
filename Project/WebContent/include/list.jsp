@@ -87,11 +87,11 @@ div#write_btn input[type=button]{
 			<table id="listTable">
 				<thead>
 				<tr>
-					<td class="t1" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">번호</font></td>
-					<td class="t2" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">제목</font></td>
-					<td class="t3" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">아이디</font></td>
-					<td class="t4" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">날짜</font></td>
-					<td class="t5" style="background: #5D5D5D; height: 60px; font-weight: bold;"><font color="#FFFFFF">조회수</font></td>
+					<td class="t1" style="background: #5D5D5D; height: 45px; font-weight: bold;"><font color="#FFFFFF">번호</font></td>
+					<td class="t2" style="background: #5D5D5D; height: 45px; font-weight: bold;"><font color="#FFFFFF">제목</font></td>
+					<td class="t3" style="background: #5D5D5D; height: 45px; font-weight: bold;"><font color="#FFFFFF">아이디</font></td>
+					<td class="t4" style="background: #5D5D5D; height: 45px; font-weight: bold;"><font color="#FFFFFF">날짜</font></td>
+					<td class="t5" style="background: #5D5D5D; height: 45px; font-weight: bold;"><font color="#FFFFFF">조회수</font></td>
 				</tr>
 				</thead>
 				<c:forEach var="list" items="${list }" varStatus="stat">
