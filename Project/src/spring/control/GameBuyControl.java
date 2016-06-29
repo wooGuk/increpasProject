@@ -10,6 +10,7 @@
 			7.분석글 불러오기(정성훈 2016.06.27)
 			8.세션처리(정성훈 2016.06.27)
 			9.팀정보 추가(오우석 2016.06.27)
+			10.detail메소드 gamebuy와 동일한 로직으로 변경(분석글 제외) 오우석(2016/06/29)
 	*/
 package spring.control;
 
@@ -165,9 +166,16 @@ public class GameBuyControl {
 	}
 	
 	// 종료된 게임에서 세부사항을 보내주는 컨트롤러 오우석(2016/06/20)
+	// gamebuy와 동일한 로직으로 변경(분석글 제외) 오우석(2016/06/29)
 	@RequestMapping("/detailGame.inc")
 	public ModelAndView detail(){
+		int win=0,lose=0,total=0;
 		ModelAndView mv = new ModelAndView();
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("home_code", Integer.parseInt(request.getParameter("home_code")));
+		map.put("away_code", Integer.parseInt(request.getParameter("away_code")));
+		MatchVO[] vsGames=mDao.vsMatch(map);
+		
 		MatchVO vo = new MatchVO();
 		vo.setMatch_code(Integer.parseInt(request.getParameter("match_code")));
 		vo.setHome_code(Integer.parseInt(request.getParameter("home_code")));
@@ -177,9 +185,97 @@ public class GameBuyControl {
 		vo.setMatch_month(Integer.parseInt(request.getParameter("match_month")));
 		vo.setMatch_day(Integer.parseInt(request.getParameter("match_day")));
 		vo.setMatch_hour(Integer.parseInt(request.getParameter("match_hour")));
+		vo.setHome_pitcher(request.getParameter("home_pitcher"));
+		vo.setAway_pitcher(request.getParameter("away_pitcher"));
 		
+		//team정보 받아오기
+		TeamVO homeTeam,awayTeam;
+		homeTeam = tDao.getTeamHA(vo.getHome_code());
+		awayTeam = tDao.getTeamHA(vo.getAway_code());
+		
+		//승패 계산하기 위한 로직
+		total = vsGames.length;
+		for(int i=0;i<total;i++){
+			if(vsGames[i].getResult()==vsGames[i].getHome_code()){
+				win++;
+			}else{
+				lose++;
+			}
+		}
+		
+		
+		//(정성훈 2016.06.27 추가시작)
+		// 현재 페이지값 받기 *
+//		String c_page = request.getParameter("nowPage");
+//		System.out.println("fbc:"+c_page);
+//		
+//		if(c_page == null)
+//			nowPage = 1;
+//		else
+//			nowPage = Integer.parseInt(c_page);
+//		
+//		// 게시판을 구별하는 문자열 
+//		String bname = String.valueOf(vo.getMatch_code());
+//		rowTotal = fdao.getTotalCount(bname);
+//		//System.out.println(bname);
+//		//System.out.println(rowTotal);
+//		// 페이징 객체(Page) 생성
+//		Paging_board page = new Paging_board(nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE);
+//		 
+//		// 페이징 HTML코드를 기억하는 있는 sb를 가져온다.
+//		StringBuffer sb = page.getSb();
+//		
+//		// HTML코드를 가져온다.
+//		pageCode = sb.toString();
+//		
+//		int begin = page.getBegin();
+//		int end = page.getEnd();
+//		
+//		if(end > rowTotal)
+//			end = rowTotal;
+//		
+//		// mybatis환경에 호출한 map구조를 생성한다.
+//		Map<String, String> map2 = new HashMap<String,String>();
+//		map2.put("bname", bname);
+//		map2.put("begin", String.valueOf(begin));
+//		map2.put("end", String.valueOf(end));
+//		
+//		FreeBoardVO[] ar = fdao.getList(map2);
+//		session.setAttribute("anslist", ar);
+//		
+//		// JSP에서 표현할 수 있도록 반환객체 생성 한 후 그곳에서 표현할 값들을 저장한다.
+//		mv.addObject("list", ar);
+//		mv.addObject("nowPage", nowPage);
+//		mv.addObject("pageCode", pageCode);
+//		mv.addObject("rowTotal", rowTotal);
+//		mv.addObject("blockList", BLOCK_LIST);
+		//(정성훈 2016.06.27 추가종료)
 		mv.addObject("game", vo);
-		mv.setViewName("detailGame");
+		mv.addObject("vsGame",vsGames);
+		mv.addObject("total", total);
+		mv.addObject("win", win);
+		mv.addObject("lose", lose);
+		//팀정보 추가(오우석 2016.06.27)
+		mv.addObject("homeTeam", homeTeam);
+		mv.addObject("awayTeam", awayTeam);
+		
+		//세션에 추가(정성훈 2016.06.27)
+//		session.setAttribute("game", vo);
+//		session.setAttribute("vsGame",vsGames);
+//		session.setAttribute("total", total);
+//		session.setAttribute("win", win);
+//		session.setAttribute("lose", lose);
+//		session.setAttribute("list", ar);
+//		session.setAttribute("nowPage", nowPage);
+//		session.setAttribute("pageCode", pageCode);
+//		session.setAttribute("rowTotal", rowTotal);
+//		session.setAttribute("blockList", BLOCK_LIST);
+		//세션에 팀정보 추가(오우석 2016.06.27)
+		session.setAttribute("homeTeam", homeTeam);
+		session.setAttribute("awayTeam", awayTeam);
+		
+		
+		mv.setViewName("detailGame"); //상대전적시 필요한 배열
 		return mv;
 	}
 	
