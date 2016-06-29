@@ -15,6 +15,7 @@
 			12.경기날짜 선택 기능 추가(정성훈 2016.06.22)
 			13.분석글 추가(정성훈 2016.06.27)
 			14.리스트를 불러오기 위한 로직 추가 (2016/06/28 장준수)
+			15.베팅 리스트 페이징기법 추가 (2016/06/28 장준수)
 	*/
 
 package spring.control;
@@ -503,13 +504,39 @@ public class MainControl {
 	@RequestMapping("/mypageCheck.inc")
 	public ModelAndView mypageCheck(){
 		
-		// 리스트를 불러오기 위한 로직 추가 (2016/06/28 장준수)
-		MemberVO vo = (MemberVO) session.getAttribute("vo");
+	MemberVO vo = (MemberVO) session.getAttribute("vo");
+		
+	
+	// 베팅한 목록 페이징기법 사용 (장준수 2016/06/29)
+		String c_page = request.getParameter("nowPage");
+		if(c_page == null)
+			nowPage = 1;
+		else
+			nowPage = Integer.parseInt(c_page);
+		
+		
+		rowTotal = memberDao.getBat(vo.getId());
+		
+		//페이징 객체(page) 생성
+		Paging page = new Paging(nowPage, rowTotal, BLOCK_LIST, BLOCK_LIST);
+		int begin = page.getBegin();
+		int end = page.getEnd();
+		//페이징 HTML코드를 기억하고 있는 sb를 가져온다.
+		pageCode = page.getSb().toString();
+		
+		if(end > rowTotal)
+			end = rowTotal;
+		// mybatis환경에 호출한 map구조를 생성한다.
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("begin", String.valueOf(begin));
+		map.put("end", String.valueOf(end));
+		map.put("id", vo.getId());
+		
+		
+		// 리스트를 불러오기 위한 로직 추가 (2016/06/28 장준수)		
 		ModelAndView mv = new ModelAndView();
 		if(vo != null){
-			BatVO bat = new BatVO();
-			BatVO[] b = memberDao.batList(vo);
-
+			BatVO[] b = memberDao.batList(map);
 			mv.addObject("vo", vo);
 			mv.addObject("batlist", b);
 		}
