@@ -45,6 +45,31 @@ public class BatVO {
 	public void setBat_avg(String bat_avg) {
 		this.bat_avg = bat_avg;
 	}
-	
+//	팀명출력을 위한 teamName 메소드 추가(오우석 2016/06/15)
+	public String teamName(int teamCode){
+		switch (teamCode) {
+		case 1:
+			return "두산";	
+		case 2:
+			return "NC";
+		case 3:
+			return "넥센";
+		case 4:
+			return "LG";
+		case 5:
+			return "삼성";
+		case 6:
+			return "롯데";
+		case 7:
+			return "SK";
+		case 8:
+			return "기아";
+		case 9:
+			return "한화";
+		case 10:
+			return "KT";
+		}
+		return "결과발표전";
+	}
 	
 }
