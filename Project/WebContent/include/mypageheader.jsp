@@ -259,6 +259,7 @@
 					</c:if>
 				</tbody>
 			</table>
+			<!-- 페이징기법 추가 (장준수 2016/26/29) -->
 			<div id="page">${pageCode }</div>
 		</div>
 	</c:if>
