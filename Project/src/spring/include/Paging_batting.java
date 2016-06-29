@@ -9,102 +9,97 @@ public class Paging_batting {
 	
 	// 페이지 값을 연산하기 위한 생성자
 	public Paging_batting(int nowPage,int rowTotal, int blockList, int blockPage ){
-		this.nowPage = nowPage;
-		this.rowTotal = rowTotal;
-		this.blockList = blockList;
-		this.blockPage = blockPage;
+		this.nowPage=nowPage;
+		this.rowTotal=rowTotal;
+		this.blockList=blockList;
+		this.blockPage=blockPage;
 		
-		// 이전기능과 다음기능을 초기화한다.
-		isPrePage = false;
-		isNextPage = false;
-//		isPrePage = isNextPage = false; 
+		//이전 기능과 다음기능을 초기화
+		isPrePage=false;
+		isNextPage=false;
 		
-		// 입력된 전체게시물의 수를 통해 전체 페이지 수를 구한다.
-		totalPage = (int)Math.ceil(rowTotal/(double)blockList);
-		/*totalPage = rowTotal/blockList;
-		if(rowTotal%blockList != 0)
-			totalPage++;*/
+		//입력된 전체게시물의 수를 통해
+		//전체 페이지 수를 구한다.
+		totalPage =(int)Math.ceil(rowTotal/(double)blockList);//올려버린다.
 		
-		// 현재 페이지의 값이 전체 페이지 수 보다 크다면 
-		// 전체 페이지 수를 현재 페이지 값으로 변경한다.
-		if(nowPage > totalPage)
+		//현제페이지의값이 전체 페이지수보다
+		//크다면 전체페이지수를 헌제 페이지 값으로 변경한다.
+		if(nowPage>totalPage)
 			nowPage = totalPage;
 		
-		// 현재 블럭의 시작페이지와 마지막페이지 값 구하기
+		//현제 블럭의 시작페이지와 마지막페이지값 구하기
 		startPage = (int)((nowPage-1)/blockPage)*blockPage+1;
 		endPage = startPage + blockPage -1;
-		
-		// 마지막 페이지가 전체 페이지 수를 넘지 못하게하자
-		if(endPage > totalPage)
+		if(endPage > totalPage){
 			endPage = totalPage;
+		}
 		
-		// 현재 페이지 값에 의해 시작 게시물의 index값과
-		// 마지막으로 표현할 게시물 index값 구하기
-		begin = (nowPage-1) * blockList +1;
-		end = begin + blockList -1;
+		//현제 페이지 값에 의해 시작 게시물의
+		//index값과 마지막으로 표현할 게시물의 인덱스값구하기
+		begin = (nowPage-1)*blockList+1;
+		end = begin + blockList-1;
 		
-		// 이전 기능 가려내기
-		if(startPage > 1)
+		//이전기능가려내기
+		if(startPage > 1){
 			isPrePage = true;
+		}
+		//다음기능가려내기
+		if(endPage < totalPage){
+			isNextPage=true;
+		}
 		
-		// 다음 기능 가려내기
-		if(endPage < totalPage)
-			isNextPage = true;
-		
-		// 페이징 기법에 필요한 HTML코드 생성하기
+		//페이징 기법에 필요한 HTML코드 생성하기
 		sb = new StringBuffer();
-		
 		if(isPrePage){
-			sb.append("<img src='images/button/but_prev.gif' ");
-			sb.append("onclick='");
+			sb.append("<img src='img/button/but_prev.gif'  " );
+			sb.append("onclick=' ");
 			sb.append("javascript:location.href=\"");
 			sb.append("mypageCheck.inc?nowPage=");
 			sb.append(nowPage-blockPage);
-			sb.append("\"' style='cursor:pointer'>");
+			sb.append("\"' style='cursor:pointer'/>");
 		}else{
-			sb.append("<img src='images/button/but_prev.gif'/>");
+			sb.append("<img src='img/button/but_prev.gif'/> " );
 		}
-		
 		sb.append("|");
 		
-		// 페이지번호를 출력하는 반복문
-		for (int i = startPage; i <= endPage; i++) {
-			// 페이지번호가 전체 페이지 수보다 클 때는 반복문 탈출!
-			if(i > totalPage)
+		for(int i=startPage; i<=endPage; i++){
+			//페이지 번호가 전체페이지수보다
+			//클때는 반복문 탈출
+			if(i>totalPage)
 				break;
 			
-			// 페이지 번호가 현재 페이지 값과 같다면 링크는 미적용
-			// 현재 페이지를 의미하기 위해 다르게 표현한다
-			if(i == nowPage){
+			//페이지번호가 현제 페이지 값과 같다면
+			//링크는 미적용, 현제 페이지를 의미하기 위해 다르게 표현한다.
+			if(i==nowPage){
 				sb.append("&nbsp;<span style='");
-				sb.append("color:#91B7EF");
-				sb.append("font-weight: bold'>");
+				sb.append("color:#91B7EF;");
+				sb.append("font-weight:bold'>");
 				sb.append(i);
 				sb.append("</span>");
 			}else{
-				// i가 값이 현재 페이지값과 다를 경우
-				sb.append("&nbsp; <a href='mypageCheck.inc?");
+				//i의 값이 현재 페이지 값과 다를 경우
+				sb.append("&nbsp;<a href='mypageCheck.inc?");
 				sb.append("nowPage=");
-				sb.append(i); // nowPage 파라미터 값
+				sb.append(i);//nowPage파라미터값
 				sb.append("'>");
 				sb.append(i);
 				sb.append("</a>");
 			}
-			
-		} // for문의 끝
-		sb.append("&nbsp;|");
-		
-		// 다음 기능 적용여부
-		if(isNextPage){
-			sb.append("<img src='images/button/");
-			sb.append("but_next.gif' onclick='");
-			sb.append("javascript:location.href=");
-			sb.append("\"mypageCheck.inc?nowPage=");
-			sb.append(nowPage+blockPage);
-			sb.append("\"' style='cursor:pointer'>");
-		}else{
-			sb.append("<img src='images/button/but_next.gif'>");
+			sb.append("&nbsp;|");
 		}
+		
+		//다음기능을 할꺼냐 말껴냐?
+		if(isNextPage){
+			sb.append("<img src='img/button/but_next.gif'  " );
+			sb.append("onclick=' ");
+			sb.append("javascript:location.href=\"");
+			sb.append("mypageCheck.inc?nowPage=");
+			sb.append(endPage+1);
+			sb.append("\"' style='cursor:pointer'/>");
+		}else{
+			sb.append("<img src='img/button/but_next.gif'/> " );
+		}
+		
 	}
 	
 	
