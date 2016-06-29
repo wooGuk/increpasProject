@@ -27,6 +27,7 @@
 	border:2px solid #4C4C4C;
 	margin-left: 50px;
 	margin-top: 30px;
+	position: absolute;
 }
 
 #user{
@@ -64,15 +65,31 @@
 	#t3{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
 	#t4{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
 	#t5{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	#t6{width: 20px;  text-align: center; height: 35px; }
-
+	#t6{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
+	#t7{width: 20px;  text-align: center; height: 35px; }
+	
+	
+	#hide{
+		display: none;
+	}
 	
 	#bat{
 		background: #F6F6F6; 
 		text-align: center; 
 		border-right:1px solid #FFFFFF; 
 		border-bottom:1px solid #FFFFFF;
-		height: 25px;
+		height: 30px;
+	}
+	
+	#bat input[type=button]{
+		display: inline;
+		width: 35px;
+		height: 20px;
+		font-size: 13px;
+		font-weight: bold;
+		border: 1px solid #dcdcdc;
+		color: #000000;
+		background-color: #B8B8B8;
 	}
 	
 	#page{
@@ -154,9 +171,24 @@
 	     document.delform.target = "pop"; // 이 부분이 핵심! 열어놓은 빈 창(pop)을 form2가 날아갈 target으로 정한다.
 	     document.delform.method = "post"; // post방식으로 보내기~!
 	     document.delform.submit(); // 
-	     
-		
 	}
+	
+	function batcancel(code,id,coin){
+		document.getElementById("pk").value = code;
+		document.getElementById("id").value = id;
+		document.getElementById("batcoin").value = coin;
+		
+	
+		 var isDel = confirm("정말로 취소하시겠습니까?");
+		  if(isDel){
+			  document.getElementById("f").submit();
+		   //f.submit();
+		  }
+		  else{
+		   return;
+		  }
+	}
+	
 </script> 
 </head>
 <body>
@@ -234,34 +266,57 @@
 					<tr align="center">
 						<td id="t1" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">아이디</font></td>
 						<td id="t2" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">회차</font></td>
-						<td id="t3" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">예상결과</font></td>
-						<td id="t4" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">실제결과</font></td>
+						<td id="t3" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">예상결과 팀</font></td>
+						<td id="t4" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">실제결과 팀</font></td>
 						<td id="t5" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">베팅금액</font></td>
 						<td id="t6" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">수령금액</font></td>
+						<td id="t7" style="background: #5D5D5D; height: 40px; font-weight: bold;"><font color="#FFFFFF">구매취소</font></td>
 					</tr>
 				</thead>
 				<tbody>
+				
+			
 				<c:forEach var="list" items="${batlist }" varStatus="stat">
 					<tr align="center">
-					 	<td id="bat">${list.id }</td>
-						<td id="bat">${list.match_code }</td>
-						<td id="bat">${list.re_result }</td>
-						<td id="bat">${list.ac_result }</td>
+						<div id="hide">
+						${list.bat_code}
+						</div>
+					 	<td id="bat">${list.id}</td>
+						<td id="bat" >${list.match_code }</td>
+						<td id="bat">${list.teamName(list.re_result) }</td>
+						<td id="bat">${list.teamName(list.ac_result) }</td>
 						<td id="bat">${list.bat_cost }</td> 
 						<td id="bat">${list.bat_avg }</td>
+						<c:if test="${list.bat_avg != null }">
+						<td id="bat"></td>
+						</c:if>
+						<c:if test="${list.bat_avg == null }">
+						<td id="bat"><input type="button" value="취소" onclick="batcancel(${list.bat_code},'${list.id }', ${list.bat_cost })"/></td>
+						</c:if>
 					</tr>
+						
+						
 					</c:forEach>
+					<form action="batcancel.inc" method="post" id ="f">
+						<input type="hidden" name="pk" id="pk"/>
+						<input type="hidden" name="id" id="id"/>
+						<input type="hidden" name="batcoin" id="batcoin"/>
+					</form>
 					<c:if test="${batlist == null}">
 					<tr>
-						<td style="background: #DBDBDB; text-align: center" colspan="5"
+						<td style="background: #DBDBDB; text-align: center" colspan="7"
 							height="70">구매하신 베팅이 없습니다.</td>
 					</tr>
 					</c:if>
 				</tbody>
+				
 			</table>
-			<!-- 페이징기법 추가 (장준수 2016/26/29) -->
+			
+			<!-- 페이징기법 추가 (장준수 2016/06/29) -->
 			<div id="page">${pageCode }</div>
+			
 		</div>
 	</c:if>
+		
 </body>
 </html>
