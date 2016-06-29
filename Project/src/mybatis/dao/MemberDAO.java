@@ -98,9 +98,18 @@ public class MemberDAO {
 		
 		// 유저가 베팅한 목록 
 		public int getBat(String id){
-			//String id = vo.getId();
-			//System.out.println("아이디는:"+id);
 			return template.selectOne("mem.batCount",id);
+		}
+		
+		// 구매 취소(2016/06/29 장준수)
+		public void delBat(int code){
+			template.update("mem.delBat",code);
+		}
+		
+		// 
+		public MemberVO returnCoin(MemberVO vo){
+			template.update("mem.returnCoin",vo);
+			return vo;
 		}
 
 	}
