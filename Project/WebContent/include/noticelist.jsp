@@ -51,7 +51,8 @@
 	
 	#bbs_table1{
 		margin-left:15%;
-		/* border: 1px solid green;  */
+		margin-bottom: 100px;
+		/* border: 1px solid green;    */
 		position: relative;
 		
 		
