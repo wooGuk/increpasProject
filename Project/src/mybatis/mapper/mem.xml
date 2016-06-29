@@ -76,10 +76,19 @@
 	 </update>
 	 
 	 <!-- 베팅목록 가져오기 2016/06/27 장준수 -->
-	 <select id="batList" parameterType="String" resultType="mybatis.vo.BatVO">
-	 select * from batting where id = #{id}
-	 order by bat_code desc
+	 <select id="batList" parameterType="java.util.Map" resultType="mybatis.vo.BatVO">
+	 	select * from (
+		select rownum as r_num, a.* from (
+		select * from batting where id = #{id}
+		order by bat_code desc
+		) a
+		) where r_num between #{begin} and #{end}
 	 </select>
+	 
+	<!-- 전체리스트 가져오기 2016/06/28 장준수  -->
+	<select id="batCount" parameterType="String" resultType="int">
+		select count(*) from batting where id = #{id}
+	</select>
 	 
 </mapper>
 
