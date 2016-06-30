@@ -18,7 +18,7 @@
   <link type="text/css" rel="stylesheet" href="css/text.css">    
 </head>
 <body>
-	  <div id="wrap">
+	<div id="wrap">
 		<jsp:include page="include/header.jsp"></jsp:include>
 		<jsp:include page="include/list.jsp"></jsp:include>
 		
