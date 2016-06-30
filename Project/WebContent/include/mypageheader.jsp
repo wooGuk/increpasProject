@@ -9,6 +9,7 @@
 	로 그 : 1.프로그램 최초 생성 (장준수 2016/06/16)
 		  2. 122번째줄 팝업창 함수 추가하여 delmember.jsp 로 이동하는 소스 추가
 		  3.마이페이지 링크 수정(mypage.inc -> mypageCheck.inc) (정성훈 2016.06.28)
+		  3. 마이페이지 css 대대적으로 수정 (장준수 2016/06/30)
 		  
 
  -->
@@ -17,130 +18,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-
-/* 충전 css*/
-
-
-#chargetable{
-	width: 500px;
-	border:2px solid #4C4C4C;
-	margin-left: 50px;
-	margin-top: 30px;
-	position: absolute;
-}
-
-#user{
-	text-align: center;
-	font-size: 13px;
-	font-weight: bold;
-}
-
-#coin{
-	text-align: center;
-	font-size: 13px;
-	font-weight: bold;
-}
-
-
-/* 구매페이지 css */
-	
-
-	#buy{
-		margin-left: 430px;
-		margin-top: 10px;
-		display: inline-block;
-		border: 0;
-	}
-
-	#buytable{
-		padding-top: 20px;
-		border:0;
-		width:700px;
-		height: 50px;
-	}
-
-	#t1{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	#t2{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	#t3{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	#t4{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	#t5{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	#t6{width: 20px;  text-align: center; height: 35px; border-right:1px solid #ccc;}
-	#t7{width: 20px;  text-align: center; height: 35px; }
-	
-	
-	#hide{
-		display: none;
-	}
-	
-	#bat{
-		background: #F6F6F6; 
-		text-align: center; 
-		border-right:1px solid #FFFFFF; 
-		border-bottom:1px solid #FFFFFF;
-		height: 30px;
-	}
-	
-	#bat input[type=button]{
-		display: inline;
-		width: 35px;
-		height: 20px;
-		font-size: 13px;
-		font-weight: bold;
-		border: 1px solid #dcdcdc;
-		color: #000000;
-		background-color: #B8B8B8;
-	}
-	
-	#page{
-	margin-top: 10px;
-	}
-	
-	/* 회원관리 */
-	/* #mem_left{
-		display:inline-block;
-		padding-left: 200px; 
-		width: 0;
-		height: 400px;
-		border: 1px solid gold;
-	}  */
-	#mem_info{
-		margin-left: 200px;
-		border:0;
-		width:100px;
-		height: 100px;
-	}
-	
-	#mem_info tbody tr td{
-		font-size:12pt;
-		color:#191919;
-		text-align: center;
-		font-weight: bold;
-		background-color: #D8D8D8;
-		}
-
-	#mem_info thead tr th{
-		font-size:12pt;
-		font-weight:bold;
-		color:#FFFFFF; 
-		background-color:#5D5D5D;
-		text-align: center;
-	}
-	
-	#user_edit{
-		width: 20px;
-	}
-	
-	#edituser{
-		border-bottom: 1px solid #FFFFFF; 
-	}
-	
-	#edituser a:HOVER{
-		text-decoration: underline;
-		font-size: 15px;
-	}
-	
-</style>
  <script type="text/javascript">
 
 	function charge(evt){
@@ -239,8 +116,8 @@
 		</div>
 		
 
-	 	<!-- 회원관리 폼 -->
-		<div id="mem_left">
+		<!-- 회원관리 폼 -->
+		 <div id="mem_left">
 			<table id="mem_info">
 				<thead>
 					<tr>
@@ -278,9 +155,6 @@
 			
 				<c:forEach var="list" items="${batlist }" varStatus="stat">
 					<tr align="center">
-						<div id="hide">
-						${list.bat_code}
-						</div>
 					 	<td id="bat">${list.id}</td>
 						<td id="bat" >${list.match_code }</td>
 						<td id="bat">${list.teamName(list.re_result) }</td>
@@ -297,7 +171,7 @@
 						
 						
 					</c:forEach>
-					<form action="batcancel.inc" method="post" id ="f">
+					<form action="batcancel.inc" method="post" id="f">
 						<input type="hidden" name="pk" id="pk"/>
 						<input type="hidden" name="id" id="id"/>
 						<input type="hidden" name="batcoin" id="batcoin"/>
@@ -312,8 +186,10 @@
 				
 			</table>
 			
+			<div id="boardmove">
 			<!-- 페이징기법 추가 (장준수 2016/06/29) -->
 			<div id="page">${pageCode }</div>
+			</div>
 			
 		</div>
 	</c:if>
