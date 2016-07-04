@@ -31,10 +31,10 @@
 		var tab2 = document.getElementById("tab2");
 		var tab3 = document.getElementById("tab3");
 		var tab4 = document.getElementById("tab4");
-		var t1 = document.getElementById("t1");
-		var t2 = document.getElementById("t2");
-		var t3 = document.getElementById("t3");
-		var t4 = document.getElementById("t4");
+		var t1 = document.getElementById("ta1");
+		var t2 = document.getElementById("ta2");
+		var t3 = document.getElementById("ta3");
+		var t4 = document.getElementById("ta4");
 		
 		//검색된 tab1,tab2,tab3 모두를 클래스
 		if (temp == 1) {
