@@ -48,8 +48,9 @@ div#del_win input[type=password]{width: 80px;}
 		border:none; border-top:2px solid #5E5E5E;
 		width: 700px;
 		height: 500px;
-		margin-top: 40px;
-		margin-left: 150px;
+		margin: auto;
+		margin-top: 60px;
+		margin-bottom: 30px;
 		
 	}
 #viewtitle{font-size: 15px; font-weight: bold;}
@@ -74,26 +75,23 @@ div#del_win input[type=password]{width: 80px;}
 }
 
 
-#move{
-		margin-top: 15px;
-		display: inline-block;
-		margin-left: 1140px;
+#btnmove{
+		margin: 0 auto;
+		width: 700px;
+		
+	}
 
+#move{
+		margin-left: 486px; 
 	}
 	
 #move2{
-		margin-top: 15px;
-		display: inline-block;
-		padding-left: 93px;
-		
-		
+		margin-left: 630px;
 }
 
-div#move input[type=button],div#move2 input[type=button]{
+#move input[type=button], #move2 input[type=button]{
 		
-		width: 45px;
-		height: 28px;
-		width: 45px;
+		width: 68px;
 		height: 28px;
 		font-size: 15px;
 		font-weight: bold;
@@ -103,10 +101,10 @@ div#move input[type=button],div#move2 input[type=button]{
 
 /* 댓글쓰기 css */
 #comment2{
-	margin-top: 20px;
-	display:inline-block;
-	margin-left: 240px;
-	margin-bottom: 20px;
+	margin: 0 auto;
+}
+#comtable{
+	margin: auto;
 }
 
 #comtable tr td{
@@ -138,11 +136,12 @@ div#move input[type=button],div#move2 input[type=button]{
 #comment{
 	width: 700px;
 	height: 50px;
-	margin-left: 150px;
+	/* margin-left: 150px; */
 	background: #E4E4E4;
 	/* margin-top: 20px; */
-	margin-bottom: 2px;
-	padding-bottom: 20px;
+	/* margin-bottom: 2px; */
+	/* padding-bottom: 20px; */
+	margin: 0 auto;
 }
 
 /* 댓글삭제 css */
@@ -163,10 +162,12 @@ div#move input[type=button],div#move2 input[type=button]{
 }
 
 #moveView{
-	border: 2px solid #191919;
+	/* border: 2px solid #191919;
 	width: 972px;
 	margin-top: 20px;
 	margin-left: 305px;
+	border: 1px solid blue; */
+	margin:0 auto;
 }
 
 #top1{
@@ -243,6 +244,7 @@ div#move input[type=button],div#move2 input[type=button]{
 				</tbody>
 			</table>
 			
+			<div id="top1">
 			<div id="comment2">
 			<form method="post" action="ans_write.inc" name="ff">
 			<table id="comtable">
@@ -258,7 +260,7 @@ div#move input[type=button],div#move2 input[type=button]{
 				<input type="hidden" name="nowPage" value="${nowPage }"/>
 			</form>
 			</div>
-			
+			</div>
 			
 			
 			<div id="top1">
@@ -283,10 +285,9 @@ div#move input[type=button],div#move2 input[type=button]{
 				</c:forEach>
 			</c:if>
 			</div>
-			<%--<c:if test="${anslist1 == null}">
-				<h1>없네</h1>
-			</c:if>  --%>
+		
 			 </div>
+			<div id="btnmove">
 			<div id="move">
 			<c:if test="${vo.id == view.id }">
 				<input type="button" value="수정" onClick="javascript:location.href='edit.inc?seq=${vo1.seq}&nowPage=${nowPage }'" style="cursor:pointer"/>
@@ -299,6 +300,7 @@ div#move input[type=button],div#move2 input[type=button]{
 				<input type="button" value="목록" onClick="javaScript:location.href='freeBoard.inc?nowPage=${nowPage}'" style="cursor:pointer"/>
 			</div>
 			</c:if>
+			</div>
 		</div>
 	
 
