@@ -45,13 +45,14 @@ function charge(evt){
    }
 }
 
-function memdel(){
+/* function memdel(){
 	open("","pop","width=450,height=240,top=200,left=300");
 	 document.delform.action = "delmember.jsp"; // 클릭시 이동하는 페이지 
      document.delform.target = "pop"; // 이 부분이 핵심! 열어놓은 빈 창(pop)을 form2가 날아갈 target으로 정한다.
      document.delform.method = "post"; // post방식으로 보내기~!
      document.delform.submit(); // 
-}
+} */
+
 
 function batcancel(code,id,coin){
 	document.getElementById("pk").value = code;
