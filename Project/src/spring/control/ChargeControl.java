@@ -1,4 +1,4 @@
-package spring.control;
+/*package spring.control;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,7 +13,7 @@ import mybatis.dao.MemberDAO;
 import mybatis.vo.BatVO;
 import mybatis.vo.MemberVO;
 
-	/*
+	
 	제 목 : ChargeControl
 	역 할 : 마이페이지에서 잔액 충전 
 	로 그 :  1.프로그램 최초 생성 (장준수 2016/06/14)
@@ -21,8 +21,11 @@ import mybatis.vo.MemberVO;
 					충전시 그 금액으로 나타남 ㅡㅡ> 수정 (장준수 2016/06/16)
 					3. 회원수정 (장준수 2016/06/20) 
 					4. 회원탈퇴 추가 (박상원 2016/06/21)
-					5. 구매 취소 및 반환금 받기 (장준수 2016/06/29) 
-	 */	
+					5. 구매 취소 및 반환금 받기 (장준수 2016/06/29)
+					******************************************
+					불필요(2016/07/04)
+					
+	 	
 
 @Controller
 public class ChargeControl {
@@ -60,15 +63,15 @@ public class ChargeControl {
 		int usercoin = Integer.parseInt(d); // 유저가 가지고 있는 코인
 		int coin = coin1 + usercoin; // 충전한 코인 + 유저 코인 합
 		System.out.println("합"+coin);
-		/*vo.setCoin(coin);*/
+		vo.setCoin(coin);
 		v1.setCoin(coin);
 		//vo.setId(id);
 			
 		MemberVO mvo = mdao.addCoin(vo);
 	
 		ModelAndView mv = new ModelAndView();
-		/*mv.addObject("vo", mvo);*/
-		/*mv.addObject("vo1", vo);*/
+		mv.addObject("vo", mvo);
+		mv.addObject("vo1", vo);
 		mv.setViewName("redirect:/mypageCheck.inc");
 		
 		return mv;
@@ -148,3 +151,4 @@ public class ChargeControl {
 		}
 	
 }
+*/
