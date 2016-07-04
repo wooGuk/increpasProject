@@ -1,4 +1,4 @@
-package spring.control;
+/*package spring.control;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,11 +10,17 @@ import org.springframework.web.servlet.ModelAndView;
 import mybatis.dao.MemberDAO;
 import mybatis.vo.MemberVO;
 
-	/*
+	
 	제 목 : IdCheckControl
 	역 할 : 아이디 중복확인을 하는 역할입니다.
 	로 그 : 프로그램 최초 생성 (장준수 2016/06/13)
-	*/
+	
+	
+	*****************************************
+			불필요(장준수 2016/07/04)
+	*****************************************
+		
+	
 @Controller
 public class IdCheckControl {
 	
@@ -41,3 +47,4 @@ public class IdCheckControl {
 	}
 	
 }
+*/
