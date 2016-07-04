@@ -32,11 +32,11 @@ function trans(temp) {
 	var tab3 = document.getElementById("tab3");
 	var tab4 = document.getElementById("tab4");
 	var tab5 = document.getElementById("tab5");
-	var t1 = document.getElementById("t1");
-	var t2 = document.getElementById("t2");
-	var t3 = document.getElementById("t3");
-	var t4 = document.getElementById("t4");
-	var t5 = document.getElementById("t5");
+	var t1 = document.getElementById("ta1");
+	var t2 = document.getElementById("ta2");
+	var t3 = document.getElementById("ta3");
+	var t4 = document.getElementById("ta4");
+	var t5 = document.getElementById("ta5");
 	
 	//검색된 tab1,tab2,tab3 모두를 클래스
 	if (temp == 1) {
@@ -210,12 +210,12 @@ function res() {
 	<div id="contents">
 	<div class="center_side">
 		<ul class="nav nav-tabs nav-justified">
-			<li id="t1" role="presentation"><a href="javascript:trans(1)">게임구매방법</a></li>
-			<li id="t2" role="presentation" class="active"><a
+			<li id="ta1" role="presentation"><a href="javascript:trans(1)">게임구매방법</a></li>
+			<li id="ta2" role="presentation" class="active"><a
 				href="javascript:trans(2)">기본정보</a></li>
-			<li id="t3" role="presentation"><a href="javascript:trans(3)">맞대결전적</a></li>
-			<li id="t4" role="presentation"><a href="javascript:trans(4)">팀정보</a></li>
-			<li id="t5" role="presentation"><a href="javascript:trans(5)">분석글</a></li>
+			<li id="ta3" role="presentation"><a href="javascript:trans(3)">맞대결전적</a></li>
+			<li id="ta4" role="presentation"><a href="javascript:trans(4)">팀정보</a></li>
+			<li id="ta5" role="presentation"><a href="javascript:trans(5)">분석글</a></li>
 		</ul>
 	</div>
 	<div class="fclear"></div>
@@ -238,7 +238,7 @@ function res() {
 					<br/>
 					<h3 class="title">02 경기정보 활용법</h3>
 					<ul>
-						<li><h1 class="sub_title" style="text-align: center;"> Many Information 구매 시 필요한 다앙한 정보를 제공합니다.<br/></h1>
+						<li><h1 class="sub_title" style="text-align: center;"> 구매 시 필요한 다앙한 정보를 제공합니다.<br/></h1>
 						<li><img alt="" src="img/match_info.jpg" width="100%"/></li>
 					</ul>
 					<h3 class="title">03 구매하기</h3>
