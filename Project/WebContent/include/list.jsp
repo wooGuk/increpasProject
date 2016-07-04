@@ -13,6 +13,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 	<!--주요내용시작 -->
+	<div style="width: 100%; margin-top: 50px;">
 	<div id="listdiv">
 			<table id="listTable">
 				<thead>
@@ -61,5 +62,5 @@
 				</div>
 				</div>
 	</div>
+	</div>
 	<!--주요내용끝 -->
-
