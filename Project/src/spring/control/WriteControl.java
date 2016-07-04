@@ -1,4 +1,4 @@
-package spring.control;
+/*package spring.control;
 
 import java.io.File;
 import java.util.HashMap;
@@ -24,11 +24,16 @@ import mybatis.vo.MemberVO;
 import spring.include.Paging_board;
 import spring.util.FileSaveUtil;
 	
-/*
+
 	제 목 : WriteControl
 	역 할 : 글쓰기, 글수정, 글삭제 이동하는 컨트롤러 
 	로 그 :  1.프로그램 최초 생성 (장준수 2016/06/23)
-*/
+	
+	
+	*****************************************
+			불필요(장준수 2016/07/04)
+	*****************************************
+
 	
 @Controller
 public class WriteControl {
@@ -76,8 +81,8 @@ public class WriteControl {
 		}else
 			vo1.setUploadFileName("");
 		
-		/*MemberVO mvo = (MemberVO) request.getAttribute("vo");
-		vo.setId(mvo.getId());*/
+		MemberVO mvo = (MemberVO) request.getAttribute("vo");
+		vo.setId(mvo.getId());
 		vo1.setIp(request.getRemoteAddr());
 		vo1.setBname("BBS");
 		
@@ -187,3 +192,4 @@ public class WriteControl {
 	}
 	
 }
+*/
