@@ -10,6 +10,7 @@
 			5.팀명출력 오우석(2016.06.15)
 			6.해당경기가 판매중인지 마감 되었는지 확인 오우석(2016.06.15)
 			7.테이블 수정 오우석(2016.06.20)
+			8.년월 까지 파악해야 되기 때문에 조건문을 choose로 수정 오우석(2016.07.04)
 	*/
  -->
 <%@page import="java.util.Date"%>
@@ -121,17 +122,18 @@
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">${vo.teamName(vo.home_code) } : ${vo.teamName(vo.away_code) }</font></td>
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">${vo.match_month}-${vo.match_day}</font></td>
 								<!-- 해당경기가 판매중인지 마감 되었는지 확인 오우석(2016.06.15)-->
-								<c:if test="${vo.match_day lt vo.findToday()}">
-								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="red"> 마감</font></td>
-								</c:if>
-								<!-- 해당경기가 판매중인지 마감 되었는지 확인 오우석(2016.06.20)-->
-								<c:if test="${vo.match_day eq vo.findToday()}">
-								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="red"> 마감</font></td>
-								</c:if>
-								<c:if test="${vo.match_day gt vo.findToday()}">
-								<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="blue"> 판매중</font></td>
-								</c:if>
-								   
+								<!-- 년월 까지 파악해야 되기 때문에 조건문을 choose로 수정 오우석(2016.07.04)-->
+								<c:choose>
+									<c:when test="${vo.match_day lt vo.findToday()}">
+										<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="red"> 마감</font></td>
+									</c:when>	
+									<c:when test="${vo.match_day gt vo.findToday() and vo.match_month lt vo.findMonth() or vo.match_year lt vo.findYear()}">
+									<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="red"> 마감</font></td>
+									</c:when>
+									<c:otherwise>
+										<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="blue"> 판매중</font></td>
+									</c:otherwise>
+								</c:choose>   
 							</tr>
 							</c:forEach>
 							<!-- 파라미터 네임 오류로 인한 변경 오우석(2016.06/13) -->
