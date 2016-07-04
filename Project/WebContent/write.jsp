@@ -13,6 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="css/basic.css">  
 <title>Insert title here</title>
 <script type="text/javascript">
 function check(ff){
@@ -22,8 +23,13 @@ function check(ff){
 </script>
 <style type="text/css">
 	#writetable{
-		margin-top: 70px;
-		margin-left: 120px;
+		border:0;
+		width:710px;
+		height: 50px;
+		margin: auto;
+		margin-top: 60px;
+		margin-bottom: 30px;
+		border: 1px solid red;
 	}
 	
 	#writetable {border:none; border-top:2px solid #ddd;}
@@ -37,17 +43,23 @@ function check(ff){
 	#upload{margin-left: -9px; width: 380px;}
 	
 	#move{
-		display: inline-block;
-		margin-left: 370px;
+		/* margin-left: 370px;
 		margin-top: 20px;
-		margin-bottom: 5px;
+		margin-bottom: 5px; */
+		display: inline-block;
+	}
+	
+	#btnmove{
+		margin: 0 auto;
+		width: 700px;
+		padding-left: 550px;
 	}
 	
 	div#move input[type=button],input[type=reset] {
 		display: inline;
 		width: 70px;
 		height: 27px;
-		margin: 10px auto;
+	/* 	margin: 10px auto; */
 		font-size: 15px;
 		font-weight: bold;
 		border: 1px solid #dcdcdc;
@@ -59,10 +71,9 @@ function check(ff){
 	}
 	
 	#write{
-		margin-top: 50px;
-		width: 970px;
-		border: 1px solid #191919;
-		margin-left: 305px;
+		margin:0 auto;
+		/* margin-left: 305px; */
+		
 	}
 	
 	
@@ -115,10 +126,12 @@ function check(ff){
 					</tr>
 				</tbody>
 			</table>
+			<div id="btnmove">
 			<div id="move">
 				<input type="button" onclick="check(this.form)" value="저장" />
 				<input type="reset" value="재입력" />
 				<input type="button" value="취소"onclick="javascript:location.href='freeBoard.inc'" />
+			</div>
 			</div>	
 		</form>
 	</div>
