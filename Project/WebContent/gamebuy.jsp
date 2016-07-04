@@ -103,7 +103,7 @@ function info_send(){
 		alert("구매금액을 입력해 주십시오");
 	}else if(document.getElementById("pos").firstChild.getClassName == "impossible"){
 		alert("구매금액을 확인하십시오");
-	}else if(document.getElementsByName("result").value == null){
+	}else if(document.getElementById("result").value == null){
 		alert("결과를 선택하십시오");
 	}else{
 		//alert(document.getElementById("pos").);
@@ -555,9 +555,9 @@ function res() {
 	</div>
 	<div id="bat_window">
 		<form action="buy.inc" id="f" name="f" method="post">
-		 	<input type="radio" name="result"  value="${game.home_code }"/>승
-		 	<input type="radio" name="result"  value="11"/>무
-		 	<input type="radio" name="result" value="${game.away_code }"/>패
+		 	<input type="radio" name="result" id="result"  value="${game.home_code }"/>승
+		 	<input type="radio" name="result" id="result"  value="11"/>무
+		 	<input type="radio" name="result" id="result"  value="${game.away_code }"/>패
 		 	<br/>
 		 	<label for="coin">배팅코인: </label>
 		 	<input type="text" id="coin" name="coin" onkeyup="checkCoin()"/>
