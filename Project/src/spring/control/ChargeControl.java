@@ -81,7 +81,7 @@ public class ChargeControl {
 		MemberVO vo = (MemberVO) session.getAttribute("vo");
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("vo", vo);
+		mv.addObject("edit", vo);
 		mv.setViewName("/memEdit");
 		return mv;
 	}
