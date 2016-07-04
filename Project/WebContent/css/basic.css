@@ -4,7 +4,7 @@
 /*****************************************************
 기본 레이아웃 
 *****************************************************/
-#wrap {width:100%; }
+#wrap {width:100%;}
 
 /* 상단영역 */
 #header {position:relative; width:970px; height:140px; margin:auto; border-bottom: 1px solid black;}
@@ -245,7 +245,6 @@ input.join[type=password]:hover {border:1px solid #999; height:22px; background:
 	/* margin: auto; */
 	margin-left: 630px; 
 	display: inline-block;
-	
 }
 
 div#write_btn input[type=button]{
