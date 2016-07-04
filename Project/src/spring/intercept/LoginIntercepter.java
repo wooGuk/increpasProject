@@ -2,6 +2,7 @@
 	제 목 : 로그인 인터셉터
 	역 할 : 로그인이 필요한 작업들의 경우 거쳐가게 설정(applicationContext.xml에서)
 	로 그 : 1.로그인 필요한 작업들 인터셉터 역할(정성훈 2016.06.28)
+			2.분기문 로직논리 오류 수정 오우석(오우석 2016.07.04) 
 	*/
 
 package spring.intercept;
@@ -30,9 +31,8 @@ public class LoginIntercepter extends HandlerInterceptorAdapter {
 				//세션에 저장된 값이 있는지 체크
 				String flag = "3";
 				response.sendRedirect("/Project/main.inc?flag="+flag);
-			}else{
-				
-				
+				//분기문 로직논리 오류 수정 오우석(오우석 2016.07.04)
+				return false;
 			}
 		}
 		return true; //viewResolver에 적용안됨
