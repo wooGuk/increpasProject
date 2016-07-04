@@ -91,14 +91,14 @@
 	</select>
 	
 	
-	<!-- 베팅경기 취소 -->
+	<!-- 베팅경기 취소 2016/06/28 장준수  -->
 	 <update id="delBat" parameterType="int">
 		update batting
 		set re_fund = 1
 		where bat_code = #{bat_code}
 	</update> 
 	
-	<!-- 베팅경기 취소 반환금 -->
+	<!-- 베팅경기 취소 반환금 2016/06/28 장준수  -->
 	<update id="returnCoin" parameterType="mybatis.vo.MemberVO">
 		update member
 		set coin = coin+#{coin}
