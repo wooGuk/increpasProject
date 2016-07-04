@@ -57,14 +57,17 @@
 #team_intro tbody tr{
 	border-bottom: 0.5px dotted gray;
 }
+.center_side{
+	width: 100%;
+}
 </style>
 <div class="center_side">
 	<ul class="nav nav-tabs nav-justified">
-		<li id="t1" role="presentation"><a href="javascript:trans(1)">게임구매방법</a></li>
-		<li id="t2" role="presentation" class="active"><a
+		<li id="ta1" role="presentation"><a href="javascript:trans(1)">게임구매방법</a></li>
+		<li id="ta2" role="presentation" class="active"><a
 			href="javascript:trans(2)">게임정보</a></li>
-		<li id="t3" role="presentation"><a href="javascript:trans(3)">맞대결전적</a></li>
-		<li id="t4" role="presentation"><a href="javascript:trans(4)">팀정보</a></li>
+		<li id="ta3" role="presentation"><a href="javascript:trans(3)">맞대결전적</a></li>
+		<li id="ta4" role="presentation"><a href="javascript:trans(4)">팀정보</a></li>
 	</ul>
 </div>
 <div class="fclear"></div>
