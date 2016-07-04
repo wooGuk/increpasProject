@@ -117,7 +117,6 @@ $(function(){
 	 });
 	
 	function edit(){
-		
 		if(document.getElementById("password").value.trim() == ""){
 			alert("비밀번호를 입력하세요.");
 			return;
@@ -166,7 +165,7 @@ $(function(){
 				</span>
 			</p> 
 			<br />
-		<form method="post" action="reg_ok.inc">
+		<form method="post" action="memedit.inc">
 			<table class="table_type01" style="width: 900px">
 				<colgroup>
 					<col width="130px">
@@ -238,7 +237,7 @@ $(function(){
 			
 			</table>
 			<div class="btn_center">
-					<p class="btn1 b_agre btn"><a onclick="reg()" style="cursor:pointer">가입하기</a></p>	
+					<p class="btn1 b_agre btn"><a onclick="edit()" style="cursor:pointer">가입하기</a></p>	
 					<p class="btn2 b_noagre btn"><a onclick="javascript:location.href='main.inc'" style="cursor:pointer">취소</a></p>
 			</div>
 			</form>
