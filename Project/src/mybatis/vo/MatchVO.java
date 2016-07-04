@@ -154,9 +154,19 @@ public class MatchVO {
 	}
 	
 	//웹페이지에서 오늘 날짜와 비교하기 위한 메소드 추가 오우석(2016/06/15)
+	//년,월 추가 오우석(2016/07/04)
 	public int findToday(){
 		Calendar cal = Calendar.getInstance();
 		return cal.get(Calendar.DATE);
+	}
+	public int findMonth(){
+		Calendar cal = Calendar.getInstance();
+		System.out.println(cal.get(Calendar.MONTH)+1);
+		return cal.get(Calendar.MONTH)+1;
+	}
+	public int findYear(){
+		Calendar cal = Calendar.getInstance();
+		return cal.get(Calendar.YEAR);
 	}
 
 }
