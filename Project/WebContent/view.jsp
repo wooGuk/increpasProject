@@ -20,8 +20,8 @@
 <style type="text/css">
 div#del_win {
 	position: absolute;
-	top: 575px;
-	left: 720px;
+	top: 555px;
+	left: 580px;
 	width: 160px;
 	height: 70px;
 	padding-top: 10px;
