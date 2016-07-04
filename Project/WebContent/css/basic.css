@@ -375,13 +375,13 @@ display: none;
 		
 	} */
 	
-	#list-group{
+	#listgroup{
 		width:100px;
 		height: 100px;
 		float: right;
 	}
 	
-	#list-group tbody tr td{
+	#listgroup tbody tr td{
 		font-size:12pt;
 		color:#191919;
 		text-align: center;
@@ -389,7 +389,7 @@ display: none;
 		background-color: #D8D8D8;
 		}
 
-	#list-group thead tr th{
+	#listgroup thead tr th{
 		font-size:12pt;
 		font-weight:bold;
 		color:#FFFFFF; 
