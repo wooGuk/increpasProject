@@ -177,14 +177,14 @@ $(function(){
 						<th>이름</th>
 						<td>
 							<label for="name" class="hidden">이름</label>
-							${vo.name }
+							${edit.name }
 						</td>
 					</tr>
 					<tr>
 						<th>아이디</th>
 						<td>
 							<label for="id" class="hidden">아이디</label>
-							${vo.id }
+							${edit.id }
 								
 						</td>
 					</tr>
@@ -218,7 +218,7 @@ $(function(){
 							<p class="guide_txt">주소를 입력해 주세요.</p>
 							<p>
 								<label for="address" class="hidden">주소</label> <input type="text"
-									name="address" id="address" class="join" value="${vo.address }" style="width: 350px;" />
+									name="address" id="address" class="join" value="${edit.address }" style="width: 350px;" />
 							</p>
 						</td>
 					</tr>
@@ -229,7 +229,7 @@ $(function(){
 							<p class="guide_txt">전화번호을 입력해 주세요.</p>
 							<p>
 								<label for="phone" class="hidden">전화번호</label> <input
-									type="text" name="phone" id="phone" value="${vo.phone }" class="join"
+									type="text" name="phone" id="phone" value="${edit.phone }" class="join"
 									style="width: 150px;" />
 							</p>
 						</td>
