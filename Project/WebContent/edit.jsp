@@ -15,8 +15,13 @@
 <title>Insert title here</title>
 <style type="text/css">
 #edittable{
-		margin-top: 70px;
-		margin-left: 120px;
+		border:0;
+		width:710px;
+		height: 50px;
+		margin: auto;
+		margin-top: 60px;
+		margin-bottom: 30px;
+		border: 1px solid red;
 	}
 	
 	#edittable {border:none; border-top:2px solid #ddd;}
@@ -30,9 +35,13 @@
 	
 	#move{
 		display: inline-block;
-		margin-left: 410px;
-		margin-top: 20px;
-		margin-bottom: 10px;
+	
+	}
+	
+	#btnmove{
+		margin: 0 auto;
+		width: 700px;
+		padding-left: 550px;
 	}
 	
 	div#move input[type=button]{
@@ -51,11 +60,9 @@
 	}
 	
 	#edit{
-		margin-top: 50px;
-		width: 970px;
-		border: 1px solid #191919;
-		margin-left: 305px;
+		margin:0 auto;
 	}
+	
 </style>
 <script type="text/javascript">
 	function check(ff){
@@ -120,10 +127,12 @@
 					</tr>
 				</tbody>
 			</table>
+			<div id="btnmove">
 			<div id="move">
 				<input type="button" onclick="check(this.form)" value="보내기" />
 				<input type="button" value="취소" onclick="javascript:location.href='freeBoard.inc'" />
-			</div>	
+			</div>
+			</div>
 		</form>
 	</div>
 </div>
