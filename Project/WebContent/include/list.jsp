@@ -14,7 +14,7 @@
 
 	<!--주요내용시작 -->
 	<div id="listdiv">
-			<table id="listTable" >
+			<table id="listTable">
 				<thead>
 				<tr>
 					<td class="t1" style="background: #5D5D5D; height: 45px; font-weight: bold;"><font color="#FFFFFF">번호</font></td>
