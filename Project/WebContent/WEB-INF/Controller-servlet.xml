@@ -25,11 +25,13 @@
     </bean>
 	
 	<!-- 자유게시판 (장준수 2016/06/21) -->
- 	<bean id="board" class="spring.control.FreeBoardControl"/>
+ 	<bean id="board" class="spring.control.FreeBoardControl">
+ 		<property name="uploadPath" value="/upload"/>
+ 	</bean>
  	<!-- 자유게시판 글쓰기 (장준수 2016/06/21) -->
- 	 <bean id="write" class="spring.control.WriteControl">
+ 	 <!-- <bean id="write" class="spring.control.WriteControl">
    	 	<property name="uploadPath" value="/upload"/>
-   </bean>  
+   </bean>   -->
    
 
 	<bean id="reg" class="spring.control.RegControl"/>
@@ -50,6 +52,7 @@
 	<!-- 게임구매 컨트롤러 추가 (오우석) -->
 	<bean id="gameBuy" class="spring.control.GameBuyControl"/>
 	
+	<!-- 회원가입 이동 (장준수) -->
 	<bean name="/reg.inc" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
    		<property name="viewName" value="/join"/>
    </bean>
