@@ -238,7 +238,7 @@ $(function(){
 			</table>
 			<div class="btn_center">
 					<p class="btn1 b_agre btn"><a onclick="edit()" style="cursor:pointer">가입하기</a></p>	
-					<p class="btn2 b_noagre btn"><a onclick="javascript:location.href='main.inc'" style="cursor:pointer">취소</a></p>
+					<p class="btn2 b_noagre btn"><a onclick="javascript:location.href='mypageCheck.inc'" style="cursor:pointer">취소</a></p>
 			</div>
 			</form>
 		</div>	
