@@ -279,26 +279,30 @@ display: none;
 /* 충전 css*/
 
 #charge{
-	margin:auto;
+	margin:0 auto;
 	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 #chargetable{
-	width: 500px;
+	width: 450px;
 	border:2px solid #4C4C4C;
-	margin: auto;
+	display: inline-block;
+	margin-left: 160px;
 }
 
 #user{
 	text-align: center;
 	font-size: 13px;
 	font-weight: bold;
+	padding-left: 5px;
 }
 
 #coin{
 	text-align: center;
 	font-size: 13px;
 	font-weight: bold;
+	padding-left: 5px;
 }
 
 
@@ -362,23 +366,22 @@ display: none;
 	
 	/* 회원css */
 	
-	#mem_left{
+	/*  #mem_left{
 		border: 1px solid red;
 		display: inline-block;
 		margin: auto;
 		height: 100px;
 		width: 100px;
 		
-	}
+	} */
 	
-	#mem_info{
-		border: 1px solid blue;
+	#list-group{
 		width:100px;
 		height: 100px;
-		margin-left: 200px;
+		float: right;
 	}
 	
-	#mem_info tbody tr td{
+	#list-group tbody tr td{
 		font-size:12pt;
 		color:#191919;
 		text-align: center;
@@ -386,7 +389,7 @@ display: none;
 		background-color: #D8D8D8;
 		}
 
-	#mem_info thead tr th{
+	#list-group thead tr th{
 		font-size:12pt;
 		font-weight:bold;
 		color:#FFFFFF; 
@@ -400,7 +403,7 @@ display: none;
 	
 	#edituser{
 		border-bottom: 1px solid #FFFFFF; 
-	}
+	} 
 	
 	#edituser a:HOVER{
 		text-decoration: underline;
