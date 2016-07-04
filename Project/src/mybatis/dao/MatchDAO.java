@@ -22,6 +22,7 @@ import mybatis.vo.MemberVO;
 			  2)scheduleEnd() 정해진 갯수 만큼 가져 와야 되기 때문 map구조를 이용
 		    4.schedule() 메소드 추가(경기일정 모두 가져오기)(오우석 2016/06/13)
 		    5.구매가능 경기 불러오기 (오우석 2016/06/20)
+		    6.페이징 기법으로 분리하기 위한 schedule 오버로딩(오우석 2016/07/04)
 */
 public class MatchDAO {
 	
@@ -84,8 +85,8 @@ public class MatchDAO {
 		return games;
 	}
 	//경기일정 모두 가져오기 오우석 2016/06/13
-	public MatchVO[] schedule(){
-		List<MatchVO> list = template.selectList("match.schedule");
+	public MatchVO[] schedule(Map<String, String> map){
+		List<MatchVO> list = template.selectList("match.schedule",map);
 		MatchVO[] games = null;
 		
 		if(list != null || !(list.isEmpty())){
@@ -95,6 +96,18 @@ public class MatchDAO {
 		System.out.println(list.size());
 		return games;
 	}
+	//경기일정 모두 가져오기 오우석 2016/06/13
+	public MatchVO[] schedule(){
+			List<MatchVO> list = template.selectList("match.schedule2");
+			MatchVO[] games = null;
+			
+			if(list != null || !(list.isEmpty())){
+				games = new MatchVO[list.size()];
+				list.toArray(games);
+			}
+			System.out.println(list.size());
+			return games;
+		}
 	
 	//상대전적을 가저오기 위한 메소드 오숙 2016/06/22
 	public MatchVO[] vsMatch(Map<String, Integer> map){

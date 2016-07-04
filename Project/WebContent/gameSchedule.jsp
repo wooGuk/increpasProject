@@ -145,7 +145,7 @@
 					</tbody>
 				</table>	
 			</div>
-			<div>
+			<div style="text-align: center; margin-left: 18%; margin-top: 2px">
 				<table width="556" border="0" cellspacing="0" cellpadding="0">
 					<tr>
 					  <td width="315" align="left">

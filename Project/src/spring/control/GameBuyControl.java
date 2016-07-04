@@ -11,6 +11,7 @@
 			8.세션처리(정성훈 2016.06.27)
 			9.팀정보 추가(오우석 2016.06.27)
 			10.detail메소드 gamebuy와 동일한 로직으로 변경(분석글 제외) 오우석(2016/06/29)
+			11.지난 게임과 게임 일정 페이징 기법으로 수정 오우석(2016/07/04)
 	*/
 package spring.control;
 
@@ -38,6 +39,8 @@ import mybatis.vo.MemberVO;
 import mybatis.vo.TeamVO;
 import spring.include.Paging;
 import spring.include.Paging_board;
+import spring.include.Paging_game;
+import spring.include.Paging_gameScedule;
 
 @Controller
 public class GameBuyControl {
@@ -99,7 +102,7 @@ public class GameBuyControl {
 		rowTotal = mDao.getRoundCount();
 		
 		//페이징 객체(page) 생성
-		Paging page = new Paging(nowPage, rowTotal, BLOCK_LIST, BLOCK_LIST);
+		Paging_game page = new Paging_game(nowPage, rowTotal, BLOCK_LIST, BLOCK_LIST);
 		int begin = page.getBegin();
 		int end = page.getEnd();
 		//페이징 HTML코드를 기억하고 있는 sb를 가져온다.
@@ -139,7 +142,7 @@ public class GameBuyControl {
 		rowTotal = mDao.getToatalCount();
 		
 		//페이징 객체(page) 생성
-		Paging page = new Paging(nowPage, rowTotal, BLOCK_LIST, BLOCK_LIST);
+		Paging_gameScedule  page = new Paging_gameScedule(nowPage, rowTotal, BLOCK_LIST, BLOCK_LIST);
 		int begin = page.getBegin();
 		int end = page.getEnd();
 		//페이징 HTML코드를 기억하고 있는 sb를 가져온다.
@@ -154,7 +157,7 @@ public class GameBuyControl {
 		
 		
 		ModelAndView mv = new ModelAndView();
-		MatchVO[] games = mDao.schedule();
+		MatchVO[] games = mDao.schedule(map);
 		
 		mv.addObject("games", games);
 		mv.addObject("nowPage", nowPage);

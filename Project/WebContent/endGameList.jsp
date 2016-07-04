@@ -137,7 +137,7 @@
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><font
 											color="#000">${game.match_month}-${game.match_day}</font></td>
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-											color="#000">${game.match_month}-${game.match_day}</font></td>
+											color="#000">${game.match_month}-${game.match_day-1}</font></td>
 								<td height="20" align="center" bgcolor="#669AB3" width="56"><a href="javascript:info_send('${stat.index+1}')"><font
 											color="orange"> 상세보기</font></a></td>
 							</tr>
@@ -166,7 +166,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div>
+			<div style="text-align: center; margin-left: 18%; margin-top: 2px">
 				<table width="556" border="0" cellspacing="0" cellpadding="0" align="center">
 					<tr>
 						<td width="315" align="left">${pageCode }</td>

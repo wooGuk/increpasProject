@@ -14,6 +14,7 @@
 	        6.게임구매 가능한 리스트 불러오기 오우석(2016/06/12)
 	        7.게임코드 별로 내림차순 정렬 오우석(2016/06/21)
 	        8.테이블 변경으로 인한 컬럼 추가 picther 두개(2016/06/21)
+	        9.페이징으로 하기위한 schedule 쿼리문 변경과 기존것은 schedule2로 놔둠(오우석 2016/07/04) 
 	*/
  -->
 <mapper namespace="match">
@@ -82,7 +83,24 @@
 	<!-- 다른 곳에서 시간을 좀더 세분화 하여 비교 하기 위해 쿼리문 변경  오우석(2016/06/15) -->
 	<!-- 게임코드 별로 내림차순 정렬 오우석(2016/06/21)-->
 	<!-- 테이블 변경으로 인한 컬럼 추가 picther 두개 -->
-	<select id="schedule" resultType="mybatis.vo.MatchVO">
+	<select id="schedule" resultType="mybatis.vo.MatchVO" parameterType="java.util.Map">
+		select MATCH_CODE,HOME_CODE,AWAY_CODE,
+		to_number(to_char(MATCH_DAY,'YYYY')) MATCH_YEAR,
+		to_number(to_char(MATCH_DAY,'MM')) MATCH_MONTH,
+		to_number(to_char(MATCH_DAY,'DD')) MATCH_DAY,
+		to_number(to_char(MATCH_DAY,'HH')) MATCH_HOUR,
+		HOME_PITCHER,
+		AWAY_PITCHER,
+		HOME_SCORE,
+		AWAY_SCORE,
+		RESULT
+		from 
+		(select rownum as r_num, a.* from
+  			(select * from match order by match_code desc) a) 
+  			where r_num between #{begin} and #{end}
+	</select>
+	<!-- main컨트롤에서 활용하기에 기존것 놔둠 -->
+	<select id="schedule2" resultType="mybatis.vo.MatchVO">
 		select MATCH_CODE,HOME_CODE,AWAY_CODE,
 		to_number(to_char(MATCH_DAY,'YYYY')) MATCH_YEAR,
 		to_number(to_char(MATCH_DAY,'MM')) MATCH_MONTH,
