@@ -145,10 +145,11 @@ function batcancel(code,id,coin){
 									<c:if test="${list.bat_avg != null }">
 										<td id="bat"></td>
 									</c:if>
-									<c:if test="${list.bat_avg == null }">
+									<c:if test="${list.bat_avg == null || list.re_result == '99' }">
 										<td id="bat"><input type="button" value="취소"
 											onclick="batcancel(${list.bat_code},'${list.id }', ${list.bat_cost })" /></td>
 									</c:if>
+									
 								</tr>
 
 
