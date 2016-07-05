@@ -17,7 +17,7 @@
 </script>
 </head>
 <body>
-		 <div class="fl">
+		<div class="fl">
 		 	<form name="delform">
 			<table id="listgroup">
 				<thead>
