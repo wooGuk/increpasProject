@@ -68,6 +68,10 @@ public class BatVO {
 			return "한화";
 		case 10:
 			return "KT";
+		case 11:
+			return "무승부";
+		case 99:
+			return "우천취소";
 		}
 		return "결과발표전";
 	}
