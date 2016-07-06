@@ -24,7 +24,9 @@
 	
 
 		margin-left: 200px;
-		margin-top: 50px;
+		margin-top: 50px; 
+		 
+		
 	}
 	
 	#searchid{
@@ -33,7 +35,7 @@
 	
 	#searchpassword{
 		display: inline-block;
-		padding-left: 50px;
+		padding-left: 150px;
 	} 
 	
 	#searchid input[type=text],#searchpassword input[type=text]{
@@ -97,7 +99,7 @@
 </br>
 	<p style="font-size: 16px; color: red; font-style: italic;">
 	 
-	아이디가 기억나지 않아 답답하셨나요?
+	아이디가 기억나지 않아 답답하셨나요?<br/>
 	이름과 번호를 입력하시면, 찾을 수 있어요.</p>
 	<br/><br/>
 		<tr>
@@ -120,7 +122,7 @@
 	</br>
 	<p style="font-size: 16px; color: blue; font-style: italic;">
 	 
-	비밀번호가 기억나지 않아 답답하셨나요?
+	비밀번호가 기억나지 않아 답답하셨나요?<br/>
 	아이디와 이름을 입력하시면, 찾을 수 있어요.</p>
 	</br></br>
 		<tr>
