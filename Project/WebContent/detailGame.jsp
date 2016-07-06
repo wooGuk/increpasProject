@@ -3,6 +3,7 @@
 	역 할 : 상세보기 뷰 
 	로 그 : 1.프로그램 최초 생성, tab 레이아웃 구현 오우석(2016/06/16)
 			2.나머지 tab을  위한 style추가 오우석(2016/06/29)
+			3.callplay, res2메소드 추가(AJAX활용), 선수 P_IDX값 넘기기, 선수정보 테이블 레이아웃변경 오우석(2016/07/06)
  -->
 <%@page import="mybatis.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,6 +24,7 @@
 	width: 100%;
 }
 </style>
+<script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript">
 
 	function trans(temp) {
@@ -73,6 +75,21 @@
 			t2.className = "";
 			t3.className = "";
 			t4.className = "active";
+		}
+	}
+	//Ajax활용을 위한 선수불러오기메소드 추가 오우석(2016/07/05)
+	function callPlayer(p_idx){
+		var index = p_idx;
+		var param = "index="+index;
+		sendRequest("viewPlayerInfo.inc", param, res2, "post", true);
+	}
+	//Ajax callback시 호출되는 함수 오우석(2016/07/05)
+	function res2() {
+		if(xhr.readyState==4 && xhr.status==200){
+			//현재문서에서 아이디가 view인
+			//객체를 검색한다.
+			var v =document.getElementById("player_intro");
+			v.innerHTML = xhr.responseText;
 		}
 	}
 </script>

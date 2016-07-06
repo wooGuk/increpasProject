@@ -6,6 +6,7 @@
 	        2.광고추가, 알림창 추가, 정보 수정(오우석 2016/06/20)
 	        3.게임구매방법tab 완료(오우석 2016/06/21)
 	        4.나머지tab 채워넣음(gamebuy.jsp와 동일)(오우석 2016/06/29)
+	        5.선수 idx값을 넘겨주기 위한 코드 변병(오우석 2016/07/06)
 	*/ 
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -219,11 +220,12 @@
 							color="#000">(${awayTeam.win }승 ${awayTeam.lose }패)</font></td>
 						</tr>
 						<tr>
+							<!-- AJAX를 통해서 값을 넘기기 위해 javascript:callPlayer('')작업 수행 오우석 2016/07/06 -->
 							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">
 							투수 :
 								<c:forEach var="home" items="${homeTeam.team_info }" varStatus="stat">
 								<c:if test="${home.POSITION=='투수' }">
-									<a id="teamplayer" href=""> ${home.NAME }</a>
+									<a id="teamplayer" href="javascript:callPlayer('${home.getP_IDX()}')"> ${home.NAME }</a>
  									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -234,7 +236,7 @@
 							투수 :
 								<c:forEach var="away" items="${awayTeam.team_info }" varStatus="stat">
 								<c:if test="${away.POSITION=='투수' }">
-									<a id="teamplayer" href=""> ${away.NAME }</a>
+									<a id="teamplayer" href="javascript:callPlayer('${away.getP_IDX()}')"> ${away.NAME }</a>
 									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -247,7 +249,7 @@
 							야수 :
 								<c:forEach var="home" items="${homeTeam.team_info }" varStatus="stat">
 								<c:if test="${home.POSITION=='야수' }">
-									<a id="teamplayer" href=""> ${home.NAME }</a>
+									<a id="teamplayer" href="javascript:callPlayer('${home.getP_IDX()}')"> ${home.NAME }</a>
 									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -258,7 +260,7 @@
 							야수 :
 								<c:forEach var="away" items="${awayTeam.team_info }" varStatus="stat">
 								<c:if test="${away.POSITION=='야수' }">
-									<a id="teamplayer" href=""> ${away.NAME }</a>
+									<a id="teamplayer" href="javascript:callPlayer('${away.getP_IDX()}')"> ${away.NAME }</a>
 									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -329,18 +331,9 @@
 			</div>
 			<div id="player_info">
 			<p style="font: bold 15px; color: blue;">●선수 정보</p>
+				<!-- AJAX를 통해서 넘어온 HTML값으로 꾸며짐 오우석 2016/07/05 -->
 			<table id="player_intro" class="panel panel-default center_table"
 					style="width: 100%; margin-top: 10px">
-					<thead class="panel-heading">
-						<tr>
-							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-							color="#00F"> 이름</font></td>
-							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-							color="#00F"> 포지션</font></td>
-							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-							color="#00F"> 정보들을 추가시키자</font></td>
-						</tr>
-					</thead>
 			</table>
 			</div>
 </div>
