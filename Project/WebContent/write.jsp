@@ -13,7 +13,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="css/basic.css">  
+<link type="text/css" rel="stylesheet" href="css/basic.css"> 
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css">  
+ 
 <title>Insert title here</title>
 <script type="text/javascript">
 function check(ff){
@@ -52,7 +54,7 @@ function check(ff){
 	#btnmove{
 		margin: 0 auto;
 		width: 700px;
-		padding-left: 550px;
+		padding-left: 230px;
 	}
 	
 	div#move input[type=button],input[type=reset] {
