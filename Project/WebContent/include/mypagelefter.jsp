@@ -8,7 +8,7 @@
 <script type="text/javascript">
 
 	function memdel() {
-		open("", "pop", "width=450,height=240,top=200,left=300");
+		open("", "pop", "width=350,height=230,top=200,left=500");
 		document.delform.action = "delmember.jsp"; // 클릭시 이동하는 페이지 
 		document.delform.target = "pop"; // 이 부분이 핵심! 열어놓은 빈 창(pop)을 form2가 날아갈 target으로 정한다.
 		document.delform.method = "post"; // post방식으로 보내기~!
