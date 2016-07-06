@@ -21,7 +21,6 @@
 		
 %> 
 <script type="text/javascript">
-
 	function memdel() {
 		var password = document.ff.password.value;
 		var pwd = document.f.del.value;
@@ -37,43 +36,78 @@
 				} else{
 					alert("탈퇴할거면 비번제대로 치세요..");
 				}
-		
 		}else{
-				
 			alert("잘 생각했어요 ^^");
 		} 
-		
 	}
-	
-	
 	function cancel() {
 		alert("돈 많이 따세요");
 		window.close();
-		
-		
 	}
-	
 </script>
 <style>
-	#f{
-		text-align: center;
+#f {
+	text-align: center;
+}
+
+#memdel {
+	color: #191919;
+}
+
+#aa {
+	float: left;
+	width: 100px;
+	text-align: right; font-size : 13px;
+	font-size: 13px;
+	margin-top: 3px;
+	font-weight: bold;
+}
+
+.tt3 {
+	font-size: 11px;
+	font-weight: bold;
+	color: green
+}
+
+#delbtn input[type=button]{
+		width: 58px;
+		height: 23px;
+		font-size: 15px;
+		font-weight: bold;
+		border: 1px solid #dcdcdc;		
+	}
+	
+	#delbtn{
+		margin-top: 5px;
+		margin-left: 50px;
+		display: inline-block;
+		padding-right: 20px;
 	}
 </style>
 </head>
 <body>
-
-		<h1>계정 탈퇴를 위해 가입시 입력한 암호를 입력해주시오.</h1>
-		
+		<h3 id="memdel">회 원 탈 퇴</h3>
+		<hr noshade color="#7CCE76">
+		<fieldset>
 		<form id="f" name="f">
-			<label for="id">아이디 : </label>${vo.id }
-			<br/>
-			<label for="del">비밀번호 :</label>
-			<input type="text" id="del" name="del"/>
-			<input type="button" value="탈퇴ㅠㅠ" onclick="memdel()"/>
-			<input type="button" value="취소^^" onclick="cancel()"/>
-			
+		<table>
+			<tr>
+				<td id="aa">아이디 : </td><td>${vo.id }</td>
+			</tr>
+			<tr>
+				<td id="aa">비밀번호 : </td><td><input type="text" id="del" name="del"/></td>
+			</tr>
+		</table>
+		<div id="delbtn">
+			<input type="button" value="탈퇴" onclick="memdel()"/>
+			<input type="button" value="취소" onclick="cancel()"/>
+		</div>	
 		</form>
+		</fieldset>
 		<form id="ff" name="ff">
+		<dd width="50%">
+				<img src="img/sp.gif">&nbsp;<label class="tt3">탈퇴시 비밀번호가 필요합니다!</label>
+			</dd>
 		<input type="hidden" name="password" id="password" value="${vo.password }"/>
 		</form>
 </body>
