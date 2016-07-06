@@ -11,6 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css"> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>Insert title here</title>
 <style type="text/css">
@@ -41,7 +42,7 @@
 	#btnmove{
 		margin: 0 auto;
 		width: 700px;
-		padding-left: 550px;
+		padding-left: 250px;
 	}
 	
 	div#move input[type=button]{
@@ -121,7 +122,7 @@
 							 <label for="file" class="hidden">첨부파일</label>
 							 <input type="file" name="upload" id="upload" class="join"/>
 							 <c:if test="${vo1.uploadFileName != '' }">
-							 	(${vo1.uploadFileName })
+							 	${vo1.uploadFileName }
 							</c:if>
 						</td>
 					</tr>
