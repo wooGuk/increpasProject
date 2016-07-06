@@ -103,7 +103,7 @@ function batcost(code1,id, cost, batcheck){
 								<td id="user">${vo.id }님의잔액:</td>
 								<td id="user"><input type="text" id="usercoin"
 									name="usercoin" value="<c:out value="${vo.coin }"/>" readonly /></td>
-								<td id="coin">코인충전 :</td>
+								<td id="coin">코인충전:</td>
 								<td id="coin"><input type="text" id="coin" name="coin"
 									value="0" /></td>
 								<td><input type="button" value="충전" onclick="charge()"
