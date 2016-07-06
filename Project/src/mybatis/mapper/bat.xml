@@ -10,12 +10,13 @@
 	        2.코인체크 쿼리문 추가 오우석(2016/06/24)
 	        3.해당경기를 이미거래를 했는지 안했는지 체크
 	        4.경기 구매시 RE_FUND 0값 추가 (2016/06/29)
+	        5.컬럼추가로 인한 BAT_CHECK 값 추가 오우석 (2016/07/06)
 	*/
  -->
 <mapper namespace="batting">
 	<insert id="add" parameterType="java.util.Map">
-		insert into batting(BAT_CODE,ID,MATCH_CODE,RE_RESULT,BAT_COST,RE_FUND)
-		values(bat_seq.nextval,#{ID},#{MATCH_CODE},#{RE_RESULT},#{BAT_COST},0)
+		insert into batting(BAT_CODE,ID,MATCH_CODE,RE_RESULT,BAT_COST,RE_FUND,BAT_CHECK )
+		values(bat_seq.nextval,#{ID},#{MATCH_CODE},#{RE_RESULT},#{BAT_COST},0,0)
 	</insert>
 	<!-- 코인체크 쿼리문 추가 오우석(2016/06/24) -->
 	<select id="checkCoin" parameterType="java.util.Map" resultType="mybatis.vo.MemberVO">

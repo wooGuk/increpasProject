@@ -1,7 +1,13 @@
 package mybatis.vo;
-
+//컬럼추가로 인한 bat_check 변수 추가(오우석 2016/07/10)
 public class BatVO {
-	private int bat_code,match_code,re_result,ac_result,bat_cost;
+	private int bat_code,match_code,re_result,ac_result,bat_cost,bat_check;
+	public int getBat_check() {
+		return bat_check;
+	}
+	public void setBat_check(int bat_check) {
+		this.bat_check = bat_check;
+	}
 	private String id, bat_avg;
 	public int getBat_code() {
 		return bat_code;
