@@ -199,6 +199,10 @@ function res() {
 #team_intro tbody tr{
 	border-bottom: 0.5px dotted gray;
 }
+#teamplayer:HOVER{
+	text-decoration: underline;
+	color: blue;
+}
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -374,7 +378,7 @@ function res() {
 							투수 :
 								<c:forEach var="home" items="${homeTeam.team_info }" varStatus="stat">
 								<c:if test="${home.POSITION=='투수' }">
-									<a href=""> ${home.NAME }</a>
+									<a id="teamplayer" href=""> ${home.NAME }</a>
  									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -385,7 +389,7 @@ function res() {
 							투수 :
 								<c:forEach var="away" items="${awayTeam.team_info }" varStatus="stat">
 								<c:if test="${away.POSITION=='투수' }">
-									<a href=""> ${away.NAME }</a>
+									<a id="teamplayer" href=""> ${away.NAME }</a>
 									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -398,7 +402,7 @@ function res() {
 							야수 :
 								<c:forEach var="home" items="${homeTeam.team_info }" varStatus="stat">
 								<c:if test="${home.POSITION=='야수' }">
-									<a href=""> ${home.NAME }</a>
+									<a id="teamplayer" href=""> ${home.NAME }</a>
 									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -409,7 +413,7 @@ function res() {
 							야수 :
 								<c:forEach var="away" items="${awayTeam.team_info }" varStatus="stat">
 								<c:if test="${away.POSITION=='야수' }">
-									<a href=""> ${away.NAME }</a>
+									<a id="teamplayer" href=""> ${away.NAME }</a>
 									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>

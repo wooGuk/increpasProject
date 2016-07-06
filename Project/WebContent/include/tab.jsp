@@ -60,6 +60,10 @@
 .center_side{
 	width: 100%;
 }
+#teamplayer:HOVER{
+	text-decoration: underline;
+	color: blue;
+}
 </style>
 <div class="center_side">
 	<ul class="nav nav-tabs nav-justified">
@@ -219,7 +223,7 @@
 							투수 :
 								<c:forEach var="home" items="${homeTeam.team_info }" varStatus="stat">
 								<c:if test="${home.POSITION=='투수' }">
-									<a href=""> ${home.NAME }</a>
+									<a id="teamplayer" href=""> ${home.NAME }</a>
  									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -230,7 +234,7 @@
 							투수 :
 								<c:forEach var="away" items="${awayTeam.team_info }" varStatus="stat">
 								<c:if test="${away.POSITION=='투수' }">
-									<a href=""> ${away.NAME }</a>
+									<a id="teamplayer" href=""> ${away.NAME }</a>
 									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -243,7 +247,7 @@
 							야수 :
 								<c:forEach var="home" items="${homeTeam.team_info }" varStatus="stat">
 								<c:if test="${home.POSITION=='야수' }">
-									<a href=""> ${home.NAME }</a>
+									<a id="teamplayer" href=""> ${home.NAME }</a>
 									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -254,7 +258,7 @@
 							야수 :
 								<c:forEach var="away" items="${awayTeam.team_info }" varStatus="stat">
 								<c:if test="${away.POSITION=='야수' }">
-									<a href=""> ${away.NAME }</a>
+									<a id="teamplayer" href=""> ${away.NAME }</a>
 									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
