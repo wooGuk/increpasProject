@@ -98,13 +98,27 @@
 		where bat_code = #{bat_code}
 	</update> 
 	
-	<!-- 베팅경기 취소 반환금 2016/06/28 장준수  -->
+	<!-- 베팅경기 취소 반환금 2016/06/28 -->
 	<update id="returnCoin" parameterType="mybatis.vo.MemberVO">
 		update member
-		set coin = coin+#{coin}
+		set coin = #{coin}
 		where id = #{id}
 	</update>
-	 
+	
+	<!-- 베당금체크 장준수 2016/07/06 -->
+	<update id="checkBat" parameterType="int">
+		update batting 
+		set bat_check = 1
+		where bat_code = #{bat_code}
+	</update>
+	
+	<!-- 베팅금액 받기 장준수  2016/07/06 -->
+	<update id="costCoin" parameterType="mybatis.vo.MemberVO">
+		update member
+		set coin = #{coin}
+		where id = #{id}
+	</update>
+	
 </mapper>
 
 
