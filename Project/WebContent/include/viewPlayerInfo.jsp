@@ -20,6 +20,8 @@
 		<td height="20" align="center" bgcolor="#669AB3" width="56"><font
 			color="#00F"> 이름</font></td>
 		<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+			color="#00F"> 팀</font></td>
+		<td height="20" align="center" bgcolor="#669AB3" width="56"><font
 			color="#00F"> 포지션</font></td>
 		<c:if test="${player.getPOSITION()=='투수' }">
 			<td height="20" align="center" bgcolor="#669AB3" width="56"><font
@@ -63,6 +65,8 @@
 	<tr id="inputPlayerInfo">
 	<td height="20" align="center" bgcolor="#669AB3" width="56"><font
 			color="#000"> <%=vo.getNAME()%></font></td>
+			<td height="20" align="center" bgcolor="#669AB3" width="56"><font
+			color="#000"> <%=vo.getTEAM_NAME() %></font></td>
 			<td height="20" align="center" bgcolor="#669AB3" width="56"><font
 			color="#000"> <%=vo.getPOSITION() %></font></td>
 	<c:if test="${player.getPOSITION()=='투수' }">
