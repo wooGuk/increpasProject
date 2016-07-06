@@ -10,6 +10,7 @@
 			5.분석글 추가(정성훈 2016.06.27)  
 			6.배팅취소하기 버튼 추가(오우석 2016.06.28)
 			7.팀정보의 팀 전적정보 추가, 선수정보 레이아웃 정의(오우석 2016.06.28)
+			8.callplay, res2메소드 추가(AJAX활용), 선수 P_IDX값 넘기기, 선수정보 테이블 레이아웃변경 오우석(2016/07/06)
 	*/ 
  -->
 <%@page import="mybatis.vo.MemberVO"%>
@@ -130,12 +131,26 @@ function checkCoin(){
 	var param = "coin="+encodeURIComponent(coin)+"&id="+encodeURIComponent(id);
 	sendRequest("checkCoin.inc", param, res, "post", true);
 }
-
+//Ajax활용을 위한 선수불러오기메소드 추가 오우석(2016/07/05)
+function callPlayer(p_idx){
+	var index = p_idx;
+	var param = "index="+index;
+	sendRequest("viewPlayerInfo.inc", param, res2, "post", true);
+}
 function res() {
 	if(xhr.readyState==4 && xhr.status==200){
 		//현재문서에서 아이디가 view인
 		//객체를 검색한다.
 		var v =document.getElementById("pos");
+		v.innerHTML = xhr.responseText;
+	}
+}
+//Ajax callback시 호출되는 함수 오우석(2016/07/05)
+function res2() {
+	if(xhr.readyState==4 && xhr.status==200){
+		//현재문서에서 아이디가 view인
+		//객체를 검색한다.
+		var v =document.getElementById("player_intro");
 		v.innerHTML = xhr.responseText;
 	}
 }
@@ -374,11 +389,12 @@ function res() {
 							color="#000">(${awayTeam.win }승 ${awayTeam.lose }패)</font></td>
 						</tr>
 						<tr>
+						<!-- AJAX를 통해서 값을 넘기기 위해 javascript:callPlayer('')작업 수행 오우석 2016/07/06 -->
 							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#000">
 							투수 :
 								<c:forEach var="home" items="${homeTeam.team_info }" varStatus="stat">
 								<c:if test="${home.POSITION=='투수' }">
-									<a id="teamplayer" href=""> ${home.NAME }</a>
+									<a id="teamplayer" href="javascript:callPlayer('${home.getP_IDX()}')"> ${home.NAME }</a>
  									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -389,7 +405,7 @@ function res() {
 							투수 :
 								<c:forEach var="away" items="${awayTeam.team_info }" varStatus="stat">
 								<c:if test="${away.POSITION=='투수' }">
-									<a id="teamplayer" href=""> ${away.NAME }</a>
+									<a id="teamplayer" href="javascript:callPlayer('${away.getP_IDX()}')"> ${away.NAME }</a>
 									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -402,7 +418,7 @@ function res() {
 							야수 :
 								<c:forEach var="home" items="${homeTeam.team_info }" varStatus="stat">
 								<c:if test="${home.POSITION=='야수' }">
-									<a id="teamplayer" href=""> ${home.NAME }</a>
+									<a id="teamplayer" href="javascript:callPlayer('${home.getP_IDX()}')"> ${home.NAME }</a>
 									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -413,7 +429,7 @@ function res() {
 							야수 :
 								<c:forEach var="away" items="${awayTeam.team_info }" varStatus="stat">
 								<c:if test="${away.POSITION=='야수' }">
-									<a id="teamplayer" href=""> ${away.NAME }</a>
+									<a id="teamplayer" href="javascript:callPlayer('${away.getP_IDX()}')"> ${away.NAME }</a>
 									<c:if test="${stat.count%3==0 }">
 										<br />
 									</c:if>
@@ -484,18 +500,9 @@ function res() {
 			</div>
 			<div id="player_info">
 			<p style="font: bold 15px; color: blue;">●선수 정보</p>
+			<!-- AJAX를 통해서 넘어온 HTML값으로 꾸며짐 오우석 2016/07/05 -->
 			<table id="player_intro" class="panel panel-default center_table"
 					style="width: 100%; margin-top: 10px">
-					<thead class="panel-heading">
-						<tr>
-							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-							color="#00F"> 이름</font></td>
-							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-							color="#00F"> 포지션</font></td>
-							<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-							color="#00F"> 정보들을 추가시키자</font></td>
-						</tr>
-					</thead>
 			</table>
 			</div>
 		</div>

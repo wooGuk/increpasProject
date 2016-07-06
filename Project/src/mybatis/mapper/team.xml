@@ -8,6 +8,7 @@
 	역 할 : Team DB의 mapper.
 	로 그 : 1. 생성 (정성훈 2016.06.20)
 			2. 선수명단을 가져오기 위한 문장 추가(오우석 2016.06.27)(resrultMap,teamHA,player)
+			3. 선수(한명)정보를 가져오기 위한 문장 추가(오우석 2016.07.06)
 	*/
  -->
 <mapper namespace="team">
@@ -33,7 +34,12 @@
 		from team_info
 		where team_code = #{team_code}
 	</select>
-	
+	<!-- (오우석 2016.07.06)추가문장 -->
+	<select id="choosePlayer" resultType="mybatis.vo.PlayerVO" parameterType="int">
+		select *
+		from team_info
+		where p_idx = #{index}
+	</select>
 </mapper>
 
 

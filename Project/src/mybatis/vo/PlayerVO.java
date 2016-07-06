@@ -2,11 +2,12 @@
 	제 목 : PlayerVO.java
 	역 할 : 선수 데이터 파일
 	로 그 : 1.프로그램 최초 생성(오우석 2016/06/27)
+			2.p_idx변수값 추가(오우석 2016/07/06)
 	*/
 package mybatis.vo;
 
 public class PlayerVO {
-	private int TEAM_CODE;
+	private int TEAM_CODE,P_IDX;
 	private String NAME,TEAM_NAME,POSITION,GAME,ATBAT,HITS,
 	HOMERUN,RUN,RBI,BALLFOUR,SOUT,STEALBASE,BABIP,AVGS,OBP,SA,OPS,wOBA,WIN,LOSE,SAVE,HOLD,NOTSAVE,STARTGAME,INN,ERA;
 	public int getTEAM_CODE() {
@@ -14,6 +15,12 @@ public class PlayerVO {
 	}
 	public void setTEAM_CODE(int tEAM_CODE) {
 		TEAM_CODE = tEAM_CODE;
+	}
+	public int getP_IDX() {
+		return P_IDX;
+	}
+	public void setP_IDX(int p_IDX) {
+		P_IDX = p_IDX;
 	}
 	public String getNAME() {
 		return NAME;

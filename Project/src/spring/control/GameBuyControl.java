@@ -12,6 +12,7 @@
 			9.팀정보 추가(오우석 2016.06.27)
 			10.detail메소드 gamebuy와 동일한 로직으로 변경(분석글 제외) 오우석(2016/06/29)
 			11.지난 게임과 게임 일정 페이징 기법으로 수정 오우석(2016/07/04)
+			12.선수불러오기 메소드 추가(오우석 2016/07/06)
 	*/
 package spring.control;
 
@@ -36,11 +37,13 @@ import mybatis.vo.BatVO;
 import mybatis.vo.FreeBoardVO;
 import mybatis.vo.MatchVO;
 import mybatis.vo.MemberVO;
+import mybatis.vo.PlayerVO;
 import mybatis.vo.TeamVO;
 import spring.include.Paging;
 import spring.include.Paging_board;
 import spring.include.Paging_game;
 import spring.include.Paging_gameScedule;
+import sun.text.normalizer.UBiDiProps;
 
 @Controller
 public class GameBuyControl {
@@ -380,7 +383,6 @@ public class GameBuyControl {
 		//팀정보 추가(오우석 2016.06.27)
 		mv.addObject("homeTeam", homeTeam);
 		mv.addObject("awayTeam", awayTeam);
-		
 		//세션에 추가(정성훈 2016.06.27)
 		session.setAttribute("game", vo);
 		session.setAttribute("vsGame",vsGames);
@@ -460,6 +462,18 @@ public class GameBuyControl {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("msg", msg);
 		mv.setViewName("/include/view");
+		return mv;
+	}
+	//선수불러오기 메소드 추가(오우석 2016/07/06)
+	@RequestMapping("/viewPlayerInfo.inc")
+	public ModelAndView viewPlayerInfo(){
+		System.out.println(Integer.parseInt(request.getParameter("index")));
+		int index = Integer.parseInt(request.getParameter("index"));
+		
+		PlayerVO vo = tDao.choosePlayer(index);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("player",vo);
+		mv.setViewName("/include/viewPlayerInfo");
 		return mv;
 	}
 }
