@@ -316,5 +316,6 @@ div#del_win input[type=password]{width: 80px;}
 		<input type="hidden" name="password" value="${vo.password }"/>
 		</form>
 	</div>
+	<jsp:include page="include/footer.jsp"></jsp:include>
 </body>
 </html>
