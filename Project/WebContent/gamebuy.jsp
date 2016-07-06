@@ -469,7 +469,7 @@ function res() {
 						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
 							color="#000"> ${awayTeam.rank } </font></td>
 						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
-							color="#000"> ${awayTeam.win + homeTeam.lose } </font></td>
+							color="#000"> ${awayTeam.win + awayTeam.lose } </font></td>
 						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
 							color="#000"> ${awayTeam.win } </font></td>
 						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
