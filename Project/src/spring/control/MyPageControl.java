@@ -23,6 +23,7 @@ import mybatis.vo.MemberVO;
 					3. 회원수정 (장준수 2016/06/20) 
 					4. 회원탈퇴 추가 (박상원 2016/06/21)
 					5. 구매 취소 및 반환금 받기 (장준수 2016/06/29) 
+					6. 베당금 받기 (2016/07/06 장준수)
 	 */	
 
 	
@@ -125,22 +126,52 @@ public class MyPageControl {
 		public ModelAndView batcancel(){
 			
 			MemberVO vo = (MemberVO) session.getAttribute("vo");
-			String c = request.getParameter("pk");
-			String n = request.getParameter("batcoin");
-			String id = request.getParameter("id");
+			String c = request.getParameter("pk"); // 베팅테이블의 기본키
+			String n = request.getParameter("batcoin"); //  베팅했던 금액
+			String id = request.getParameter("id"); // 베팅 id
 		
-			int code = Integer.parseInt(c);
+			int code = Integer.parseInt(c); 
 			int coin = Integer.parseInt(n);
-			System.out.println(coin);
 			
-			int a = vo.getCoin();
-			int s = a+coin;
+			int a = vo.getCoin(); // 현재 유저가 가지고있던 금액
+			int s = a+coin;  // 현재 유저금액 + 배팅금액
 			
-			vo.setId(id);
+			vo.setId(id); 
 			vo.setCoin(s);
 			
 			mdao.returnCoin(vo);
 			mdao.delBat(code);
+			
+			ModelAndView mv = new ModelAndView();
+			
+			mv.setViewName("redirect:/mypageCheck.inc");
+			return mv;
+			
+		}
+		
+		// 베당금 받기 (2016/07/06 장준수)
+		@RequestMapping("/batcost.inc")
+		public ModelAndView cost(){
+			
+			MemberVO vo = (MemberVO) session.getAttribute("vo");
+			String c = request.getParameter("pk1"); // 베팅테이블의 기본키
+			String n = request.getParameter("cost"); //  베팅해서 딴 금액
+			String id = request.getParameter("costid"); // 베팅 id
+		
+			int code = Integer.parseInt(c);
+			int cost = Integer.parseInt(n);
+			System.out.println("pk:"+code);
+			System.out.println("cost:"+cost);
+			System.out.println("id:"+id);
+			
+			int a = vo.getCoin(); // 현재 유저가 가지고있던 금액
+			int s = a+cost; // 현재 유저금액 + 딴 베팅금액
+			
+			vo.setId(id);
+			vo.setCoin(s);
+			
+			mdao.BatCost(vo);
+			mdao.checkBat(code);
 			
 			ModelAndView mv = new ModelAndView();
 			
