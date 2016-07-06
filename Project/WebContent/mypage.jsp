@@ -70,6 +70,21 @@ function batcancel(code,id,coin){
 	  }
 }
 
+function batcost(code1,id, cost, batcheck){
+	document.getElementById("pk1").value = code1;
+	document.getElementById("costid").value = id;
+	document.getElementById("cost").value = cost;
+	
+	if(batcheck == 0){
+		document.getElementById("ff").submit();
+	}else{
+		alert("이미 수령하셨습니다.");
+	}
+	
+		
+	
+}
+
 </script>
 </head>
 <body>
@@ -128,7 +143,7 @@ function batcancel(code,id,coin){
 									color="#FFFFFF">수령금액</font></td>
 								<td id="t7"
 									style="background: #5D5D5D; height: 40px; font-weight: bold;"><font
-									color="#FFFFFF">구매취소</font></td>
+									color="#FFFFFF">취소 및 받기</font></td>
 							</tr>
 						</thead>
 						<tbody>
@@ -142,22 +157,28 @@ function batcancel(code,id,coin){
 									<td id="bat">${list.teamName(list.ac_result) }</td>
 									<td id="bat">${list.bat_cost }</td>
 									<td id="bat">${list.bat_avg }</td>
-									<c:if test="${list.bat_avg != null }">
-										<td id="bat"></td>
-									</c:if>
+									<c:if test="${list.bat_avg != null && list.bat_avg != '0'}">
+										<td id="bat"><input type="button" value="받기"
+											onclick="batcost(${list.bat_code},'${list.id }', ${list.bat_avg }, ${list.bat_check })" /></td>
+									</c:if>		
 									<c:if test="${list.bat_avg == null || list.re_result == '99' }">
 										<td id="bat"><input type="button" value="취소"
 											onclick="batcancel(${list.bat_code},'${list.id }', ${list.bat_cost })" /></td>
 									</c:if>
-									
+									<c:if test="${list.bat_avg == '0' }">
+										<td id="bat"></td>
+									</c:if>
 								</tr>
-
-
 							</c:forEach>
 							<form action="batcancel.inc" method="post" id="f">
-								<input type="hidden" name="pk" id="pk" /> <input type="hidden"
-									name="id" id="id" /> <input type="hidden" name="batcoin"
-									id="batcoin" />
+								<input type="hidden" name="pk" id="pk" /> 
+								<input type="hidden" name="id" id="id" /> 
+								<input type="hidden" name="batcoin" id="batcoin" />
+							</form>
+							<form action="batcost.inc" method="post" id="ff">
+								<input type="hidden" name="pk1" id="pk1" /> 
+								<input type="hidden" name="costid" id="costid" /> 
+								<input type="hidden" name="cost" id="cost" />
 							</form>
 							<c:if test="${batlist == null}">
 								<tr>
