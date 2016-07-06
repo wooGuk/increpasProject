@@ -90,6 +90,8 @@
 			//객체를 검색한다.
 			var v =document.getElementById("player_intro");
 			v.innerHTML = xhr.responseText;
+			//HTML내에서 위치이동(location.href)
+			location.href="#player_info";
 		}
 	}
 </script>
