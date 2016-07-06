@@ -106,9 +106,20 @@ public class MemberDAO {
 			template.update("mem.delBat",code);
 		}
 		
-		// 
+		// 경기취소  금액 받기 (2016/06/29 장준수)
 		public MemberVO returnCoin(MemberVO vo){
 			template.update("mem.returnCoin",vo);
+			return vo;
+		}
+		
+		// 베팅금 중복체크(2016/07/06 장준수)
+		public void checkBat(int code){
+			template.update("mem.checkBat",code);
+		}
+		
+		// 베팅금액 받기 (2016/07/06 장준수)
+		public MemberVO BatCost(MemberVO vo){
+			template.update("mem.costCoin",vo);
 			return vo;
 		}
 
