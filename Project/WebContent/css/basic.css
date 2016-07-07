@@ -3,6 +3,7 @@
 
 /*****************************************************
 기본 레이아웃 
+1.footer 바닥에 고정하기 위해 position과 width 변경 오우석(2016/07/07)
 *****************************************************/
 #wrap {width:100%;}
 
@@ -71,7 +72,8 @@ color:#000; font-weight:bold; font-size:16px; padding-left:40px; background:url(
 	
 
 /* 푸터영역 */
-#footer {width:auto; padding:40px 0 50px; background:#eee; margin-top:100px;}
+/* footer 바닥에 고정하기 위해 position과 width 변경 오우석(2016/07/07) */
+#footer {width:100%; padding:40px 0 50px; background:#eee; position:absolute; bottom:0px;}
 #footer .footer_area{width:900px; margin:auto;}
 #footer .foot_guide {overflow:hidden; padding-bottom:20px;}
 #footer .foot_guide li {float:left; padding:0 10px; border-left:1px solid #999;}
