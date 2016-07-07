@@ -24,9 +24,9 @@
 			<tr>
 				<td class="list-group-item"><a href="gamescedule.inc">게임일정 ></a></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td class="list-group-item"><a href="gameresult.inc">게임결과 ></a></td>
-			</tr>
+			</tr> -->
 		</tbody>
 	</table>
 </div>
