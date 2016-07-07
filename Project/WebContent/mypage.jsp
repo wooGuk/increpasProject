@@ -20,7 +20,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="css/basic.css" />
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
-<title>Insert title here</title>
+<title>마이페이지-프로야구 토토 승무패 페이지</title>
 <script type="text/javascript">
 
 function charge(evt){

@@ -227,7 +227,7 @@ function res2() {
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>게임구매-프로야구 토토 승무패 페이지</title>
 </head>
 <body>
 	<!-- Header 영역 -->

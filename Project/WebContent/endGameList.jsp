@@ -32,7 +32,7 @@
 	}
 }
 </style>
-<title>Insert title here</title>
+<title>지난게임-프로야구 토토 승무패 페이지</title>
 </head>
 <body>
 	<!-- Header 영역 -->

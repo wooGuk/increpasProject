@@ -88,7 +88,7 @@ MatchVO[] games = (MatchVO[])request.getAttribute("games"); // 경기정보
 		f.submit();
 	}
 </script>
-<title>Insert title here</title>
+<title>게임정보-프로야구 토토 승무패 페이지</title>
 </head>
 <body>
 	<div id="wrap">

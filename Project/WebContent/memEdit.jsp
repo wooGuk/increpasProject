@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>회원가입-프로야구 토토 승무패 페이지</title>
 <link type="text/css" rel="stylesheet" href="css/basic.css"/> 
 <style type="text/css">
 

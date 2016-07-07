@@ -16,7 +16,7 @@
 <link type="text/css" rel="stylesheet" href="css/basic.css"> 
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">  
  
-<title>Insert title here</title>
+<title>게시글작성-프로야구 토토 승무패 페이지</title>
 <script type="text/javascript">
 function check(ff){
 

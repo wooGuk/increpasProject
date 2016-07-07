@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>운영자 체크 -프로야구 토토 승무패 페이지</title>
 <script>
 function ok() {
 	var password = document.ff.password.value;

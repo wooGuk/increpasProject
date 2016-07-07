@@ -41,7 +41,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>==프로야구 토토 승무패 페이지에 오신걸 환영합니다==</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 <style type="text/css">
 

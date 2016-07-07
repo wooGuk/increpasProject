@@ -18,7 +18,7 @@
 <%
 	MemberVO vo = (MemberVO)session.getAttribute("vo");
 %>
-<title>Insert title here</title>
+<title>게임세부정보-프로야구 토토 승무패 페이지</title>
 <style type="text/css">
 .fl{
 	width: 100%;

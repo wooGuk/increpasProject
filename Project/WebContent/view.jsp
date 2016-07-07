@@ -12,7 +12,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Insert title here</title>
+<title>게시글-프로야구 토토 승무패 페이지</title>
 <link type="text/css" rel="stylesheet" href="css/basic.css"/>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">  
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
