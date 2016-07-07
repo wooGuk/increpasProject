@@ -76,7 +76,7 @@ public class MemberDAO {
 		
 		// 회원탈퇴(장준수 2016/06/21)
 		public MemberVO memDel(MemberVO vo){
-			template.delete("mem.memDel",vo);
+			template.update("mem.memDel",vo);
 			return vo;
 		}
 		
