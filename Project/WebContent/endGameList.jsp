@@ -179,7 +179,7 @@
 
 
 	<!-- Footer 영역 -->
-	<%@include file="include/footer.jsp"%>
+	<jsp:include page="include/footer.jsp"/>
 
 </body>
 </html>

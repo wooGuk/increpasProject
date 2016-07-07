@@ -102,9 +102,9 @@
 	<!-- 컨텐츠 영억 -->
 	<div id="contents">
 		<!-- tab 레이아웃 구현 오우석(2016/06/16) -->
-		<%@include file="include/tab.jsp"%>	
+		<jsp:include page="include/tab.jsp"/>	
 	</div>
 	<!-- Footer 영역 -->
-	<%@include file="include/footer.jsp"%>
+	<jsp:include page="include/footer.jsp"/>
 </body>
 </html>
