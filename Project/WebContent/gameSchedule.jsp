@@ -45,6 +45,7 @@
 			<div style="width: 100%">
 				<table class="panel panel-default center_table" width="750px">
 					<thead class="panel-heading">
+						※마감일자는 게임일정 하루 전입니다.
 						<tr>
 							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">게임명</font></td>
 							<td height="20" align="center" bgcolor="#669AB3" width="56"><font color="#00F">게임일정</font></td>

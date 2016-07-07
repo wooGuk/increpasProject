@@ -70,7 +70,7 @@ function check(alertMessage) {
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">프로야구</font></td>
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_code }</font></td>
 						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.teamName(game.home_code) }:${game.teamName(game.away_code) }</font></td>
-						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_year }년${game.match_month }월${game.match_day } 자정</font></td>
+						<td height="20" bgcolor="#669AB3" width="56"><font color="#000">${game.match_year }년${game.match_month }월${game.match_day-1 } 자정</font></td>
 						<td height="20" bgcolor="#669AB3" width="56"><a href="javascript:info_send('${stat.count}')"><font color="blue"> 게임구매</font></a></td>
 					</tr>
 						<form name="f" id="f" action="buyGame.inc" method="post">
