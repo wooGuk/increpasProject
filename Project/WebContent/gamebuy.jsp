@@ -217,6 +217,9 @@ function res2() {
 #team_intro tbody tr{
 	border-bottom: 0.5px dotted gray;
 }
+.panel-bod tr{
+	border-bottom: 0.5px dotted gray;
+}
 #teamplayer:HOVER{
 	text-decoration: underline;
 	color: blue;
@@ -306,7 +309,7 @@ function res2() {
 					</tr>
 				</thead>
 				<tbody class="panel-bod">
-					<tr>
+					<tr style="border: none;">
 						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
 							color="#000">${game.match_code }</font></td>
 						<td height="20" align="center" bgcolor="#669AB3" width="56"><font
@@ -354,7 +357,7 @@ function res2() {
 								<td height="20" bgcolor="#669AB3" width="56"><font
 									color="#000">${vsgame.match_code }</font></td>
 								<td height="20" bgcolor="#669AB3" width="56"><font
-									color="#000">${vsgame.match_year }년${vsgame.match_month }월${vsgame.match_day }</font></td>
+									color="#000">${vsgame.match_year }년${vsgame.match_month }월${vsgame.match_day }일</font></td>
 								<td height="20" bgcolor="#669AB3" width="56"><font
 									color="#000">${vsgame.teamName(vsgame.home_code) }:${vsgame.teamName(vsgame.away_code) }</font></td>
 								<td height="20" bgcolor="#669AB3" width="56"><font
