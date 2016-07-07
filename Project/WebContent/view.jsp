@@ -22,7 +22,7 @@
 div#del_win {
 	position: absolute;
 	top: 555px;
-	left: 580px;
+	margin-left: 750px;
 	width: 160px;
 	height: 70px;
 	padding-top: 10px;
