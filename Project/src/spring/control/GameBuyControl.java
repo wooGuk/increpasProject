@@ -13,6 +13,7 @@
 			10.detail메소드 gamebuy와 동일한 로직으로 변경(분석글 제외) 오우석(2016/06/29)
 			11.지난 게임과 게임 일정 페이징 기법으로 수정 오우석(2016/07/04)
 			12.선수불러오기 메소드 추가(오우석 2016/07/06)
+			13.coin ""(아무것도 입력하지 않은경우)예외처리 (오우석 2016/07/07)
 	*/
 package spring.control;
 
@@ -443,7 +444,16 @@ public class GameBuyControl {
 	@RequestMapping("/checkCoin.inc")
 	public ModelAndView checkCoin(){
 		String id = request.getParameter("id");
-		int coin = Integer.parseInt(request.getParameter("coin"));
+		//"아무것도 입력하지 않을 경우가 있다."
+		//""(아무것도 입력하지 않은경우)예외처리 (오우석 2016/07/07)
+		int coin=0;
+		try {
+			 coin = Integer.parseInt(request.getParameter("coin"));
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("coin = 0 이됨(아무것도 입력안한거)");
+			
+		}
 		String msg;
 		if(coin < 1000){
 			msg = "1000원이상구매가능";
