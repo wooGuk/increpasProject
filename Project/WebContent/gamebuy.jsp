@@ -11,6 +11,7 @@
 			6.배팅취소하기 버튼 추가(오우석 2016.06.28)
 			7.팀정보의 팀 전적정보 추가, 선수정보 레이아웃 정의(오우석 2016.06.28)
 			8.callplay, res2메소드 추가(AJAX활용), 선수 P_IDX값 넘기기, 선수정보 테이블 레이아웃변경 오우석(2016/07/06)
+			9.광고div추가 오우석(2016/07/07)
 	*/ 
  -->
 <%@page import="mybatis.vo.MemberVO"%>
@@ -273,7 +274,15 @@ function res2() {
 			</div>
 	</div>
 	<div class="tab_cont show" id="tab2">
-		<div id="basic_info">
+			<!-- 광고div추가 오우석(2016/07/07)-->
+			<div id="ad">
+				<p>
+					<a href="http://www.betman.co.kr/betCoachMain.so">
+						<img alt=""	src="img/ad.jpg" width="100%" height="100px">
+					</a>
+				</p>
+			</div>
+			<div id="basic_info">
 			<p>발매기간 하루 전까지 발매</p>
 			<p>발 표 일 경기개최 당일 적중결과 발표</p>
 			<p>환급기간 선택한 모든 대상경기의 발표일 익일부터 1년간</p>
