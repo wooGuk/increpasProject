@@ -106,7 +106,7 @@
 		</fieldset>
 		<form id="ff" name="ff">
 		<dd width="50%">
-				<img src="img/sp.gif">&nbsp;<label class="tt3">탈퇴시 비밀번호가 필요합니다!</label>
+				<img src="img/sp.gif">&nbsp;<label class="tt3">탈퇴시 재가입 불가능합니다.</label>
 			</dd>
 		<input type="hidden" name="password" id="password" value="${vo.password }"/>
 		</form>
