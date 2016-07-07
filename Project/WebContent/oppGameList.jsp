@@ -47,7 +47,7 @@ function check(alertMessage) {
 	<!-- Header 영역 -->
 	<%@include file="include/header.jsp"%>
 	<!-- 컨텐츠 영억 -->
-	<div id="contents">
+	<div id="contents" style="height: 371px;">
 		<!-- 2.왼쪽 탭 링크연결 (오우석 2016/06/13) -->
 		<%@include file="include/lefter.jsp"%>
 

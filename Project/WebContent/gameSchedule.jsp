@@ -40,7 +40,7 @@
 	<%@include file="include/header.jsp"%>
 	
 	<!-- 컨텐츠 영억 -->
-	<div id="contents">
+	<div id="contents" style="height: 371px;">
 			<%@include file="include/lefter.jsp" %>
 			<div style="width: 100%">
 				<table class="panel panel-default center_table" width="750px">
